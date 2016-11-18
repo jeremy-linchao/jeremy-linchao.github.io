@@ -61,6 +61,147 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vim 环境打造" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/16/Vim 环境打造/" class="article-date">
+  <time datetime="2016-11-16T09:47:18.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vim-环境打造"><a href="#Vim-环境打造" class="headerlink" title="Vim 环境打造"></a>Vim 环境打造</h1><h3 id="1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间"><a href="#1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间" class="headerlink" title="1. 思路是使用spf13来配置vim，https://github.com/spf13/spf13-vim，可以节省比较多的时间"></a>1. 思路是使用spf13来配置vim，<a href="https://github.com/spf13/spf13-vim，可以节省比较多的时间" target="_blank" rel="external">https://github.com/spf13/spf13-vim，可以节省比较多的时间</a></h3><h3 id="2-几个常用插件使用方式"><a href="#2-几个常用插件使用方式" class="headerlink" title="2. 几个常用插件使用方式"></a>2. 几个常用插件使用方式</h3><ul>
+<li><p>注释和取消注释： ，+ c + space</p>
+</li>
+<li><p>查找文件： ctrl + p ，然后使用 ctrl + j,k 来上下移动</p>
+</li>
+<li><p>打开工程目录：  ctrl + e, 然后使用t来打开文件，在左边和右边窗口移动使用ctrl + H，L来左右移动鼠标，在多个tab之间使用gt来切换</p>
+</li>
+<li><p>颜色配置：在.vimrc那个文件找到solarized那一段，let g:solarized _termcolors = 16 这样的话文本不会太暗</p>
+</li>
+<li><p>字体配置： 首先把let g:airline_powerline_fonts=1这段写到.vimrc.before.local，同时在终端的perference上配置下字体为SourceCodePro</p>
+</li>
+</ul>
+<h3 id="3-暂时不用的插件先都关闭掉"><a href="#3-暂时不用的插件先都关闭掉" class="headerlink" title="3.暂时不用的插件先都关闭掉"></a>3.暂时不用的插件先都关闭掉</h3><ul>
+<li>echo UnBundle \’AutoClose\’ &gt;&gt; ~/.vimrc.bundles.local  把不需要的插件写到.vimrc.local，然后:BundleClean! 移除插件目录</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/16/Vim 环境打造/" data-id="civndyq3a0005n5zsr2dujaen" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post- CommonJS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/11/ CommonJS/" class="article-date">
+  <time datetime="2016-11-11T05:49:30.000Z" itemprop="datePublished">2016-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p><code>require</code>命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/11/ CommonJS/" data-id="civndyq2v0000n5zs1r6ez4mb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-前端代码学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/10/前端代码学习/" class="article-date">
+  <time datetime="2016-11-10T14:03:55.000Z" itemprop="datePublished">2016-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端代码学习"><a href="#前端代码学习" class="headerlink" title="前端代码学习"></a>前端代码学习</h1><h4 id="gitmodules-子仓库"><a href="#gitmodules-子仓库" class="headerlink" title=".gitmodules 子仓库"></a>.gitmodules 子仓库</h4><h4 id="starter是个启动器，包含路由设置，只需要部署一次，所有前端都会访问index-html，-有个路由启动程序在route目录下-route-extend-js-这个js回去conf下拿route-json"><a href="#starter是个启动器，包含路由设置，只需要部署一次，所有前端都会访问index-html，-有个路由启动程序在route目录下-route-extend-js-这个js回去conf下拿route-json" class="headerlink" title=" starter是个启动器，包含路由设置，只需要部署一次，所有前端都会访问index.html， 有个路由启动程序在route目录下 route.extend.js,这个js回去conf下拿route.json"></a><em> starter是个启动器，包含路由设置，只需要部署一次，所有前端都会访问index.html，</em> 有个路由启动程序在route目录下 route.extend.js,这个js回去conf下拿route.json</h4><h4 id="starter-route-get-js"><a href="#starter-route-get-js" class="headerlink" title="starter/route/get/js"></a>starter/route/get/js</h4><h4 id="getApi-用catch方法获取backupUrl"><a href="#getApi-用catch方法获取backupUrl" class="headerlink" title="getApi  用catch方法获取backupUrl"></a>getApi  用catch方法获取backupUrl</h4><h4 id="npm-run-a-i-加载所有的依赖"><a href="#npm-run-a-i-加载所有的依赖" class="headerlink" title="npm run a-i 加载所有的依赖"></a>npm run a-i 加载所有的依赖</h4><h4 id="上线-npm-run-b-common-—-—-version-203044-加载"><a href="#上线-npm-run-b-common-—-—-version-203044-加载" class="headerlink" title="上线 npm run b common  — — version 203044    加载"></a>上线 npm run b common  — — version 203044    加载</h4><h4 id="开发-npm-run-dev-uhost"><a href="#开发-npm-run-dev-uhost" class="headerlink" title="开发 npm run dev uhost"></a>开发 npm run dev uhost</h4><p>tenants下面有个configufl  和 app.template</p>
+<p>common  公共的组件如购物车，region等等  所有调用api都是在 s_api</p>
+<p>common/src/old/conf/urls 所有api的调用url</p>
+<p>c_ums</p>
+<p>f_sms  filter</p>
+<p>s_sms</p>
+<p>在路由过来之后，把template和control绑定</p>
+<p>starter 下的run的run.js是第一次做的</p>
+<p>common/s_action 提供api调用</p>
+<p>common.js</p>
+<p>d_common.js</p>
+<p>c_common.js</p>
+<p>s_common.js </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/10/前端代码学习/" data-id="civndyq3m0008n5zs0k12kxg9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-11-10.Git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/10/11-10.Git/" class="article-date">
+  <time datetime="2016-11-10T06:47:32.000Z" itemprop="datePublished">2016-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h3 id="Git-使用"><a href="#Git-使用" class="headerlink" title="Git 使用"></a>Git 使用</h3><ol>
+<li>首先git clone 主分支</li>
+<li>下载到本地之后checkout 一个新的分支 git checkout -b from_linchao </li>
+<li>更新代码后git push </li>
+</ol>
+<h3 id="Git-中的命令理解"><a href="#Git-中的命令理解" class="headerlink" title="Git 中的命令理解"></a>Git 中的命令理解</h3><ol>
+<li>git remote add   将GitHub上创建的仓库设为本地仓库的远程仓库</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/10/11-10.Git/" data-id="civndyq320002n5zskyh2geuj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-11月9日学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/09/11月9日学习笔记/" class="article-date">
@@ -74,11 +215,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="11月9日学习笔记"><a href="#11月9日学习笔记" class="headerlink" title="11月9日学习笔记"></a>11月9日学习笔记</h1><h2 id="ssh使用key登陆的步骤"><a href="#ssh使用key登陆的步骤" class="headerlink" title="ssh使用key登陆的步骤"></a>ssh使用key登陆的步骤</h2><h3 id="1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600"><a href="#1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600" class="headerlink" title="1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600"></a>1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600</h3><h3 id="2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600"><a href="#2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600" class="headerlink" title="2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600"></a>2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600</h3><h3 id="3-修改下-ssh-config-这个文件格式如下"><a href="#3-修改下-ssh-config-这个文件格式如下" class="headerlink" title="3. 修改下 .ssh/config 这个文件格式如下"></a>3. 修改下 .ssh/config 这个文件格式如下</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy<br>Port 22<br>IdentityFile ~/.ssh/id_rsa</p>
-<h3 id="4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好"><a href="#4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好" class="headerlink" title="4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)"></a>4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)</h3><h3 id="5-最后就可以用ssh-dev1来登陆了"><a href="#5-最后就可以用ssh-dev1来登陆了" class="headerlink" title="5. 最后就可以用ssh dev1来登陆了"></a>5. 最后就可以用ssh dev1来登陆了</h3>
+<h3 id="4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好"><a href="#4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好" class="headerlink" title="4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)"></a>4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)</h3><h3 id="5-最后就可以用ssh-dev1来登陆了"><a href="#5-最后就可以用ssh-dev1来登陆了" class="headerlink" title="5. 最后就可以用ssh dev1来登陆了"></a>5. 最后就可以用ssh dev1来登陆了</h3><h1 id="Git-“please-tell-me-who-you-are”-问题"><a href="#Git-“please-tell-me-who-you-are”-问题" class="headerlink" title="Git: “please tell me who you are” 问题"></a>Git: “please tell me who you are” 问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1.git init</div><div class="line">2.git config user.name &quot;someone&quot;</div><div class="line">3.git config user.email &quot;someone@someplace.com&quot;</div><div class="line">4.git add *</div><div class="line">5.git commit -m &quot;some init msg&quot;</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/09/11月9日学习笔记/" data-id="civahkg1t0000pbzs4s7gvlew" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/09/11月9日学习笔记/" data-id="civndyq2z0001n5zsek1wuaof" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/08/11月8日学习/" data-id="civahkg210002pbzsc5ow7tyq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/08/11月8日学习/" data-id="civndyq350003n5zsssoa95zs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/08/前端概念/" data-id="civahkg2g0006pbzsvzcqpfe2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/08/前端概念/" data-id="civndyq3o0009n5zsx7ny7z35" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,15 +337,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Angular学习笔记"><a href="#Angular学习笔记" class="headerlink" title="Angular学习笔记"></a>Angular学习笔记</h1><h2 id="第0节-Bootstraping"><a href="#第0节-Bootstraping" class="headerlink" title="第0节 Bootstraping"></a>第0节 Bootstraping</h2><h3 id="几个核心概念"><a href="#几个核心概念" class="headerlink" title="几个核心概念"></a>几个核心概念</h3><ul>
-<li><p>ng-app   This directive is used to flag the HTML element that Angular should consider to be the root element of our application</p>
-</li>
-<li><p>angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp</p>
-</li>
-<li><p>绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了</p>
-</li>
-<li><p>angular-seed  程序骨架</p>
-</li>
+<li>ng-app  标记HTML使得angular可以来找到根元素</li>
+<li>angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp</li>
+<li>绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了</li>
+<li>angular-seed  程序骨架</li>
 </ul>
+<p><strong>页面加载发生了什么：页面会加载angular.js这个脚本，这个脚本会注册一个回调函数，这个回调函数在浏览器加载完页面之后会来查ngApp这个指令所在的位置，并从相应位置开始渲染</strong></p>
+<p>.</p>
 <h2 id="第1节-Static-Template"><a href="#第1节-Static-Template" class="headerlink" title="第1节 Static Template"></a>第1节 Static Template</h2><h3 id="无要点"><a href="#无要点" class="headerlink" title="无要点"></a>无要点</h3><h2 id="第2节-Angular-Templates"><a href="#第2节-Angular-Templates" class="headerlink" title="第2节 Angular Templates"></a>第2节 Angular Templates</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
 <li>model          对象数组</li>
 <li>controller     提供模型所需要的数据</li>
@@ -241,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/06/angular学习笔记/" data-id="civahkg1y0001pbzslu129xev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/06/angular学习笔记/" data-id="civndyq3l0007n5zs7ujplgkv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/01/Git-GitHub/" data-id="civahkg230003pbzsp2hziza9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/01/Git-GitHub/" data-id="civndyq370004n5zs2vy52v57" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
@@ -326,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/01/hello-world/" data-id="civahkg250004pbzszy0fcwdy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/01/hello-world/" data-id="civndyq3p000bn5zsqb343so5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,23 +519,23 @@
       <ul>
         
           <li>
+            <a href="/2016/11/16/Vim 环境打造/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/11/ CommonJS/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/10/前端代码学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/10/11-10.Git/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2016/11/09/11月9日学习笔记/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/08/11月8日学习/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/08/前端概念/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/06/angular学习笔记/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/01/Git-GitHub/">聊聊这个博客是怎么来的</a>
           </li>
         
       </ul>

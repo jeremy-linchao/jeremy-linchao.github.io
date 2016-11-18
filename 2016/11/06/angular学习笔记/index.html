@@ -6,24 +6,27 @@
   <title>学习学习再学习</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Angular学习笔记第0节 Bootstraping几个核心概念
-ng-app   This directive is used to flag the HTML element that Angular should consider to be the root element of our application
-
-angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习学习再学习">
 <meta property="og:url" content="http://yoursite.com/2016/11/06/angular学习笔记/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="Angular学习笔记第0节 Bootstraping几个核心概念
-ng-app   This directive is used to flag the HTML element that Angular should consider to be the root element of our application
-
-angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
-<meta property="og:updated_time" content="2016-11-07T05:30:36.000Z">
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
+<meta property="og:updated_time" content="2016-11-10T07:19:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习学习再学习">
 <meta name="twitter:description" content="Angular学习笔记第0节 Bootstraping几个核心概念
-ng-app   This directive is used to flag the HTML element that Angular should consider to be the root element of our application
-
-angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
   
     <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
   
@@ -85,15 +88,13 @@ angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Angular学习笔记"><a href="#Angular学习笔记" class="headerlink" title="Angular学习笔记"></a>Angular学习笔记</h1><h2 id="第0节-Bootstraping"><a href="#第0节-Bootstraping" class="headerlink" title="第0节 Bootstraping"></a>第0节 Bootstraping</h2><h3 id="几个核心概念"><a href="#几个核心概念" class="headerlink" title="几个核心概念"></a>几个核心概念</h3><ul>
-<li><p>ng-app   This directive is used to flag the HTML element that Angular should consider to be the root element of our application</p>
-</li>
-<li><p>angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp</p>
-</li>
-<li><p>绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了</p>
-</li>
-<li><p>angular-seed  程序骨架</p>
-</li>
+<li>ng-app  标记HTML使得angular可以来找到根元素</li>
+<li>angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp</li>
+<li>绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了</li>
+<li>angular-seed  程序骨架</li>
 </ul>
+<p><strong>页面加载发生了什么：页面会加载angular.js这个脚本，这个脚本会注册一个回调函数，这个回调函数在浏览器加载完页面之后会来查ngApp这个指令所在的位置，并从相应位置开始渲染</strong></p>
+<p>.</p>
 <h2 id="第1节-Static-Template"><a href="#第1节-Static-Template" class="headerlink" title="第1节 Static Template"></a>第1节 Static Template</h2><h3 id="无要点"><a href="#无要点" class="headerlink" title="无要点"></a>无要点</h3><h2 id="第2节-Angular-Templates"><a href="#第2节-Angular-Templates" class="headerlink" title="第2节 Angular Templates"></a>第2节 Angular Templates</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
 <li>model          对象数组</li>
 <li>controller     提供模型所需要的数据</li>
@@ -130,7 +131,7 @@ angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/06/angular学习笔记/" data-id="civahkg1y0001pbzslu129xev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/06/angular学习笔记/" data-id="civndyq3l0007n5zs7ujplgkv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,23 +203,23 @@ angular.js  这个js脚本注册了个回调函数，当HTML页面加载好">
       <ul>
         
           <li>
+            <a href="/2016/11/16/Vim 环境打造/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/11/ CommonJS/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/10/前端代码学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/10/11-10.Git/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2016/11/09/11月9日学习笔记/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/08/11月8日学习/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/08/前端概念/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/06/angular学习笔记/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/01/Git-GitHub/">聊聊这个博客是怎么来的</a>
           </li>
         
       </ul>
