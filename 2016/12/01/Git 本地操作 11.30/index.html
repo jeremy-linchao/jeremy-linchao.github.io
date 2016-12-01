@@ -5,16 +5,22 @@
   
   <title>学习学习再学习</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
+  <meta name="description" content="Git 本地操作 11.30查看提交历史git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处
+git log -p - - stat         Show statistics for files modified in each commit.
+git log">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习学习再学习">
-<meta property="og:url" content="http://yoursite.com/2016/11/11/ CommonJS/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/Git 本地操作 11.30/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
-<meta property="og:updated_time" content="2016-11-11T05:49:30.000Z">
+<meta property="og:description" content="Git 本地操作 11.30查看提交历史git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处
+git log -p - - stat         Show statistics for files modified in each commit.
+git log">
+<meta property="og:updated_time" content="2016-12-01T02:15:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
+<meta name="twitter:description" content="Git 本地操作 11.30查看提交历史git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处
+git log -p - - stat         Show statistics for files modified in each commit.
+git log">
   
     <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
   
@@ -63,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post- CommonJS" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Git 本地操作 11.30" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/11/ CommonJS/" class="article-date">
-  <time datetime="2016-11-11T05:49:30.000Z" itemprop="datePublished">2016-11-11</time>
+    <a href="/2016/12/01/Git 本地操作 11.30/" class="article-date">
+  <time datetime="2016-12-01T02:15:47.000Z" itemprop="datePublished">2016-12-01</time>
 </a>
     
   </div>
@@ -75,12 +81,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p><code>require</code>命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象</p>
+        <h1 id="Git-本地操作-11-30"><a href="#Git-本地操作-11-30" class="headerlink" title="Git 本地操作 11.30"></a>Git 本地操作 11.30</h1><h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处</p>
+<p>git log -p - - stat         Show statistics for files modified in each commit.</p>
+<p>git log  - -pretty=format 可以以指定格式输出</p>
+<h3 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h3><p>git commit - - amend   第一次提交忘记用git add把相关文件加进去了，可以加完之后用这个命令，这样就避免做了两次提交</p>
+<p>git reset HEAD filename  一下子把多个文件加到staged区域里去了，但实际上想做的是分为多次提交，那可以用这个命令把相应的文件拿出来</p>
+<p>git checkout - - file 修改了某个文件但还没有加到staged区域，可以使用这个命令把那些修改重置</p>
+<h3 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h3><p>git remote -v 查看远端server的url，origin是指默认的server git当时clone的</p>
+<p>git remote add <shortname> <url> 配置远端server，如果是clone的这步不需要，因为会把origin当做默认的远端server</url></shortname></p>
+<p>git fetch [remote-name] 这个命令会从远端server拿自己没有的数据，如果是clone的用git fetch origin就可以，注意这个命令只是下载，不会merge，同时也不会修改本地的工作目录</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/11/ CommonJS/" data-id="ciw5rznew0000u0zs9mze8zar" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/01/Git 本地操作 11.30/" data-id="ciw5rznfl0009u0zskgfaafd8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -89,7 +103,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/11/16/Vim 环境打造/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/01/Git Branch 12.1  /" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
@@ -99,7 +113,7 @@
     </a>
   
   
-    <a href="/2016/11/10/11-10.Git/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/29/Angular 11.28/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title"></div>
     </a>

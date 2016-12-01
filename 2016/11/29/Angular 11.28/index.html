@@ -5,16 +5,22 @@
   
   <title>学习学习再学习</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
+  <meta name="description" content="Angular 11.28调试获取scope元素 右键审查元素，然后angular.element($0).scope()
+Angular的事件机制
+emit机制： The event life cycle starts at the scope on which $emit was called. All listeners listening for name event on this sc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习学习再学习">
-<meta property="og:url" content="http://yoursite.com/2016/11/11/ CommonJS/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/Angular 11.28/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
-<meta property="og:updated_time" content="2016-11-11T05:49:30.000Z">
+<meta property="og:description" content="Angular 11.28调试获取scope元素 右键审查元素，然后angular.element($0).scope()
+Angular的事件机制
+emit机制： The event life cycle starts at the scope on which $emit was called. All listeners listening for name event on this sc">
+<meta property="og:updated_time" content="2016-11-29T14:38:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="CommonJSrequire命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象">
+<meta name="twitter:description" content="Angular 11.28调试获取scope元素 右键审查元素，然后angular.element($0).scope()
+Angular的事件机制
+emit机制： The event life cycle starts at the scope on which $emit was called. All listeners listening for name event on this sc">
   
     <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
   
@@ -63,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post- CommonJS" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Angular 11.28" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/11/ CommonJS/" class="article-date">
-  <time datetime="2016-11-11T05:49:30.000Z" itemprop="datePublished">2016-11-11</time>
+    <a href="/2016/11/29/Angular 11.28/" class="article-date">
+  <time datetime="2016-11-29T14:38:22.000Z" itemprop="datePublished">2016-11-29</time>
 </a>
     
   </div>
@@ -75,12 +81,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p><code>require</code>命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象</p>
+        <h1 id="Angular-11-28"><a href="#Angular-11-28" class="headerlink" title="Angular 11.28"></a>Angular 11.28</h1><h2 id="调试获取scope元素"><a href="#调试获取scope元素" class="headerlink" title="调试获取scope元素"></a>调试获取scope元素</h2><p> 右键审查元素，然后angular.element($0).scope()</p>
+<h2 id="Angular的事件机制"><a href="#Angular的事件机制" class="headerlink" title="Angular的事件机制"></a>Angular的事件机制</h2><ol>
+<li>emit机制： The event life cycle starts at the scope on which <code>$emit</code> was called. All <a href="https://code.angularjs.org/1.3.20/docs/api/ng/type/$rootScope.Scope#$on" target="_blank" rel="external">listeners</a> listening for <code>name</code> event on this scope get notified. Afterwards, the event traverses upwards toward the root scope and calls all registered listeners along the way.  意思是emit首先会被当前scope下的listeners获取到，之后会向上级listeners传</li>
+<li>broadcast机制：The event life cycle starts at the scope on which <code>$broadcast</code> was called. All <a href="https://code.angularjs.org/1.3.20/docs/api/ng/type/$rootScope.Scope#$on" target="_blank" rel="external">listeners</a> listening for <code>name</code> event on this scope get notified. Afterwards, the event propagates to all direct and indirect scopes of the current scope and calls all registered listeners along the way. 意思是borodcast会被当前scope下的listener获取到，之后会向下级的listeners传递</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/11/ CommonJS/" data-id="ciw5rznew0000u0zs9mze8zar" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/11/29/Angular 11.28/" data-id="ciw5rznfa0005u0zs2obqvpj8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -89,7 +99,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/11/16/Vim 环境打造/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/01/Git 本地操作 11.30/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
@@ -99,7 +109,7 @@
     </a>
   
   
-    <a href="/2016/11/10/11-10.Git/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/24/VSCode调试Node/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title"></div>
     </a>
