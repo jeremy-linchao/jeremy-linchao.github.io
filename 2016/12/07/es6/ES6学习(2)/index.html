@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ES6学习(2)
+Set类型
+Set：类似于数组，但成员值是唯一的，没有重复的值
+123var set = new Set([1, 2, 3, 4, 4]);[...set]// [1, 2, 3, 4]
+
+
+这个例子展示了一种数组去重的方法[…new Set(array)]
+
+Map类型
+JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/es6/ES6学习(2)/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="ES6学习(2)
+Set类型
+Set：类似于数组，但成员值是唯一的，没有重复的值
+123var set = new Set([1, 2, 3, 4, 4]);[...set]// [1, 2, 3, 4]
+
+
+这个例子展示了一种数组去重的方法[…new Set(array)]
+
+Map类型
+JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作">
+<meta property="og:updated_time" content="2016-12-09T03:13:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="ES6学习(2)
+Set类型
+Set：类似于数组，但成员值是唯一的，没有重复的值
+123var set = new Set([1, 2, 3, 4, 4]);[...set]// [1, 2, 3, 4]
+
+
+这个例子展示了一种数组去重的方法[…new Set(array)]
+
+Map类型
+JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-es6/ES6学习(2)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/07/es6/ES6学习(2)/" class="article-date">
+  <time datetime="2016-12-07T09:53:59.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ES6学习-2"><a href="#ES6学习-2" class="headerlink" title="ES6学习(2)"></a>ES6学习(2)</h1><ol>
+<li><p>Set类型</p>
+<p>Set：类似于数组，但成员值是唯一的，没有重复的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var set = new Set([1, 2, 3, 4, 4]);</div><div class="line">[...set]</div><div class="line">// [1, 2, 3, 4]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个例子展示了一种数组去重的方法[…new Set(array)]</p>
+<ol>
+<li><p>Map类型</p>
+<p>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var data = &#123;&#125;;</div><div class="line">var element = document.getElementById(&apos;myDiv&apos;);</div><div class="line"></div><div class="line">data[element] = &apos;metadata&apos;;</div><div class="line">data[&apos;[object HTMLDivElement]&apos;] // &quot;metadata&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Symbol类型： 表示一个独一无二的数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let s = Symbol();</div><div class="line">typeof s</div><div class="line">// &quot;symbol&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Proxy：用于修改某些操作的默认行为，可以理解成在目标对象之前假设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var obj = new Proxy(&#123;&#125;, &#123;</div><div class="line">  get: function (target, key, receiver) &#123;</div><div class="line">    console.log(`getting $&#123;key&#125;!`);</div><div class="line">    return Reflect.get(target, key, receiver);</div><div class="line">  &#125;,</div><div class="line">  set: function (target, key, value, receiver) &#123;</div><div class="line">    console.log(`setting $&#123;key&#125;!`);</div><div class="line">    return Reflect.set(target, key, value, receiver);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Generator函数：Generator函数是一个状态机，封装了多个内部状态，执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
+<p>1）定义上，Generator函数是一个普通函数，但是有两个特征。一是，<code>function</code>关键字与函数名之间有一个星号；二是，函数体内部使用<code>yield</code>语句，定义不同的内部状态</p>
+<p>2）调用上，是在函数名后面加上一对圆括号。不同的是，调用Generator函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象</p>
+<p>3）下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用<code>next</code>方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个<code>yield</code>语句（或<code>return</code>语句）为止</p>
+</li>
+<li><p>Promise就是个容器，里面保存着某个未来才会结束的事件的结果</p>
+</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var promise = new Promise(function(resolve, reject) &#123;</div><div class="line">  // ... some code</div><div class="line"></div><div class="line">  if (/* 异步操作成功 */)&#123;</div><div class="line">    resolve(value);</div><div class="line">  &#125; else &#123;</div><div class="line">    reject(error);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>   <code>resolve</code>函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；<code>reject</code>函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从Pending变为Rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p>   Promise实例生成以后，可以用<code>then</code>方法分别指定<code>Resolved</code>状态和<code>Reject</code>状态的回调函数</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(function(value) &#123;</div><div class="line">  // success</div><div class="line">&#125;, function(error) &#123;</div><div class="line">  // failure</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>   <code>then</code>方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数</p>
+<p>   我的理解：两个重要的参数，resolve和reject是两个函数，这两个函数在创建了promise对象后需要显式调用下将函数返回的值作为传出去</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/07/es6/ES6学习(2)/" data-id="ciwzy640h000t1ozsqwcoqsad" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/08/mac/Mac下启动和重启nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/07/ide/WebStorm 下设置支持ES6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

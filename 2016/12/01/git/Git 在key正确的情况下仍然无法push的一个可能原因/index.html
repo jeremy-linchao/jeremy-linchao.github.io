@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
+<meta property="og:updated_time" content="2016-12-01T04:09:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git/Git 在key正确的情况下仍然无法push的一个可能原因" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/" class="article-date">
+  <time datetime="2016-12-01T04:09:17.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git-在key正确的情况下仍然无法push的一个可能原因"><a href="#Git-在key正确的情况下仍然无法push的一个可能原因" class="headerlink" title="Git 在key正确的情况下仍然无法push的一个可能原因"></a>Git 在key正确的情况下仍然无法push的一个可能原因</h1><p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
+<p>首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.说明key添加的是没有问题的，我确实是这个情况</p>
+<p>第二就是判断你git push或pull的时候到底用的是哪个url，这个可以通过git remote -v来看，如果看到是https的url那就知道问题所在了，用的是https方式传输当然只会让你输入用户名和密码了，改的方式也很简单，git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="external">https://github.com/USERNAME/OTHERREPOSITORY.git</a> ，后面的username/other可以照抄https的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/" data-id="ciwzy63zk000h1ozs9jns4csp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/04/ide/Chrome Debug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/01/git/Git Branch 12.1  /" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

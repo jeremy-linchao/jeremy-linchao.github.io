@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node 工程化
+目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织
+
+构建工具：make(需要bash编程)，Grunt(本身用nodejs写)
+
+编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描
+
+代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/20/node/Node 工程化/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="Node 工程化
+目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织
+
+构建工具：make(需要bash编程)，Grunt(本身用nodejs写)
+
+编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描
+
+代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试">
+<meta property="og:updated_time" content="2016-12-20T09:35:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="Node 工程化
+目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织
+
+构建工具：make(需要bash编程)，Grunt(本身用nodejs写)
+
+编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描
+
+代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node/Node 工程化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/20/node/Node 工程化/" class="article-date">
+  <time datetime="2016-12-20T09:35:25.000Z" itemprop="datePublished">2016-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Node-工程化"><a href="#Node-工程化" class="headerlink" title="Node 工程化"></a>Node 工程化</h1><ol>
+<li><p>目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织</p>
+</li>
+<li><p>构建工具：make(需要bash编程)，Grunt(本身用nodejs写)</p>
+</li>
+<li><p>编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描</p>
+</li>
+<li><p>代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试是否有同步添加</p>
+</li>
+<li><p>部署环境：代码 -&gt; stage(测试环境) -&gt; 预发布 -&gt; 生产，之所以有个预发布环境是因为测试环境只能满足功能的正确性，而预发布环境可以做数据相关的检查，它的数据较为接近线上真实的数据</p>
+</li>
+<li><p>部署操作：nohup node app.js &amp; ，停止和重启是通过相应的pid写进app.id文件下</p>
+</li>
+<li><p>日志记录：通常的API，尽量不要隐藏错误，不要通过try/catc捕获异常，事实上，日志通常是服务于业务的，尽量由最上层的调用者捕获记录，底层调用或中间层调用出现的异常只要正常传递给上层的调用方即可</p>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/20/node/Node 工程化/" data-id="ciwzy640k000x1ozshhkafx7y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/20/es6/ES6 Generate 函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/20/thinking/对于异步编程的理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

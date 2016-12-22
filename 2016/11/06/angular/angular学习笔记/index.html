@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Angular学习笔记第0节 Bootstraping几个核心概念
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/11/06/angular/angular学习笔记/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="Angular学习笔记第0节 Bootstraping几个核心概念
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
+<meta property="og:updated_time" content="2016-11-21T13:10:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="Angular学习笔记第0节 Bootstraping几个核心概念
+ng-app  标记HTML使得angular可以来找到根元素
+angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp
+绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了
+a">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-angular/angular学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/06/angular/angular学习笔记/" class="article-date">
+  <time datetime="2016-11-06T02:55:27.000Z" itemprop="datePublished">2016-11-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Angular学习笔记"><a href="#Angular学习笔记" class="headerlink" title="Angular学习笔记"></a>Angular学习笔记</h1><h2 id="第0节-Bootstraping"><a href="#第0节-Bootstraping" class="headerlink" title="第0节 Bootstraping"></a>第0节 Bootstraping</h2><h3 id="几个核心概念"><a href="#几个核心概念" class="headerlink" title="几个核心概念"></a>几个核心概念</h3><ul>
+<li>ng-app  标记HTML使得angular可以来找到根元素</li>
+<li>angular.js  这个js脚本注册了个回调函数，当HTML页面加载好之后，然后就去找ngAPP指令，找到之后就开始bootstarp</li>
+<li>绑定   使用 两个花括号  之所以叫绑定是因为如果变量的内容改变了的话，页面显示也会实时改变，不需要手动再发ajax更新了</li>
+<li>angular-seed  程序骨架</li>
+</ul>
+<p><strong>页面加载发生了什么：页面会加载angular.js这个脚本，这个脚本会注册一个回调函数，这个回调函数在浏览器加载完页面之后会来查ngApp这个指令所在的位置，并从相应位置开始渲染</strong></p>
+<p>.</p>
+<h2 id="第1节-Static-Template"><a href="#第1节-Static-Template" class="headerlink" title="第1节 Static Template"></a>第1节 Static Template</h2><h3 id="无要点"><a href="#无要点" class="headerlink" title="无要点"></a>无要点</h3><h2 id="第2节-Angular-Templates"><a href="#第2节-Angular-Templates" class="headerlink" title="第2节 Angular Templates"></a>第2节 Angular Templates</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li>model          对象数组</li>
+<li>controller     提供模型所需要的数据</li>
+<li><strong>scope</strong>      在模板，模型和空气器之前的粘合剂  待理解</li>
+</ul>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><h4 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h4><blockquote>
+<p> http-server ./app -a localhost -p 8000 -c-1</p>
+</blockquote>
+<p>events.js:141<br>      throw er; // Unhandled ‘error’ event<br>      ^</p>
+<p>Error: listen EADDRINUSE 127.0.0.1:8000<br>    at Object.exports._errnoException (util.js:907:11)<br>    at exports._exceptionWithHostPort (util.js:930:20)<br>    at Server._listen2 (net.js:1250:14)<br>    at listen (net.js:1286:10)<br>    at net.js:1395:9<br>    at GetAddrInfoReqWrap.asyncCallback [as callback] (dns.js:64:16)<br>    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:83:10)</p>
+<h4 id="原因-在另外一个ternmial占用了同一个端口"><a href="#原因-在另外一个ternmial占用了同一个端口" class="headerlink" title="原因: 在另外一个ternmial占用了同一个端口"></a>原因: 在另外一个ternmial占用了同一个端口</h4><h2 id="第3节-Components"><a href="#第3节-Components" class="headerlink" title="第3节 Components"></a>第3节 Components</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>components 模板+控制器  作用是可以复用，在任何一个页面都可以加上这段代码来制作组件</p>
+</li>
+<li><p>Instead of creating a static HTML page on the server, the client-side code “takes over” and interacts dynamically with the view, updating it instantly to reflect changes in model data or state, usually as a result of user interaction </p>
+</li>
+<li><p>The template (the part of the view containing the bindings and presentation logic) acts as a blueprint for how our data should be organized and presented to the user. The controller provides the context in which the bindings are evaluated and applies behavior and logic to our template.</p>
+</li>
+</ul>
+<h2 id="第四节-Directory-and-File-Organization"><a href="#第四节-Directory-and-File-Organization" class="headerlink" title="第四节 Directory and File Organization"></a>第四节 Directory and File Organization</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><strong>module</strong>  组件的更高一层的抽象，用于复用在不同项目中 （待理解）</li>
+<li>external template 虽然叫external，其实只是把原先写在字符串的html单独成一个文件，使用templateUrl来引用相关文件</li>
+</ul>
+<ol>
+<li>One feature per file    每个特性一个文件</li>
+<li>Organizing by Feature   通过目录组织</li>
+</ol>
+<h2 id="第五节-filtering-repeaters"><a href="#第五节-filtering-repeaters" class="headerlink" title="第五节 filtering repeaters"></a>第五节 filtering repeaters</h2><p>注意filter的用法，用来做全文搜索</p>
+<h2 id="第六节-two-way-binding"><a href="#第六节-two-way-binding" class="headerlink" title="第六节 two-way binding"></a>第六节 two-way binding</h2><h4 id="这节没东西"><a href="#这节没东西" class="headerlink" title="这节没东西"></a>这节没东西</h4><h2 id="第七节-XHR-amp-Dependency-Injection"><a href="#第七节-XHR-amp-Dependency-Injection" class="headerlink" title="第七节 XHR &amp; Dependency Injection"></a>第七节 XHR &amp; Dependency Injection</h2><ul>
+<li><strong>Denpendency Injection</strong>:  就是你所需要一些其他的服务比如ajax，可以直接在控制器的参数里写上$http，angular就会帮你把这个服务给找到，就是引入三方服务</li>
+</ul>
+<h2 id="第八节-Templating-Links-amp-Images"><a href="#第八节-Templating-Links-amp-Images" class="headerlink" title="第八节 Templating Links &amp; Images"></a>第八节 Templating Links &amp; Images</h2><h4 id="img的src需要用ng-src-以避免额外的http请求"><a href="#img的src需要用ng-src-以避免额外的http请求" class="headerlink" title="img的src需要用ng-src,以避免额外的http请求"></a>img的src需要用ng-src,以避免额外的http请求</h4><h2 id="第九节-Routing-amp-Multiple-Views"><a href="#第九节-Routing-amp-Multiple-Views" class="headerlink" title="第九节 Routing &amp; Multiple Views"></a>第九节 Routing &amp; Multiple Views</h2><h4 id="service-provider-加载服务所用"><a href="#service-provider-加载服务所用" class="headerlink" title="service provider 加载服务所用"></a>service provider 加载服务所用</h4><h4 id="ng-view"><a href="#ng-view" class="headerlink" title="ng-view"></a>ng-view</h4><h4 id="ng-route"><a href="#ng-route" class="headerlink" title="ng-route"></a>ng-route</h4><h2 id="第十节-More-Templating"><a href="#第十节-More-Templating" class="headerlink" title="第十节 More Templating"></a>第十节 More Templating</h2><p>无</p>
+<h2 id="第十一节-Custom-Filters"><a href="#第十一节-Custom-Filters" class="headerlink" title="第十一节 Custom Filters"></a>第十一节 Custom Filters</h2><h4 id="checkmark-filter"><a href="#checkmark-filter" class="headerlink" title="checkmark filter"></a>checkmark filter</h4><h2 id="第十二节-Event-Handlers"><a href="#第十二节-Event-Handlers" class="headerlink" title="第十二节 Event Handlers"></a>第十二节 Event Handlers</h2><p>ng-click</p>
+<h2 id="第十三节-REST-and-Cutomer-Services"><a href="#第十三节-REST-and-Cutomer-Services" class="headerlink" title="第十三节 REST and Cutomer Services"></a>第十三节 REST and Cutomer Services</h2><h4 id="ngResource"><a href="#ngResource" class="headerlink" title="ngResource"></a>ngResource</h4><h2 id="第十四节-Animations"><a href="#第十四节-Animations" class="headerlink" title="第十四节 Animations"></a>第十四节 Animations</h2><p>angular.module(‘myModule’,[])是创建模块的，它会覆盖掉已有的同名模块，获取模块的方式是angular.module(‘myModule’),</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/06/angular/angular学习笔记/" data-id="ciwzy63zb000c1ozsqc4nmady" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/08/thinking/前端工具bower-webpack-gulp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/01/git/Git-GitHub/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">聊聊这个博客是怎么来的</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

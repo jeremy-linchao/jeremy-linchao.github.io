@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Mac下启动和重启nginx" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-utility/Markdown 学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/08/Mac下启动和重启nginx/" class="article-date">
-  <time datetime="2016-12-08T08:43:59.000Z" itemprop="datePublished">2016-12-08</time>
+    <a href="/2016/12/21/utility/Markdown 学习/" class="article-date">
+  <time datetime="2016-12-21T08:42:40.000Z" itemprop="datePublished">2016-12-21</time>
 </a>
     
   </div>
@@ -73,15 +73,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Mac下启动和重启nginx"><a href="#Mac下启动和重启nginx" class="headerlink" title="Mac下启动和重启nginx"></a>Mac下启动和重启nginx</h1><p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
-<p>终端下敲一个brew services可以看到具体的用法比如</p>
-<p>brew services [start|restart|stop] nginx </p>
-<p>如果nginx是run在80端口，需要加sudo</p>
+        <h1 id="Markdown-学习"><a href="#Markdown-学习" class="headerlink" title="Markdown 学习"></a>Markdown 学习</h1><ul>
+<li><p>引用别人的话    “&gt;”</p>
+</li>
+<li><p>任务列表           “- []”</p>
+</li>
+<li><p>代码引用           “```”</p>
+</li>
+<li><p>表格                  “| first header | seconder header |”</p>
+</li>
+<li><p>水平线              “—“</p>
+</li>
+<li><p>脚注                  “[^]”</p>
+</li>
+<li><p>目录                 “[toc]”</p>
+</li>
+<li><p>链接                  This is <a href="http://example.com/" title="Title" target="_blank" rel="external">an example</a> inline link.</p>
+</li>
+<li><p>图片                  <img src="/path/to/img.jpg" alt="Alt text"></p>
+<p>​</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/08/Mac下启动和重启nginx/" data-id="ciwh94p12000jgrzs356gnpzm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/21/utility/Markdown 学习/" data-id="ciwzy640y001c1ozsjze06bod" class="article-share-link">Share</a>
       
       
     </footer>
@@ -91,10 +110,10 @@
 
 
   
-    <article id="post-ES6学习(2)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-coding/函数式编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/07/ES6学习(2)/" class="article-date">
-  <time datetime="2016-12-07T09:53:59.000Z" itemprop="datePublished">2016-12-07</time>
+    <a href="/2016/12/21/coding/函数式编程/" class="article-date">
+  <time datetime="2016-12-21T08:41:48.000Z" itemprop="datePublished">2016-12-21</time>
 </a>
     
   </div>
@@ -103,79 +122,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ES6学习-2"><a href="#ES6学习-2" class="headerlink" title="ES6学习(2)"></a>ES6学习(2)</h1><ol>
-<li><p>Set类型</p>
-<p>Set：类似于数组，但成员值是唯一的，没有重复的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var set = new Set([1, 2, 3, 4, 4]);</div><div class="line">[...set]</div><div class="line">// [1, 2, 3, 4]</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这个例子展示了一种数组去重的方法[…new Set(array)]</p>
+        <h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><blockquote>
+<p>有些事物在你得到之前是无足轻重的，得到之后就不可或缺了</p>
+</blockquote>
 <ol>
-<li><p>Map类型</p>
-<p>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var data = &#123;&#125;;</div><div class="line">var element = document.getElementById(&apos;myDiv&apos;);</div><div class="line"></div><div class="line">data[element] = &apos;metadata&apos;;</div><div class="line">data[&apos;[object HTMLDivElement]&apos;] // &quot;metadata&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Symbol类型： 表示一个独一无二的数值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let s = Symbol();</div><div class="line">typeof s</div><div class="line">// &quot;symbol&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Proxy：用于修改某些操作的默认行为，可以理解成在目标对象之前假设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var obj = new Proxy(&#123;&#125;, &#123;</div><div class="line">  get: function (target, key, receiver) &#123;</div><div class="line">    console.log(`getting $&#123;key&#125;!`);</div><div class="line">    return Reflect.get(target, key, receiver);</div><div class="line">  &#125;,</div><div class="line">  set: function (target, key, value, receiver) &#123;</div><div class="line">    console.log(`setting $&#123;key&#125;!`);</div><div class="line">    return Reflect.set(target, key, value, receiver);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>Generator函数：Generator函数是一个状态机，封装了多个内部状态，执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
-<p>1）定义上，Generator函数是一个普通函数，但是有两个特征。一是，<code>function</code>关键字与函数名之间有一个星号；二是，函数体内部使用<code>yield</code>语句，定义不同的内部状态</p>
-<p>2）调用上，是在函数名后面加上一对圆括号。不同的是，调用Generator函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象</p>
-<p>3）下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用<code>next</code>方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个<code>yield</code>语句（或<code>return</code>语句）为止</p>
-</li>
-<li><p>Promise就是个容器，里面保存着某个未来才会结束的事件的结果</p>
-</li>
+<li>纯函数：相同的输入，永远得到相同的输出，而且没有任何可观察的副作用</li>
+<li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
 </ol>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var promise = new Promise(function(resolve, reject) &#123;</div><div class="line">  // ... some code</div><div class="line"></div><div class="line">  if (/* 异步操作成功 */)&#123;</div><div class="line">    resolve(value);</div><div class="line">  &#125; else &#123;</div><div class="line">    reject(error);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>   <code>resolve</code>函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；<code>reject</code>函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从Pending变为Rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
-<p>   Promise实例生成以后，可以用<code>then</code>方法分别指定<code>Resolved</code>状态和<code>Reject</code>状态的回调函数</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(function(value) &#123;</div><div class="line">  // success</div><div class="line">&#125;, function(error) &#123;</div><div class="line">  // failure</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>   <code>then</code>方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数</p>
-<p>   我的理解：两个重要的参数，resolve和reject是两个函数，这两个函数在创建了promise对象后需要显式调用下将函数返回的值作为传出去</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/ES6学习(2)/" data-id="ciwh94p07000bgrzsh4fafnjd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-WebStorm 下设置支持ES6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/07/WebStorm 下设置支持ES6/" class="article-date">
-  <time datetime="2016-12-07T02:05:10.000Z" itemprop="datePublished">2016-12-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="WebStorm-下设置支持ES6"><a href="#WebStorm-下设置支持ES6" class="headerlink" title="WebStorm 下设置支持ES6"></a>WebStorm 下设置支持ES6</h1><p>说句题外话，vscode和webstorm我都使用了一些，特别一开始因为vscode是免费的所以很支持，但我觉得在用户体验上vscode真的差的很多，几个直观感受</p>
 <ol>
-<li><p>设置node的版本： 在webstorm的preferrence上可以直接设置，vscode我是没有很容易找到，应该是要在配置文件里设置</p>
-</li>
-<li><p>ES6语法支持：在webstorm下可以直接在perference上配置，vscode得在项目根目录下建立一个jsconfig文件</p>
-</li>
-<li><p>另外要特别注意的一点是除了要设置IDE，node的版本也需要关注下，下面这个链接是node不同版本对于ES6的支持程度</p>
-<p><a href="http://node.green/" target="_blank" rel="external">http://node.green/</a></p>
-</li>
+<li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/WebStorm 下设置支持ES6/" data-id="ciwh94p19000pgrzsjiuac7o6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/21/coding/函数式编程/" data-id="ciwzy63yj00001ozssiuds9yy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,10 +146,10 @@
 
 
   
-    <article id="post-Git Rebasing" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-coding/高阶函数与偏函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/06/Git Rebasing/" class="article-date">
-  <time datetime="2016-12-06T09:33:30.000Z" itemprop="datePublished">2016-12-06</time>
+    <a href="/2016/12/21/coding/高阶函数与偏函数/" class="article-date">
+  <time datetime="2016-12-21T07:39:10.000Z" itemprop="datePublished">2016-12-21</time>
 </a>
     
   </div>
@@ -197,12 +158,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Git-Rebasing"><a href="#Git-Rebasing" class="headerlink" title="Git Rebasing"></a>Git Rebasing</h1><h4 id="什么叫Rebasing：-take-the-patch-of-the-change-that-was-introduced-in-C4-and-reapply-it-on-top-of-C3"><a href="#什么叫Rebasing：-take-the-patch-of-the-change-that-was-introduced-in-C4-and-reapply-it-on-top-of-C3" class="headerlink" title="什么叫Rebasing： take the patch of the change that was introduced in C4 and reapply it on top of C3"></a>什么叫Rebasing： take the patch of the change that was introduced in C4 and reapply it on top of C3</h4><p>不是太理解</p>
+        <h1 id="高阶函数与偏函数"><a href="#高阶函数与偏函数" class="headerlink" title="高阶函数与偏函数"></a>高阶函数与偏函数</h1><ol>
+<li><p>高阶函数：函数的参数或返回值是个函数</p>
+<p>应用例子：sort()方法，数组的sort()方法就是个典型，根据传的函数不同，可以按照不同形式来排序</p>
+</li>
+<li><p>偏函数：创建一个调用另外一个部分——参数或变量已经预置的函数的函数   ​</p>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/06/Git Rebasing/" data-id="ciwh94p0b000dgrzsc4wyr27r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/21/coding/高阶函数与偏函数/" data-id="ciwzy63ys00031ozswn1dtb6f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,10 +179,10 @@
 
 
   
-    <article id="post-ES6 学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-coding/关于异步" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/06/ES6 学习/" class="article-date">
-  <time datetime="2016-12-06T08:09:04.000Z" itemprop="datePublished">2016-12-06</time>
+    <a href="/2016/12/21/coding/关于异步/" class="article-date">
+  <time datetime="2016-12-21T02:56:16.000Z" itemprop="datePublished">2016-12-21</time>
 </a>
     
   </div>
@@ -224,65 +191,102 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ES6-学习-1"><a href="#ES6-学习-1" class="headerlink" title="ES6 学习(1)"></a>ES6 学习(1)</h1><ol>
-<li><p>let用来声明块级作用域变量。let不会像var那样发生变量提升，所以一定要在声明后使用。另外在一个块级作用域内如果用let声明了一个局部变量，那么这个变量会绑定这个块级作用域，所有在let变量声明前对该变量的操作都会报错</p>
-<p><strong><em>为什么需要块级作用域？</em></strong> 先来看下没有块级作用域带来的几个问题</p>
-<p>1） 内层变量可能会覆盖外层变量，或者说外层的变量不会受内层变量影响，下面这个例子console.log（tmp）这个tmp就被内层的tmp影响了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var tmp = new Date();</div><div class="line"></div><div class="line">function f() &#123;</div><div class="line">  console.log(tmp);</div><div class="line">  if (false) &#123;</div><div class="line">    var tmp = &quot;hello world&quot;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(); // undefined</div></pre></td></tr></table></figure>
-<p>2)   用来计数的循环变量泄露为全局变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; s.length; i++) &#123;</div><div class="line">  console.log(s[i]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(i);</div></pre></td></tr></table></figure>
+        <h1 id="关于异步"><a href="#关于异步" class="headerlink" title="关于异步"></a>关于异步</h1><h4 id="为什么需要异步？"><a href="#为什么需要异步？" class="headerlink" title="为什么需要异步？"></a>为什么需要异步？</h4><ol>
+<li><p>前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象</p>
 </li>
-<li><p>const命令：声明一个只读的常量。一旦声明，常量的值就不能改变。声明后必须立即初始化</p>
+<li><p>在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非阻塞I/O则不带数据直接返回，要获取数据，还需要通过文件描述符再次读取</p>
 </li>
-<li><p><code>var</code>命令和<code>function</code>命令声明的全局变量，依旧是顶层对象的属性；而<code>let</code>命令、<code>const</code>命令、<code>class</code>命令声明的全局变量，不属于顶层对象的属性</p>
+<li><p>前面提到了为了获取完整的数据，应用程序需要重复调用I/O操作来确实是否完成，这种重复调用判断操作是否完成的技术叫做<strong>轮询</strong>，有以下几种形式：</p>
+<p>a) read  b)select  c)epoll 4)   这些个技术对于应用程序而言，仍然只能算是一种同步，因为应用程序需要等待I/O完全返回，等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待时间发生</p>
 </li>
-<li><p>解构赋值（Destructuring):  按照一定模式，从数组和对象中提取值，对变量进行赋值</p>
-<p>如果为多个变量赋值，原先需要这样写，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">var b = 2;</div><div class="line">var c = 3;</div></pre></td></tr></table></figure>
-<p>但现在可以写成这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var [a, b, c] = [1, 2, 3];</div></pre></td></tr></table></figure>
-<p>也可以为对象来解构赋值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var &#123; bar, foo &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">foo // &quot;aaa&quot;</div><div class="line">bar // &quot;bbb&quot;</div><div class="line"></div><div class="line">var &#123; baz &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">baz // undefined</div></pre></td></tr></table></figure>
-<p><strong><em>那些场景下使用解构比较好呢?</em></strong></p>
-<p>1)  交换变量的值： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
-<p>2）提取JSON数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var jsonData = &#123;</div><div class="line">  id: 42,</div><div class="line">  status: &quot;OK&quot;,</div><div class="line">  data: [867, 5309]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let &#123; id, status, data: number &#125; = jsonData;</div><div class="line"></div><div class="line">console.log(id, status, number);</div><div class="line">// 42, &quot;OK&quot;, [867, 5309]</div></pre></td></tr></table></figure>
+<li><p>Linux下面存在一种异步IO方式叫AIO，但这个只在linux下有，并且仅支持O_Direct方式读取</p>
 </li>
-<li><p>函数参数的默认值：</p>
-<p>在ES6之前，不能直接为函数的参数指定默认值，只能用变通的方法</p>
+<li><p><strong>现实场景下的异步IO：</strong>   线程池模拟异步I/O</p>
+<p>一个线程进行计算处理，让其他线程进行非阻塞I/O加轮询获取数据，通过线程间通信将I/O的数据进行传递</p>
+</li>
+<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong></li>
+</ol>
+<p>#### </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/21/coding/关于异步/" data-id="ciwzy63yo00011ozsub3wcmde" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-es6/ES6 Generate 函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/20/es6/ES6 Generate 函数/" class="article-date">
+  <time datetime="2016-12-20T09:56:07.000Z" itemprop="datePublished">2016-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ES6-Generate-函数"><a href="#ES6-Generate-函数" class="headerlink" title="ES6 Generate 函数"></a>ES6 Generate 函数</h1><ol>
+<li><p>generator函数可以用来做一种异步编程解决方案</p>
+</li>
+<li><p>generator函数有多种理解角度，从语法上generator函数是一个状态机，封装了多个内部状态。它返回一个遍历器对象，所以generator函数除了是个状态机，还是一个遍历器对象生成函数</p>
+</li>
+<li><p>generator函数是一个普通函数，但有两个特征，1）function关键字与函数名之间有一个星号 2)函数体内部使用yield语句，定义不同的内部状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* helloWorldGenerator()&#123;</div><div class="line">  yield &apos;hello&apos;;</div><div class="line">  yield &apos;world&apos;;</div><div class="line">  return &apos;ending&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>调用Generator函数，返回一个遍历器对象，代表Generator函数的内部指针。以后，每次调用遍历器对象<code>next</code>方法，就会返回一个有着<code>value</code>和<code>done</code>两个属性的对象。<code>value</code>属性表示当前的内部状态的值，是<code>yield</code>语句后面那个表达式的值；<code>done</code>属性是一个布尔值，表示是否遍历结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;hello&apos;, done: false &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;world&apos;, done: false &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;ending&apos;, done: true &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: undefined, done: true &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>yield</code>句本身没有返回值，或者说总是返回<code>undefined</code>。<code>next</code>方法可以带一个参数，该参数就会被当作上一个<code>yield</code>语句的返回值</p>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function log(x, y) &#123;</div><div class="line">  y = y || &apos;World&apos;;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello World</div></pre></td></tr></table></figure>
-<p>上面代码检查函数<code>log</code>的参数<code>y</code>有没有赋值，如果没有，则指定默认值为<code>World</code>。这种写法的缺点在于，如果参数<code>y</code>赋值了，但是对应的布尔值为<code>false</code>，则该赋值不起作用。就像上面代码的最后一行，参数<code>y</code>等于空字符，结果被改为默认值 ，就像这个例子中的第三个log函数，很明显是想打一个空值，但最后被打成了默认值，而在ES6中可以直接这样写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function log(x, y = &apos;World&apos;) &#123;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello</div></pre></td></tr></table></figure>
-<ol>
-<li><p>rest参数</p>
-<p>这个例子下，theArgs是一个数组，数组的内容是从第三个开始到最后的所有参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(a, b, ...theArgs) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/20/es6/ES6 Generate 函数/" data-id="ciwzy640d000p1ozs8mkpq2mr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-node/Node 工程化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/20/node/Node 工程化/" class="article-date">
+  <time datetime="2016-12-20T09:35:25.000Z" itemprop="datePublished">2016-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Node-工程化"><a href="#Node-工程化" class="headerlink" title="Node 工程化"></a>Node 工程化</h1><ol>
+<li><p>目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织</p>
 </li>
-<li><p>箭头函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var f = v =&gt; v;</div></pre></td></tr></table></figure>
-<p>这个写法等同于如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var f = function(v) &#123;</div><div class="line">  return v;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var f = () =&gt; 5;</div><div class="line">// 等同于</div><div class="line">var f = function () &#123; return 5 &#125;;</div><div class="line"></div><div class="line">var sum = (num1, num2) =&gt; num1 + num2;</div><div class="line">// 等同于</div><div class="line">var sum = function(num1, num2) &#123;</div><div class="line">  return num1 + num2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><strong>箭头函数使用场景</strong></p>
-<p>1） 简化回调函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 正常函数写法</div><div class="line">[1,2,3].map(function (x) &#123;</div><div class="line">  return x * x;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">[1,2,3].map(x =&gt; x * x);</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var result = values.sort(function (a, b) &#123;</div><div class="line">  return a - b;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">var result = values.sort((a, b) =&gt; a - b);</div></pre></td></tr></table></figure>
-<p>使用注意点：</p>
-<p>（1）函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
-<p>（2）不可以当作构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</p>
-<p>（3）不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
-<p>（4）不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</p>
-<p>针对于第一点的一个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var id = 21;</div><div class="line"></div><div class="line">foo.call(&#123; id: 42 &#125;);</div><div class="line">// id: 42</div></pre></td></tr></table></figure>
+<li><p>构建工具：make(需要bash编程)，Grunt(本身用nodejs写)</p>
 </li>
-<li><p>for … of 循环</p>
-<p>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为具有iterator接口，就可以用<code>for...of</code>循环遍历它的成员。也就是说，<code>for...of</code>循环内部调用的是数据结构的<code>Symbol.iterator</code>方法。</p>
-<p><code>for...of</code>循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如<code>arguments</code>对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。</p>
+<li><p>编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描</p>
+</li>
+<li><p>代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试是否有同步添加</p>
+</li>
+<li><p>部署环境：代码 -&gt; stage(测试环境) -&gt; 预发布 -&gt; 生产，之所以有个预发布环境是因为测试环境只能满足功能的正确性，而预发布环境可以做数据相关的检查，它的数据较为接近线上真实的数据</p>
+</li>
+<li><p>部署操作：nohup node app.js &amp; ，停止和重启是通过相应的pid写进app.id文件下</p>
+</li>
+<li><p>日志记录：通常的API，尽量不要隐藏错误，不要通过try/catc捕获异常，事实上，日志通常是服务于业务的，尽量由最上层的调用者捕获记录，底层调用或中间层调用出现的异常只要正常传递给上层的调用方即可</p>
 <p>​</p>
 </li>
 </ol>
@@ -290,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/06/ES6 学习/" data-id="ciwh94p09000cgrzsky1znga3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/20/node/Node 工程化/" data-id="ciwzy640k000x1ozshhkafx7y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -300,10 +304,10 @@
 
 
   
-    <article id="post-Javascript 数组类型" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-thinking/对于异步编程的理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/06/Javascript 数组类型/" class="article-date">
-  <time datetime="2016-12-06T03:07:49.000Z" itemprop="datePublished">2016-12-06</time>
+    <a href="/2016/12/20/thinking/对于异步编程的理解/" class="article-date">
+  <time datetime="2016-12-20T04:26:06.000Z" itemprop="datePublished">2016-12-20</time>
 </a>
     
   </div>
@@ -312,26 +316,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Javascript-数组"><a href="#Javascript-数组" class="headerlink" title="Javascript 数组"></a>Javascript 数组</h1><p>​    js的数组和其他语言的数组类型相差还是很大，<strong>其一</strong>表现在js的数组并不要求一个数组内的数据类型都是一致，如下的数组定义是没有问题的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="string">"abc"</span>,<span class="number">5.6</span>,&#123;<span class="string">'name'</span>:<span class="string">'lin'</span>&#125;];</div><div class="line"><span class="built_in">console</span>.log(a)</div></pre></td></tr></table></figure>
-<p><strong>其二</strong>表现在数组的长度length这个属性不仅仅是只读的，也是可写的，比如上面的代码改为,这样就只会打印出两个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a.length = 2;</div><div class="line">console.log(a)</div></pre></td></tr></table></figure>
-<p>​    数组的栈方法：push(), pop() </p>
-<p>​        数组的队列方法：push(),unshift()       数组末进入，数组头出</p>
-<p>​                                       unshift(), pop()        数组头进入，数组末尾处</p>
-<p>​    数组排序方法：sort()  接收一个compare函数， 比较函数接收两个参数，如果第一个参数应该位于第二个参数之前则返回一个负数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function compare(value1, value2)&#123;</div><div class="line">  if (value1 &lt; value2)&#123;</div><div class="line">    return -1;</div><div class="line">  &#125; else if (value1 &gt; value2)&#123;</div><div class="line">    return 1;</div><div class="line">  &#125; else &#123;</div><div class="line">    return 0;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    数组concat方法：这个方法先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。在没有给concat()传递参数的情况下，它只是复制当前数组并返回副本</p>
-<p>​    数组slice() 方法：接收一个或两个参数，如果是一个参数，就返回从这个索引到数组末尾的整个一个新数组，如果是两个参数，就返回从第一个索引到第二参数-1这个索引的新数组</p>
-<p>​       数组splice()方法：1）删除：2个参数，第一项的位置和要删除的项数    2）插入：3个参数， 起始位置，0（要删除的项数），要插入的项  3）替换</p>
-<p>​      数组 indexOf() 方法：接收两个参数，要查找的项和表示查找起点的索引(索引)</p>
-<p>​      数组迭代方法：every(),filter(),forEach(),map(),some()   每个传入的函数接收三个参数，数组项的值，该项在数组中的位置，数组对象本身</p>
-<p>​      数组reduce() 方法：每个传入的函数接收4个参数：前一个值，当前值，项的索引和数组对象</p>
+        <h1 id="对于异步编程的理解"><a href="#对于异步编程的理解" class="headerlink" title="对于异步编程的理解"></a>对于异步编程的理解</h1><p>1）为啥需要异步编程的解决方案？</p>
+<p>​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式</p>
+<p>2） 异步方案的难点</p>
+<ol>
+<li><p>try catch无法捕捉异常，因为try catch本身是捕捉当次执行时的报错，而异步的方式那个程序在那个刻还没执行，自然也就catch不到，node在异常处理上形成一种约定，将异常作为回调函数的第一个参数传回，如果为空，则表明没有异常抛出，如果自己编写异步方法必须遵循如下原则：</p>
+<p><strong>必须执行调用者传入的回调函数</strong></p>
+<p><strong>正确传递回异常供调用者判断</strong></p>
+</li>
+<li><p>函数嵌套过深：多个操作存在依赖关系，比如遍历目录，查询数据库做渲染</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/06/Javascript 数组类型/" data-id="ciwh94p15000kgrzsndm6xixb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/20/thinking/对于异步编程的理解/" data-id="ciwzy640u00191ozsei8n4hp6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,10 +343,10 @@
 
 
   
-    <article id="post-Javascipt 变量基本类型与引用类型" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-javascript/Javascript 原型prototype" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/06/Javascipt 变量基本类型与引用类型/" class="article-date">
-  <time datetime="2016-12-06T02:08:31.000Z" itemprop="datePublished">2016-12-06</time>
+    <a href="/2016/12/17/javascript/Javascript 原型prototype/" class="article-date">
+  <time datetime="2016-12-17T12:37:09.000Z" itemprop="datePublished">2016-12-17</time>
 </a>
     
   </div>
@@ -353,11 +355,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Javascipt-变量基本类型与引用类型"><a href="#Javascipt-变量基本类型与引用类型" class="headerlink" title="Javascipt 变量基本类型与引用类型"></a>Javascipt 变量基本类型与引用类型</h1><h3 id="Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date"><a href="#Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date" class="headerlink" title="Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date"></a>Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date</h3><h3 id="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"><a href="#引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针" class="headerlink" title="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"></a>引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针</h3><h3 id="所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"><a href="#所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象" class="headerlink" title="所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"></a>所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象</h3><h3 id="函数传递的时候也是按值来传递"><a href="#函数传递的时候也是按值来传递" class="headerlink" title="函数传递的时候也是按值来传递"></a>函数传递的时候也是按值来传递</h3>
+        <h1 id="Javascript-原型prototype"><a href="#Javascript-原型prototype" class="headerlink" title="Javascript 原型prototype"></a>Javascript 原型prototype</h1><h3 id="为什么要有原型"><a href="#为什么要有原型" class="headerlink" title="为什么要有原型"></a>为什么要有原型</h3><p>考虑一个需要定义一个person对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,job)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.job = job;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个person会有名字、年龄和工作的属性，这些都是每个person对象不一样的地方，但是如果我们要定义一个sayName方法，由于这个sayName方法对于所有person都是一致的，如果我们定义在对象里面会非常麻烦，所以就有了原型</p>
+<h3 id="原型是什么"><a href="#原型是什么" class="headerlink" title="原型是什么"></a>原型是什么</h3><p>无论什么时候只要创建了一个函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象，同时呢，这个原型对象会有个constructor属性，这个属性指向函数对象，即Person.prototype.constructor指向person</p>
+<p>这里有个注意点： 当用构造函数创建了一个新实例后，该实例也有一个内部属性叫[[Prototype]],在浏览器实现中叫_ <em>proto</em> _ ,这个属性是对象和原型之间的连接，而不像prototype那个是构造函数与原型间的连接。</p>
+<ol>
+<li>可以通过Object.getPrototypeOf()来获取对象的原型</li>
+<li>可以通过person.hasOwnPrototype()来判断某个属性是来源于对象还是原型</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/06/Javascipt 变量基本类型与引用类型/" data-id="ciwh94p0e000ggrzsrwma86me" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/17/javascript/Javascript 原型prototype/" data-id="ciwzy640n00111ozswr7oig42" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,10 +378,10 @@
 
 
   
-    <article id="post-远端Branch 12.5" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-git/Git reset 和 git checkout的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/06/远端Branch 12.5/" class="article-date">
-  <time datetime="2016-12-06T02:00:15.000Z" itemprop="datePublished">2016-12-06</time>
+    <a href="/2016/12/16/git/Git reset 和 git checkout的区别/" class="article-date">
+  <time datetime="2016-12-16T05:34:38.000Z" itemprop="datePublished">2016-12-16</time>
 </a>
     
   </div>
@@ -379,15 +390,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="远端Branch-12-5"><a href="#远端Branch-12-5" class="headerlink" title="远端Branch 12.5"></a>远端Branch 12.5</h1><h3 id="git-fetch-origin"><a href="#git-fetch-origin" class="headerlink" title="git fetch origin"></a>git fetch origin</h3><p>This command looks up which server “origin” is (in this case, it’s <code>git.ourcompany.com</code>), fetches any data from it that you don’t yet have, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position.</p>
-<h5 id="这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针"><a href="#这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针" class="headerlink" title="这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针"></a>这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针</h5><p>It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify.</p>
-<h5 id="也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix"><a href="#也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix" class="headerlink" title="也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix"></a>也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix</h5><p>While the <code>git fetch</code> command will fetch down all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself.</p>
-<h5 id="git-fetch不会修改working-directory"><a href="#git-fetch不会修改working-directory" class="headerlink" title="git fetch不会修改working directory"></a>git fetch不会修改working directory</h5><h3 id="git-push-origin-serverfix-awesomebranch"><a href="#git-push-origin-serverfix-awesomebranch" class="headerlink" title="git push origin serverfix:awesomebranch"></a>git push origin serverfix:awesomebranch</h3><p> push your local <code>serverfix</code> branch to the <code>awesomebranch</code> branch on the remote project</p>
-<h3 id="git-checkout-b-branch-remote-branch"><a href="#git-checkout-b-branch-remote-branch" class="headerlink" title="git checkout -b branch remote/branch"></a>git checkout -b branch remote/branch</h3><h5 id="这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote"><a href="#这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote" class="headerlink" title="这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,"></a>这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,</h5><h3 id="git-fetch-all-git-branch-vv"><a href="#git-fetch-all-git-branch-vv" class="headerlink" title="git fetch - - all   git branch -vv"></a>git fetch - - all   git branch -vv</h3><h5 id="查看本地的tracking-branch和远端的upstream-branch关系"><a href="#查看本地的tracking-branch和远端的upstream-branch关系" class="headerlink" title="查看本地的tracking branch和远端的upstream branch关系"></a>查看本地的tracking branch和远端的upstream branch关系</h5>
+        <h1 id="Git-reset-和-git-checkout的区别"><a href="#Git-reset-和-git-checkout的区别" class="headerlink" title="Git reset 和 git checkout的区别"></a>Git reset 和 git checkout的区别</h1><ol>
+<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
+<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/06/远端Branch 12.5/" data-id="ciwh94p1i000wgrzs51z1c9o8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/16/git/Git reset 和 git checkout的区别/" data-id="ciwzy63zm000i1ozslfwxkfpi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -397,10 +408,10 @@
 
 
   
-    <article id="post-Javascript 函数编程" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-javascript/Javascript中的逻辑运算" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/04/Javascript 函数编程/" class="article-date">
-  <time datetime="2016-12-04T13:20:00.000Z" itemprop="datePublished">2016-12-04</time>
+    <a href="/2016/12/16/javascript/Javascript中的逻辑运算/" class="article-date">
+  <time datetime="2016-12-16T03:24:02.000Z" itemprop="datePublished">2016-12-16</time>
 </a>
     
   </div>
@@ -409,44 +420,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Javascript-函数编程"><a href="#Javascript-函数编程" class="headerlink" title="Javascript 函数编程"></a>Javascript 函数编程</h1><h3 id="函数声明是当程序一load就会在内存里构建，会提前就使用一部分内存，而函数表达式是在代码动态执行时才build"><a href="#函数声明是当程序一load就会在内存里构建，会提前就使用一部分内存，而函数表达式是在代码动态执行时才build" class="headerlink" title="函数声明是当程序一load就会在内存里构建，会提前就使用一部分内存，而函数表达式是在代码动态执行时才build"></a>函数声明是当程序一load就会在内存里构建，会提前就使用一部分内存，而函数表达式是在代码动态执行时才build</h3>
+        <h1 id="Javascript中的逻辑运算"><a href="#Javascript中的逻辑运算" class="headerlink" title="Javascript中的逻辑运算"></a>Javascript中的逻辑运算</h1><p>逻辑运算符通常用于布尔型（逻辑）值；这种情况，它们返回一个布尔型值。然而，&amp;&amp;和||运算符实际上返回一个指定操作数的值，因此这些运算符也用于非布尔型，它们返回一个非布尔型值。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">逻辑与 (<code>&amp;&amp;</code>)</td>
+<td style="text-align:left">expr1&amp;&amp;expr2</td>
+<td style="text-align:left">如果<em>expr1</em> 能转换成false则返回expr1,否则返回expr2. 因此, 在Boolean环境中使用时, 两个操作结果都为true时返回true,否则返回false.</td>
+</tr>
+<tr>
+<td style="text-align:left">逻辑或 (`</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">`)</td>
+<td>expr1\</td>
+<td>\</td>
+<td>expr2</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>经常能看到javascript的逻辑运算用在变量初始化的时候，之前一直不是很理解，虽然知道有惰性求值这个概念，但是因为以前学java的时候只知道逻辑运算符只能用在求布尔值的时候，也就是这个表格里说的boolean环境中，<strong><em>js的逻辑运算还可以用在非boolean的环境</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a1=true &amp;&amp; true       // t &amp;&amp; t 结果为 true</div><div class="line">a2=true &amp;&amp; false      // t &amp;&amp; f 结果为 false</div><div class="line">a3=false &amp;&amp; true      // f &amp;&amp; t 结果为 false</div><div class="line">a4=false &amp;&amp; (3 == 4)  // f &amp;&amp; f 结果为 false</div><div class="line">a5=&quot;Cat&quot; &amp;&amp; &quot;Dog&quot;     // t &amp;&amp; t 结果为 Dog</div><div class="line">a6=false &amp;&amp; &quot;Cat&quot;     // f &amp;&amp; t 结果为 false</div><div class="line">a7=&quot;Cat&quot; &amp;&amp; false     // t &amp;&amp; f 结果为 false</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">o1=true || true       // t || t 结果为 true</div><div class="line">o2=false || true      // f || t 结果为 true</div><div class="line">o3=true || false      // t || f 结果为 true</div><div class="line">o4=false || (3 == 4)  // f || f 结果为 false</div><div class="line">o5=&quot;Cat&quot; || &quot;Dog&quot;     // t || t 结果为 Cat</div><div class="line">o6=false || &quot;Cat&quot;     // f || t 结果为 Cat</div><div class="line">o7=&quot;Cat&quot; || false     // t || f 结果为 Cat</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/Javascript 函数编程/" data-id="ciwh94p11000igrzsvau38vrr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Javascript 异步编程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/04/Javascript 异步编程/" class="article-date">
-  <time datetime="2016-12-04T05:08:08.000Z" itemprop="datePublished">2016-12-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Javascript-异步编程"><a href="#Javascript-异步编程" class="headerlink" title="Javascript 异步编程"></a>Javascript 异步编程</h1><h2 id="数组forEach方法"><a href="#数组forEach方法" class="headerlink" title="数组forEach方法"></a>数组forEach方法</h2><p>function getStockSymbols(stocks){    </p>
-<p>​    var symbols = [];</p>
-<p>​    stocks.forEach(function(stock)){    </p>
-<p>​        symbols.push(stock.symbol);</p>
-<p>​    }</p>
-<p>​    return symbols;</p>
-<p>}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/Javascript 异步编程/" data-id="ciwh94p16000mgrzsfllc7u9e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/16/javascript/Javascript中的逻辑运算/" data-id="ciwzy640s00171ozsvip4pfas" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,7 +469,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -504,23 +514,23 @@
       <ul>
         
           <li>
-            <a href="/2016/12/08/Mac下启动和重启nginx/">(no title)</a>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/12/07/ES6学习(2)/">(no title)</a>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/12/07/WebStorm 下设置支持ES6/">(no title)</a>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/12/06/Git Rebasing/">(no title)</a>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/12/06/ES6 学习/">(no title)</a>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
           </li>
         
       </ul>

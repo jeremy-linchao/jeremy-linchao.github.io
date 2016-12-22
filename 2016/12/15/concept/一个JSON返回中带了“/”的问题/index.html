@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个JSON返回中带了“\”的问题用express的res.json返回数据，发现返回值如下，有很多的”\”
+1&amp;quot;&amp;#123;\&amp;quot;RetCode\&amp;quot;:0,\&amp;quot;Action\&amp;quot;:\&amp;quot;GetOrderListResponse\&amp;quot;,\&amp;quot;OrderList\&amp;quot;:[&amp;#123;\&amp;quot;OrganizationId">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/concept/一个JSON返回中带了“/”的问题/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="一个JSON返回中带了“\”的问题用express的res.json返回数据，发现返回值如下，有很多的”\”
+1&amp;quot;&amp;#123;\&amp;quot;RetCode\&amp;quot;:0,\&amp;quot;Action\&amp;quot;:\&amp;quot;GetOrderListResponse\&amp;quot;,\&amp;quot;OrderList\&amp;quot;:[&amp;#123;\&amp;quot;OrganizationId">
+<meta property="og:updated_time" content="2016-12-15T15:01:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="一个JSON返回中带了“\”的问题用express的res.json返回数据，发现返回值如下，有很多的”\”
+1&amp;quot;&amp;#123;\&amp;quot;RetCode\&amp;quot;:0,\&amp;quot;Action\&amp;quot;:\&amp;quot;GetOrderListResponse\&amp;quot;,\&amp;quot;OrderList\&amp;quot;:[&amp;#123;\&amp;quot;OrganizationId">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-concept/一个JSON返回中带了“\”的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/15/concept/一个JSON返回中带了“\”的问题/" class="article-date">
+  <time datetime="2016-12-15T15:01:59.000Z" itemprop="datePublished">2016-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一个JSON返回中带了“-”的问题"><a href="#一个JSON返回中带了“-”的问题" class="headerlink" title="一个JSON返回中带了“\”的问题"></a>一个JSON返回中带了“\”的问题</h1><p>用express的res.json返回数据，发现返回值如下，有很多的”\”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;&#123;\&quot;RetCode\&quot;:0,\&quot;Action\&quot;:\&quot;GetOrderListResponse\&quot;,\&quot;OrderList\&quot;:[&#123;\&quot;OrganizationId\&quot;:50002374,\&quot;ResourceId\&quot;:\&quot;bs-ryjcde\&quot;,\&quot;OrderNo\&quot;:\&quot;20161215000172504997548\&quot;,\&quot;OrderId\&quot;:62375327,\&quot;TradeNo\&quot;:\&quot;D20161215000272505064367\&quot;,\&quot;CreateTime\&quot;:1481791886,\&quot;StartTime\&quot;:1481793593,\&quot;PaymentTime\&quot;:1481791887,\&quot;EndTime\&quot;:1481797193,\&quot;Quantity\&quot;:1,\&quot;RegionId\&quot;:7001,\&quot;OrderType\&quot;:2,\&quot;State\&quot;:1,\&quot;ChargeType\&quot;:1,\&quot;Am</div></pre></td></tr></table></figure>
+<p>看一下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function (error, httpResponse, body) &#123;</div><div class="line">    if (!error) &#123;</div><div class="line">        console.log(body);</div><div class="line">        res.status(200).json(body);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中console.log打出来的值是没有\的，然后通过json函数返回却有，仔细查了下，需要了解清楚两个问题：</p>
+<p>1）res.json()这个函数的参数是什么？ 下面是定义</p>
+<h3 id="res-json-body"><a href="#res-json-body" class="headerlink" title="res.json([body])"></a>res.json([body])</h3><p>Sends a JSON response. This method sends a response (with the correct content-type) that is the parameter converted to a JSON string using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="external">JSON.stringify()</a>.</p>
+<p>The parameter can be any JSON type, including object, array, string, Boolean, or number, and you can also use it to convert other values to JSON, such as <code>null</code>, and <code>undefined</code> (although these are technically not valid JSON).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res.json(null);</div><div class="line">res.json(&#123; user: &apos;tobi&apos; &#125;);</div><div class="line">res.status(500).json(&#123; error: &apos;message&apos; &#125;);</div></pre></td></tr></table></figure>
+<p>可以看到参数是一个json格式</p>
+<p>2）函数返回的body是个什么类型呢？是个json序列化之后的字符串，不是json格式，所以返回的时候会有这个问题</p>
+<p>解决方案就是在调用json函数时先调用JSON.parse()把这个字符串转化成JSON</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/15/concept/一个JSON返回中带了“\”的问题/" data-id="ciwzy63yw00051ozsjxb8yuzs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/15/javascript/Javascript 错误处理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/14/javascript/Javascript 将对象转换成JSON格式字符串/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

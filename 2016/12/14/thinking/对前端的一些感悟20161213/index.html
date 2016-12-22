@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对前端的一些感悟20161213​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。
+​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/14/thinking/对前端的一些感悟20161213/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="对前端的一些感悟20161213​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。
+​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画">
+<meta property="og:updated_time" content="2016-12-13T16:06:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="对前端的一些感悟20161213​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。
+​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-thinking/对前端的一些感悟20161213" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/thinking/对前端的一些感悟20161213/" class="article-date">
+  <time datetime="2016-12-13T16:06:14.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="对前端的一些感悟20161213"><a href="#对前端的一些感悟20161213" class="headerlink" title="对前端的一些感悟20161213"></a>对前端的一些感悟20161213</h1><p>​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。</p>
+<p>​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画的渲染，每一次用户点击一个链接或者一个button，请求都是要发到服务器端，服务器或直接返回静态页面，或者从数据库拉取数据然后生成html返回浏览器，这里面的页面渲染和路由都是在服务端做的，但仔细一想会觉得这个其实不合理，浏览器大多数情况下只要更新数据，为什么每次都要重新渲染个html页面过来呢，一来会增加传输带宽，二来呢主要是影响用户体验，毕竟在网络情况不是太好的时候这是个很大问题。</p>
+<p>​    这时候回想传统的CS架构，为什么觉得CS架构用户体验会好，除了开发语言C/C++直接编译成二进制的优势，很大程度上是因为CS架构的很多UI操作都是在本地完成，与服务器通信也只需要通过tcp获取需要的数据，所以我觉得单页应用并没有什么太新的概念，<strong><em>他只不过是回归了本来应该的样子</em>，浏览器在第一次加载的时候从服务器拉取了下这个应用的代码</strong>。为什么以前没有，我想一方面是浏览器对于js的程度越来越好，另外就是大家对用户体验越来越看重。</p>
+<p>​    如果理解了单页应用，那随后几个概念其实很好理解，也能理解为什么会有。首先是webpack，webpack是一个解决前端依赖和打包的工具，因为一旦路由和逻辑放到了前端，前端的代码量会急剧上升，很多模块间会需要通过<script></script>做多个导入，但是这些模块又会有相互依赖，webpack的一个作用就是来解决js加载的顺序问题，另外js代码的压缩及混淆工作也是一个非常重要的事情，不然那么多js代码，首次加载会非常之慢。</p>
+<p>​    Babel是做了另外一方面的事情，是关于语法，ES6的推出确实是一件非常振奋人心的事，里面有很多我非常喜欢的特性，比如let的块级作用，比如解构赋值，比如promise对象，但由于浏览器的支持总是分阶段的，所以为了最大的兼容性，还是需要ES5的代码，Babel就是干了这么一件事，把ES6以及之后的代码转换成ES5的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/14/thinking/对前端的一些感悟20161213/" data-id="ciwzy640x001b1ozsvdjlesrf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/14/node/Express 学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/12/concept/双因素认证/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

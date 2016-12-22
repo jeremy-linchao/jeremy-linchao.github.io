@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习学习再学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于异步为什么需要异步？
+前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象
+
+在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习学习再学习">
+<meta property="og:url" content="http://yoursite.com/2016/12/21/coding/关于异步/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="关于异步为什么需要异步？
+前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象
+
+在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非">
+<meta property="og:updated_time" content="2016-12-21T02:56:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:description" content="关于异步为什么需要异步？
+前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象
+
+在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非">
+  
+    <link rel="alternate" href="/atom.xml" title="学习学习再学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学习学习再学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-coding/关于异步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/21/coding/关于异步/" class="article-date">
+  <time datetime="2016-12-21T02:56:16.000Z" itemprop="datePublished">2016-12-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关于异步"><a href="#关于异步" class="headerlink" title="关于异步"></a>关于异步</h1><h4 id="为什么需要异步？"><a href="#为什么需要异步？" class="headerlink" title="为什么需要异步？"></a>为什么需要异步？</h4><ol>
+<li><p>前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象</p>
+</li>
+<li><p>在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非阻塞I/O则不带数据直接返回，要获取数据，还需要通过文件描述符再次读取</p>
+</li>
+<li><p>前面提到了为了获取完整的数据，应用程序需要重复调用I/O操作来确实是否完成，这种重复调用判断操作是否完成的技术叫做<strong>轮询</strong>，有以下几种形式：</p>
+<p>a) read  b)select  c)epoll 4)   这些个技术对于应用程序而言，仍然只能算是一种同步，因为应用程序需要等待I/O完全返回，等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待时间发生</p>
+</li>
+<li><p>Linux下面存在一种异步IO方式叫AIO，但这个只在linux下有，并且仅支持O_Direct方式读取</p>
+</li>
+<li><p><strong>现实场景下的异步IO：</strong>   线程池模拟异步I/O</p>
+<p>一个线程进行计算处理，让其他线程进行非阻塞I/O加轮询获取数据，通过线程间通信将I/O的数据进行传递</p>
+</li>
+<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong></li>
+</ol>
+<p>#### </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/21/coding/关于异步/" data-id="ciwzy63yo00011ozsub3wcmde" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/21/coding/高阶函数与偏函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/20/es6/ES6 Generate 函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/21/utility/Markdown 学习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/函数式编程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/高阶函数与偏函数/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/coding/关于异步/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/20/es6/ES6 Generate 函数/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 jeremy-lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
