@@ -367,7 +367,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/15/concept/一个JSON返回中带了“\”的问题/" itemprop="url">
-                  未命名
+                  JSON返回带"\"
                 </a>
               
             
@@ -385,6 +385,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -410,7 +429,9 @@
       
         
           
-            <h1 id="一个JSON返回中带了“-”的问题"><a href="#一个JSON返回中带了“-”的问题" class="headerlink" title="一个JSON返回中带了“\”的问题"></a>一个JSON返回中带了“\”的问题</h1><p>用express的res.json返回数据，发现返回值如下，有很多的”\”</p>
+            <ol>
+<li>用express的res.json返回数据，发现返回值如下，有很多的”\”</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;&#123;\&quot;RetCode\&quot;:0,\&quot;Action\&quot;:\&quot;GetOrderListResponse\&quot;,\&quot;OrderList\&quot;:[&#123;\&quot;OrganizationId\&quot;:50002374,\&quot;ResourceId\&quot;:\&quot;bs-ryjcde\&quot;,\&quot;OrderNo\&quot;:\&quot;20161215000172504997548\&quot;,\&quot;OrderId\&quot;:62375327,\&quot;TradeNo\&quot;:\&quot;D20161215000272505064367\&quot;,\&quot;CreateTime\&quot;:1481791886,\&quot;StartTime\&quot;:1481793593,\&quot;PaymentTime\&quot;:1481791887,\&quot;EndTime\&quot;:1481797193,\&quot;Quantity\&quot;:1,\&quot;RegionId\&quot;:7001,\&quot;OrderType\&quot;:2,\&quot;State\&quot;:1,\&quot;ChargeType\&quot;:1,\&quot;Am</div></pre></td></tr></table></figure>
 <p>看一下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function (error, httpResponse, body) &#123;</div><div class="line">    if (!error) &#123;</div><div class="line">        console.log(body);</div><div class="line">        res.status(200).json(body);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -707,7 +728,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/14/concept/API 设计/" itemprop="url">
-                  未命名
+                  API设计
                 </a>
               
             
@@ -725,6 +746,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -750,7 +790,7 @@
       
         
           
-            <h1 id="API-设计"><a href="#API-设计" class="headerlink" title="API 设计"></a>API 设计</h1><ul>
+            <ul>
 <li><p>所有API请求都使用https</p>
 </li>
 <li><p>在response的accept header上加一个版本号，比如 version = 3</p>
@@ -790,10 +830,10 @@
 <li><p>使用UTC times  ISO8601</p>
 </li>
 <li><p>使用嵌入对象做外键引用</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+<pre><code>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;  </div><div class="line">​</div></pre></td></tr></table></figure>
+</code></pre></li>
 <li><p>生成结构化的错误 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>减少response中json的空格</p>
 </li>
@@ -850,7 +890,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/14/node/Express 学习/" itemprop="url">
-                  未命名
+                  Express学习
                 </a>
               
             
@@ -868,6 +908,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -893,11 +952,11 @@
       
         
           
-            <h1 id="Express-学习"><a href="#Express-学习" class="headerlink" title="Express 学习"></a>Express 学习</h1><ol>
-<li>如果要获取查询字符串的参数 比如<a href="http://api.ucloud.cn/sanqin?limit=1" target="_blank" rel="external">http://api.ucloud.cn/sanqin?limit=1</a>   可以使用request.query.limit</li>
-</ol>
-<ol>
-<li>动态路由的参数获取  比如  <a href="http://api.ucloud.cn/sanqin/:companyId" target="_blank" rel="external">http://api.ucloud.cn/sanqin/:companyId</a>  可以使用request.params.companyId来获取sanqin之后的那个参数</li>
+            <ol>
+<li><p>如果要获取查询字符串的参数 比如<a href="http://api.ucloud.cn/sanqin?limit=1" target="_blank" rel="external">http://api.ucloud.cn/sanqin?limit=1</a>   可以使用request.query.limit</p>
+</li>
+<li><p>动态路由的参数获取  比如  <a href="http://api.ucloud.cn/sanqin/:companyId" target="_blank" rel="external">http://api.ucloud.cn/sanqin/:companyId</a>  可以使用request.params.companyId来获取sanqin之后的那个参数</p>
+</li>
 <li>通过app.param()这个函数可以截取进来的request，并给request添加一些参数，然后返回给路由，用于在动态路由前做一些pre-condition操作</li>
 <li>如果要解析post请求中的body内容，需要引入一个中间件叫body-parser,</li>
 </ol>
@@ -1067,194 +1126,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/12/concept/双因素认证/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-12T19:29:20+08:00" content="2016-12-12">
-              2016-12-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="双因素认证"><a href="#双因素认证" class="headerlink" title="双因素认证"></a>双因素认证</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/12/concept/OAuth/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-12T19:29:09+08:00" content="2016-12-12">
-              2016-12-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="OAuth-学习"><a href="#OAuth-学习" class="headerlink" title="OAuth 学习"></a>OAuth 学习</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
-                  未命名
+                  Node学习
                 </a>
               
             
@@ -1273,6 +1146,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -1297,14 +1189,253 @@
       
         
           
-            <h1 id="Node-学习"><a href="#Node-学习" class="headerlink" title="Node 学习"></a>Node 学习</h1><ol>
+            <ol>
 <li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 <li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
 <p>module.exports.a = a;</p>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/09/git/Git reset 和 git checkout 的区别/" itemprop="url">
+                  Git reset 和 git checkout 的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-09T14:54:13+08:00" content="2016-12-09">
+              2016-12-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头</p>
+</li>
+<li><p>git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置</p>
+<p>git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有</p>
+<p>git reset - -hard HEAD~ 移动HEAD到那个commit，并且同时重置staged区域以及工作目录，这个因为会覆盖工作目录会有一点风险性，如果你当前修改的东西没有commit然后hard的话当前的找不到，当然如果是简单想回去看看，那是没有问题的</p>
+</li>
+<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
+<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/08/mac/Mac下启动和重启nginx/" itemprop="url">
+                  mac本地使用nginx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T16:43:59+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
+<p>终端下敲一个brew services可以看到具体的用法比如</p>
+<p>brew services [start|restart|stop] nginx </p>
+<p><strong>如果nginx是run在80端口，需要加sudo</strong></p>
 
           
         
@@ -1378,7 +1509,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1386,7 +1517,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1395,7 +1526,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

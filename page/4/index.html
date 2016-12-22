@@ -243,229 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/01/git/Git 分支 /" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T10:18:50+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: Git分支</p>
-<p>categories: git<br>tags: git</p>
-<ol>
-<li>每一个commit对象包含了几样东西，1）size 2）一个指向tree的指针 3）一个指向parent的指针 4）author和committer</li>
-<li>所谓的分支就是一个可移动的指针，指向某个commit对象，创建一个分支git branch就是创建了这么一个指针，这个命令不会移动HEAD指针    </li>
-<li>那Git如何知道现在是工作在哪个分支呢？通过HEAD指针</li>
-<li>可以用Git checkout 移动HEAD指针来指向不同的分支</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/git/Git 本地操作/" itemprop="url">
-                  Git本地操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T10:15:47+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处</p>
-<p>git log -p - - stat         Show statistics for files modified in each commit.</p>
-<p>git log  - -pretty=format 可以以指定格式输出</p>
-<h3 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h3><p>git commit - - amend   第一次提交忘记用git add把相关文件加进去了，可以加完之后用这个命令，这样就避免做了两次提交</p>
-<p>git reset HEAD filename  一下子把多个文件加到staged区域里去了，但实际上想做的是分为多次提交，那可以用这个命令把相应的文件拿出来</p>
-<p>git checkout - - file 修改了某个文件但还没有加到staged区域，可以使用这个命令把那些修改重置</p>
-<p>例子： git checkout – bower.json</p>
-<h3 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h3><p>git remote -v 查看远端server的url，origin是指默认的server git当时clone的</p>
-<p>git remote add <shortname> <url> 配置远端server，如果是clone的这步不需要，因为会把origin当做默认的远端server</url></shortname></p>
-<p>git fetch [remote-name] 这个命令会从远端server拿自己没有的数据，如果是clone的用git fetch origin就可以，注意这个命令只是下载，不会merge，同时也不会修改本地的工作目录</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/11/29/angular/Angular 11.28/" itemprop="url">
                   未命名
                 </a>
@@ -564,8 +341,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/24/ide/VSCode调试Node/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/11/24/ide/VSCode 调试/" itemprop="url">
+                  VScode调试
                 </a>
               
             
@@ -583,6 +360,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ide/" itemprop="url" rel="index">
+                    <span itemprop="name">ide</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -608,7 +404,7 @@
       
         
           
-            <h1 id="VSCode调试Node"><a href="#VSCode调试Node" class="headerlink" title="VSCode调试Node"></a>VSCode调试Node</h1><ol>
+            <ol>
 <li>打开要调试的文件，按<code>f5</code>,编辑器会生成一个<code>launch.json</code></li>
 <li>修改<code>launch.json</code>相关内容，主要是<code>name</code>和<code>program</code>字段，改成和你项目对应的</li>
 <li>点击编辑器左侧长得像蜘蛛的那个按钮</li>
@@ -778,7 +574,7 @@
               
                 
                 <a class="post-title-link" href="/2016/11/23/database/MongoDB 导出数据成json/" itemprop="url">
-                  未命名
+                  MongoDB 导出数据成json
                 </a>
               
             
@@ -796,6 +592,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -821,7 +636,10 @@
       
         
           
-            <h1 id="MongoDB-导出数据成json"><a href="#MongoDB-导出数据成json" class="headerlink" title="MongoDB 导出数据成json"></a>MongoDB 导出数据成json</h1><h3 id="1-mongoexport-d-ticketFinder-c-airports-–fields-airportName-airportCode-–jsonArray-–pretty-–out-GitHub-ticketFinder-frontend-airportscode-json"><a href="#1-mongoexport-d-ticketFinder-c-airports-–fields-airportName-airportCode-–jsonArray-–pretty-–out-GitHub-ticketFinder-frontend-airportscode-json" class="headerlink" title="1. mongoexport -d ticketFinder -c airports –fields airportName,airportCode –jsonArray –pretty –out ~/GitHub/ticketFinder/frontend/airportscode.json"></a>1. mongoexport -d ticketFinder -c airports –fields airportName,airportCode –jsonArray –pretty –out ~/GitHub/ticketFinder/frontend/airportscode.json</h3><p>这里 -d 指的是数据库名， -c指的是collection，- -filed用来指定字段， - -jsonArray可以把输出变成一个json数组，而不是那种一个对象一行的形式，这里要注意的是如果输出是json格式，id这个字段也会被保留输出</p>
+            <ol>
+<li>mongoexport -d ticketFinder -c airports –fields airportName,airportCode –jsonArray –pretty –out ~/GitHub/ticketFinder/frontend/airportscode.json</li>
+</ol>
+<p>这里 -d 指的是数据库名， -c指的是collection，- -filed用来指定字段， - -jsonArray可以把输出变成一个json数组，而不是那种一个对象一行的形式，这里要注意的是如果输出是json格式，id这个字段也会被保留输出</p>
 
           
         
@@ -1289,6 +1107,246 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/09/utility/ssh key登陆/" itemprop="url">
+                  ssh使用key免密登陆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T11:14:16+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600"><a href="#1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600" class="headerlink" title="1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600"></a>1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600</h3><h3 id="2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600"><a href="#2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600" class="headerlink" title="2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600"></a>2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600</h3><h3 id="3-修改下-ssh-config-这个文件格式如下"><a href="#3-修改下-ssh-config-这个文件格式如下" class="headerlink" title="3. 修改下 .ssh/config 这个文件格式如下"></a>3. 修改下 .ssh/config 这个文件格式如下</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy<br>Port 22<br>IdentityFile ~/.ssh/id_rsa</p>
+<h3 id="4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好"><a href="#4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好" class="headerlink" title="4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)"></a>4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)</h3><h3 id="5-最后就可以用ssh-dev1来登陆了"><a href="#5-最后就可以用ssh-dev1来登陆了" class="headerlink" title="5. 最后就可以用ssh dev1来登陆了"></a>5. 最后就可以用ssh dev1来登陆了</h3><h1 id="Git-“please-tell-me-who-you-are”-问题"><a href="#Git-“please-tell-me-who-you-are”-问题" class="headerlink" title="Git: “please tell me who you are” 问题"></a>Git: “please tell me who you are” 问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1.git init</div><div class="line">2.git config user.name &quot;someone&quot;</div><div class="line">3.git config user.email &quot;someone@someplace.com&quot;</div><div class="line">4.git add *</div><div class="line">5.git commit -m &quot;some init msg&quot;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/08/utility/工具zsh-iterm2-typora/" itemprop="url">
+                  工具zsh-iterm2-typora
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T22:41:26+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装了zsh"><a href="#安装了zsh" class="headerlink" title="安装了zsh"></a><strong>安装了zsh</strong></h2><p>觉得比较好的功能</p>
+<ul>
+<li>ll  代替 ls -l</li>
+<li>.. 代替 cd ..</li>
+<li>cmd +f   可以直接搜索，并用tab来右移选择行</li>
+<li>​</li>
+</ul>
+<h2 id="安装了iterm2"><a href="#安装了iterm2" class="headerlink" title="安装了iterm2"></a><strong>安装了iterm2</strong></h2><p>觉得比较好的功能</p>
+<ul>
+<li>cmd+d 做窗口的分屏</li>
+<li>option+cmd+b 显示历史记录</li>
+<li>​</li>
+</ul>
+<h2 id="安装了Typora"><a href="#安装了Typora" class="headerlink" title="安装了Typora"></a>安装了Typora</h2><p>确实比较美观，看上去特别舒服</p>
+<p>### </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1334,7 +1392,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1342,7 +1400,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1351,7 +1409,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

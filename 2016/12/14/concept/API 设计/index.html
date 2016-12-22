@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="api," />
 
 
 
@@ -84,8 +84,7 @@
 
 
 
-<meta name="description" content="API 设计
-所有API请求都使用https
+<meta name="description" content="所有API请求都使用https
 
 在response的accept header上加一个版本号，比如 version = 3
 
@@ -95,13 +94,12 @@
 
 大的response应该用Range头来指定如何获取这些数据​
 Request
-post，p">
+post，put等这些请">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="API设计">
 <meta property="og:url" content="http://yoursite.com/2016/12/14/concept/API 设计/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="API 设计
-所有API请求都使用https
+<meta property="og:description" content="所有API请求都使用https
 
 在response的accept header上加一个版本号，比如 version = 3
 
@@ -111,12 +109,11 @@ post，p">
 
 大的response应该用Range头来指定如何获取这些数据​
 Request
-post，p">
-<meta property="og:updated_time" content="2016-12-14T03:20:56.000Z">
+post，put等这些请">
+<meta property="og:updated_time" content="2016-12-22T14:52:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="API 设计
-所有API请求都使用https
+<meta name="twitter:title" content="API设计">
+<meta name="twitter:description" content="所有API请求都使用https
 
 在response的accept header上加一个版本号，比如 version = 3
 
@@ -126,7 +123,7 @@ post，p">
 
 大的response应该用Range头来指定如何获取这些数据​
 Request
-post，p">
+post，put等这些请">
 
 
 
@@ -144,7 +141,7 @@ post，p">
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> API设计 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +271,7 @@ post，p">
             
             
               
-                
+                API设计
               
             
           </h1>
@@ -291,6 +288,25 @@ post，p">
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -314,7 +330,7 @@ post，p">
       
 
       
-        <h1 id="API-设计"><a href="#API-设计" class="headerlink" title="API 设计"></a>API 设计</h1><ul>
+        <ul>
 <li><p>所有API请求都使用https</p>
 </li>
 <li><p>在response的accept header上加一个版本号，比如 version = 3</p>
@@ -354,10 +370,10 @@ post，p">
 <li><p>使用UTC times  ISO8601</p>
 </li>
 <li><p>使用嵌入对象做外键引用</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+<pre><code>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;  </div><div class="line">​</div></pre></td></tr></table></figure>
+</code></pre></li>
 <li><p>生成结构化的错误 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>减少response中json的空格</p>
 </li>
@@ -383,13 +399,19 @@ post，p">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/api/" rel="tag">#api</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/14/node/Express 学习/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/12/14/node/Express 学习/" rel="next" title="Express学习">
+                <i class="fa fa-chevron-left"></i> Express学习
               </a>
             
           </div>
@@ -466,7 +488,7 @@ post，p">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -474,7 +496,7 @@ post，p">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -483,7 +505,7 @@ post，p">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -512,7 +534,7 @@ post，p">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#API-设计"><span class="nav-number">1.</span> <span class="nav-text">API 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Request"><span class="nav-number">1.1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response"><span class="nav-number">1.2.</span> <span class="nav-text">Response</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Request"><span class="nav-number">1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response"><span class="nav-number">2.</span> <span class="nav-text">Response</span></a></li></ol></div>
             
           </div>
         </section>

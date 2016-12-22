@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="node," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="Node 学习
-Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
-12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.create">
+<meta name="description" content="Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
+
+12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.createReadSt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="Node学习">
 <meta property="og:url" content="http://yoursite.com/2016/12/10/node/Node 学习/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="Node 学习
-Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
-12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.create">
-<meta property="og:updated_time" content="2016-12-10T02:13:38.000Z">
+<meta property="og:description" content="Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
+
+12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.createReadSt">
+<meta property="og:updated_time" content="2016-12-22T14:56:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="Node 学习
-Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
-12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.create">
+<meta name="twitter:title" content="Node学习">
+<meta name="twitter:description" content="Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：
+
+12345678var fs = require(&amp;apos;fs&amp;apos;);var file = fs.createReadSt">
 
 
 
@@ -117,7 +117,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> Node学习 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +247,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
             
             
               
-                
+                Node学习
               
             
           </h1>
@@ -264,6 +264,25 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -287,9 +306,10 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
       
 
       
-        <h1 id="Node-学习"><a href="#Node-学习" class="headerlink" title="Node 学习"></a>Node 学习</h1><ol>
+        <ol>
 <li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 <li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
 <p>module.exports.a = a;</p>
@@ -314,6 +334,12 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -327,8 +353,8 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/12/concept/OAuth/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/14/thinking/对前端的一些感悟/" rel="prev" title="对前端的一些感悟">
+                对前端的一些感悟 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -397,7 +423,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -405,7 +431,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -414,7 +440,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -443,7 +469,7 @@ Stream： 什么是stream？stream翻译过来是流，也就是说所有的网�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-学习"><span class="nav-number">1.</span> <span class="nav-text">Node 学习</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
