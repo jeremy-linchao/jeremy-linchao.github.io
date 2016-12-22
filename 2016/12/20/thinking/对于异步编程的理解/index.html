@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="异步 感悟," />
 
 
 
@@ -84,28 +84,28 @@
 
 
 
-<meta name="description" content="对于异步编程的理解1）为啥需要异步编程的解决方案？
+<meta name="description" content="1）为啥需要异步编程的解决方案？
 ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
 2） 异步方案的难点
 
-try c">
+try catch无法捕捉异">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="对异步编程的理解">
 <meta property="og:url" content="http://yoursite.com/2016/12/20/thinking/对于异步编程的理解/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="对于异步编程的理解1）为啥需要异步编程的解决方案？
+<meta property="og:description" content="1）为啥需要异步编程的解决方案？
 ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
 2） 异步方案的难点
 
-try c">
-<meta property="og:updated_time" content="2016-12-22T07:15:28.000Z">
+try catch无法捕捉异">
+<meta property="og:updated_time" content="2016-12-22T12:25:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="对于异步编程的理解1）为啥需要异步编程的解决方案？
+<meta name="twitter:title" content="对异步编程的理解">
+<meta name="twitter:description" content="1）为啥需要异步编程的解决方案？
 ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
 2） 异步方案的难点
 
-try c">
+try catch无法捕捉异">
 
 
 
@@ -123,7 +123,7 @@ try c">
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> 对异步编程的理解 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +253,7 @@ try c">
             
             
               
-                
+                对异步编程的理解
               
             
           </h1>
@@ -270,6 +270,25 @@ try c">
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -293,7 +312,7 @@ try c">
       
 
       
-        <h1 id="对于异步编程的理解"><a href="#对于异步编程的理解" class="headerlink" title="对于异步编程的理解"></a>对于异步编程的理解</h1><p>1）为啥需要异步编程的解决方案？</p>
+        <p>1）为啥需要异步编程的解决方案？</p>
 <p>​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式</p>
 <p>2） 异步方案的难点</p>
 <ol>
@@ -322,6 +341,12 @@ try c">
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/异步-感悟/" rel="tag">#异步 感悟</a>
+          
+        </div>
       
 
       
@@ -406,7 +431,7 @@ try c">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -414,7 +439,7 @@ try c">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -423,7 +448,7 @@ try c">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -452,7 +477,7 @@ try c">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对于异步编程的理解"><span class="nav-number">1.</span> <span class="nav-text">对于异步编程的理解</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

@@ -1,0 +1,632 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端工具 bower wepack gulp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="bowerbower是一个前端包管理器，用来管理框架、库、assets和utilities
+bower会记录所有的包并且保证他们是最新的
+bower通过bower.json这个文件来管理所有的包
+bower安装通过npm install -g bower
+创建bower.json  bower init
+保存依赖  bower install PACKAGE –savewebpackwebpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对前端工具的感悟">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/thinking/对前端工具的感悟/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="bowerbower是一个前端包管理器，用来管理框架、库、assets和utilities
+bower会记录所有的包并且保证他们是最新的
+bower通过bower.json这个文件来管理所有的包
+bower安装通过npm install -g bower
+创建bower.json  bower init
+保存依赖  bower install PACKAGE –savewebpackwebpack">
+<meta property="og:updated_time" content="2016-12-22T12:29:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对前端工具的感悟">
+<meta name="twitter:description" content="bowerbower是一个前端包管理器，用来管理框架、库、assets和utilities
+bower会记录所有的包并且保证他们是最新的
+bower通过bower.json这个文件来管理所有的包
+bower安装通过npm install -g bower
+创建bower.json  bower init
+保存依赖  bower install PACKAGE –savewebpackwebpack">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 对前端工具的感悟 | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                对前端工具的感悟
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T13:50:57+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="bower"><a href="#bower" class="headerlink" title="bower"></a>bower</h3><h5 id="bower是一个前端包管理器，用来管理框架、库、assets和utilities"><a href="#bower是一个前端包管理器，用来管理框架、库、assets和utilities" class="headerlink" title="bower是一个前端包管理器，用来管理框架、库、assets和utilities"></a>bower是一个前端包管理器，用来管理框架、库、assets和utilities</h5><ul>
+<li>bower会记录所有的包并且保证他们是最新的</li>
+<li>bower通过bower.json这个文件来管理所有的包</li>
+<li>bower安装通过npm install -g bower</li>
+<li>创建bower.json  bower init</li>
+<li>保存依赖  bower install PACKAGE –save<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3>webpack是一个模块bundler，它会生成静态的asserts，</li>
+</ul>
+<h4 id="现在的网站都开始转向为web-app，因此会有以下几个趋势"><a href="#现在的网站都开始转向为web-app，因此会有以下几个趋势" class="headerlink" title="现在的网站都开始转向为web app，因此会有以下几个趋势"></a>现在的网站都开始转向为web app，因此会有以下几个趋势</h4><ul>
+<li>越来越多的javascript会被用到</li>
+<li>浏览器提供的接口更多</li>
+<li>很少有整个页面的重新加载</li>
+</ul>
+<p>所以这就导致了大量的客户端代码，因此需要一个模块化打包系统来帮助把你的代码库改造成模块</p>
+<h4 id="webpack-是为了解决什么问题？答案是：文件依赖管理。浏览器端的-Js-出于安全的考虑，对本地文件没有操作权限，不能引用其它-js-css-等文件。而-webpack-就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持-cmd-amd-和-commondJs-这三种形式，够有诚意。"><a href="#webpack-是为了解决什么问题？答案是：文件依赖管理。浏览器端的-Js-出于安全的考虑，对本地文件没有操作权限，不能引用其它-js-css-等文件。而-webpack-就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持-cmd-amd-和-commondJs-这三种形式，够有诚意。" class="headerlink" title="webpack 是为了解决什么问题？答案是：文件依赖管理。浏览器端的 Js, 出于安全的考虑，对本地文件没有操作权限，不能引用其它 js, css 等文件。而 webpack 就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持 cmd, amd 和 commondJs 这三种形式，够有诚意。"></a>webpack 是为了解决什么问题？答案是：文件依赖管理。浏览器端的 Js, 出于安全的考虑，对本地文件没有操作权限，不能引用其它 js, css 等文件。而 webpack 就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持 cmd, amd 和 commondJs 这三种形式，够有诚意。</h4><h4 id="或许你要说了，解决文件依赖，早在-require-js-和-sea-js-的时候，都已经解决了呀！那么，webpack-在这方面，有哪些新的突破："><a href="#或许你要说了，解决文件依赖，早在-require-js-和-sea-js-的时候，都已经解决了呀！那么，webpack-在这方面，有哪些新的突破：" class="headerlink" title="或许你要说了，解决文件依赖，早在 require.js 和 sea.js 的时候，都已经解决了呀！那么，webpack 在这方面，有哪些新的突破："></a>或许你要说了，解决文件依赖，早在 require.js 和 sea.js 的时候，都已经解决了呀！那么，webpack 在这方面，有哪些新的突破：</h4><ul>
+<li>支持引用各种拓展名的文件</li>
+<li>能够在不依赖 gulp 或 grunt 的情况下直接产出打包文件</li>
+<li>支持实时编译，浏览器同步刷新</li>
+</ul>
+<h3 id="glup"><a href="#glup" class="headerlink" title="glup"></a>glup</h3><hr>
+<h5 id="glup是用来构建"><a href="#glup是用来构建" class="headerlink" title="glup是用来构建"></a>glup是用来构建</h5><h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><hr>
+<h3 id="AMD-CMD-CommonJS"><a href="#AMD-CMD-CommonJS" class="headerlink" title="AMD CMD CommonJS"></a>AMD CMD CommonJS</h3><h3 id="CommonJS-为JS提供模块功能"><a href="#CommonJS-为JS提供模块功能" class="headerlink" title="CommonJS  为JS提供模块功能"></a>CommonJS  为JS提供模块功能</h3><p>  |—————浏览器—– ——————|        |————————–CommonJS———————————-|</p>
+<p>  |  BOM  |       | DOM |        | ECMAScript |         | FS |           | TCP |         | Stream |        | Buffer |          |……..|</p>
+<p>  |——-W3C———–|       |—————————————Node————————————————–|</p>
+<h3 id="AMD-Asynchronous-Module-Definition-这是一个模块定义，主要为前端JS的表现制定规范"><a href="#AMD-Asynchronous-Module-Definition-这是一个模块定义，主要为前端JS的表现制定规范" class="headerlink" title="AMD Asynchronous Module Definition 这是一个模块定义，主要为前端JS的表现制定规范"></a>AMD Asynchronous Module Definition 这是一个模块定义，主要为前端JS的表现制定规范</h3><h4 id="RequireJS-实现了AMD规范的"><a href="#RequireJS-实现了AMD规范的" class="headerlink" title="RequireJS  实现了AMD规范的"></a>RequireJS  实现了AMD规范的</h4><h3 id="CMD-Common-Module-Definition"><a href="#CMD-Common-Module-Definition" class="headerlink" title="CMD Common Module Definition"></a>CMD Common Module Definition</h3><h2 id="vim插件"><a href="#vim插件" class="headerlink" title="vim插件"></a>vim插件</h2><h3 id="主要使用这文章来构建-vim-pathogen"><a href="#主要使用这文章来构建-vim-pathogen" class="headerlink" title="主要使用这文章来构建 vim-pathogen"></a>主要使用这文章来构建 vim-pathogen</h3><h3 id="https-buildall-github-io-2015-12-09-frontendvim"><a href="#https-buildall-github-io-2015-12-09-frontendvim" class="headerlink" title="https://buildall.github.io/2015/12/09/frontendvim/"></a><a href="https://buildall.github.io/2015/12/09/frontendvim/" target="_blank" rel="external">https://buildall.github.io/2015/12/09/frontendvim/</a></h3><h2 id="基础环境搭建的坑"><a href="#基础环境搭建的坑" class="headerlink" title="基础环境搭建的坑"></a>基础环境搭建的坑</h2><h4 id="1-cd-starter-amp-amp-bower-install-amp-amp-npm-run-build-这步在npm-run-build前需要先npm-install下"><a href="#1-cd-starter-amp-amp-bower-install-amp-amp-npm-run-build-这步在npm-run-build前需要先npm-install下" class="headerlink" title="1. cd ../starter &amp;&amp; bower install &amp;&amp; npm run build 这步在npm run build前需要先npm install下"></a>1. cd ../starter &amp;&amp; bower install &amp;&amp; npm run build 这步在npm run build前需要先npm install下</h4><h4 id="2-有一个隐藏文件-eslintrc-没有在基础环境下"><a href="#2-有一个隐藏文件-eslintrc-没有在基础环境下" class="headerlink" title="2. 有一个隐藏文件.eslintrc 没有在基础环境下"></a>2. 有一个隐藏文件.eslintrc 没有在基础环境下</h4><h4 id="3-cd-locale-amp-amp-npm-install-amp-amp-gulp-build-amp-amp-cp-r-build-default-build-locale-common-这一步文件夹的路径路径有问题，多了一层目录"><a href="#3-cd-locale-amp-amp-npm-install-amp-amp-gulp-build-amp-amp-cp-r-build-default-build-locale-common-这一步文件夹的路径路径有问题，多了一层目录" class="headerlink" title="3. cd locale &amp;&amp; npm install &amp;&amp; gulp build &amp;&amp; cp -r build/default ../../build/locale/common 这一步文件夹的路径路径有问题，多了一层目录"></a>3. cd locale &amp;&amp; npm install &amp;&amp; gulp build &amp;&amp; cp -r build/default ../../build/locale/common 这一步文件夹的路径路径有问题，多了一层目录</h4><h4 id="4-开发环境下需要把这行给注释掉var-starterBuildCmd-‘git-checkout-master-amp-amp-git-pull-amp-amp-bower-install-amp-amp-webpack-–dev-–env-‘-options-env"><a href="#4-开发环境下需要把这行给注释掉var-starterBuildCmd-‘git-checkout-master-amp-amp-git-pull-amp-amp-bower-install-amp-amp-webpack-–dev-–env-‘-options-env" class="headerlink" title="4. 开发环境下需要把这行给注释掉var starterBuildCmd = ‘git checkout master&amp;&amp;git pull&amp;&amp;bower install&amp;&amp;webpack –dev –env ‘ + options.env;"></a>4. 开发环境下需要把这行给注释掉var starterBuildCmd = ‘git checkout master&amp;&amp;git pull&amp;&amp;bower install&amp;&amp;webpack –dev –env ‘ + options.env;</h4><h4 id="同时加上这行var-startBuildCmd-‘bower-install-amp-amp-webpack-–dev-–env’-options-env"><a href="#同时加上这行var-startBuildCmd-‘bower-install-amp-amp-webpack-–dev-–env’-options-env" class="headerlink" title="同时加上这行var startBuildCmd = ‘bower install &amp;&amp; webpack –dev –env’ + options.env"></a>同时加上这行var startBuildCmd = ‘bower install &amp;&amp; webpack –dev –env’ + options.env</h4><hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端工具-bower-wepack-gulp/" rel="tag">#前端工具 bower wepack gulp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/06/angular/angular学习笔记/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/utility/工具zsh-iterm2-typora/" rel="prev" title="工具zsh-iterm2-typora">
+                工具zsh-iterm2-typora <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#bower"><span class="nav-number">1.</span> <span class="nav-text">bower</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bower是一个前端包管理器，用来管理框架、库、assets和utilities"><span class="nav-number">1.0.1.</span> <span class="nav-text">bower是一个前端包管理器，用来管理框架、库、assets和utilities</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack"><span class="nav-number">2.</span> <span class="nav-text">webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#现在的网站都开始转向为web-app，因此会有以下几个趋势"><span class="nav-number">2.1.</span> <span class="nav-text">现在的网站都开始转向为web app，因此会有以下几个趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-是为了解决什么问题？答案是：文件依赖管理。浏览器端的-Js-出于安全的考虑，对本地文件没有操作权限，不能引用其它-js-css-等文件。而-webpack-就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持-cmd-amd-和-commondJs-这三种形式，够有诚意。"><span class="nav-number">2.2.</span> <span class="nav-text">webpack 是为了解决什么问题？答案是：文件依赖管理。浏览器端的 Js, 出于安全的考虑，对本地文件没有操作权限，不能引用其它 js, css 等文件。而 webpack 就是用来解决这个问题的，让你的项目可以很好地分文件、分模块，而且它对外部文件的引入同时支持 cmd, amd 和 commondJs 这三种形式，够有诚意。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#或许你要说了，解决文件依赖，早在-require-js-和-sea-js-的时候，都已经解决了呀！那么，webpack-在这方面，有哪些新的突破："><span class="nav-number">2.3.</span> <span class="nav-text">或许你要说了，解决文件依赖，早在 require.js 和 sea.js 的时候，都已经解决了呀！那么，webpack 在这方面，有哪些新的突破：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#glup"><span class="nav-number">3.</span> <span class="nav-text">glup</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#glup是用来构建"><span class="nav-number">3.0.1.</span> <span class="nav-text">glup是用来构建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">4.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-CMD-CommonJS"><span class="nav-number">5.</span> <span class="nav-text">AMD CMD CommonJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS-为JS提供模块功能"><span class="nav-number">6.</span> <span class="nav-text">CommonJS  为JS提供模块功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-Asynchronous-Module-Definition-这是一个模块定义，主要为前端JS的表现制定规范"><span class="nav-number">7.</span> <span class="nav-text">AMD Asynchronous Module Definition 这是一个模块定义，主要为前端JS的表现制定规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RequireJS-实现了AMD规范的"><span class="nav-number">7.1.</span> <span class="nav-text">RequireJS  实现了AMD规范的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-Common-Module-Definition"><span class="nav-number">8.</span> <span class="nav-text">CMD Common Module Definition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim插件"><span class="nav-number"></span> <span class="nav-text">vim插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要使用这文章来构建-vim-pathogen"><span class="nav-number">1.</span> <span class="nav-text">主要使用这文章来构建 vim-pathogen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https-buildall-github-io-2015-12-09-frontendvim"><span class="nav-number">2.</span> <span class="nav-text">https://buildall.github.io/2015/12/09/frontendvim/</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础环境搭建的坑"><span class="nav-number"></span> <span class="nav-text">基础环境搭建的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-cd-starter-amp-amp-bower-install-amp-amp-npm-run-build-这步在npm-run-build前需要先npm-install下"><span class="nav-number">0.1.</span> <span class="nav-text">1. cd ../starter && bower install && npm run build 这步在npm run build前需要先npm install下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-有一个隐藏文件-eslintrc-没有在基础环境下"><span class="nav-number">0.2.</span> <span class="nav-text">2. 有一个隐藏文件.eslintrc 没有在基础环境下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-cd-locale-amp-amp-npm-install-amp-amp-gulp-build-amp-amp-cp-r-build-default-build-locale-common-这一步文件夹的路径路径有问题，多了一层目录"><span class="nav-number">0.3.</span> <span class="nav-text">3. cd locale && npm install && gulp build && cp -r build/default ../../build/locale/common 这一步文件夹的路径路径有问题，多了一层目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-开发环境下需要把这行给注释掉var-starterBuildCmd-‘git-checkout-master-amp-amp-git-pull-amp-amp-bower-install-amp-amp-webpack-–dev-–env-‘-options-env"><span class="nav-number">0.4.</span> <span class="nav-text">4. 开发环境下需要把这行给注释掉var starterBuildCmd = ‘git checkout master&&git pull&&bower install&&webpack –dev –env ‘ + options.env;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同时加上这行var-startBuildCmd-‘bower-install-amp-amp-webpack-–dev-–env’-options-env"><span class="nav-number">0.5.</span> <span class="nav-text">同时加上这行var startBuildCmd = ‘bower install && webpack –dev –env’ + options.env</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

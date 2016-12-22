@@ -243,227 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/21/thinking/为什么要打包/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-21T21:08:28+08:00" content="2016-11-21">
-              2016-11-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="为什么要打包"><a href="#为什么要打包" class="headerlink" title="为什么要打包"></a>为什么要打包</h1><p>浏览器在解析js的时候是按顺序来作解析的，如果你把基础依赖放到最后，那浏览器在解析到前面几行就会报错，所以一般要把依赖最大的放到最上面，但是这样比较麻烦，所以打包工具的的用途就体现出来了，他能帮助我们解决打包的问题</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/16/utility/Vim 环境打造/" itemprop="url">
-                  Vim 环境打造
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-16T17:47:18+08:00" content="2016-11-16">
-              2016-11-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间"><a href="#1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间" class="headerlink" title="1. 思路是使用spf13来配置vim，https://github.com/spf13/spf13-vim，可以节省比较多的时间"></a>1. 思路是使用spf13来配置vim，<a href="https://github.com/spf13/spf13-vim，可以节省比较多的时间" target="_blank" rel="external">https://github.com/spf13/spf13-vim，可以节省比较多的时间</a></h3><h3 id="2-几个常用插件使用方式"><a href="#2-几个常用插件使用方式" class="headerlink" title="2. 几个常用插件使用方式"></a>2. 几个常用插件使用方式</h3><ul>
-<li><p>注释和取消注释： ，+ c + space</p>
-</li>
-<li><p>查找文件： ctrl + p ，然后使用 ctrl + j,k 来上下移动</p>
-</li>
-<li><p>打开工程目录：  ctrl + e, 然后使用t来打开文件，在左边和右边窗口移动使用ctrl + H，L来左右移动鼠标，在多个tab之间使用gt来切换</p>
-</li>
-<li><p>颜色配置：在.vimrc那个文件找到solarized那一段，let g:solarized _termcolors = 16 这样的话文本不会太暗</p>
-</li>
-<li><p>字体配置： 首先把let g:airline_powerline_fonts=1这段写到.vimrc.before.local，同时在终端的perference上配置下字体为SourceCodePro</p>
-</li>
-</ul>
-<h3 id="3-暂时不用的插件先都关闭掉"><a href="#3-暂时不用的插件先都关闭掉" class="headerlink" title="3.暂时不用的插件先都关闭掉"></a>3.暂时不用的插件先都关闭掉</h3><ul>
-<li>echo UnBundle \’AutoClose\’ &gt;&gt; ~/.vimrc.bundles.local  把不需要的插件写到.vimrc.local，然后:BundleClean! 移除插件目录</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/11/09/utility/ssh key登陆/" itemprop="url">
                   ssh使用key免密登陆
                 </a>
@@ -704,8 +483,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/08/thinking/前端工具bower-webpack-gulp/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/11/08/thinking/对前端工具的感悟/" itemprop="url">
+                  对前端工具的感悟
                 </a>
               
             
@@ -723,6 +502,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -748,18 +546,14 @@
       
         
           
-            <h1 id="前端工具bower-webpack-gulp"><a href="#前端工具bower-webpack-gulp" class="headerlink" title="前端工具bower-webpack-gulp"></a>前端工具bower-webpack-gulp</h1><h3 id="bower"><a href="#bower" class="headerlink" title="bower"></a>bower</h3><hr>
-<h5 id="bower是一个前端包管理器，用来管理框架、库、assets和utilities"><a href="#bower是一个前端包管理器，用来管理框架、库、assets和utilities" class="headerlink" title="bower是一个前端包管理器，用来管理框架、库、assets和utilities"></a>bower是一个前端包管理器，用来管理框架、库、assets和utilities</h5><ul>
+            <h3 id="bower"><a href="#bower" class="headerlink" title="bower"></a>bower</h3><h5 id="bower是一个前端包管理器，用来管理框架、库、assets和utilities"><a href="#bower是一个前端包管理器，用来管理框架、库、assets和utilities" class="headerlink" title="bower是一个前端包管理器，用来管理框架、库、assets和utilities"></a>bower是一个前端包管理器，用来管理框架、库、assets和utilities</h5><ul>
 <li>bower会记录所有的包并且保证他们是最新的</li>
 <li>bower通过bower.json这个文件来管理所有的包</li>
 <li>bower安装通过npm install -g bower</li>
 <li>创建bower.json  bower init</li>
-<li>保存依赖  bower install PACKAGE –save</li>
-<li>​<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3></li>
+<li>保存依赖  bower install PACKAGE –save<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3>webpack是一个模块bundler，它会生成静态的asserts，</li>
 </ul>
-<hr>
-<p>webpack是一个模块bundler，它会生成静态的asserts，</p>
-<h3 id="现在的网站都开始转向为web-app，因此会有以下几个趋势"><a href="#现在的网站都开始转向为web-app，因此会有以下几个趋势" class="headerlink" title="现在的网站都开始转向为web app，因此会有以下几个趋势"></a>现在的网站都开始转向为web app，因此会有以下几个趋势</h3><ul>
+<h4 id="现在的网站都开始转向为web-app，因此会有以下几个趋势"><a href="#现在的网站都开始转向为web-app，因此会有以下几个趋势" class="headerlink" title="现在的网站都开始转向为web app，因此会有以下几个趋势"></a>现在的网站都开始转向为web app，因此会有以下几个趋势</h4><ul>
 <li>越来越多的javascript会被用到</li>
 <li>浏览器提供的接口更多</li>
 <li>很少有整个页面的重新加载</li>
@@ -959,101 +753,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/01/git/Git-GitHub/" itemprop="url">
-                  聊聊这个博客是怎么来的
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T21:18:17+08:00" content="2016-11-01">
-              2016-11-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="学习是终生行为，正如吃饭睡觉一样"><a href="#学习是终生行为，正如吃饭睡觉一样" class="headerlink" title="学习是终生行为，正如吃饭睡觉一样"></a>学习是终生行为，正如吃饭睡觉一样</h2><p>今天学到了一个新名词，叫“知识的半衰期”，在物理学上这个是指放射性元素的原子核有半数发生衰变时所需要的时间，如果引用到知识上，就是指所学的知识中的一半变得过时所需要的时间。各个行业知识的半衰期不尽相同，而在IT业这个半衰期就相对来说比较短，所以之前总会有人说“IT是门青春饭”，曾经我也习以为然，所以走了很多弯路，以为可以找到一条不用学习，可以一劳永逸的路，而那只能是一条不归路。</p>
-<h2 id="我一直认为实践是理解理论知识最好的办法，写作也是"><a href="#我一直认为实践是理解理论知识最好的办法，写作也是" class="headerlink" title="我一直认为实践是理解理论知识最好的办法，写作也是"></a>我一直认为实践是理解理论知识最好的办法，写作也是</h2><p>这个博客中的很多技术可能用不着半年就过时了，包括这个博客本身的技术（hexo+github pages+markdown）,但这并不重要，也无法改变，所以重要的是理解概念，学会思考，工作再忙，信息再多，也给自己一点时间去思考，而写出来是一个不错的方式。</p>
-<h2 id="希望自己以后每天能写点东西，不管是代码还是思考"><a href="#希望自己以后每天能写点东西，不管是代码还是思考" class="headerlink" title="希望自己以后每天能写点东西，不管是代码还是思考"></a>希望自己以后每天能写点东西，不管是代码还是思考</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/11/01/utility/hexo使用/" itemprop="url">
                   hexo使用
                 </a>
@@ -1198,7 +897,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1206,7 +905,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1215,7 +914,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

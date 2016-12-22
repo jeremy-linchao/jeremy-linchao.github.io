@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
-首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
+<meta name="description" content="有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="Git 在key正确的情况下仍然无法push的一个可能原因">
 <meta property="og:url" content="http://yoursite.com/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
-首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
-<meta property="og:updated_time" content="2016-12-01T04:09:17.000Z">
+<meta property="og:description" content="有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access">
+<meta property="og:updated_time" content="2016-12-22T12:35:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="Git 在key正确的情况下仍然无法push的一个可能原因有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
-首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub">
+<meta name="twitter:title" content="Git 在key正确的情况下仍然无法push的一个可能原因">
+<meta name="twitter:description" content="有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。
+首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access">
 
 
 
@@ -114,7 +114,7 @@
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> Git 在key正确的情况下仍然无法push的一个可能原因 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +244,7 @@
             
             
               
-                
+                Git 在key正确的情况下仍然无法push的一个可能原因
               
             
           </h1>
@@ -261,6 +261,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -284,7 +303,7 @@
       
 
       
-        <h1 id="Git-在key正确的情况下仍然无法push的一个可能原因"><a href="#Git-在key正确的情况下仍然无法push的一个可能原因" class="headerlink" title="Git 在key正确的情况下仍然无法push的一个可能原因"></a>Git 在key正确的情况下仍然无法push的一个可能原因</h1><p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
+        <p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
 <p>首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.说明key添加的是没有问题的，我确实是这个情况</p>
 <p>第二就是判断你git push或pull的时候到底用的是哪个url，这个可以通过git remote -v来看，如果看到是https的url那就知道问题所在了，用的是https方式传输当然只会让你输入用户名和密码了，改的方式也很简单，git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="external">https://github.com/USERNAME/OTHERREPOSITORY.git</a> ，后面的username/other可以照抄https的</p>
 
@@ -306,12 +325,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/01/git/Git Branch 12.1  /" rel="next" title="">
+              <a href="/2016/12/01/git/Git 分支 /" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -389,7 +414,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -397,7 +422,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -406,7 +431,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -435,7 +460,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-在key正确的情况下仍然无法push的一个可能原因"><span class="nav-number">1.</span> <span class="nav-text">Git 在key正确的情况下仍然无法push的一个可能原因</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

@@ -243,109 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
-              2016-12-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Node-学习"><a href="#Node-学习" class="headerlink" title="Node 学习"></a>Node 学习</h1><ol>
-<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
-<p>module.exports.a = a;</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/12/09/git/Git reset 和 git checkout 的区别/" itemprop="url">
-                  未命名
+                  Git reset 和 git checkout 的区别
                 </a>
               
             
@@ -364,6 +263,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -388,13 +306,15 @@
       
         
           
-            <h1 id="Git-reset-和-git-checkout-的区别"><a href="#Git-reset-和-git-checkout-的区别" class="headerlink" title="Git reset 和 git checkout 的区别"></a>Git reset 和 git checkout 的区别</h1><ol>
+            <ol>
 <li><p>git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头</p>
 </li>
 <li><p>git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置</p>
 <p>git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有</p>
 <p>git reset - -hard HEAD~ 移动HEAD到那个commit，并且同时重置staged区域以及工作目录，这个因为会覆盖工作目录会有一点风险性，如果你当前修改的东西没有commit然后hard的话当前的找不到，当然如果是简单想回去看看，那是没有问题的</p>
 </li>
+<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
+<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
 </ol>
 
           
@@ -446,7 +366,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/08/mac/Mac下启动和重启nginx/" itemprop="url">
-                  未命名
+                  mac本地使用nginx
                 </a>
               
             
@@ -464,6 +384,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -489,8 +428,7 @@
       
         
           
-            <p>#Nginx in Mac</p>
-<p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
+            <p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
 <p>终端下敲一个brew services可以看到具体的用法比如</p>
 <p>brew services [start|restart|stop] nginx </p>
 <p><strong>如果nginx是run在80端口，需要加sudo</strong></p>
@@ -722,100 +660,6 @@
 <p><a href="http://node.green/" target="_blank" rel="external">http://node.green/</a></p>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/git/Git Rebasing/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T17:33:30+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Git-Rebasing"><a href="#Git-Rebasing" class="headerlink" title="Git Rebasing"></a>Git Rebasing</h1><h4 id="什么叫Rebasing：-take-the-patch-of-the-change-that-was-introduced-in-C4-and-reapply-it-on-top-of-C3"><a href="#什么叫Rebasing：-take-the-patch-of-the-change-that-was-introduced-in-C4-and-reapply-it-on-top-of-C3" class="headerlink" title="什么叫Rebasing： take the patch of the change that was introduced in C4 and reapply it on top of C3"></a>什么叫Rebasing： take the patch of the change that was introduced in C4 and reapply it on top of C3</h4><p>不是太理解</p>
 
           
         
@@ -1259,8 +1103,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/06/git/远端Branch 12.5/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/12/06/git/Git remote branch/" itemprop="url">
+                  Git remote branch
                 </a>
               
             
@@ -1275,6 +1119,122 @@
             <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-12-06T10:00:15+08:00" content="2016-12-06">
               2016-12-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="git-fetch-origin"><a href="#git-fetch-origin" class="headerlink" title="git fetch origin"></a>git fetch origin</h3><p>This command looks up which server “origin” is (in this case, it’s <code>git.ourcompany.com</code>), fetches any data from it that you don’t yet have, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position.</p>
+<h5 id="这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针"><a href="#这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针" class="headerlink" title="这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针"></a>这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针</h5><p>It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify.</p>
+<h5 id="也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix"><a href="#也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix" class="headerlink" title="也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix"></a>也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix</h5><p>While the <code>git fetch</code> command will fetch down all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself.</p>
+<h5 id="git-fetch不会修改working-directory"><a href="#git-fetch不会修改working-directory" class="headerlink" title="git fetch不会修改working directory"></a>git fetch不会修改working directory</h5><h3 id="git-push-origin-serverfix-awesomebranch"><a href="#git-push-origin-serverfix-awesomebranch" class="headerlink" title="git push origin serverfix:awesomebranch"></a>git push origin serverfix:awesomebranch</h3><p> push your local <code>serverfix</code> branch to the <code>awesomebranch</code> branch on the remote project</p>
+<h3 id="git-checkout-b-branch-remote-branch"><a href="#git-checkout-b-branch-remote-branch" class="headerlink" title="git checkout -b branch remote/branch"></a>git checkout -b branch remote/branch</h3><h5 id="这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote"><a href="#这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote" class="headerlink" title="这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,"></a>这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,</h5><h3 id="git-fetch-all-git-branch-vv"><a href="#git-fetch-all-git-branch-vv" class="headerlink" title="git fetch - - all   git branch -vv"></a>git fetch - - all   git branch -vv</h3><h5 id="查看本地的tracking-branch和远端的upstream-branch关系"><a href="#查看本地的tracking-branch和远端的upstream-branch关系" class="headerlink" title="查看本地的tracking branch和远端的upstream branch关系"></a>查看本地的tracking branch和远端的upstream branch关系</h5>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/04/ide/Chrome Debug/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-04T12:49:56+08:00" content="2016-12-04">
+              2016-12-04
             </time>
           </span>
 
@@ -1303,11 +1263,129 @@
       
         
           
-            <h1 id="远端Branch-12-5"><a href="#远端Branch-12-5" class="headerlink" title="远端Branch 12.5"></a>远端Branch 12.5</h1><h3 id="git-fetch-origin"><a href="#git-fetch-origin" class="headerlink" title="git fetch origin"></a>git fetch origin</h3><p>This command looks up which server “origin” is (in this case, it’s <code>git.ourcompany.com</code>), fetches any data from it that you don’t yet have, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position.</p>
-<h5 id="这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针"><a href="#这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针" class="headerlink" title="这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针"></a>这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针</h5><p>It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify.</p>
-<h5 id="也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix"><a href="#也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix" class="headerlink" title="也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix"></a>也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix</h5><p>While the <code>git fetch</code> command will fetch down all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself.</p>
-<h5 id="git-fetch不会修改working-directory"><a href="#git-fetch不会修改working-directory" class="headerlink" title="git fetch不会修改working directory"></a>git fetch不会修改working directory</h5><h3 id="git-push-origin-serverfix-awesomebranch"><a href="#git-push-origin-serverfix-awesomebranch" class="headerlink" title="git push origin serverfix:awesomebranch"></a>git push origin serverfix:awesomebranch</h3><p> push your local <code>serverfix</code> branch to the <code>awesomebranch</code> branch on the remote project</p>
-<h3 id="git-checkout-b-branch-remote-branch"><a href="#git-checkout-b-branch-remote-branch" class="headerlink" title="git checkout -b branch remote/branch"></a>git checkout -b branch remote/branch</h3><h5 id="这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote"><a href="#这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote" class="headerlink" title="这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,"></a>这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,</h5><h3 id="git-fetch-all-git-branch-vv"><a href="#git-fetch-all-git-branch-vv" class="headerlink" title="git fetch - - all   git branch -vv"></a>git fetch - - all   git branch -vv</h3><h5 id="查看本地的tracking-branch和远端的upstream-branch关系"><a href="#查看本地的tracking-branch和远端的upstream-branch关系" class="headerlink" title="查看本地的tracking branch和远端的upstream branch关系"></a>查看本地的tracking branch和远端的upstream branch关系</h5>
+            <h1 id="Chrome-Debug"><a href="#Chrome-Debug" class="headerlink" title="Chrome Debug"></a>Chrome Debug</h1><h2 id="https-egghead-io-lessons-tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools"><a href="#https-egghead-io-lessons-tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools" class="headerlink" title="https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools"></a><a href="https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools" target="_blank" rel="external">https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools</a></h2><ol>
+<li>在Chrome 开发者工具的debugger可以加断点调试，F10和F11分别表示setp over to the next function call 和step into the next function call，watch用来检测表达式<ol>
+<li>如何调试webpack打包后的源码呢呢？ 因为webpack会把所有的依赖以至于代码看起来会非常混乱，所以调试的时候需要分清楚webpack的源码，方法就是在webpack打包的的module.exports的对象里加上这么一条 devtool:”#eval-source-map”</li>
+</ol>
+</li>
+<li>在source面板下有个snippet，可以在里面写自动化测试函数来简化测试工作</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/" itemprop="url">
+                  Git 在key正确的情况下仍然无法push的一个可能原因
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-01T12:09:17+08:00" content="2016-12-01">
+              2016-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
+<p>首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.说明key添加的是没有问题的，我确实是这个情况</p>
+<p>第二就是判断你git push或pull的时候到底用的是哪个url，这个可以通过git remote -v来看，如果看到是https的url那就知道问题所在了，用的是https方式传输当然只会让你输入用户名和密码了，改的方式也很简单，git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="external">https://github.com/USERNAME/OTHERREPOSITORY.git</a> ，后面的username/other可以照抄https的</p>
+
           
         
       
@@ -1380,7 +1458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1388,7 +1466,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1397,7 +1475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

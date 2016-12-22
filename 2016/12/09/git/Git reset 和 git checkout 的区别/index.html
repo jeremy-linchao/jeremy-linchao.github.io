@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -84,28 +84,28 @@
 
 
 
-<meta name="description" content="Git reset 和 git checkout 的区别
-git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
+<meta name="description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
 
 git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
+git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
+git rese">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="Git reset 和 git checkout 的区别">
 <meta property="og:url" content="http://yoursite.com/2016/12/09/git/Git reset 和 git checkout 的区别/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="Git reset 和 git checkout 的区别
-git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
+<meta property="og:description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
 
 git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
-<meta property="og:updated_time" content="2016-12-09T06:54:13.000Z">
+git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
+git rese">
+<meta property="og:updated_time" content="2016-12-22T12:38:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="Git reset 和 git checkout 的区别
-git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
+<meta name="twitter:title" content="Git reset 和 git checkout 的区别">
+<meta name="twitter:description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
 
 git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
+git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
+git rese">
 
 
 
@@ -123,7 +123,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> Git reset 和 git checkout 的区别 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +253,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
             
             
               
-                
+                Git reset 和 git checkout 的区别
               
             
           </h1>
@@ -270,6 +270,25 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -293,13 +312,15 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
       
 
       
-        <h1 id="Git-reset-和-git-checkout-的区别"><a href="#Git-reset-和-git-checkout-的区别" class="headerlink" title="Git reset 和 git checkout 的区别"></a>Git reset 和 git checkout 的区别</h1><ol>
+        <ol>
 <li><p>git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头</p>
 </li>
 <li><p>git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置</p>
 <p>git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有</p>
 <p>git reset - -hard HEAD~ 移动HEAD到那个commit，并且同时重置staged区域以及工作目录，这个因为会覆盖工作目录会有一点风险性，如果你当前修改的东西没有commit然后hard的话当前的找不到，当然如果是简单想回去看看，那是没有问题的</p>
 </li>
+<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
+<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
 </ol>
 
       
@@ -320,13 +341,19 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/08/mac/Mac下启动和重启nginx/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/12/08/mac/Mac下启动和重启nginx/" rel="next" title="mac本地使用nginx">
+                <i class="fa fa-chevron-left"></i> mac本地使用nginx
               </a>
             
           </div>
@@ -403,7 +430,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -411,7 +438,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -420,7 +447,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -449,7 +476,7 @@ git reset - - mixed HEAD~  移动HEAD到那个commit，staged被">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-reset-和-git-checkout-的区别"><span class="nav-number">1.</span> <span class="nav-text">Git reset 和 git checkout 的区别</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

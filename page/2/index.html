@@ -243,120 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/15/concept/JSON/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T23:45:13+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><ol>
-<li><p>JSON中，对象的属性值必须要用“ ”号括起来</p>
-</li>
-<li><p>JSON的字符串必须用双引号</p>
-</li>
-<li><p>JSON有三种数据类型： 简单值，对象，数组</p>
-</li>
-<li><p>JSON序列化:JSON.stringify()</p>
-<p>把一个javascript对象序列化为一个JSON字符串，接受两个参数，第一个参数是一个过滤器，可以是一个函数或是一个数组，第二个参数是个整数，表示缩进数，注意这个数只要大于0，这个函数会帮我们默认加上换行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jsonText = JSON.stringify(books,function(key,value)&#123;</div><div class="line">  switch(key)&#123;</div><div class="line">    case &quot;authors&quot;:</div><div class="line">    	return value.join(&quot;,&quot;);</div><div class="line">   	case &quot;year&quot;:</div><div class="line">   		return 5000;</div><div class="line">   	case &quot;edition&quot;:</div><div class="line">   		return undifined;</div><div class="line">   	default:</div><div class="line">   		return value;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果某些对象有自定义序列化的需求，可以在这个对象上定义toJSON()方法</p>
-</li>
-<li><p>序列化的内部顺序</p>
-<p>1）如果有toJSON方法，则调用该方法</p>
-<p>2）如果提供了第二个参数，则使用这个过滤器对每一个值序列化</p>
-<p>3）如果提供了第三个参数，执行相应的格式化</p>
-</li>
-<li><p>反序列JSON.parse()选项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var bookCopy2 = JSON.parse(jsonText,function(key,value)&#123;</div><div class="line">	if(key===&quot;releaseDate&quot;)&#123;</div><div class="line">		return new Date(value);</div><div class="line">    &#125; else &#123;</div><div class="line">		return value;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/12/15/javascript/Javascript 错误处理/" itemprop="url">
                   Javascript中的错误处理
                 </a>
@@ -1064,8 +950,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/14/thinking/对前端的一些感悟20161213/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/12/14/thinking/对前端的一些感悟/" itemprop="url">
+                  对前端的一些感悟
                 </a>
               
             
@@ -1083,6 +969,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -1108,7 +1013,7 @@
       
         
           
-            <h1 id="对前端的一些感悟20161213"><a href="#对前端的一些感悟20161213" class="headerlink" title="对前端的一些感悟20161213"></a>对前端的一些感悟20161213</h1><p>​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。</p>
+            <p>​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。</p>
 <p>​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画的渲染，每一次用户点击一个链接或者一个button，请求都是要发到服务器端，服务器或直接返回静态页面，或者从数据库拉取数据然后生成html返回浏览器，这里面的页面渲染和路由都是在服务端做的，但仔细一想会觉得这个其实不合理，浏览器大多数情况下只要更新数据，为什么每次都要重新渲染个html页面过来呢，一来会增加传输带宽，二来呢主要是影响用户体验，毕竟在网络情况不是太好的时候这是个很大问题。</p>
 <p>​    这时候回想传统的CS架构，为什么觉得CS架构用户体验会好，除了开发语言C/C++直接编译成二进制的优势，很大程度上是因为CS架构的很多UI操作都是在本地完成，与服务器通信也只需要通过tcp获取需要的数据，所以我觉得单页应用并没有什么太新的概念，<strong><em>他只不过是回归了本来应该的样子</em>，浏览器在第一次加载的时候从服务器拉取了下这个应用的代码</strong>。为什么以前没有，我想一方面是浏览器对于js的程度越来越好，另外就是大家对用户体验越来越看重。</p>
 <p>​    如果理解了单页应用，那随后几个概念其实很好理解，也能理解为什么会有。首先是webpack，webpack是一个解决前端依赖和打包的工具，因为一旦路由和逻辑放到了前端，前端的代码量会急剧上升，很多模块间会需要通过<script></script>做多个导入，但是这些模块又会有相互依赖，webpack的一个作用就是来解决js加载的顺序问题，另外js代码的压缩及混淆工作也是一个非常重要的事情，不然那么多js代码，首次加载会非常之慢。</p>
@@ -1327,6 +1232,107 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
+              2016-12-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Node-学习"><a href="#Node-学习" class="headerlink" title="Node 学习"></a>Node 学习</h1><ol>
+<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
+<p>module.exports.a = a;</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1372,7 +1378,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1380,7 +1386,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1389,7 +1395,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
