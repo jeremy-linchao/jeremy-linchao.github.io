@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -88,9 +88,7 @@
 </li>
 <li><p>目录                 “[toc]”</p>
 </li>
-<li><p>链接                  This is <a href="http://example.com/" title="Title" target="_blank" rel="external">an example</a> inline link.</p>
-</li>
-<li><p>图片                  <img src="/path/to/img.jpg" alt="Alt text"></p>
+<li><p>链接                  This is <a href="http://example.com/" title="Title" target="_blank" rel="external">an example</a> inline link</p>
 <p>​</p>
 <p>​</p>
 <p>​</p>
@@ -100,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/21/utility/Markdown 学习/" data-id="cix00fw5g001cxazsyip2e42p" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/21/utility/Markdown 学习/" data-id="cix01aji000139qzs6hrsezzd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,13 +128,15 @@
 <li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
 </ol>
 <ol>
-<li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
+<li><p>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</p>
+<p>​</p>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/21/coding/函数式编程/" data-id="cix00fw3n0006xazsogqfj5g8" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/21/coding/函数式编程/" data-id="cix01ajhd000l9qzsx5rkfxat" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/21/coding/高阶函数与偏函数/" data-id="cix00fw3i0004xazs654fnb9d" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/21/coding/高阶函数与偏函数/" data-id="cix01ajhh000o9qzs4yhv7cor" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,14 +204,13 @@
 <li><p><strong>现实场景下的异步IO：</strong>   线程池模拟异步I/O</p>
 <p>一个线程进行计算处理，让其他线程进行非阻塞I/O加轮询获取数据，通过线程间通信将I/O的数据进行传递</p>
 </li>
-<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong></li>
+<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong> </li>
 </ol>
-<p>#### </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/21/coding/关于异步/" data-id="cix00fw3k0005xazst9622duj" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/21/coding/关于异步/" data-id="cix01ajha000j9qzs9gvzvfkz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/20/es6/ES6 Generate 函数/" data-id="cix00fw4p000kxazs7scxisfz" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/20/es6/ES6 Generate 函数/" data-id="cix01ajhj000p9qzsujdktlwi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -294,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/20/node/Node 工程化/" data-id="cix00fw5a0016xazsu30r0bnr" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/20/node/Node 工程化/" data-id="cix01ajhr000v9qzsv2acwtxh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -324,16 +323,14 @@
 <p><strong>必须执行调用者传入的回调函数</strong></p>
 <p><strong>正确传递回异常供调用者判断</strong></p>
 </li>
-<li><p>函数嵌套过深：多个操作存在依赖关系，比如遍历目录，查询数据库做渲染</p>
-</li>
-<li><p>​</p>
+<li><p>函数嵌套过深：多个操作存在依赖关系，比如遍历目录，查询数据库做渲染​</p>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/20/thinking/对于异步编程的理解/" data-id="cix00fw5c0019xazs6fm575ji" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/20/thinking/对于异步编程的理解/" data-id="cix01ajhu000x9qzsfs35ryiy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/17/javascript/Javascript 原型prototype/" data-id="cix00fw54000yxazsu9561vt3" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/17/javascript/Javascript 原型prototype/" data-id="cix01aji300189qzsomghugos" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/16/git/Git reset 和 git checkout的区别/" data-id="cix00fw3y000cxazsqgfgjgo9" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/16/git/Git reset 和 git checkout的区别/" data-id="cix01ajgo00089qzsbgmidx84" class="article-share-link">Share</a>
       
       
     </footer>
@@ -456,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/16/javascript/Javascript中的逻辑运算/" data-id="cix00fw570013xazsj89owxb0" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/16/javascript/Javascript中的逻辑运算/" data-id="cix01ajia001f9qzs4twgqxem" class="article-share-link">Share</a>
       
       
     </footer>
@@ -480,7 +477,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习学习再学习/">学习学习再学习</a></li></ul>
     </div>
@@ -490,7 +487,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/学习学习再学习/" style="font-size: 10px;">学习学习再学习</a>
     </div>
@@ -509,7 +506,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -546,7 +543,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 jeremy-lin<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
