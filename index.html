@@ -243,113 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/24/node/利用event来解决数据库的雪崩效应/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-24T12:32:21+08:00" content="2016-12-24">
-              2016-12-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title:利用event来解决数据库的雪崩效应</p>
-<p>categories:node</p>
-<p>tags:event node</p>
-<hr>
-<h2 id="利用event来解决数据库的雪崩效应"><a href="#利用event来解决数据库的雪崩效应" class="headerlink" title="利用event来解决数据库的雪崩效应"></a>利用event来解决数据库的雪崩效应</h2><p>在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var select = function(callback)&#123;</div><div class="line">  db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">    callback(results);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一个办法就是加一个状态锁：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var select = function(</div></pre></td></tr></table></figure>
-<ul>
-<li><p>f</p>
-<hr>
-<p>​</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/12/21/utility/Markdown 学习/" itemprop="url">
                   Markdown 学习
                 </a>
@@ -550,6 +443,9 @@
 <li>纯函数：相同的输入，永远得到相同的输出，而且没有任何可观察的副作用</li>
 <li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
 <li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
+<li><strong>currying</strong> : the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument. </li>
+<li><strong>partial application</strong> : the process of fixing a number of arguments to a function, producing another function of smaller arity</li>
+<li>柯里化和偏函数的区别：区别在于固定的参数不同，柯里化每次固定一个参数，返回一系列一元函数的调用</li>
 </ol>
 
           
@@ -668,6 +564,8 @@
 <p>应用例子：sort()方法，数组的sort()方法就是个典型，根据传的函数不同，可以按照不同形式来排序</p>
 </li>
 <li><p>偏函数：创建一个调用另外一个部分——参数或变量已经预置的函数的函数   ​</p>
+</li>
+<li><p>​</p>
 </li>
 </ol>
 
@@ -1441,6 +1339,127 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/17/javascript/Javascript 原型prototype/" itemprop="url">
+                  Javascript的prototype
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-17T20:37:09+08:00" content="2016-12-17">
+              2016-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="为什么要有原型"><a href="#为什么要有原型" class="headerlink" title="为什么要有原型"></a>为什么要有原型</h3><p>考虑一个需要定义一个person对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,job)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.job = job;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个person会有名字、年龄和工作的属性，这些都是每个person对象不一样的地方，但是如果我们要定义一个sayName方法，由于这个sayName方法对于所有person都是一致的，如果我们定义在对象里面会非常麻烦，所以就有了原型</p>
+<h3 id="原型是什么"><a href="#原型是什么" class="headerlink" title="原型是什么"></a>原型是什么</h3><p>无论什么时候只要创建了一个函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象，同时呢，这个原型对象会有个constructor属性，这个属性指向函数对象，即Person.prototype.constructor指向person</p>
+<p>这里有个注意点： 当用构造函数创建了一个新实例后，该实例也有一个内部属性叫[[Prototype]],在浏览器实现中叫_ <em>proto</em> _ ,这个属性是对象和原型之间的连接，而不像prototype那个是构造函数与原型间的连接。</p>
+<ol>
+<li>可以通过Object.getPrototypeOf()来获取对象的原型</li>
+<li>可以通过person.hasOwnPrototype()来判断某个属性是来源于对象还是原型</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1486,7 +1505,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
