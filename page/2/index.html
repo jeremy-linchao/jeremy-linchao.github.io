@@ -243,6 +243,367 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/20/node/exports 和 module.exports/" itemprop="url">
+                  exports和module.exports
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-20T10:10:45+08:00" content="2016-12-20">
+              2016-12-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>The <code>exports</code> variable is available within a module’s file-level scope, and is assigned the value of <code>module.exports</code> before the module is evaluated.</p>
+<p>It allows a shortcut, so that <code>module.exports.f = ...</code> can be written more succinctly as <code>exports.f = ...</code>. However, be aware that like any variable, if a new value is assigned to <code>exports</code>, it is no longer bound to <code>module.exports</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">module.exports.hello = true; // Exported from require of module</div><div class="line">exports = &#123; hello: false &#125;;  // Not exported, only available in the module</div></pre></td></tr></table></figure>
+<p>When the <code>module.exports</code> property is being completely replaced by a new object, it is common to also reassign <code>exports</code>, for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">module.exports = exports = function Constructor() &#123;</div><div class="line">    // ... etc.</div></pre></td></tr></table></figure>
+<p>To illustrate the behavior, imagine this hypothetical implementation of <code>require()</code>, which is quite similar to what is actually done by <code>require()</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function require(...) &#123;</div><div class="line">  var module = &#123; exports: &#123;&#125; &#125;;</div><div class="line">  ((module, exports) =&gt; &#123;</div><div class="line">    // Your module code here. In this example, define a function.</div><div class="line">    function some_func() &#123;&#125;;</div><div class="line">    exports = some_func;</div><div class="line">    // At this point, exports is no longer a shortcut to module.exports, and</div><div class="line">    // this module will still export an empty default object.</div><div class="line">    module.exports = some_func;</div><div class="line">    // At this point, the module will now export some_func, instead of the</div><div class="line">    // default object.</div><div class="line">  &#125;)(module, module.exports);</div><div class="line">  return module.exports;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/19/source code learning/Hexo 学习/" itemprop="url">
+                  Hexo学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T23:18:49+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/source-code-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">source code learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>先写log.js来记录调试输出 ，用cli-color包来处理颜色，cd6a7a75232216d8656fb36d0f4482565f7256c6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var clc = require(&apos;cli-color&apos;),</div><div class="line">  util = require(&apos;util&apos;);</div><div class="line"></div><div class="line">var printLog = function(args, color)&#123;</div><div class="line">  console.log(&apos;%s - %s&apos;, clc[color](new Date().toISOString()), util.format.apply(undefined, args));</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.error = function()&#123;</div><div class="line">  printLog(arguments, &apos;red&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.warning = function()&#123;</div><div class="line">  printLog(arguments, &apos;yellow&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.info = function()&#123;</div><div class="line">  printLog(arguments, &apos;cyan&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.debug = function()&#123;</div><div class="line">  printLog(arguments, &apos;gray&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>用js-yaml这个包来读取配置文件，配置文件的格式是yaml的，84d7f9a658dac4b6a08d868e90b9bb24fb9b1c6a</p>
+</li>
+<li><p>写命令行来处理控制台输入       61966d7e1d451a9f45d0447e29537386631660a7</p>
+<p>但有个细节值得玩味，在输出help帮助时，作者做了两个循环，一开始不是太理解，后来发现原来作者是为了保证右边的解释能够对齐，所以找出最长的一个串并再加上一个空白 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var maxLen = 0,</div><div class="line">      result = &apos;\nUsage: writer &lt;command&gt;\n\nOptions:\n&apos;;</div><div class="line">      </div><div class="line">    var helps = [</div><div class="line">      [&apos;-v, --version&apos;, &apos;Display version&apos;],</div><div class="line">      [&apos;help&apos;, &apos;Display help&apos;],</div><div class="line">      [&apos;init&apos;, &apos;Initalize&apos;],</div><div class="line">      [&apos;server&apos;, &apos;Run server&apos;],</div><div class="line">      [&apos;generate&apos;, &apos;Generate static files&apos;],</div><div class="line">      [&apos;deploy&apos;, &apos;Deploy&apos;]</div><div class="line">    ];</div><div class="line"></div><div class="line">    helps.forEach(function(val)&#123;</div><div class="line">      var length = val[0].length;</div><div class="line">      if (maxLen &lt; length) maxLen = length;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    helps.forEach(function(val)&#123;</div><div class="line">      result += &apos;  &apos; + clc.bold(val[0]);</div><div class="line"></div><div class="line">      for (var i=0; i&lt;maxLen + 3 - val[0].length; i++)&#123;</div><div class="line">        result += &apos; &apos;;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      result += val[1] + &apos;\n&apos;;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    console.log(result);</div><div class="line"></div><div class="line">    break;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/17/javascript/Javascript 原型prototype/" itemprop="url">
+                  Javascript的prototype
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-17T20:37:09+08:00" content="2016-12-17">
+              2016-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="为什么要有原型"><a href="#为什么要有原型" class="headerlink" title="为什么要有原型"></a>为什么要有原型</h3><p>考虑一个需要定义一个person对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,job)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.job = job;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个person会有名字、年龄和工作的属性，这些都是每个person对象不一样的地方，但是如果我们要定义一个sayName方法，由于这个sayName方法对于所有person都是一致的，如果我们定义在对象里面会非常麻烦，所以就有了原型</p>
+<h3 id="原型是什么"><a href="#原型是什么" class="headerlink" title="原型是什么"></a>原型是什么</h3><p>无论什么时候只要创建了一个函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象，同时呢，这个原型对象会有个constructor属性，这个属性指向函数对象，即Person.prototype.constructor指向person</p>
+<p>这里有个注意点： 当用构造函数创建了一个新实例后，该实例也有一个内部属性叫[[Prototype]],在浏览器实现中叫_ <em>proto</em> _ ,这个属性是对象和原型之间的连接，而不像prototype那个是构造函数与原型间的连接。</p>
+<ol>
+<li>可以通过Object.getPrototypeOf()来获取对象的原型</li>
+<li>可以通过person.hasOwnPrototype()来判断某个属性是来源于对象还是原型</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/16/javascript/Javascript中的逻辑运算/" itemprop="url">
                   javascript中的逻辑运算
                 </a>
@@ -1117,364 +1478,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/14/node/Express 学习/" itemprop="url">
-                  Express学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-14T08:43:02+08:00" content="2016-12-14">
-              2016-12-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>如果要获取查询字符串的参数 比如<a href="http://api.ucloud.cn/sanqin?limit=1" target="_blank" rel="external">http://api.ucloud.cn/sanqin?limit=1</a>   可以使用request.query.limit</p>
-</li>
-<li><p>动态路由的参数获取  比如  <a href="http://api.ucloud.cn/sanqin/:companyId" target="_blank" rel="external">http://api.ucloud.cn/sanqin/:companyId</a>  可以使用request.params.companyId来获取sanqin之后的那个参数</p>
-</li>
-<li>通过app.param()这个函数可以截取进来的request，并给request添加一些参数，然后返回给路由，用于在动态路由前做一些pre-condition操作</li>
-<li>如果要解析post请求中的body内容，需要引入一个中间件叫body-parser,</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/14/thinking/对前端的一些感悟/" itemprop="url">
-                  对前端的一些感悟
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-14T00:06:14+08:00" content="2016-12-14">
-              2016-12-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">thinking</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。</p>
-<p>​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画的渲染，每一次用户点击一个链接或者一个button，请求都是要发到服务器端，服务器或直接返回静态页面，或者从数据库拉取数据然后生成html返回浏览器，这里面的页面渲染和路由都是在服务端做的，但仔细一想会觉得这个其实不合理，浏览器大多数情况下只要更新数据，为什么每次都要重新渲染个html页面过来呢，一来会增加传输带宽，二来呢主要是影响用户体验，毕竟在网络情况不是太好的时候这是个很大问题。</p>
-<p>​    这时候回想传统的CS架构，为什么觉得CS架构用户体验会好，除了开发语言C/C++直接编译成二进制的优势，很大程度上是因为CS架构的很多UI操作都是在本地完成，与服务器通信也只需要通过tcp获取需要的数据，所以我觉得单页应用并没有什么太新的概念，<strong><em>他只不过是回归了本来应该的样子</em>，浏览器在第一次加载的时候从服务器拉取了下这个应用的代码</strong>。为什么以前没有，我想一方面是浏览器对于js的程度越来越好，另外就是大家对用户体验越来越看重。</p>
-<p>​    如果理解了单页应用，那随后几个概念其实很好理解，也能理解为什么会有。首先是webpack，webpack是一个解决前端依赖和打包的工具，因为一旦路由和逻辑放到了前端，前端的代码量会急剧上升，很多模块间会需要通过<script></script>做多个导入，但是这些模块又会有相互依赖，webpack的一个作用就是来解决js加载的顺序问题，另外js代码的压缩及混淆工作也是一个非常重要的事情，不然那么多js代码，首次加载会非常之慢。</p>
-<p>​    Babel是做了另外一方面的事情，是关于语法，ES6的推出确实是一件非常振奋人心的事，里面有很多我非常喜欢的特性，比如let的块级作用，比如解构赋值，比如promise对象，但由于浏览器的支持总是分阶段的，所以为了最大的兼容性，还是需要ES5的代码，Babel就是干了这么一件事，把ES6以及之后的代码转换成ES5的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
-                  Node学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
-              2016-12-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
-<p>module.exports.a = a;</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1520,7 +1523,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1528,7 +1531,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1537,7 +1540,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
