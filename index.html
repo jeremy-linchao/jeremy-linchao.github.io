@@ -243,129 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/05/database/mysql identifiy/" itemprop="url">
-                  mysql identifiy
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-05T17:39:42+08:00" content="2017-01-05">
-              2017-01-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>An identifier may be quoted or unquoted. If an identifier contains special characters or is a reserved<br>word, you must quote it whenever you refer to it. <strong>The identifier quote character is the backtick (`):</strong></p>
-</li>
-<li><p>If the ANSI_QUOTES SQL mode is enabled, it is also permissible to quote identifiers within doublequotation marks, The ANSI_QUOTES mode causes the server to interpret double-quoted strings as identifiers.<strong>Consequently, when this mode is enabled, string literals must be enclosed within single quotationmarks.</strong></p>
-</li>
-<li><p>Permitted characters in unquoted identifiers:</p>
-<p>​    ASCII: [0-9,a-z,A-Z$_] (basic Latin letters, digits 0-9, dollar, underscore)</p>
-<p>​    Extended: U+0080 .. U+FFFF<br>​<br>​<br>​<br>​<br>​<br>​                        </p>
-</li>
-</ol>
-<p>​<br>​<br>​<br>​    </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/01/04/c++/c++ const/" itemprop="url">
                   c++ const
                 </a>
@@ -1414,6 +1291,126 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/27/concept/对于cookie和session的理解/" itemprop="url">
+                  对于cookie和session的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-27T23:32:42+08:00" content="2016-12-27">
+              2016-12-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>首先cookie是后端服务器通过response响应传送给浏览器的一个字段，只要不过期，之后浏览器在每次访问的时候就会加上这个字段，在nodejs里，cookie被封装在req.headers.cookie，是个字符串，可以写一个解析函数来转换成js对象</li>
+</ol>
+<ol>
+<li>服务器是通过Set-Cookie这个字段来发送cookie的，最重要的是name=value, 可选项包括Path, Expires,Max-age,httpOnly,Domain,Secure</li>
+<li>Cookie对性能会有影响，表现在如果浏览器会将cooke放到每次请求上，然而对于静态页面，其实是不需要状态的，因此把静态页面用独立域名会减少cookie的传输</li>
+<li>浏览器通过document.cookie把cookie暴露给了js，因此如果你在cookie写些重要的关于业务信息，很容易被篡改</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1459,7 +1456,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
