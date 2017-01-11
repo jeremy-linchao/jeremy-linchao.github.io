@@ -243,6 +243,561 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/23/database/MongoDB 导出数据成json/" itemprop="url">
+                  MongoDB 导出数据成json
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-23T09:16:49+08:00" content="2016-11-23">
+              2016-11-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>mongoexport -d ticketFinder -c airports –fields airportName,airportCode –jsonArray –pretty –out ~/GitHub/ticketFinder/frontend/airportscode.json</li>
+</ol>
+<p>这里 -d 指的是数据库名， -c指的是collection，- -filed用来指定字段， - -jsonArray可以把输出变成一个json数组，而不是那种一个对象一行的形式，这里要注意的是如果输出是json格式，id这个字段也会被保留输出</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/23/angular/Angular 11.22/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-23T09:15:29+08:00" content="2016-11-23">
+              2016-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Angular-11-22"><a href="#Angular-11-22" class="headerlink" title="Angular 11.22"></a>Angular 11.22</h1><h3 id="When-a-Controller-is-attached-to-the-DOM-via-the-ng-controller-directive-Angular-will-instantiate-a-new-Controller-object-using-the-specified-Controller’s-constructor-function-A-new-child-scope-will-be-created-and-made-available-as-an-injectable-parameter-to-the-Controller’s-constructor-function-as-scope"><a href="#When-a-Controller-is-attached-to-the-DOM-via-the-ng-controller-directive-Angular-will-instantiate-a-new-Controller-object-using-the-specified-Controller’s-constructor-function-A-new-child-scope-will-be-created-and-made-available-as-an-injectable-parameter-to-the-Controller’s-constructor-function-as-scope" class="headerlink" title="When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object, using the specified Controller’s constructor function. A new child scope will be created and made available as an injectable parameter to the Controller’s constructor function as $scope."></a>When a Controller is attached to the DOM via the <a href="https://docs.angularjs.org/api/ng/directive/ngController" target="_blank" rel="external">ng-controller</a> directive, Angular will instantiate a new Controller object, using the specified Controller’s <strong>constructor function</strong>. A new <strong>child scope</strong> will be created and made available as an injectable parameter to the Controller’s constructor function as <code>$scope</code>.</h3><p>这段话翻译过来的意思是说当ng-controller被加到一个dom元素中会发生什么？首先Angular会来初始化一个controller对象，用的就是controller这个构造函数，然后会有一个新的子scope会被创建出来，被当成一个参数传到构造函数里去</p>
+<h3 id="Use-controllers-to"><a href="#Use-controllers-to" class="headerlink" title="Use controllers to:"></a>Use controllers to:</h3><ul>
+<li>Set up the initial state of the <code>$scope</code> object.</li>
+<li><p>Add behavior to the <code>$scope</code> object.</p>
+<p>使用controller主要就来做两件事，第一件是初始化$scope这个变量，另一件事是给$scope加上行为</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/22/bootstrap/Bootstrap 学习/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T11:01:19+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Bootstrap-学习"><a href="#Bootstrap-学习" class="headerlink" title="Bootstrap 学习"></a>Bootstrap 学习</h1><ol>
+<li><p>如何加背景图片</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/21/thinking/为什么要打包/" itemprop="url">
+                  为什么要打包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T21:08:28+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>浏览器在解析js的时候是按顺序来作解析的，如果你把基础依赖放到最后，那浏览器在解析到前面几行就会报错，所以一般要把依赖最大的放到最上面，但是这样比较麻烦，所以打包工具的的用途就体现出来了，他能帮助我们解决打包的问题</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/16/utility/Vim 环境打造/" itemprop="url">
+                  Vim 环境打造
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T17:47:18+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间"><a href="#1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间" class="headerlink" title="1. 思路是使用spf13来配置vim，https://github.com/spf13/spf13-vim，可以节省比较多的时间"></a>1. 思路是使用spf13来配置vim，<a href="https://github.com/spf13/spf13-vim，可以节省比较多的时间" target="_blank" rel="external">https://github.com/spf13/spf13-vim，可以节省比较多的时间</a></h3><h3 id="2-几个常用插件使用方式"><a href="#2-几个常用插件使用方式" class="headerlink" title="2. 几个常用插件使用方式"></a>2. 几个常用插件使用方式</h3><ul>
+<li><p>注释和取消注释： ，+ c + space</p>
+</li>
+<li><p>查找文件： ctrl + p ，然后使用 ctrl + j,k 来上下移动</p>
+</li>
+<li><p>打开工程目录：  ctrl + e, 然后使用t来打开文件，在左边和右边窗口移动使用ctrl + H，L来左右移动鼠标，在多个tab之间使用gt来切换</p>
+</li>
+<li><p>颜色配置：在.vimrc那个文件找到solarized那一段，let g:solarized _termcolors = 16 这样的话文本不会太暗</p>
+</li>
+<li><p>字体配置： 首先把let g:airline_powerline_fonts=1这段写到.vimrc.before.local，同时在终端的perference上配置下字体为SourceCodePro</p>
+</li>
+</ul>
+<h3 id="3-暂时不用的插件先都关闭掉"><a href="#3-暂时不用的插件先都关闭掉" class="headerlink" title="3.暂时不用的插件先都关闭掉"></a>3.暂时不用的插件先都关闭掉</h3><ul>
+<li>echo UnBundle \’AutoClose\’ &gt;&gt; ~/.vimrc.bundles.local  把不需要的插件写到.vimrc.local，然后:BundleClean! 移除插件目录</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/09/utility/ssh key登陆/" itemprop="url">
                   ssh使用key免密登陆
                 </a>
@@ -306,8 +861,8 @@
       
         
           
-            <h3 id="1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600"><a href="#1-把mac下的id-rsa-pub-上传到服务器的-ssh-目录下，保证-ssh这个目录的权限改为600" class="headerlink" title="1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600"></a>1. 把mac下的id_rsa.pub 上传到服务器的~.ssh/ 目录下，保证.ssh这个目录的权限改为600</h3><h3 id="2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600"><a href="#2-把id-rsa-pub这个文件的文件名改为authorized-keys-同时把这个文件的权限改为600" class="headerlink" title="2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600"></a>2. 把id_rsa.pub这个文件的文件名改为authorized_keys,同时把这个文件的权限改为600</h3><h3 id="3-修改下-ssh-config-这个文件格式如下"><a href="#3-修改下-ssh-config-这个文件格式如下" class="headerlink" title="3. 修改下 .ssh/config 这个文件格式如下"></a>3. 修改下 .ssh/config 这个文件格式如下</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy<br>Port 22<br>IdentityFile ~/.ssh/id_rsa</p>
-<h3 id="4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好"><a href="#4-在ssh的目录下配置下AuthorizedKeysFile-ssh-authorized-keys-这个默认已经配置好" class="headerlink" title="4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)"></a>4 . 在ssh的目录下配置下AuthorizedKeysFile .ssh/authorized_keys(这个默认已经配置好)</h3><h3 id="5-最后就可以用ssh-dev1来登陆了"><a href="#5-最后就可以用ssh-dev1来登陆了" class="headerlink" title="5. 最后就可以用ssh dev1来登陆了"></a>5. 最后就可以用ssh dev1来登陆了</h3><h1 id="Git-“please-tell-me-who-you-are”-问题"><a href="#Git-“please-tell-me-who-you-are”-问题" class="headerlink" title="Git: “please tell me who you are” 问题"></a>Git: “please tell me who you are” 问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1.git init</div><div class="line">2.git config user.name &quot;someone&quot;</div><div class="line">3.git config user.email &quot;someone@someplace.com&quot;</div><div class="line">4.git add *</div><div class="line">5.git commit -m &quot;some init msg&quot;</div></pre></td></tr></table></figure>
+            <h3 id="1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"><a href="#1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600" class="headerlink" title="1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"></a>1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600</h3><h3 id="2-把id-rsa-pub的内容cat出来"><a href="#2-把id-rsa-pub的内容cat出来" class="headerlink" title="2. 把id_rsa.pub的内容cat出来"></a>2. 把id_rsa.pub的内容cat出来</h3><h3 id="3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将权限改为600-这步不是强制要求，主要是为了不让其他人看到"><a href="#3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将权限改为600-这步不是强制要求，主要是为了不让其他人看到" class="headerlink" title="3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将权限改为600 (这步不是强制要求，主要是为了不让其他人看到)"></a>3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将权限改为600 (这步不是强制要求，主要是为了不让其他人看到)</h3><h3 id="4-更进一步，为了使用简写名字登陆，可按如下配置"><a href="#4-更进一步，为了使用简写名字登陆，可按如下配置" class="headerlink" title="4. 更进一步，为了使用简写名字登陆，可按如下配置"></a>4. 更进一步，为了使用简写名字登陆，可按如下配置</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy.lin</p>
+
           
         
       
@@ -897,7 +1452,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -905,7 +1460,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -914,7 +1469,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -951,7 +1506,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
