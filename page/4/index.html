@@ -243,6 +243,241 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/14/javascript/Javascript 将对象转换成JSON格式字符串/" itemprop="url">
+                  JSON.stringify() and JSON.parse()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T17:26:39+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.stringify(value[, replacer [, space]])</div></pre></td></tr></table></figure>
+<p>将javascript对象序列化成 JSON 字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.parse(text[, reviver])</div></pre></td></tr></table></figure>
+<p>将一个json字符串解析成一个javascript对象</p>
+<h3 id="有一个很常用的场景：从API请求数据，但是API返回的格式一般都是没有空格的JSON字符串，所以可以通过以下方法来美化"><a href="#有一个很常用的场景：从API请求数据，但是API返回的格式一般都是没有空格的JSON字符串，所以可以通过以下方法来美化" class="headerlink" title="有一个很常用的场景：从API请求数据，但是API返回的格式一般都是没有空格的JSON字符串，所以可以通过以下方法来美化"></a>有一个很常用的场景：从API请求数据，但是API返回的格式一般都是没有空格的JSON字符串，所以可以通过以下方法来美化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(JSON.stringify(JSON.parse(body),null,4));</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/14/javascript/javascript对象字典排序/" itemprop="url">
+                  Javascript中对象字典排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T16:13:30+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>All methods that iterate over property keys do so in the same order:</p>
+<ol>
+<li>First all Array indices, sorted numerically.</li>
+<li>Then all string keys (that are not indices), in the order in which they were created.</li>
+<li>Then all symbols, in the order in which they were created</li>
+</ol>
+<p>Object.keys(unordered).sort().forEach(function(key) {<br>  ordered[key] = unordered[key];<br>});</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/14/concept/API 设计/" itemprop="url">
                   API设计
                 </a>
@@ -1241,313 +1476,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/es6/ES6 学习(1)/" itemprop="url">
-                  ES6学习(1)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T16:09:04+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>let用来声明块级作用域变量。let不会像var那样发生变量提升，所以一定要在声明后使用。另外在一个块级作用域内如果用let声明了一个局部变量，那么这个变量会绑定这个块级作用域，所有在let变量声明前对该变量的操作都会报错</p>
-<p><strong><em>为什么需要块级作用域？</em></strong> 先来看下没有块级作用域带来的几个问题</p>
-<p>1） 内层变量可能会覆盖外层变量，或者说外层的变量不会受内层变量影响，下面这个例子console.log（tmp）这个tmp就被内层的tmp影响了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var tmp = new Date();</div><div class="line"></div><div class="line">function f() &#123;</div><div class="line">  console.log(tmp);</div><div class="line">  if (false) &#123;</div><div class="line">    var tmp = &quot;hello world&quot;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(); // undefined</div></pre></td></tr></table></figure>
-<p>2)   用来计数的循环变量泄露为全局变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; s.length; i++) &#123;</div><div class="line">  console.log(s[i]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(i);</div></pre></td></tr></table></figure>
-</li>
-<li><p>const命令：声明一个只读的常量。一旦声明，常量的值就不能改变。声明后必须立即初始化</p>
-</li>
-<li><p><code>var</code>命令和<code>function</code>命令声明的全局变量，依旧是顶层对象的属性；而<code>let</code>命令、<code>const</code>命令、<code>class</code>命令声明的全局变量，不属于顶层对象的属性</p>
-</li>
-<li><p>解构赋值（Destructuring):  按照一定模式，从数组和对象中提取值，对变量进行赋值</p>
-<p>如果为多个变量赋值，原先需要这样写，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">var b = 2;</div><div class="line">var c = 3;</div></pre></td></tr></table></figure>
-<p>但现在可以写成这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var [a, b, c] = [1, 2, 3];</div></pre></td></tr></table></figure>
-<p>也可以为对象来解构赋值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var &#123; bar, foo &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">foo // &quot;aaa&quot;</div><div class="line">bar // &quot;bbb&quot;</div><div class="line"></div><div class="line">var &#123; baz &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">baz // undefined</div></pre></td></tr></table></figure>
-<p><strong><em>那些场景下使用解构比较好呢?</em></strong></p>
-<p>1)  交换变量的值： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
-<p>2）提取JSON数据：</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var jsonData = &#123;</div><div class="line">  id: 42,</div><div class="line">  status: &quot;OK&quot;,</div><div class="line">  data: [867, 5309]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let &#123; id, status, data: number &#125; = jsonData;</div><div class="line"></div><div class="line">console.log(id, status, number);</div><div class="line">// 42, &quot;OK&quot;, [867, 5309]</div></pre></td></tr></table></figure>
-<ol>
-<li><p>函数参数的默认值：</p>
-<p>在ES6之前，不能直接为函数的参数指定默认值，只能用变通的方法</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function log(x, y) &#123;</div><div class="line">  y = y || &apos;World&apos;;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello World</div></pre></td></tr></table></figure>
-<p>上面代码检查函数<code>log</code>的参数<code>y</code>有没有赋值，如果没有，则指定默认值为<code>World</code>。这种写法的缺点在于，如果参数<code>y</code>赋值了，但是对应的布尔值为<code>false</code>，则该赋值不起作用。就像上面代码的最后一行，参数<code>y</code>等于空字符，结果被改为默认值 ，就像这个例子中的第三个log函数，很明显是想打一个空值，但最后被打成了默认值，而在ES6中可以直接这样写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function log(x, y = &apos;World&apos;) &#123;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello</div></pre></td></tr></table></figure>
-<ol>
-<li><p>rest参数</p>
-<p>这个例子下，theArgs是一个数组，数组的内容是从第三个开始到最后的所有参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(a, b, ...theArgs) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>箭头函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var f = v =&gt; v;</div></pre></td></tr></table></figure>
-<p>这个写法等同于如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var f = function(v) &#123;</div><div class="line">  return v;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var f = () =&gt; 5;</div><div class="line">// 等同于</div><div class="line">var f = function () &#123; return 5 &#125;;</div><div class="line"></div><div class="line">var sum = (num1, num2) =&gt; num1 + num2;</div><div class="line">// 等同于</div><div class="line">var sum = function(num1, num2) &#123;</div><div class="line">  return num1 + num2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><strong>箭头函数使用场景</strong></p>
-<p>1） 简化回调函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 正常函数写法</div><div class="line">[1,2,3].map(function (x) &#123;</div><div class="line">  return x * x;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">[1,2,3].map(x =&gt; x * x);</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var result = values.sort(function (a, b) &#123;</div><div class="line">  return a - b;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">var result = values.sort((a, b) =&gt; a - b);</div></pre></td></tr></table></figure>
-<p>使用注意点：</p>
-<p>（1）函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
-<p>（2）不可以当作构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</p>
-<p>（3）不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
-<p>（4）不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</p>
-<p>针对于第一点的一个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var id = 21;</div><div class="line"></div><div class="line">foo.call(&#123; id: 42 &#125;);</div><div class="line">// id: 42</div></pre></td></tr></table></figure>
-</li>
-<li><p>for … of 循环</p>
-<p>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为具有iterator接口，就可以用<code>for...of</code>循环遍历它的成员。也就是说，<code>for...of</code>循环内部调用的是数据结构的<code>Symbol.iterator</code>方法。</p>
-<p><code>for...of</code>循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如<code>arguments</code>对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/javascript/Javascript 数组类型/" itemprop="url">
-                  javascript数组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T11:07:49+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>js的数组和其他语言的数组类型相差还是很大，<strong>其一</strong>表现在js的数组并不要求一个数组内的数据类型都是一致，如下的数组定义是没有问题的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="string">"abc"</span>,<span class="number">5.6</span>,&#123;<span class="string">'name'</span>:<span class="string">'lin'</span>&#125;];</div><div class="line"><span class="built_in">console</span>.log(a)</div></pre></td></tr></table></figure>
-<p><strong>其二</strong>表现在数组的长度length这个属性不仅仅是只读的，也是可写的，比如上面的代码改为,这样就只会打印出两个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a.length = 2;</div><div class="line">console.log(a)</div></pre></td></tr></table></figure>
-<p>​    数组的栈方法：push(), pop() </p>
-<p>​        数组的队列方法：push(),unshift()       数组末进入，数组头出</p>
-<p>​                                       unshift(), pop()        数组头进入，数组末尾处</p>
-<p>​    数组排序方法：sort()  接收一个compare函数， 比较函数接收两个参数，如果第一个参数应该位于第二个参数之前则返回一个负数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function compare(value1, value2)&#123;</div><div class="line">  if (value1 &lt; value2)&#123;</div><div class="line">    return -1;</div><div class="line">  &#125; else if (value1 &gt; value2)&#123;</div><div class="line">    return 1;</div><div class="line">  &#125; else &#123;</div><div class="line">    return 0;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    数组concat方法：这个方法先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。在没有给concat()传递参数的情况下，它只是复制当前数组并返回副本</p>
-<p>​    数组slice() 方法：接收一个或两个参数，如果是一个参数，就返回从这个索引到数组末尾的整个一个新数组，如果是两个参数，就返回从第一个索引到第二参数-1这个索引的新数组</p>
-<p>​       数组splice()方法：1）删除：2个参数，第一项的位置    和要删除的项数    2）插入：3个参数， 起始位置，0（要删除的项数），要插入的项  3）替换</p>
-<p>​      数组 indexOf() 方法：接收两个参数，要查找的项和表示查找起点的索引(索引)</p>
-<p>​      数组迭代方法：every(),filter(),forEach(),map(),some()   每个传入的函数接收三个参数，数组项的值，该项在数组中的位置，数组对象本身</p>
-<p>​      数组reduce() 方法：每个传入的函数接收4个参数：前一个值，当前值，项的索引和数组对象</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1588,7 +1521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1596,7 +1529,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1605,7 +1538,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
