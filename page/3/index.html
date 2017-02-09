@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/21/coding/函数式编程/" itemprop="url">
-                  函数式编程
+                <a class="post-title-link" href="/2016/12/29/es6/Generator(2)/" itemprop="url">
+                  Generator
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T16:41:48+08:00" content="2016-12-21">
-              2016-12-21
+            <time itemprop="dateCreated" datetime="2016-12-29T11:19:12+08:00" content="2016-12-29">
+              2016-12-29
             </time>
           </span>
 
@@ -271,131 +271,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index">
-                    <span itemprop="name">coding</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>有些事物在你得到之前是无足轻重的，得到之后就不可或缺了</p>
-</blockquote>
-<ol>
-<li>纯函数：相同的输入，永远得到相同的输出，而且没有任何可观察的副作用</li>
-<li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
-<li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
-<li><strong>currying</strong> : the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument. </li>
-<li><strong>partial application</strong> : the process of fixing a number of arguments to a function, producing another function of smaller arity</li>
-<li>柯里化和偏函数的区别：区别在于固定的参数不同，柯里化每次固定一个参数，返回一系列一元函数的调用</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/21/coding/高阶函数与偏函数/" itemprop="url">
-                  高阶函数与偏函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T15:39:10+08:00" content="2016-12-21">
-              2016-12-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index">
-                    <span itemprop="name">coding</span>
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
                   </a>
                 </span>
 
@@ -430,12 +307,14 @@
         
           
             <ol>
-<li><p>高阶函数：函数的参数或返回值是个函数</p>
-<p>应用例子：sort()方法，数组的sort()方法就是个典型，根据传的函数不同，可以按照不同形式来排序</p>
+<li><p>定义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* idMaker()&#123;</div><div class="line">  var index = 0;</div><div class="line">  while(index&lt;3)</div><div class="line">    yield index++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>偏函数：创建一个调用另外一个部分——参数或变量已经预置的函数的函数   ​</p>
+<li><p>调用：    var gen = idMaker();    调用一个<strong>生成器函数</strong>并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。</p>
 </li>
-<li><p>​</p>
+<li><p>使用：该表达式定义了迭代器返回的值，或者，被 yield委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(gen.next().value); // 0</div><div class="line">console.log(gen.next().value); // 1</div><div class="line">console.log(gen.next().value); // 2</div><div class="line">console.log(gen.next().value); // undefined</div></pre></td></tr></table></figure>
+<p>next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值；done属性是一个布尔值，表示Generator函数是否执行完毕，即是否还有下一个阶段</p>
 </li>
 </ol>
 
@@ -487,8 +366,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/21/node/关于异步/" itemprop="url">
-                  关于异步
+                <a class="post-title-link" href="/2016/12/28/es6/Promise/" itemprop="url">
+                  Promise
                 </a>
               
             
@@ -501,8 +380,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T10:56:16+08:00" content="2016-12-21">
-              2016-12-21
+            <time itemprop="dateCreated" datetime="2016-12-28T17:29:26+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -515,135 +394,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="为什么需要异步？"><a href="#为什么需要异步？" class="headerlink" title="为什么需要异步？"></a>为什么需要异步？</h4><ol>
-<li><p>前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象</p>
-</li>
-<li><p>在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非阻塞I/O则不带数据直接返回，要获取数据，还需要通过文件描述符再次读取</p>
-</li>
-<li><p>前面提到了为了获取完整的数据，应用程序需要重复调用I/O操作来确实是否完成，这种重复调用判断操作是否完成的技术叫做<strong>轮询</strong>，有以下几种形式：</p>
-<p>a) read  b)select  c)epoll 4)   这些个技术对于应用程序而言，仍然只能算是一种同步，因为应用程序需要等待I/O完全返回，等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待时间发生</p>
-</li>
-<li><p>Linux下面存在一种异步IO方式叫AIO，但这个只在linux下有，并且仅支持O_Direct方式读取</p>
-</li>
-<li><p><strong>现实场景下的异步IO：</strong>   线程池模拟异步I/O</p>
-<p>一个线程进行计算处理，让其他线程进行非阻塞I/O加轮询获取数据，通过线程间通信将I/O的数据进行传递</p>
-</li>
-<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong> </li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/20/es6/ES6 Generate 函数/" itemprop="url">
-                  ES6 Generate 函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T17:56:07+08:00" content="2016-12-20">
-              2016-12-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index">
-                    <span itemprop="name">coding</span>
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
                   </a>
                 </span>
 
@@ -678,17 +430,12 @@
         
           
             <ol>
-<li><p>generator函数可以用来做一种异步编程解决方案，generator函数有多种理解角度，从语法上generator函数是一个状态机，封装了多个内部状态。它返回一个遍历器对象，所以generator函数除了是个状态机，还是一个遍历器对象生成函数</p>
-</li>
-<li><p>generator函数是一个普通函数，但有两个特征，1）function关键字与函数名之间有一个星号 2)函数体内部使用yield语句，定义不同的内部状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* helloWorldGenerator()&#123;</div><div class="line">  yield &apos;hello&apos;;</div><div class="line">  yield &apos;world&apos;;</div><div class="line">  return &apos;ending&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>调用Generator函数，返回一个遍历器对象，代表Generator函数的内部指针。以后，每次调用遍历器对象<code>next</code>方法，就会返回一个有着<code>value</code>和<code>done</code>两个属性的对象。<code>value</code>属性表示当前的内部状态的值，是<code>yield</code>语句后面那个表达式的值；<code>done</code>属性是一个布尔值，表示是否遍历结束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;hello&apos;, done: false &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;world&apos;, done: false &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: &apos;ending&apos;, done: true &#125;</div><div class="line"></div><div class="line">hw.next()</div><div class="line">// &#123; value: undefined, done: true &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>yield</code>句本身没有返回值，或者说总是返回<code>undefined</code>。<code>next</code>方法可以带一个参数，该参数就会被当作上一个<code>yield</code>语句的返回值</p>
-</li>
+<li>Creating Promises with the constructor;</li>
+<li>Handling success with resolve;</li>
+<li>Handling errors with reject; and</li>
+<li>Setting up control flow with then and catch</li>
 </ol>
+<p><a href="https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics" target="_blank" rel="external">https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics</a></p>
 
           
         
@@ -738,8 +485,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/20/node/Node 工程化/" itemprop="url">
-                  Node工程化
+                <a class="post-title-link" href="/2016/12/28/node/pm2学习/" itemprop="url">
+                  pm2学习
                 </a>
               
             
@@ -752,8 +499,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T17:35:25+08:00" content="2016-12-20">
-              2016-12-20
+            <time itemprop="dateCreated" datetime="2016-12-28T16:23:29+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -802,21 +549,7 @@
         
           
             <ol>
-<li><p>目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织</p>
-</li>
-<li><p>构建工具：make(需要bash编程)，Grunt(本身用nodejs写)</p>
-</li>
-<li><p>编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描</p>
-</li>
-<li><p>代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试是否有同步添加</p>
-</li>
-<li><p>部署环境：代码 -&gt; stage(测试环境) -&gt; 预发布 -&gt; 生产，之所以有个预发布环境是因为测试环境只能满足功能的正确性，而预发布环境可以做数据相关的检查，它的数据较为接近线上真实的数据</p>
-</li>
-<li><p>部署操作：nohup node app.js &amp; ，停止和重启是通过相应的pid写进app.id文件下</p>
-</li>
-<li><p>日志记录：通常的API，尽量不要隐藏错误，不要通过try/catc捕获异常，事实上，日志通常是服务于业务的，尽量由最上层的调用者捕获记录，底层调用或中间层调用出现的异常只要正常传递给上层的调用方即可</p>
-<p>​</p>
-</li>
+<li>pm2启动 </li>
 </ol>
 
           
@@ -867,8 +600,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/20/thinking/对于异步编程的理解/" itemprop="url">
-                  对异步编程的理解
+                <a class="post-title-link" href="/2016/12/28/node/npm配置依赖/" itemprop="url">
+                  npm配置依赖
                 </a>
               
             
@@ -881,131 +614,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T12:26:06+08:00" content="2016-12-20">
-              2016-12-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">thinking</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1）为啥需要异步编程的解决方案？</p>
-<p>​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式</p>
-<p>2） 异步方案的难点</p>
-<ol>
-<li><p>try catch无法捕捉异常，因为try catch本身是捕捉当次执行时的报错，而异步的方式那个程序在那个刻还没执行，自然也就catch不到，node在异常处理上形成一种约定，将异常作为回调函数的第一个参数传回，如果为空，则表明没有异常抛出，如果自己编写异步方法必须遵循如下原则：</p>
-<p><strong>必须执行调用者传入的回调函数</strong></p>
-<p><strong>正确传递回异常供调用者判断</strong></p>
-</li>
-<li><p>函数嵌套过深：多个操作存在依赖关系，比如遍历目录，查询数据库做渲染​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/20/node/exports 和 module.exports/" itemprop="url">
-                  exports和module.exports
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T10:10:45+08:00" content="2016-12-20">
-              2016-12-20
+            <time itemprop="dateCreated" datetime="2016-12-28T11:50:07+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -1053,13 +663,13 @@
       
         
           
-            <p>The <code>exports</code> variable is available within a module’s file-level scope, and is assigned the value of <code>module.exports</code> before the module is evaluated.</p>
-<p>It allows a shortcut, so that <code>module.exports.f = ...</code> can be written more succinctly as <code>exports.f = ...</code>. However, be aware that like any variable, if a new value is assigned to <code>exports</code>, it is no longer bound to <code>module.exports</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">module.exports.hello = true; // Exported from require of module</div><div class="line">exports = &#123; hello: false &#125;;  // Not exported, only available in the module</div></pre></td></tr></table></figure>
-<p>When the <code>module.exports</code> property is being completely replaced by a new object, it is common to also reassign <code>exports</code>, for example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">module.exports = exports = function Constructor() &#123;</div><div class="line">    // ... etc.</div></pre></td></tr></table></figure>
-<p>To illustrate the behavior, imagine this hypothetical implementation of <code>require()</code>, which is quite similar to what is actually done by <code>require()</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function require(...) &#123;</div><div class="line">  var module = &#123; exports: &#123;&#125; &#125;;</div><div class="line">  ((module, exports) =&gt; &#123;</div><div class="line">    // Your module code here. In this example, define a function.</div><div class="line">    function some_func() &#123;&#125;;</div><div class="line">    exports = some_func;</div><div class="line">    // At this point, exports is no longer a shortcut to module.exports, and</div><div class="line">    // this module will still export an empty default object.</div><div class="line">    module.exports = some_func;</div><div class="line">    // At this point, the module will now export some_func, instead of the</div><div class="line">    // default object.</div><div class="line">  &#125;)(module, module.exports);</div><div class="line">  return module.exports;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <ul>
+<li><strong>指定版本</strong>：比如<code>1.2.2</code>，遵循“大版本.次要版本.小版本”的格式规定，安装时只安装指定版本。</li>
+<li><strong>波浪号（tilde）+指定版本</strong>：比如<code>~1.2.2</code>，表示安装1.2.x的最新版本（不低于1.2.2），但是不安装1.3.x，也就是说安装时不改变大版本号和次要版本号。</li>
+<li><strong>插入号（caret）+指定版本</strong>：比如ˆ1.2.2，表示安装1.x.x的最新版本（不低于1.2.2），但是不安装2.x.x，也就是说安装时不改变大版本号。需要注意的是，如果大版本号为0，则插入号的行为与波浪号相同，这是因为此时处于开发阶段，即使是次要版本号变动，也可能带来程序的不兼容。</li>
+<li><strong>latest</strong>：安装最新版本。</li>
+</ul>
+
           
         
       
@@ -1108,8 +718,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/19/source code learning/Hexo 学习/" itemprop="url">
-                  Hexo学习
+                <a class="post-title-link" href="/2016/12/27/concept/对于cookie和session的理解/" itemprop="url">
+                  对于cookie和session的理解
                 </a>
               
             
@@ -1122,8 +732,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-19T23:18:49+08:00" content="2016-12-19">
-              2016-12-19
+            <time itemprop="dateCreated" datetime="2016-12-27T23:32:42+08:00" content="2016-12-27">
+              2016-12-27
             </time>
           </span>
 
@@ -1136,8 +746,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/source-code-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">source code learning</span>
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
                   </a>
                 </span>
 
@@ -1172,135 +782,12 @@
         
           
             <ol>
-<li><p>先写log.js来记录调试输出 ，用cli-color包来处理颜色，cd6a7a75232216d8656fb36d0f4482565f7256c6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var clc = require(&apos;cli-color&apos;),</div><div class="line">  util = require(&apos;util&apos;);</div><div class="line"></div><div class="line">var printLog = function(args, color)&#123;</div><div class="line">  console.log(&apos;%s - %s&apos;, clc[color](new Date().toISOString()), util.format.apply(undefined, args));</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.error = function()&#123;</div><div class="line">  printLog(arguments, &apos;red&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.warning = function()&#123;</div><div class="line">  printLog(arguments, &apos;yellow&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.info = function()&#123;</div><div class="line">  printLog(arguments, &apos;cyan&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.debug = function()&#123;</div><div class="line">  printLog(arguments, &apos;gray&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>用js-yaml这个包来读取配置文件，配置文件的格式是yaml的，84d7f9a658dac4b6a08d868e90b9bb24fb9b1c6a</p>
-</li>
-<li><p>写命令行来处理控制台输入       61966d7e1d451a9f45d0447e29537386631660a7</p>
-<p>但有个细节值得玩味，在输出help帮助时，作者做了两个循环，一开始不是太理解，后来发现原来作者是为了保证右边的解释能够对齐，所以找出最长的一个串并再加上一个空白 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">var maxLen = 0,</div><div class="line">      result = &apos;\nUsage: writer &lt;command&gt;\n\nOptions:\n&apos;;</div><div class="line">      </div><div class="line">    var helps = [</div><div class="line">      [&apos;-v, --version&apos;, &apos;Display version&apos;],</div><div class="line">      [&apos;help&apos;, &apos;Display help&apos;],</div><div class="line">      [&apos;init&apos;, &apos;Initalize&apos;],</div><div class="line">      [&apos;server&apos;, &apos;Run server&apos;],</div><div class="line">      [&apos;generate&apos;, &apos;Generate static files&apos;],</div><div class="line">      [&apos;deploy&apos;, &apos;Deploy&apos;]</div><div class="line">    ];</div><div class="line"></div><div class="line">    helps.forEach(function(val)&#123;</div><div class="line">      var length = val[0].length;</div><div class="line">      if (maxLen &lt; length) maxLen = length;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    helps.forEach(function(val)&#123;</div><div class="line">      result += &apos;  &apos; + clc.bold(val[0]);</div><div class="line"></div><div class="line">      for (var i=0; i&lt;maxLen + 3 - val[0].length; i++)&#123;</div><div class="line">        result += &apos; &apos;;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      result += val[1] + &apos;\n&apos;;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    console.log(result);</div><div class="line"></div><div class="line">    break;</div></pre></td></tr></table></figure></li>
+<li>首先cookie是后端服务器通过response响应传送给浏览器的一个字段，只要不过期，之后浏览器在每次访问的时候就会加上这个字段，在nodejs里，cookie被封装在req.headers.cookie，是个字符串，可以写一个解析函数来转换成js对象</li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/17/javascript/Javascript 原型prototype/" itemprop="url">
-                  Javascript的prototype
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-17T20:37:09+08:00" content="2016-12-17">
-              2016-12-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="为什么要有原型"><a href="#为什么要有原型" class="headerlink" title="为什么要有原型"></a>为什么要有原型</h3><p>考虑一个需要定义一个person对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,job)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.job = job;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个person会有名字、年龄和工作的属性，这些都是每个person对象不一样的地方，但是如果我们要定义一个sayName方法，由于这个sayName方法对于所有person都是一致的，如果我们定义在对象里面会非常麻烦，所以就有了原型</p>
-<h3 id="原型是什么"><a href="#原型是什么" class="headerlink" title="原型是什么"></a>原型是什么</h3><p>无论什么时候只要创建了一个函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象，同时呢，这个原型对象会有个constructor属性，这个属性指向函数对象，即Person.prototype.constructor指向person</p>
-<p>这里有个注意点： 当用构造函数创建了一个新实例后，该实例也有一个内部属性叫[[Prototype]],在浏览器实现中叫_ <em>proto</em> _ ,这个属性是对象和原型之间的连接，而不像prototype那个是构造函数与原型间的连接。</p>
 <ol>
-<li>可以通过Object.getPrototypeOf()来获取对象的原型</li>
-<li>可以通过person.hasOwnPrototype()来判断某个属性是来源于对象还是原型</li>
+<li>服务器是通过Set-Cookie这个字段来发送cookie的，最重要的是name=value, 可选项包括Path, Expires,Max-age,httpOnly,Domain,Secure</li>
+<li>Cookie对性能会有影响，表现在如果浏览器会将cooke放到每次请求上，然而对于静态页面，其实是不需要状态的，因此把静态页面用独立域名会减少cookie的传输</li>
+<li>浏览器通过document.cookie把cookie暴露给了js，因此如果你在cookie写些重要的关于业务信息，很容易被篡改</li>
 </ol>
 
           
@@ -1351,8 +838,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/16/javascript/Javascript中的逻辑运算/" itemprop="url">
-                  javascript中的逻辑运算
+                <a class="post-title-link" href="/2016/12/26/concept/http学习/" itemprop="url">
+                  http学习
                 </a>
               
             
@@ -1365,8 +852,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-16T11:24:02+08:00" content="2016-12-16">
-              2016-12-16
+            <time itemprop="dateCreated" datetime="2016-12-26T23:40:49+08:00" content="2016-12-26">
+              2016-12-26
             </time>
           </span>
 
@@ -1379,8 +866,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
                   </a>
                 </span>
 
@@ -1414,11 +901,495 @@
       
         
           
-            <p>逻辑运算符通常用于布尔型（逻辑）值；这种情况，它们返回一个布尔型值。然而，&amp;&amp;和||运算符实际上返回一个指定操作数的值，因此这些运算符也用于非布尔型，它们返回一个非布尔型值</p>
-<p>逻辑与： 在非boolean环境下，如果expr1能转换成false则返回expr1,否则返回expr2.<br>逻辑或： 在非boolean环境下，如果expr1能转换成true则返回expr1,否则返回expr2.</p>
-<p>经常能看到javascript的逻辑运算用在变量初始化的时候，之前一直不是很理解，虽然知道有惰性求值这个概念，但是因为以前学java的时候只知道逻辑运算符只能用在求布尔值的时候，也就是这个表格里说的boolean环境中，<strong><em>js的逻辑运算还可以用在非boolean的环境</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a1=true &amp;&amp; true       // t &amp;&amp; t 结果为 true</div><div class="line">a2=true &amp;&amp; false      // t &amp;&amp; f 结果为 false</div><div class="line">a3=false &amp;&amp; true      // f &amp;&amp; t 结果为 false</div><div class="line">a4=false &amp;&amp; (3 == 4)  // f &amp;&amp; f 结果为 false</div><div class="line">a5=&quot;Cat&quot; &amp;&amp; &quot;Dog&quot;     // t &amp;&amp; t 结果为 Dog</div><div class="line">a6=false &amp;&amp; &quot;Cat&quot;     // f &amp;&amp; t 结果为 false</div><div class="line">a7=&quot;Cat&quot; &amp;&amp; false     // t &amp;&amp; f 结果为 false</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">o1=true || true       // t || t 结果为 true</div><div class="line">o2=false || true      // f || t 结果为 true</div><div class="line">o3=true || false      // t || f 结果为 true</div><div class="line">o4=false || (3 == 4)  // f || f 结果为 false</div><div class="line">o5=&quot;Cat&quot; || &quot;Dog&quot;     // t || t 结果为 Cat</div><div class="line">o6=false || &quot;Cat&quot;     // f || t 结果为 Cat</div><div class="line">o7=&quot;Cat&quot; || false     // t || f 结果为 Cat</div></pre></td></tr></table></figure>
+            <p>学习任何一个协议，我觉得首要掌握的就是报文结构，http也是如此，http分为请求和响应报文，请求报文的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;method&gt; &lt;request-URL&gt; &lt;version&gt;         起始行</div><div class="line">&lt;headers&gt;                                首部</div><div class="line"></div><div class="line">&lt;entity-body&gt;                            主体</div></pre></td></tr></table></figure>
+<p>响应报文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;version&gt; &lt;status&gt; &lt;reason-phrase&gt;       起始行</div><div class="line">&lt;headers&gt;                                首部</div><div class="line"></div><div class="line">&lt;entity-body&gt;                            主体</div></pre></td></tr></table></figure>
+<p>其中首部和主体之间一般都有一个空行，但许多浏览器并没有遵循</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/26/utility/rsync学习/" itemprop="url">
+                  rsync学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T17:31:57+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>rsync分两种模式，如果主机之后是用：则是shell模式，即传输是用ssh，如果是用：：则表示是rsync的demon模式</p>
+</li>
+<li><p>rsync常用的参数： -a   archive模式，会复制符号链接，权限，属性，属主等信息</p>
+<p>​                  -z   压缩</p>
+<p>​                  -v   详细信息</p>
+<pre><code>-P   进度信息
+</code></pre></li>
+<li><p>关于目录之后的/，如果不带/，表示将整个目录名以及目录下面的文件一起拷贝，如果带了/表示只拷贝目录下面的内容,这个只对源目录，即rsync后第一个路径参数有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A trailing slash on the source changes this behavior to avoid creating an additional directory level at the destination.  You can think of a trailing / on a source as meaning &quot;copy the contents of this directory&quot; as opposed to &quot;copy the directory by name&quot;,  but  in  both</div><div class="line">cases  the attributes of the containing directory are transferred to the containing directory on the destination.</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/26/utility/ssh key无法登陆/" itemprop="url">
+                  ssh key无法登陆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T16:44:04+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在跳板机上做了一个操作把代码发到开发机，然后在跳板机上rsync忘写了原目录，导致rsync的时候把目标的home目录的权限改了，用的命令是rsync -avzp，以至于ssh key无法登陆，通过ssh -vvv看到有这个错误，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">debug1: Connection established.</div><div class="line">debug1: identity file /home/peter/.ssh/identity type -1</div><div class="line">debug3: Not a RSA1 key file /home/peter/.ssh/id_rsa.</div><div class="line">debug2: key_type_from_name: unknown key type &apos;-----BEGIN&apos;</div><div class="line">debug3: key_read: missing keytype</div><div class="line">debug3: key_read: missing whitespace</div></pre></td></tr></table></figure>
+<p>查看了原目机器上的公私钥都是对的，错误的原因是在rsync的时/root的权限也改了，这次的问题我觉得是一个很大的问题，即使这台机器还没上线，重点在于对于生产环境的任何操作都要有敬畏之心，你敲下的每一条命令都要经过思考，对于这个命令的每个参数造成的后果都要做到心里有数</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/26/utility/跳板机共享token/" itemprop="url">
+                  跳板机共享token
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T11:50:07+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在一次变更中，需要登陆多次跳板机，但由于跳板机采用双因素登陆，每次都得输入token非常麻烦，因此一个比较好的办法是共享一个登陆跳板机的连接，后续的连接不需要再输入token了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ControlMaster auto</div><div class="line">ControlPath ~/.ssh/.ujump.socket</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/21/utility/Markdown 学习/" itemprop="url">
+                  Markdown 学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T16:42:40+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>引用别人的话    “&gt;”</p>
+</li>
+<li><p>任务列表           “- []”</p>
+</li>
+<li><p>代码引用           “```”</p>
+</li>
+<li><p>表格                  “| first header | seconder header |”</p>
+</li>
+<li><p>水平线              “—“</p>
+</li>
+<li><p>脚注                  “[^]”</p>
+</li>
+<li><p>目录                 “[toc]”</p>
+</li>
+<li><p>链接                  This is <a href="http://example.com/" title="Title" target="_blank" rel="external">an example</a> inline link​​</p>
+</li>
+</ul>
+
           
         
       
@@ -1450,7 +1421,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1491,7 +1462,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-count">74</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1499,7 +1470,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1508,7 +1479,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
