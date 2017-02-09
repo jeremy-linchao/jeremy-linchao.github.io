@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/09/javascript/javascript的apply,call和bind/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了#####1. 首先说下call和apply，这两个函数的作用是设置函数体内this对象的值，显然调用方就是一个函数本身，这两个函数的区别不大，第一个参数是作用域值用来给函数本身的this赋值，或者说改">
-<meta property="og:updated_time" content="2017-02-09T04:05:59.000Z">
+<meta property="og:updated_time" content="2017-02-09T07:11:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript的apply,call和bind">
 <meta name="twitter:description" content="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了#####1. 首先说下call和apply，这两个函数的作用是设置函数体内this对象的值，显然调用方就是一个函数本身，这两个函数的区别不大，第一个参数是作用域值用来给函数本身的this赋值，或者说改">
@@ -305,6 +305,13 @@
 <p>这里说明了apply和call函数的用途，他们将对象和方法解耦了，方法不必依赖对象存在，一个方法可以给多个对象用，这个相对于java确实有很大不同，java的对象和方法是完全绑定的，函数在执行时的this在编译时就已经确定好了，而javascript则是要在运行时确定</p>
 <p>#####2. apply由于第二个参数是数组或arguments对象，又多了一个相应的用途，即某些函数接收多个参数作为输入，但是一个个写参数比较麻烦或者有的参数本来就已经是个数组形式了，比如通过api获取的数据，那么用apply就比较方便，看下面一段代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var list1 = [0,1,2];</div><div class="line">var list2 = [3,4,5];</div><div class="line">Array.prototype.push.apply(list1, list2);</div><div class="line">console.log(list1);// &gt;&gt;&gt; [0,1,2,3,4,5]</div></pre></td></tr></table></figure>
+<p>数组的push方法的参数是一个或多个，参数当然也可以是数组，只是说如果直接传入数组会把整个数组作为一个参数，而不是把数组的元素一个个取出来，因此如果有需求如上面把两个数组的元素连在一起，可以迂回调用下apply方法，这里的apply就不是为了调整this值了，而是利用第二个特性，将数组参数拆开</p>
+<p><em>在ES6里有更简便的方法，即通过扩展运算符</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var lists1 = [0, 1, 2];</div><div class="line">var lists2 = [3, 4, 5];</div><div class="line">lists1.push(...arr2);</div></pre></td></tr></table></figure>
+<p>是不是简单很多？</p>
+<h4 id="3-bind-方法"><a href="#3-bind-方法" class="headerlink" title="3. bind()方法"></a>3. bind()方法</h4><p>为什么有bind方法呢，还是this的原因，因为函数是在执行的时候确定它的this值，如果需要在执行之前就确定，可以通过bind方法，这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123; color:&quot;blue&quot; &#125;;</div><div class="line">function sayColor() &#123;</div><div class="line">  alert(this.color);</div><div class="line">&#125;</div><div class="line">var objectSayColor = sayColor.bind(o);</div><div class="line">objectSayColor();    //blue</div></pre></td></tr></table></figure>
+<p>在这里，sayColor()调用bind() 并 传入对象 o，创建了objectSayColor() 函数。 objectSayColor() 函数的this值等于o， 因此即使是在全局作用域中调用这个函数，也会看到”blue” </p>
 
       
     </div>
@@ -342,6 +349,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/utility/webstorm使用优化/" rel="prev" title="webstorm使用优化">
+                webstorm使用优化 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -409,7 +420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-count">75</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -417,7 +428,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -455,7 +466,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"><span class="nav-number">1.</span> <span class="nav-text">在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"><span class="nav-number">1.</span> <span class="nav-text">在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-bind-方法"><span class="nav-number">2.</span> <span class="nav-text">3. bind()方法</span></a></li></ol></div>
             
           </div>
         </section>
