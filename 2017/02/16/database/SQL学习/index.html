@@ -108,7 +108,7 @@
 1SELECT DISTINCT genre FROM movies;
 
 模糊查询LI">
-<meta property="og:updated_time" content="2017-02-16T06:35:55.000Z">
+<meta property="og:updated_time" content="2017-02-16T10:09:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL学习">
 <meta name="twitter:description" content="为数据库表增加一列，新加的这一列的值默认为NULL
@@ -353,7 +353,14 @@
 <p>1） COUNT()： 计算指定列的行数</p>
 <p>2） GROUP BY:  把相同的数据放到group里去</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT price, COUNT(*) FROM fake_apps GROUP BY price;</div></pre></td></tr></table></figure>
+</li>
+<li><p>inner join： 连接多张表查询，需要join条件为true;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
+<p>outer join:    连接多张表查询，不需要join条件满足，第一张表的所有行都会返回，如果条件不满足，将会使用NULL值来填充</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
 <p>​</p>
+</li>
+<li><p>reac调试事件</p>
 </li>
 </ol>
 
@@ -393,6 +400,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/17/react/ES6语法在react中的运用/" rel="prev" title="ES6语法在react中的运用">
+                ES6语法在react中的运用 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -460,7 +471,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">90</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -468,7 +479,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -477,7 +488,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

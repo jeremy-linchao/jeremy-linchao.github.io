@@ -85,27 +85,33 @@
 
 
 <meta name="description" content="有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗
+
 接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破
+
 ant-design的控件自定义校验如何做？
-输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?
-对于远">
+
+输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用react + ant-design遇到的几个问题">
 <meta property="og:url" content="http://yoursite.com/2017/02/09/react/使用react遇到的几个问题/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗
+
 接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破
+
 ant-design的控件自定义校验如何做？
-输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?
-对于远">
-<meta property="og:updated_time" content="2017-02-15T10:41:51.000Z">
+
+输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?">
+<meta property="og:updated_time" content="2017-02-21T01:50:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用react + ant-design遇到的几个问题">
 <meta name="twitter:description" content="有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗
+
 接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破
+
 ant-design的控件自定义校验如何做？
-输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?
-对于远">
+
+输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?">
 
 
 
@@ -313,12 +319,31 @@ ant-design的控件自定义校验如何做？
 
       
         <ol>
-<li>有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗</li>
-<li>接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破</li>
-<li>ant-design的控件自定义校验如何做？</li>
-<li>输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?</li>
-<li>对于远程拿到的id，name数据，用select展示，但select的onChange只能获取value而不能获取相应的id</li>
-<li>验证报错: async-validator， xxx is not a string, 这个是因为用了getFieldDecorator, 需要设置required参数</li>
+<li><p>有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗</p>
+</li>
+<li><p>接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破</p>
+</li>
+<li><p>ant-design的控件自定义校验如何做？</p>
+</li>
+<li><p>输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?</p>
+</li>
+<li><p>对于远程拿到的id，name数据，用select展示，但select的onChange只能获取value而不能获取相应的id</p>
+</li>
+<li><p>验证报错: async-validator， xxx is not a string, 这个是因为用了getFieldDecorator, 需要设置required参数</p>
+</li>
+<li><p>对于select，用了labelnValue会报Uncaught TypeError: Cannot create property ‘label’ on string ‘’错误,</p>
+<p>原因： 用了getFieldDescriptor，然而设置了个initialValue为””，所以当加了labelInValue的选项时，只有value值却没有label值</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果这个onClick事件是有参数的，并且这个参数不是标准定义的，那这边onClick该怎么写呢</p>
+</li>
+<li><p>如果需要通过编程来做页面跳转会需要一下这个点，</p>
+<p><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating" target="_blank" rel="external">https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating</a></p>
+<p>但这个有个限制是需要用browerHistory，hashHistory是有不行的，是否有办法来解决呢？</p>
+</li>
+<li><p>react-router如果要在不同component之间通过跳转来传多于一个参数该怎么做？</p>
+<p>​    通过this.props.location.query.(name)</p>
+</li>
 </ol>
 
       
@@ -428,7 +453,7 @@ ant-design的控件自定义校验如何做？
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">90</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -436,7 +461,7 @@ ant-design的控件自定义校验如何做？
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -445,7 +470,7 @@ ant-design的控件自定义校验如何做？
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

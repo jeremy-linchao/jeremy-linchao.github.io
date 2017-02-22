@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/06/javascript/Javascript 数组类型/" itemprop="url">
-                  javascript数组
+                <a class="post-title-link" href="/2016/12/14/javascript/javascript对象字典排序/" itemprop="url">
+                  Javascript中对象字典排序
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T11:07:49+08:00" content="2016-12-06">
-              2016-12-06
+            <time itemprop="dateCreated" datetime="2016-12-14T16:13:30+08:00" content="2016-12-14">
+              2016-12-14
             </time>
           </span>
 
@@ -306,21 +306,13 @@
       
         
           
-            <p>js的数组和其他语言的数组类型相差还是很大，<strong>其一</strong>表现在js的数组并不要求一个数组内的数据类型都是一致，如下的数组定义是没有问题的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="string">"abc"</span>,<span class="number">5.6</span>,&#123;<span class="string">'name'</span>:<span class="string">'lin'</span>&#125;];</div><div class="line"><span class="built_in">console</span>.log(a)</div></pre></td></tr></table></figure>
-<p><strong>其二</strong>表现在数组的长度length这个属性不仅仅是只读的，也是可写的，比如上面的代码改为,这样就只会打印出两个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a.length = 2;</div><div class="line">console.log(a)</div></pre></td></tr></table></figure>
-<p>​    数组的栈方法：push(), pop() </p>
-<p>​        数组的队列方法：push(),unshift()       数组末进入，数组头出</p>
-<p>​                                       unshift(), pop()        数组头进入，数组末尾处</p>
-<p>​    数组排序方法：sort()  接收一个compare函数， 比较函数接收两个参数，如果第一个参数应该位于第二个参数之前则返回一个负数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function compare(value1, value2)&#123;</div><div class="line">  if (value1 &lt; value2)&#123;</div><div class="line">    return -1;</div><div class="line">  &#125; else if (value1 &gt; value2)&#123;</div><div class="line">    return 1;</div><div class="line">  &#125; else &#123;</div><div class="line">    return 0;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    数组concat方法：这个方法先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。在没有给concat()传递参数的情况下，它只是复制当前数组并返回副本</p>
-<p>​    数组slice() 方法：接收一个或两个参数，如果是一个参数，就返回从这个索引到数组末尾的整个一个新数组，如果是两个参数，就返回从第一个索引到第二参数-1这个索引的新数组</p>
-<p>​       数组splice()方法：1）删除：2个参数，第一项的位置    和要删除的项数    2）插入：3个参数， 起始位置，0（要删除的项数），要插入的项  3）替换</p>
-<p>​      数组 indexOf() 方法：接收两个参数，要查找的项和表示查找起点的索引(索引)</p>
-<p>​      数组迭代方法：every(),filter(),forEach(),map(),some()   每个传入的函数接收三个参数，数组项的值，该项在数组中的位置，数组对象本身</p>
-<p>​      数组reduce() 方法：每个传入的函数接收4个参数：前一个值，当前值，项的索引和数组对象</p>
+            <p>All methods that iterate over property keys do so in the same order:</p>
+<ol>
+<li>First all Array indices, sorted numerically.</li>
+<li>Then all string keys (that are not indices), in the order in which they were created.</li>
+<li>Then all symbols, in the order in which they were created</li>
+</ol>
+<p>Object.keys(unordered).sort().forEach(function(key) {<br>  ordered[key] = unordered[key];<br>});</p>
 
           
         
@@ -370,8 +362,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/06/javascript/Javascipt 变量基本类型与引用类型/" itemprop="url">
-                  javascript基本类型和引用类型
+                <a class="post-title-link" href="/2016/12/14/concept/API 设计/" itemprop="url">
+                  API设计
                 </a>
               
             
@@ -384,8 +376,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T10:08:31+08:00" content="2016-12-06">
-              2016-12-06
+            <time itemprop="dateCreated" datetime="2016-12-14T10:44:28+08:00" content="2016-12-14">
+              2016-12-14
             </time>
           </span>
 
@@ -398,8 +390,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
                   </a>
                 </span>
 
@@ -433,456 +425,55 @@
       
         
           
-            <h3 id="Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date"><a href="#Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date" class="headerlink" title="Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date"></a>Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date</h3><h3 id="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"><a href="#引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针" class="headerlink" title="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"></a>引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针</h3><h3 id="所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"><a href="#所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象" class="headerlink" title="所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"></a>所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象</h3><h3 id="函数传递的时候也是按值来传递"><a href="#函数传递的时候也是按值来传递" class="headerlink" title="函数传递的时候也是按值来传递"></a>函数传递的时候也是按值来传递</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/git/Git remote branch/" itemprop="url">
-                  Git remote branch
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T10:00:15+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="git-fetch-origin"><a href="#git-fetch-origin" class="headerlink" title="git fetch origin"></a>git fetch origin</h3><p>This command looks up which server “origin” is (in this case, it’s <code>git.ourcompany.com</code>), fetches any data from it that you don’t yet have, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position.</p>
-<h5 id="这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针"><a href="#这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针" class="headerlink" title="这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针"></a>这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针</h5><p>It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify.</p>
-<h5 id="也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix"><a href="#也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix" class="headerlink" title="也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix"></a>也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix</h5><p>While the <code>git fetch</code> command will fetch down all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself.</p>
-<h5 id="git-fetch不会修改working-directory"><a href="#git-fetch不会修改working-directory" class="headerlink" title="git fetch不会修改working directory"></a>git fetch不会修改working directory</h5><h3 id="git-push-origin-serverfix-awesomebranch"><a href="#git-push-origin-serverfix-awesomebranch" class="headerlink" title="git push origin serverfix:awesomebranch"></a>git push origin serverfix:awesomebranch</h3><p> push your local <code>serverfix</code> branch to the <code>awesomebranch</code> branch on the remote project</p>
-<h3 id="git-checkout-b-branch-remote-branch"><a href="#git-checkout-b-branch-remote-branch" class="headerlink" title="git checkout -b branch remote/branch"></a>git checkout -b branch remote/branch</h3><h5 id="这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote"><a href="#这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote" class="headerlink" title="这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,"></a>这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,</h5><h3 id="git-fetch-all-git-branch-vv"><a href="#git-fetch-all-git-branch-vv" class="headerlink" title="git fetch - - all   git branch -vv"></a>git fetch - - all   git branch -vv</h3><h5 id="查看本地的tracking-branch和远端的upstream-branch关系"><a href="#查看本地的tracking-branch和远端的upstream-branch关系" class="headerlink" title="查看本地的tracking branch和远端的upstream branch关系"></a>查看本地的tracking branch和远端的upstream branch关系</h5>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/04/ide/Chrome 调试/" itemprop="url">
-                  Chrome调试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-04T12:49:56+08:00" content="2016-12-04">
-              2016-12-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ide/" itemprop="url" rel="index">
-                    <span itemprop="name">ide</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="https-egghead-io-lessons-tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools"><a href="#https-egghead-io-lessons-tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools" class="headerlink" title="https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools"></a><a href="https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools" target="_blank" rel="external">https://egghead.io/lessons/tools-unbundle-your-javascript-with-source-maps-in-chrome-devtools</a></h2><ol>
-<li>在Chrome 开发者工具的debugger可以加断点调试，F10和F11分别表示setp over to the next function call 和step into the next function call，watch用来检测表达式<ol>
-<li>如何调试webpack打包后的源码呢呢？ 因为webpack会把所有的依赖以至于代码看起来会非常混乱，所以调试的时候需要分清楚webpack的源码，方法就是在webpack打包的的module.exports的对象里加上这么一条 devtool:”#eval-source-map”</li>
+            <ul>
+<li><p>所有API请求都使用https</p>
+</li>
+<li><p>在response的accept header上加一个版本号，比如 version = 3</p>
+</li>
+<li><p>在所有的response里支持ETags，这样可以允许用户来缓存资源</p>
+</li>
+<li><p>在每个header中包含一个request-id，由uuid构成，目的是为了方便调试和追踪</p>
+</li>
+<li><p>大的response应该用Range头来指定如何获取这些数据<br>​</p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><ol>
+<li>post，put等这些请求的body中只接受序列化的json格式，不要用类似form-endoded的方式，这样可以保持请求和返回的一致</li>
+<li>尽量用复数（加s），除非那个资源是个单实例</li>
+<li>对于每个独立资源，尽量不使用任何special actions，如果需要action，也放在单独的action下   /resources/:resource/actions/:action<ol>
+<li>使用小写字母，对于路径名使用这个划线 “-“，对于属性名，使用下划线_</li>
+<li>路径长度最小化<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2></li>
 </ol>
 </li>
-<li>在source面板下有个snippet，可以在里面写自动化测试函数来简化测试工作</li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/" itemprop="url">
-                  Git 在key正确的情况下仍然无法push的一个可能原因
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T12:09:17+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
-<p>首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.说明key添加的是没有问题的，我确实是这个情况</p>
-<p>第二就是判断你git push或pull的时候到底用的是哪个url，这个可以通过git remote -v来看，如果看到是https的url那就知道问题所在了，用的是https方式传输当然只会让你输入用户名和密码了，改的方式也很简单，git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="external">https://github.com/USERNAME/OTHERREPOSITORY.git</a> ，后面的username/other可以照抄https的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/git/Git 分支 /" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T10:18:50+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: Git分支</p>
-<p>categories: git<br>tags: git</p>
+</li>
+</ul>
 <ol>
-<li>每一个commit对象包含了几样东西，1）size 2）一个指向tree的指针 3）一个指向parent的指针 4）author和committer</li>
-<li>所谓的分支就是一个可移动的指针，指向某个commit对象，创建一个分支git branch就是创建了这么一个指针，这个命令不会移动HEAD指针    </li>
-<li>那Git如何知道现在是工作在哪个分支呢？通过HEAD指针</li>
-<li>可以用Git checkout 移动HEAD指针来指向不同的分支</li>
+<li><p>返回合适的状态码</p>
+<p>200： GET，POST，DELETE，PATCH同步操作顺利完成</p>
+<p>201：POST，PUT异步创建资源成功</p>
+<p>202：POST，PUT，DELETE异步操作</p>
+<p>206：GET操作成功，但只返回一部分数据</p>
+<p>401 Unauthorized： 鉴权失败</p>
+<p>403 Forbidden：对于某一个资源没有特别的权限</p>
+<p>422：无效参数</p>
+<p>429:   请求次数太频繁，做速率限制</p>
+<p>500：内部服务器错误</p>
+</li>
+<li><p>对于每一个资源提供一个UUID</p>
+</li>
+<li><p>对于每个资源提供时间戳</p>
+</li>
+<li><p>使用UTC times  ISO8601</p>
+</li>
+<li><p>使用嵌入对象做外键引用</p>
+<pre><code>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;  </div><div class="line">​</div></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>生成结构化的错误 </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>减少response中json的空格</p>
+</li>
+<li><p>​</p>
+</li>
 </ol>
 
           
@@ -933,8 +524,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/01/git/Git 本地操作/" itemprop="url">
-                  Git本地操作
+                <a class="post-title-link" href="/2016/12/14/node/Express 学习/" itemprop="url">
+                  Express学习
                 </a>
               
             
@@ -947,8 +538,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T10:15:47+08:00" content="2016-12-01">
-              2016-12-01
+            <time itemprop="dateCreated" datetime="2016-12-14T08:43:02+08:00" content="2016-12-14">
+              2016-12-14
             </time>
           </span>
 
@@ -961,228 +552,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处</p>
-<p>git log -p - - stat         Show statistics for files modified in each commit.</p>
-<p>git log  - -pretty=format 可以以指定格式输出</p>
-<h3 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h3><p>git commit - - amend   第一次提交忘记用git add把相关文件加进去了，可以加完之后用这个命令，这样就避免做了两次提交</p>
-<p>git reset HEAD filename  一下子把多个文件加到staged区域里去了，但实际上想做的是分为多次提交，那可以用这个命令把相应的文件拿出来</p>
-<p>git checkout - - file 修改了某个文件但还没有加到staged区域，可以使用这个命令把那些修改重置</p>
-<p>例子： git checkout – bower.json</p>
-<h3 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h3><p>git remote -v 查看远端server的url，origin是指默认的server git当时clone的</p>
-<p>git remote add <shortname> <url> 配置远端server，如果是clone的这步不需要，因为会把origin当做默认的远端server</url></shortname></p>
-<p>git fetch [remote-name] 这个命令会从远端server拿自己没有的数据，如果是clone的用git fetch origin就可以，注意这个命令只是下载，不会merge，同时也不会修改本地的工作目录</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/29/angular/Angular 11.28/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-29T22:38:22+08:00" content="2016-11-29">
-              2016-11-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Angular-11-28"><a href="#Angular-11-28" class="headerlink" title="Angular 11.28"></a>Angular 11.28</h1><h2 id="调试获取scope元素"><a href="#调试获取scope元素" class="headerlink" title="调试获取scope元素"></a>调试获取scope元素</h2><p> 右键审查元素，然后angular.element($0).scope()</p>
-<h2 id="Angular的事件机制"><a href="#Angular的事件机制" class="headerlink" title="Angular的事件机制"></a>Angular的事件机制</h2><ol>
-<li>emit机制： The event life cycle starts at the scope on which <code>$emit</code> was called. All <a href="https://code.angularjs.org/1.3.20/docs/api/ng/type/$rootScope.Scope#$on" target="_blank" rel="external">listeners</a> listening for <code>name</code> event on this scope get notified. Afterwards, the event traverses upwards toward the root scope and calls all registered listeners along the way.  意思是emit首先会被当前scope下的listeners获取到，之后会向上级listeners传</li>
-<li>broadcast机制：The event life cycle starts at the scope on which <code>$broadcast</code> was called. All <a href="https://code.angularjs.org/1.3.20/docs/api/ng/type/$rootScope.Scope#$on" target="_blank" rel="external">listeners</a> listening for <code>name</code> event on this scope get notified. Afterwards, the event propagates to all direct and indirect scopes of the current scope and calls all registered listeners along the way. 意思是borodcast会被当前scope下的listener获取到，之后会向下级的listeners传递</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/24/ide/VSCode 调试/" itemprop="url">
-                  VScode调试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-24T14:08:03+08:00" content="2016-11-24">
-              2016-11-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ide/" itemprop="url" rel="index">
-                    <span itemprop="name">ide</span>
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
                   </a>
                 </span>
 
@@ -1217,11 +588,12 @@
         
           
             <ol>
-<li>打开要调试的文件，按<code>f5</code>,编辑器会生成一个<code>launch.json</code></li>
-<li>修改<code>launch.json</code>相关内容，主要是<code>name</code>和<code>program</code>字段，改成和你项目对应的</li>
-<li>点击编辑器左侧长得像蜘蛛的那个按钮</li>
-<li>点击左上角<code>DEBUG</code>后面的按钮，启动调试</li>
-<li>打断点，尽情调试</li>
+<li><p>如果要获取查询字符串的参数 比如<a href="http://api.ucloud.cn/sanqin?limit=1" target="_blank" rel="external">http://api.ucloud.cn/sanqin?limit=1</a>   可以使用request.query.limit</p>
+</li>
+<li><p>动态路由的参数获取  比如  <a href="http://api.ucloud.cn/sanqin/:companyId" target="_blank" rel="external">http://api.ucloud.cn/sanqin/:companyId</a>  可以使用request.params.companyId来获取sanqin之后的那个参数</p>
+</li>
+<li>通过app.param()这个函数可以截取进来的request，并给request添加一些参数，然后返回给路由，用于在动态路由前做一些pre-condition操作</li>
+<li>如果要解析post请求中的body内容，需要引入一个中间件叫body-parser,</li>
 </ol>
 
           
@@ -1272,8 +644,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/23/coding/血泪教训（三目运算符的计算顺序）/" itemprop="url">
-                  三目运算符的计算顺序
+                <a class="post-title-link" href="/2016/12/14/thinking/对前端的一些感悟/" itemprop="url">
+                  对前端的一些感悟
                 </a>
               
             
@@ -1286,8 +658,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T21:54:15+08:00" content="2016-11-23">
-              2016-11-23
+            <time itemprop="dateCreated" datetime="2016-12-14T00:06:14+08:00" content="2016-12-14">
+              2016-12-14
             </time>
           </span>
 
@@ -1300,8 +672,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index">
-                    <span itemprop="name">coding</span>
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
                   </a>
                 </span>
 
@@ -1335,7 +707,806 @@
       
         
           
-            <p>三目运算符的计算顺序是从右向左的！！！</p>
+            <p>​    做前端差不多有一个多月了，之间也看过听到了大家对前端的一些感悟，比如那篇转发很多的《2016年学javascript》是一个什么样的体验，在我第一次看的时候我也觉得“哇靠，前端都在折腾些啥啊“，但当我慢慢地看深入一些，发现事情并不是这样。</p>
+<p>​    要理解前端的这些变化，必须要理解单页应用。在很早期的时候，web的前端主要是一个负责html解析，样式和动画的渲染，每一次用户点击一个链接或者一个button，请求都是要发到服务器端，服务器或直接返回静态页面，或者从数据库拉取数据然后生成html返回浏览器，这里面的页面渲染和路由都是在服务端做的，但仔细一想会觉得这个其实不合理，浏览器大多数情况下只要更新数据，为什么每次都要重新渲染个html页面过来呢，一来会增加传输带宽，二来呢主要是影响用户体验，毕竟在网络情况不是太好的时候这是个很大问题。</p>
+<p>​    这时候回想传统的CS架构，为什么觉得CS架构用户体验会好，除了开发语言C/C++直接编译成二进制的优势，很大程度上是因为CS架构的很多UI操作都是在本地完成，与服务器通信也只需要通过tcp获取需要的数据，所以我觉得单页应用并没有什么太新的概念，<strong><em>他只不过是回归了本来应该的样子</em>，浏览器在第一次加载的时候从服务器拉取了下这个应用的代码</strong>。为什么以前没有，我想一方面是浏览器对于js的程度越来越好，另外就是大家对用户体验越来越看重。</p>
+<p>​    如果理解了单页应用，那随后几个概念其实很好理解，也能理解为什么会有。首先是webpack，webpack是一个解决前端依赖和打包的工具，因为一旦路由和逻辑放到了前端，前端的代码量会急剧上升，很多模块间会需要通过<script></script>做多个导入，但是这些模块又会有相互依赖，webpack的一个作用就是来解决js加载的顺序问题，另外js代码的压缩及混淆工作也是一个非常重要的事情，不然那么多js代码，首次加载会非常之慢。</p>
+<p>​    Babel是做了另外一方面的事情，是关于语法，ES6的推出确实是一件非常振奋人心的事，里面有很多我非常喜欢的特性，比如let的块级作用，比如解构赋值，比如promise对象，但由于浏览器的支持总是分阶段的，所以为了最大的兼容性，还是需要ES5的代码，Babel就是干了这么一件事，把ES6以及之后的代码转换成ES5的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
+                  Node学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
+              2016-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
+<p>module.exports.a = a;</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/09/git/Git reset 和 git checkout 的区别/" itemprop="url">
+                  Git reset 和 git checkout 的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-09T14:54:13+08:00" content="2016-12-09">
+              2016-12-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头</p>
+</li>
+<li><p>git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置</p>
+<p>git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有</p>
+<p>git reset - -hard HEAD~ 移动HEAD到那个commit，并且同时重置staged区域以及工作目录，这个因为会覆盖工作目录会有一点风险性，如果你当前修改的东西没有commit然后hard的话当前的找不到，当然如果是简单想回去看看，那是没有问题的</p>
+</li>
+<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
+<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/08/mac/Mac下启动和重启nginx/" itemprop="url">
+                  mac本地使用nginx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T16:43:59+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
+<p>终端下敲一个brew services可以看到具体的用法比如</p>
+<p>brew services [start|restart|stop] nginx </p>
+<p><strong>如果nginx是run在80端口，需要加sudo</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/07/es6/ES6学习(2)/" itemprop="url">
+                  ES6学习(2)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T17:53:59+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Set类型</p>
+</li>
+<li><p>Set：类似于数组，但成员值是唯一的，没有重复的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var set = new Set([1, 2, 3, 4, 4]);</div><div class="line">[...set]</div><div class="line">// [1, 2, 3, 4]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个例子展示了一种数组去重的方法[…new Set(array)]</p>
+<ol>
+<li><p>Map类型</p>
+<p>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var data = &#123;&#125;;</div><div class="line">var element = document.getElementById(&apos;myDiv&apos;);</div><div class="line"></div><div class="line">data[element] = &apos;metadata&apos;;</div><div class="line">data[&apos;[object HTMLDivElement]&apos;] // &quot;metadata&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Symbol类型： 表示一个独一无二的数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let s = Symbol();</div><div class="line">typeof s</div><div class="line">// &quot;symbol&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Proxy：用于修改某些操作的默认行为，可以理解成在目标对象之前假设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var obj = new Proxy(&#123;&#125;, &#123;</div><div class="line">  get: function (target, key, receiver) &#123;</div><div class="line">    console.log(`getting $&#123;key&#125;!`);</div><div class="line">    return Reflect.get(target, key, receiver);</div><div class="line">  &#125;,</div><div class="line">  set: function (target, key, value, receiver) &#123;</div><div class="line">    console.log(`setting $&#123;key&#125;!`);</div><div class="line">    return Reflect.set(target, key, value, receiver);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Generator函数：Generator函数是一个状态机，封装了多个内部状态，执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
+<p>1）定义上，Generator函数是一个普通函数，但是有两个特征。一是，<code>function</code>关键字与函数名之间有一个星号；二是，函数体内部使用<code>yield</code>语句，定义不同的内部状态</p>
+<p>2）调用上，是在函数名后面加上一对圆括号。不同的是，调用Generator函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象</p>
+<p>3）下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用<code>next</code>方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个<code>yield</code>语句（或<code>return</code>语句）为止</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/07/ide/WebStorm 下设置支持ES6/" itemprop="url">
+                  WebStorm 下设置支持ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T10:05:10+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ide/" itemprop="url" rel="index">
+                    <span itemprop="name">ide</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>说句题外话，vscode和webstorm我都使用了一些，特别一开始因为vscode是免费的所以很支持，但我觉得在用户体验上vscode真的差的很多，几个直观感受</p>
+<ol>
+<li><p>设置node的版本： 在webstorm的preferrence上可以直接设置，vscode我是没有很容易找到，应该是要在配置文件里设置</p>
+</li>
+<li><p>ES6语法支持：在webstorm下可以直接在perference上配置，vscode得在项目根目录下建立一个jsconfig文件</p>
+</li>
+<li><p>另外要特别注意的一点是除了要设置IDE，node的版本也需要关注下，下面这个链接是node不同版本对于ES6的支持程度</p>
+<p><a href="http://node.green/" target="_blank" rel="external">http://node.green/</a></p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/06/es6/ES6 学习(1)/" itemprop="url">
+                  ES6学习(1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-06T16:09:04+08:00" content="2016-12-06">
+              2016-12-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>let用来声明块级作用域变量。let不会像var那样发生变量提升，所以一定要在声明后使用。另外在一个块级作用域内如果用let声明了一个局部变量，那么这个变量会绑定这个块级作用域，所有在let变量声明前对该变量的操作都会报错</p>
+<p><strong><em>为什么需要块级作用域？</em></strong> 先来看下没有块级作用域带来的几个问题</p>
+<p>1） 内层变量可能会覆盖外层变量，或者说外层的变量不会受内层变量影响，下面这个例子console.log（tmp）这个tmp就被内层的tmp影响了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var tmp = new Date();</div><div class="line"></div><div class="line">function f() &#123;</div><div class="line">  console.log(tmp);</div><div class="line">  if (false) &#123;</div><div class="line">    var tmp = &quot;hello world&quot;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(); // undefined</div></pre></td></tr></table></figure>
+<p>2)   用来计数的循环变量泄露为全局变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; s.length; i++) &#123;</div><div class="line">  console.log(s[i]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(i);</div></pre></td></tr></table></figure>
+</li>
+<li><p>const命令：声明一个只读的常量。一旦声明，常量的值就不能改变。声明后必须立即初始化</p>
+</li>
+<li><p><code>var</code>命令和<code>function</code>命令声明的全局变量，依旧是顶层对象的属性；而<code>let</code>命令、<code>const</code>命令、<code>class</code>命令声明的全局变量，不属于顶层对象的属性</p>
+</li>
+<li><p>解构赋值（Destructuring):  按照一定模式，从数组和对象中提取值，对变量进行赋值</p>
+<p>如果为多个变量赋值，原先需要这样写，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">var b = 2;</div><div class="line">var c = 3;</div></pre></td></tr></table></figure>
+<p>但现在可以写成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var [a, b, c] = [1, 2, 3];</div></pre></td></tr></table></figure>
+<p>也可以为对象来解构赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var &#123; bar, foo &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">foo // &quot;aaa&quot;</div><div class="line">bar // &quot;bbb&quot;</div><div class="line"></div><div class="line">var &#123; baz &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">baz // undefined</div></pre></td></tr></table></figure>
+<p><strong><em>那些场景下使用解构比较好呢?</em></strong></p>
+<p>1)  交换变量的值： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
+<p>2）提取JSON数据：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var jsonData = &#123;</div><div class="line">  id: 42,</div><div class="line">  status: &quot;OK&quot;,</div><div class="line">  data: [867, 5309]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let &#123; id, status, data: number &#125; = jsonData;</div><div class="line"></div><div class="line">console.log(id, status, number);</div><div class="line">// 42, &quot;OK&quot;, [867, 5309]</div></pre></td></tr></table></figure>
+<ol>
+<li><p>函数参数的默认值：</p>
+<p>在ES6之前，不能直接为函数的参数指定默认值，只能用变通的方法</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function log(x, y) &#123;</div><div class="line">  y = y || &apos;World&apos;;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello World</div></pre></td></tr></table></figure>
+<p>上面代码检查函数<code>log</code>的参数<code>y</code>有没有赋值，如果没有，则指定默认值为<code>World</code>。这种写法的缺点在于，如果参数<code>y</code>赋值了，但是对应的布尔值为<code>false</code>，则该赋值不起作用。就像上面代码的最后一行，参数<code>y</code>等于空字符，结果被改为默认值 ，就像这个例子中的第三个log函数，很明显是想打一个空值，但最后被打成了默认值，而在ES6中可以直接这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function log(x, y = &apos;World&apos;) &#123;</div><div class="line">  console.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(&apos;Hello&apos;) // Hello World</div><div class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</div><div class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello</div></pre></td></tr></table></figure>
+<ol>
+<li><p>rest参数</p>
+<p>这个例子下，theArgs是一个数组，数组的内容是从第三个开始到最后的所有参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(a, b, ...theArgs) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var f = v =&gt; v;</div></pre></td></tr></table></figure>
+<p>这个写法等同于如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var f = function(v) &#123;</div><div class="line">  return v;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var f = () =&gt; 5;</div><div class="line">// 等同于</div><div class="line">var f = function () &#123; return 5 &#125;;</div><div class="line"></div><div class="line">var sum = (num1, num2) =&gt; num1 + num2;</div><div class="line">// 等同于</div><div class="line">var sum = function(num1, num2) &#123;</div><div class="line">  return num1 + num2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>箭头函数使用场景</strong></p>
+<p>1） 简化回调函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 正常函数写法</div><div class="line">[1,2,3].map(function (x) &#123;</div><div class="line">  return x * x;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">[1,2,3].map(x =&gt; x * x);</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var result = values.sort(function (a, b) &#123;</div><div class="line">  return a - b;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 箭头函数写法</div><div class="line">var result = values.sort((a, b) =&gt; a - b);</div></pre></td></tr></table></figure>
+<p>使用注意点：</p>
+<p>（1）函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
+<p>（4）不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</p>
+<p>针对于第一点的一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var id = 21;</div><div class="line"></div><div class="line">foo.call(&#123; id: 42 &#125;);</div><div class="line">// id: 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>for … of 循环</p>
+<p>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为具有iterator接口，就可以用<code>for...of</code>循环遍历它的成员。也就是说，<code>for...of</code>循环内部调用的是数据结构的<code>Symbol.iterator</code>方法。</p>
+<p><code>for...of</code>循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如<code>arguments</code>对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。​</p>
+</li>
+</ol>
 
           
         
@@ -1368,7 +1539,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1409,7 +1580,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">90</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1417,7 +1588,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1426,7 +1597,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
