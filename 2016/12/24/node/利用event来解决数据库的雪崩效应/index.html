@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="event node," />
 
 
 
@@ -84,31 +84,19 @@
 
 
 
-<meta name="description" content="title:利用event来解决数据库的雪崩效应
-categories:node
-tags:event node
-
-利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
-12345var select = function(ca">
+<meta name="description" content="利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
+12345var select = function(callback)&amp;#123;  db.select(&amp;quot;SQL&amp;quot;,function(results)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="利用event来解决数据库的雪崩效应">
 <meta property="og:url" content="http://yoursite.com/2016/12/24/node/利用event来解决数据库的雪崩效应/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="title:利用event来解决数据库的雪崩效应
-categories:node
-tags:event node
-
-利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
-12345var select = function(ca">
-<meta property="og:updated_time" content="2016-12-24T04:38:49.000Z">
+<meta property="og:description" content="利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
+12345var select = function(callback)&amp;#123;  db.select(&amp;quot;SQL&amp;quot;,function(results)">
+<meta property="og:updated_time" content="2017-03-14T00:32:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
-<meta name="twitter:description" content="title:利用event来解决数据库的雪崩效应
-categories:node
-tags:event node
-
-利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
-12345var select = function(ca">
+<meta name="twitter:title" content="利用event来解决数据库的雪崩效应">
+<meta name="twitter:description" content="利用event来解决数据库的雪崩效应在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：
+12345var select = function(callback)&amp;#123;  db.select(&amp;quot;SQL&amp;quot;,function(results)">
 
 
 
@@ -126,7 +114,7 @@ tags:event node
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> 利用event来解决数据库的雪崩效应 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +244,7 @@ tags:event node
             
             
               
-                
+                利用event来解决数据库的雪崩效应
               
             
           </h1>
@@ -273,6 +261,25 @@ tags:event node
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -296,21 +303,12 @@ tags:event node
       
 
       
-        <p>title:利用event来解决数据库的雪崩效应</p>
-<p>categories:node</p>
-<p>tags:event node</p>
-<hr>
-<h2 id="利用event来解决数据库的雪崩效应"><a href="#利用event来解决数据库的雪崩效应" class="headerlink" title="利用event来解决数据库的雪崩效应"></a>利用event来解决数据库的雪崩效应</h2><p>在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：</p>
+        <h2 id="利用event来解决数据库的雪崩效应"><a href="#利用event来解决数据库的雪崩效应" class="headerlink" title="利用event来解决数据库的雪崩效应"></a>利用event来解决数据库的雪崩效应</h2><p>在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var select = function(callback)&#123;</div><div class="line">  db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">    callback(results);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一个办法就是加一个状态锁：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var select = function(</div></pre></td></tr></table></figure>
-<ul>
-<li><p>f</p>
-<hr>
-<p>​</p>
-</li>
-</ul>
-
+<p>一个办法就是加一个状态锁,这样的缺点就是只有第一次查询是可以的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var status = &quot;ready&quot;;</div><div class="line">var select = function(callback)&#123;</div><div class="line">  if (status=&quot;ready&quot;)&#123;</div><div class="line">    status = &quot;pending&quot;;</div><div class="line">    db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">      status = &quot;ready&quot;;</div><div class="line">      callback(results);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>更好的解决办法是使用事件队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var proxy = new event.EventEmitter();</div><div class="line">var status = &quot;ready&quot;;</div><div class="line">var select = function(callback)&#123;</div><div class="line">  proxy.once(&quot;selected&quot;,callback);</div><div class="line">  if (status===&quot;ready&quot;)&#123;</div><div class="line">    status = &quot;pending&quot;;</div><div class="line">    db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">      proxy.emit(&quot;selected&quot;,resuts);</div><div class="line">      status = &quot;ready&quot;;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -329,6 +327,12 @@ tags:event node
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/event-node/" rel="tag">#event node</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -341,6 +345,10 @@ tags:event node
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/26/utility/跳板机共享token/" rel="prev" title="跳板机共享token">
+                跳板机共享token <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -408,7 +416,7 @@ tags:event node
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -416,7 +424,7 @@ tags:event node
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -425,7 +433,7 @@ tags:event node
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -473,7 +481,7 @@ tags:event node
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

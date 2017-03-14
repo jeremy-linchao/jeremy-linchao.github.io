@@ -243,6 +243,125 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/03/math/一元高阶方程求数值解/" itemprop="url">
+                  一元高阶方程求数值解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-03T11:55:27+08:00" content="2017-01-03">
+              2017-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index">
+                    <span itemprop="name">math</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天同事给我一个求增长率的问题，比如年底时候月消费额是a，老板定了个指标一季度的消费额要到b，求每月的增长率是多少，抽象成数学问题就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a*(1+x) + a*(1+x)*(1+x) + a*(1+x)*(1+x)*(1+x) = b</div></pre></td></tr></table></figure>
+<p>搜了很多，解决方案是通过python的sympy库</p>
+<p>from sympy.solvers import solve</p>
+<p>from sympy import Symbol</p>
+<p>x = Symbol(‘x’)</p>
+<p>solve(x<strong> 3+x</strong> 2+ x -4.054, x)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/30/node/mocha遇到EADDRINUSE问题/" itemprop="url">
                   mocha遇到EADDRINUSE问题
                 </a>
@@ -311,6 +430,120 @@
 <p>仔细看这个原因是地址已经被使用了，可是我明明就起了一个3000的express，所以仔细看下测试的代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//During the test the env variable is set to test</div><div class="line">process.env.NODE_ENV = &apos;test&apos;;</div><div class="line"></div><div class="line">let mongoose = require(&quot;mongoose&quot;);</div><div class="line">let Book = require(&apos;../app/models/book&apos;);</div><div class="line"></div><div class="line">//Require the dev-dependencies</div><div class="line">let chai = require(&apos;chai&apos;);</div><div class="line">let chaiHttp = require(&apos;chai-http&apos;);</div><div class="line">let server = require(&apos;../server&apos;);</div><div class="line">let should = chai.should();</div><div class="line"></div><div class="line">chai.use(chaiHttp);</div><div class="line">//Our parent block</div><div class="line">describe(&apos;Books&apos;, () =&gt; &#123;</div><div class="line">    beforeEach((done) =&gt; &#123; //Before each test we empty the database</div><div class="line">        Book.remove(&#123;&#125;, (err) =&gt; &#123;</div><div class="line">            done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    /*</div><div class="line">     * Test the /GET route</div><div class="line">     */</div><div class="line">    describe(&apos;/GET book&apos;, () =&gt; &#123;</div><div class="line">        it(&apos;it should GET all the books&apos;, (done) =&gt; &#123;</div><div class="line">            chai.request(server)</div><div class="line">                .get(&apos;/book&apos;)</div><div class="line">                .end((err, res) =&gt; &#123;</div><div class="line">                    res.should.have.status(200);</div><div class="line">                    res.body.should.be.a(&apos;array&apos;);</div><div class="line">                    res.body.length.should.be.eql(0);</div><div class="line">                    done();</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>这里面有个chai.request(server)，实际上会新起一个server，这就导致了会监听在重复的端口</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/node/nodemon和morgan/" itemprop="url">
+                  nodemon和morgan
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T17:44:52+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.nodemon可以用来管理和重启node的进程，如果要重启只需要随时输入个rs命令即可，</p>
+<p>2.morgan可以将http的请求打到控制台，节省了自己写console.log的工作，当然如果是生产环境还是会用log4js专门记录到日志文件中去</p>
 
           
         
@@ -1175,235 +1408,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/utility/ssh key无法登陆/" itemprop="url">
-                  ssh key无法登陆
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-26T16:44:04+08:00" content="2016-12-26">
-              2016-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在跳板机上做了一个操作把代码发到开发机，然后在跳板机上rsync忘写了原目录，导致rsync的时候把目标的home目录的权限改了，用的命令是rsync -avzp，以至于ssh key无法登陆，通过ssh -vvv看到有这个错误，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">debug1: Connection established.</div><div class="line">debug1: identity file /home/peter/.ssh/identity type -1</div><div class="line">debug3: Not a RSA1 key file /home/peter/.ssh/id_rsa.</div><div class="line">debug2: key_type_from_name: unknown key type &apos;-----BEGIN&apos;</div><div class="line">debug3: key_read: missing keytype</div><div class="line">debug3: key_read: missing whitespace</div></pre></td></tr></table></figure>
-<p>查看了原目机器上的公私钥都是对的，错误的原因是在rsync的时/root的权限也改了，这次的问题我觉得是一个很大的问题，即使这台机器还没上线，重点在于对于生产环境的任何操作都要有敬畏之心，你敲下的每一条命令都要经过思考，对于这个命令的每个参数造成的后果都要做到心里有数</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/utility/跳板机共享token/" itemprop="url">
-                  跳板机共享token
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-26T11:50:07+08:00" content="2016-12-26">
-              2016-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在一次变更中，需要登陆多次跳板机，但由于跳板机采用双因素登陆，每次都得输入token非常麻烦，因此一个比较好的办法是共享一个登陆跳板机的连接，后续的连接不需要再输入token了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ControlMaster auto</div><div class="line">ControlPath ~/.ssh/.ujump.socket</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1449,7 +1453,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1466,7 +1470,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
