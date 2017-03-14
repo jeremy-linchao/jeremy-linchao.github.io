@@ -102,7 +102,7 @@ ant-design的控件自定义校验如何做？
 ant-design的控件自定义校验如何做？
 
 输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?">
-<meta property="og:updated_time" content="2017-02-21T01:50:03.000Z">
+<meta property="og:updated_time" content="2017-02-24T02:36:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用react + ant-design遇到的几个问题">
 <meta name="twitter:description" content="有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗
@@ -344,6 +344,18 @@ ant-design的控件自定义校验如何做？
 <li><p>react-router如果要在不同component之间通过跳转来传多于一个参数该怎么做？</p>
 <p>​    通过this.props.location.query.(name)</p>
 </li>
+<li><p>react如果在页面返回的时候需要重新加载，这不仅浪费资源也降低了用户体验，有什么办法能缓存之前的结果呢？</p>
+</li>
+<li><p>react官方的tutorial强调在每次的state更新的时候使用复制一份，而不是直接更改，这个不是很耗费资源吗？如果数据很大的情况下</p>
+<p>  答： 原因在于比state的内容是否改变是比较耗费性能的，需要遍历对象的所有属性和值然后做比较，但我如果是直接复制个对象，然后改几个参数的话代价在我这端不大，在react那边也只要判断是个新对象就更新就行了</p>
+</li>
+<li><p>react渲染多个元素的时候需要加一个唯一的key值</p>
+</li>
+<li><p>react的setState是一个异步的函数，调用完setState不能确保state值马上就会被更新，如果需要依赖前一个值来更新，比较好的做法是传一个回调函数作为参数，这个回调函数是在setState调用完成后执行的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState((prevState, props) =&gt; &#123;</div><div class="line">  return &#123;myInteger: prevState.myInteger + props.step&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>！不要改变this.state的值，把this.state当作不可改变的值</p>
+</li>
 </ol>
 
       
@@ -453,7 +465,7 @@ ant-design的控件自定义校验如何做？
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">90</span>
+              <span class="site-state-item-count">105</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -470,7 +482,7 @@ ant-design的控件自定义校验如何做？
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
