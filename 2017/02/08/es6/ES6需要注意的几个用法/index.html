@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -84,28 +84,19 @@
 
 
 
-<meta name="description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
-
-git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
-git rese">
+<meta name="description" content="箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，这样在作为回调函数传递时不用显示绑定了
+…用在数组和对象上是扩展运算符，用于将相应的对象和数组展开成一个个的元素，如果用在函数的形参表示将剩余的参数放到一个数组变量中去">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git reset 和 git checkout 的区别">
-<meta property="og:url" content="http://yoursite.com/2016/12/09/git/Git reset 和 git checkout 的区别/index.html">
+<meta property="og:title" content="ES6需要注意的几个用法">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/es6/ES6需要注意的几个用法/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
-
-git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
-git rese">
-<meta property="og:updated_time" content="2016-12-22T12:38:23.000Z">
+<meta property="og:description" content="箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，这样在作为回调函数传递时不用显示绑定了
+…用在数组和对象上是扩展运算符，用于将相应的对象和数组展开成一个个的元素，如果用在函数的形参表示将剩余的参数放到一个数组变量中去">
+<meta property="og:updated_time" content="2017-03-14T00:42:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git reset 和 git checkout 的区别">
-<meta name="twitter:description" content="git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头
-
-git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置
-git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有
-git rese">
+<meta name="twitter:title" content="ES6需要注意的几个用法">
+<meta name="twitter:description" content="箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，这样在作为回调函数传递时不用显示绑定了
+…用在数组和对象上是扩展运算符，用于将相应的对象和数组展开成一个个的元素，如果用在函数的形参表示将剩余的参数放到一个数组变量中去">
 
 
 
@@ -123,7 +114,7 @@ git rese">
   };
 </script>
 
-  <title> Git reset 和 git checkout 的区别 | 学习学习再学习 </title>
+  <title> ES6需要注意的几个用法 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +244,7 @@ git rese">
             
             
               
-                Git reset 和 git checkout 的区别
+                ES6需要注意的几个用法
               
             
           </h1>
@@ -265,8 +256,8 @@ git rese">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-09T14:54:13+08:00" content="2016-12-09">
-              2016-12-09
+            <time itemprop="dateCreated" datetime="2017-02-08T16:15:58+08:00" content="2017-02-08">
+              2017-02-08
             </time>
           </span>
 
@@ -279,8 +270,8 @@ git rese">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
                   </a>
                 </span>
 
@@ -313,14 +304,8 @@ git rese">
 
       
         <ol>
-<li><p>git chekout 是用来移动HEAD指向不同的分支，git reset是在同一个分支内移动HEAD头</p>
-</li>
-<li><p>git reset - - soft HEAD~  只移动HEAD到那个commit，注意此时staged区和工作目录并没有被重置</p>
-<p>git reset - - mixed HEAD~  移动HEAD到那个commit，staged被重置到那个commit，但工作目录没有</p>
-<p>git reset - -hard HEAD~ 移动HEAD到那个commit，并且同时重置staged区域以及工作目录，这个因为会覆盖工作目录会有一点风险性，如果你当前修改的东西没有commit然后hard的话当前的找不到，当然如果是简单想回去看看，那是没有问题的</p>
-</li>
-<li>git reset:        可以作用于commit级别，但是它的主要用途是撤销某个提交</li>
-<li>git checkout: 也可以作用于commit级别，它的用途是查看之前某个version，在查看github源代码的时候特别有用，因为不会覆盖</li>
+<li>箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，这样在作为回调函数传递时不用显示绑定了</li>
+<li>…用在数组和对象上是扩展运算符，用于将相应的对象和数组展开成一个个的元素，如果用在函数的形参表示将剩余的参数放到一个数组变量中去</li>
 </ol>
 
       
@@ -343,7 +328,7 @@ git rese">
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
           
         </div>
       
@@ -352,16 +337,16 @@ git rese">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/08/mac/Mac下启动和重启nginx/" rel="next" title="mac本地使用nginx">
-                <i class="fa fa-chevron-left"></i> mac本地使用nginx
+              <a href="/2017/02/06/utility/mac sudo免密码/" rel="next" title="mac sudo免密码">
+                <i class="fa fa-chevron-left"></i> mac sudo免密码
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/10/node/Node 学习/" rel="prev" title="Node学习">
-                Node学习 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/08/utility/swagger运用/" rel="prev" title="swagger运用">
+                swagger运用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
