@@ -243,6 +243,498 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/21/git/利用git来阅读源代码/" itemprop="url">
+                  利用git来阅读源代码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-21T09:18:25+08:00" content="2017-03-21">
+              2017-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当需要看一个开源库的源代码的时候，比较好的做法是从他比较早的版本来看，如果时间充裕，也可以直接从第一版开始看，这里就需要比较多的git切换操作，有几个命令会很常用，这里列一下</p>
+<ol>
+<li>git log - - pretty=oneline : 这个命令用于列出到当前head位置所有的历史提交</li>
+<li>版本切换 git checkout 5dg322fasf    可以加 -f 来强制切换，在某些情况自己改了某个版本的文件情况下会有用</li>
+<li>git reflog:  查看git的操作记录， 因为git log只是列出到当前commit的历史提交，一旦checkout到较早的commit，想回到较早的版本得找到最近一次提交，git reflog提供了所有关于版本移动的历史，可以通过这个来找到最原始的commit号，当然github本身网站上也有这些信息，只是那样会慢很多还需要网络，不是太方便</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/19/react/react的state更新/" itemprop="url">
+                  react的state更新问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-19T16:59:08+08:00" content="2017-03-19">
+              2017-03-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下："><a href="#在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下：" class="headerlink" title="在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下："></a>在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Wrong</div><div class="line">this.setState(&#123;</div><div class="line">  counter: this.state.counter + this.props.increment,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>而我在实际项目中也有遇到这种问题，我希望在进入if之后就能立即更新setState的值，从而锁死这个if的分支，不让其他程序进入，但如果这个setState的更新可能是异步的，这里就会存在多次进入的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">handleCreate() &#123;</div><div class="line">  if ( !this.state.createServiceOrderLoading ) &#123;</div><div class="line">      this.setState(&#123;</div><div class="line">        createServiceOrderLoading: true</div><div class="line">      &#125;);</div><div class="line">      doBusiness();</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据网上的一些文章说setState有些情况是同步的，有些情况是异步的，这部分我想得看下react的源代码才能搞清楚</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/utility/more about shadowsocks/" itemprop="url">
+                  more about shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:55:59+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="关于fail2ban"><a href="#关于fail2ban" class="headerlink" title="关于fail2ban"></a>关于fail2ban</h4><p>看到日志里有很多如下的错误，确定是暴力破解，使用fail2ban来防止暴力破解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017-03-15 10:22:02 ERROR    can not parse header when handling connection from 219.82.134.65:55473</div><div class="line">2017-03-15 10:22:02 WARNING  unsupported addrtype 22, maybe wrong password or encryption method</div></pre></td></tr></table></figure>
+<p>具体的步骤如下：</p>
+<ol>
+<li><p>切换root： sudo su -</p>
+</li>
+<li><p>安装fail2ban  sudo apt-get install fail2ban</p>
+</li>
+<li><p>创建fail2ban相应的ss顾虑器，可以进到/etc/fail2ban/filter.d/，看到有很多创模板过滤器，vim shadowsocks.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[Definition]</div><div class="line"></div><div class="line">_daemon = shadowsocks</div><div class="line"></div><div class="line">failregex = ^\s+ERROR\s+can not parse header when handling connection from &lt;HOST&gt;:\d+$</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认的fail2ban配置，vim /etc/fail2ban/jail.conf ，将banaction改成iptables</p>
+</li>
+<li><p>添加jail.local配置， vim /etc/fail2ban/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[shadowsocks]</div><div class="line">enabled = true</div><div class="line">filter = shadowsocks</div><div class="line">port = 443</div><div class="line">logpath = /var/log/shadowsocks.log</div><div class="line">maxretry = 10 # 最多尝试几次就算失败</div><div class="line">bantime = 3600 # 封锁时间(秒)</div><div class="line">logencoding = utf-8 # log文件编码</div><div class="line">findtime = 86400 # 找寻时间</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务 service fail2ban start</p>
+</li>
+<li><p>查看是否生效： fail2ban-client status shadowsocks</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/react/create-react-app学习/" itemprop="url">
+                  create-react-app学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:25:02+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在index.js主要到有如下一个import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./index.css&apos;;</div></pre></td></tr></table></figure>
+<p>这个import其实不是ES6的语法，而是webpack对于import的补充，用于将css文件impor到js文件中去</p>
+</li>
+<li><p>在webpack中通过import引入css，font，img的优点</p>
+<p>1）js和css打包在一起并被压缩可以减少网络请求</p>
+<p>2）如果某个文件确实在编译时候报错，而不是在用户请求的时候报404</p>
+<p>3）文件名会带hash值，因此不用担心浏览器会缓存旧版本</p>
+</li>
+<li><p>利用react-snapshot可以做页面静态化</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/13/utility/nginx使用/" itemprop="url">
                   nginx使用
                 </a>
@@ -907,496 +1399,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/javascript/现代javacript/" itemprop="url">
-                  现代javacript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T10:02:16+08:00" content="2017-03-08">
-              2017-03-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>nodejs： nodejs是一个javascript运行时环境，可以类比于java的虚拟机，在后端的作用比较好理解，业务逻辑开发，工具脚本开发等都是它的用武之地，但是在前端开发中也会经常包含node，这点有时候不是太好理解。nodejs在前端的作用主要有如下几个： 前端程序的打包，测试，以及语法规范检查等等</p>
-</li>
-<li><p>npm： node默认的包管理器</p>
-</li>
-<li><p>yarn： 新的node包管理器，速度更快，离线support，并且获取依赖会更快</p>
-</li>
-<li><p>package.json:  项目的描述和配置文件，包括项目名称，版本，贡献者，依赖等等，除了可以用npm init之外，也可以用yarn init来生成</p>
-</li>
-<li><p>babel-node的作用：replace your call to the node binary and execute ES6 files directly on the fly，之前看到这句话不是很理解，node不是对ES6支持的非常好吗，为什么还需要babel呢？回想一下，有一个语法是至少现在的node是不支持的，那就是模块。node的模块化系统用的是COMMONJS标准，而ES6用的是import和export，这里就需要babel-node来做转化了</p>
-</li>
-<li><p>ES-lint:  ESLint is the linter of choice for ES6 code. A linter gives you recommendations about code formatting, which enforces style consistency in your code, and code you share with your team. It’s also a great way to learn about JavaScript by making mistakes that ESLint will catch.</p>
-<p>我的理解：ES-lint就是一种代码格式化的规范，有了他团队协作开发就很方便，之前可能还需要在code_review里做些代码格式的检查，那现在只需要选一种规范，加载到ES-lint去，团队每个成员的代码都能自动遵循某个规范了，这里面可以用airbnb的<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">规范</a></p>
-<p>另外ESlint可以集成到IDE里去，不要用IDE本身的lint，因为那样的话无法达成统一的规范</p>
-</li>
-<li><p>Flow: A static type checker by Facebook. It detects inconsistent types in your code. For instance, it will give you an error if you try to use a string where should be using a number.</p>
-<p>如果说ES-lint是代码格式检查的工具，那Flow就是对javascript不是强类型作规范</p>
-<p>yarn add –dev flow-bin babel-preset-flow babel-eslint eslint-plugin-flowtype</p>
-<p><code>flow-bin</code> is the binary to run Flow in our <code>scripts</code> tasks, <code>babel-preset-flow</code> is the preset for Babel to understand Flow annotations, <code>babel-eslint</code> is a package to enable ESLint <em>to rely on Babel’s parser</em> instead of its own, and <code>eslint-plugin-flowtype</code> is an ESLint plugin to lint Flow annotations</p>
-</li>
-<li><p>Jest: 一个facebook的测试库，可以测试react</p>
-</li>
-<li><p>Husky： git钩子， 可以在git commit和git push之前运行脚本测试代码</p>
-</li>
-<li><p>​</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/es6/ 进一步理解箭头函数/" itemprop="url">
-                  进一步理解函数的this
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-07T09:18:52+08:00" content="2017-03-07">
-              2017-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>箭头函数的写法可以总结以下几个注意点： </p>
-<p>1） 如果没有参数或者多于一个参数，需要在参数列表里加上（）</p>
-<p>2） 一个参数可以不加（）</p>
-<p>3）语句多于一行，需要用大括号括起来，并且使用return语句返回</p>
-<p>4）如果直接返回一个用{ }创建的对象，需要用（）包裹起来</p>
-</li>
-<li><p><code>this</code> is not an author-time binding but a runtime binding. It is contextual based on the conditions of the function’s invocation. <code>this</code> binding has nothing to do with where a function is declared, but has instead everything to do with the manner in which the function is called</p>
-<p>this是运行时绑定，绑定的是call-site，也就是某个函数的调用方</p>
-</li>
-<li><p>下面这段代码非常迷惑，里面的this值得是啥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = obj.foo; // function reference/alias!</div><div class="line"></div><div class="line">var a = &quot;oops, global&quot;; // `a` also property on global object</div><div class="line"></div><div class="line">bar(); // &quot;oops, global&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。举个例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line">var id = 21;</div><div class="line">foo.call(&#123; id: 42 &#125;);</div></pre></td></tr></table></figure>
-<p>这个箭头函数里面的this指的是它定义时所在的对象，定义是在foo这个函数里定义的，那this就是foo()这个对象了</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/utility/理解前端构建-webpack/" itemprop="url">
-                  理解前端构建-webpack
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-07T09:13:25+08:00" content="2017-03-07">
-              2017-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="为什么需要前端构建工具"><a href="#为什么需要前端构建工具" class="headerlink" title="为什么需要前端构建工具"></a>为什么需要前端构建工具</h4><p>现在的理解： 随着前端各种各样的javascript库层出不穷，前端的模块导入成为一个很大的问题，一个模块可能需要依赖另一个模块，如果仅仅靠自己在前端<script></script> 来控制加载顺序，这个难度就台麻烦了，而且这还只是js，还有css，sass等，</p>
-<h4 id="webpack到底是个什么工具"><a href="#webpack到底是个什么工具" class="headerlink" title="webpack到底是个什么工具"></a>webpack到底是个什么工具</h4><ol>
-<li>module bundler  用来打包所有需要的模块</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/react/Cannot set property 'innerText' of null/" itemprop="url">
-                  Cannot set property 'innerText' of null
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-05T13:53:14+08:00" content="2017-03-05">
-              2017-03-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>遇到这个错误的原因是javascript的脚本放在了head加载，在head里面条用了document.body.innerText，而此时body还是个空值</p>
-<p>解决办法： 把javascipt放到body里面加载</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1437,7 +1444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">109</span>
+              <span class="site-state-item-count">113</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1454,7 +1461,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">83</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
