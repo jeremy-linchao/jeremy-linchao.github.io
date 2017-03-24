@@ -243,6 +243,126 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/14/node/Express 学习/" itemprop="url">
+                  Express学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T08:43:02+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>如果要获取查询字符串的参数 比如<a href="http://api.ucloud.cn/sanqin?limit=1" target="_blank" rel="external">http://api.ucloud.cn/sanqin?limit=1</a>   可以使用request.query.limit</p>
+</li>
+<li><p>动态路由的参数获取  比如  <a href="http://api.ucloud.cn/sanqin/:companyId" target="_blank" rel="external">http://api.ucloud.cn/sanqin/:companyId</a>  可以使用request.params.companyId来获取sanqin之后的那个参数</p>
+</li>
+<li>通过app.param()这个函数可以截取进来的request，并给request添加一些参数，然后返回给路由，用于在动态路由前做一些pre-condition操作</li>
+<li>如果要解析post请求中的body内容，需要引入一个中间件叫body-parser,</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/14/thinking/对前端的一些感悟/" itemprop="url">
                   对前端的一些感悟
                 </a>
@@ -1373,122 +1493,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/git/Git remote branch/" itemprop="url">
-                  Git remote branch
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T10:00:15+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="git-fetch-origin"><a href="#git-fetch-origin" class="headerlink" title="git fetch origin"></a>git fetch origin</h3><p>This command looks up which server “origin” is (in this case, it’s <code>git.ourcompany.com</code>), fetches any data from it that you don’t yet have, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position.</p>
-<h5 id="这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针"><a href="#这个指令会取远端其他分支的更新，同时移动远端的如origin-master指针" class="headerlink" title="这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针"></a>这个指令会取远端其他分支的更新，同时移动远端的如origin/master指针</h5><p>It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify.</p>
-<h5 id="也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix"><a href="#也就是说git-fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git-merge-origin-serverfix-注意这个origin-servervix指的是已经下到本地的那个copy，有一个origin-serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git-checkout-b-serverfix-origin-serverfix" class="headerlink" title="也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix"></a>也就是说git fetch只是将远端的分支数据拿下来，但本地不会创建分支，那个拿下来的代码也是不可编辑的，因此如果要合master的代码还需要再做一步git merge origin/serverfix, 注意这个origin/servervix指的是已经下到本地的那个copy，有一个origin/serverfix指针。另外如果要根据远端的branch创建一个新的分支，可以git checkout -b serverfix origin/serverfix</h5><p>While the <code>git fetch</code> command will fetch down all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself.</p>
-<h5 id="git-fetch不会修改working-directory"><a href="#git-fetch不会修改working-directory" class="headerlink" title="git fetch不会修改working directory"></a>git fetch不会修改working directory</h5><h3 id="git-push-origin-serverfix-awesomebranch"><a href="#git-push-origin-serverfix-awesomebranch" class="headerlink" title="git push origin serverfix:awesomebranch"></a>git push origin serverfix:awesomebranch</h3><p> push your local <code>serverfix</code> branch to the <code>awesomebranch</code> branch on the remote project</p>
-<h3 id="git-checkout-b-branch-remote-branch"><a href="#git-checkout-b-branch-remote-branch" class="headerlink" title="git checkout -b branch remote/branch"></a>git checkout -b branch remote/branch</h3><h5 id="这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote"><a href="#这个命令用来在创建分支的时候设置远程的upstream-branch，也可以用这个git-checkout-–track-origin-serverfix，甚至可以简写成git-checkout-serverfix在满足以下两个条件的情况下，-a-新创建的分支名本地不存在-doesn’t-exist-and-b-分支名远端server就只有这么一个-exactly-matches-a-name-on-only-one-remote" class="headerlink" title="这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,"></a>这个命令用来在创建分支的时候设置远程的upstream branch，也可以用这个git checkout –track origin/serverfix，甚至可以简写成git checkout serverfix在满足以下两个条件的情况下，(a) 新创建的分支名本地不存在 doesn’t exist and (b) 分支名远端server就只有这么一个 exactly matches a name on only one remote,</h5><h3 id="git-fetch-all-git-branch-vv"><a href="#git-fetch-all-git-branch-vv" class="headerlink" title="git fetch - - all   git branch -vv"></a>git fetch - - all   git branch -vv</h3><h5 id="查看本地的tracking-branch和远端的upstream-branch关系"><a href="#查看本地的tracking-branch和远端的upstream-branch关系" class="headerlink" title="查看本地的tracking branch和远端的upstream branch关系"></a>查看本地的tracking branch和远端的upstream branch关系</h5>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1534,7 +1538,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">118</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1542,7 +1546,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1551,7 +1555,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -243,6 +243,154 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/28/es6/你不知道的promise/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T17:48:21+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">doSomething().then(function () &#123;</div><div class="line">  return doSomethingElse();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">doSomething().then(function () &#123;</div><div class="line">  doSomethingElse();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这两个函数有什么区别</p>
+</li>
+<li><p>这是个陷阱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// I want to remove() all docs</div><div class="line">db.allDocs(&#123;include_docs: true&#125;).then(function (result) &#123;</div><div class="line">  result.rows.forEach(function (row) &#123;</div><div class="line">    db.remove(row.doc);  </div><div class="line">  &#125;);</div><div class="line">&#125;).then(function () &#123;</div><div class="line">  // I naively believe all docs have been removed() now!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>promise是什么？<br>A Promise represents a value which may be available now, or in the future, or never</p>
+<p>Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的</p>
+</li>
+<li><p>Promise有以下几种状态:</p>
+<p>​    pending: 初始状态, 既不是 fulfilled 也不是 rejected.</p>
+<p>​    fulfilled: 表示异步代码成功执行（没有错误抛出），且返回值已填充（fulfilled）</p>
+<p>​    rejected: <strong>表示executor执行失败</strong>，Promise被拒绝</p>
+</li>
+<li><p>对于三方库如果是promise-based，即返回的是一个promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(function(result) &#123;</div><div class="line">  console.log(result); // &quot;Stuff worked!&quot;</div><div class="line">&#125;, function(err) &#123;</div><div class="line">  console.log(err); // Error: &quot;It broke&quot;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>.then()   添加肯定和否定回调到当前 promise, 返回一个新的 promise, <strong>将以回调的返回值 来resolve</strong></p>
+</li>
+<li><p>如果函数里面不返回，一下的userAccount将会是undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">getUserByName(&apos;nolan&apos;).then(function (user) &#123;</div><div class="line">  return getUserAccountById(user.id);</div><div class="line">&#125;).then(function (userAccount) &#123;</div><div class="line">  // I got a user account!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>建议: 在then函数里面显示指定返回值</p>
+</li>
+<li><p>promise可以catch回调里面的err，这个需要实践下</p>
+</li>
+<li><p>.catch(rejectHandler)和.then(resolveHandler, rejectHandler) 这两个有什么区别呢？看下面一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;).catch(function (err) &#123;</div><div class="line">  // I caught your error! :)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;, function (err) &#123;</div><div class="line">  // I didn&apos;t catch your error! :(</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>最开始使用promise是这样的 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fetch(reqPostUrl,&#123;</div><div class="line">	method: &apos;POST&apos;,</div><div class="line">    headers: &#123;</div><div class="line">        &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">    &#125;,</div><div class="line">    body: submitFormUrled</div><div class="line">&#125;.then((response)=&gt;&#123;</div><div class="line">  	if(response.status===201)&#123;</div><div class="line">      fetch(reqGetUrl,&#123;</div><div class="line">        method: &apos;GET&apos;</div><div class="line">      &#125;).then((response)=&gt;&#123;</div><div class="line">      	if(response.status===200)&#123;</div><div class="line">          response.json().then((data)=&gt;&#123;</div><div class="line">            doSomethingWith(data);</div><div class="line">          &#125;)</div><div class="line">      	&#125; </div><div class="line">      &#125;);</div><div class="line">  	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">fetch(reqUrl, &#123;</div><div class="line">                method: &apos;POST&apos;,</div><div class="line">                headers: &#123;</div><div class="line">                    &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">                &#125;,</div><div class="line">                body: submitFormUrled</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 201) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125;</div><div class="line">            &#125;).catch((err)=&gt;&#123;</div><div class="line">                console.log(err);</div><div class="line">            &#125;).then((data) =&gt; &#123;</div><div class="line">                let reqUrlProjectDetail = `$&#123;url&#125;project/$&#123;data.id&#125;/`;</div><div class="line">                return fetch(reqUrlProjectDetail);</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 200) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&quot;创建项目失败，请检查客户邮箱是否正确&quot;);</div><div class="line">                &#125;</div><div class="line">            &#125;).then((obj) =&gt; &#123;</div><div class="line">                let map_serivce_provider = &#123;</div><div class="line">                    1: &apos;UCloud&apos;,</div><div class="line">                    2: &apos;三方&apos;,</div><div class="line">                    3: &apos;UCloud与三方&apos;</div><div class="line">                &#125;;</div><div class="line">                const &#123;data, total&#125; = obj;</div><div class="line">                if (total &gt; 0) &#123;</div><div class="line">                    let &#123;service_provider, third_product_name = &quot;无&quot;, engineer_name = &quot;无&quot;&#125; = data[0];</div><div class="line">                    service_provider = map_serivce_provider[service_provider];</div><div class="line">                    let newProjectData = [...that.state.projectData, &#123;</div><div class="line">                        ...data[0],</div><div class="line">                        service_provider,</div><div class="line">                        third_product_name,</div><div class="line">                        engineer_name</div><div class="line">                    &#125;];</div><div class="line">                    form.resetFields();</div><div class="line">                    that.setState(&#123;</div><div class="line">                        visible: false,</div><div class="line">                        projectData: newProjectData</div><div class="line">                    &#125;);</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&apos;创建项目失败&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<p>​    11. callback没有回调，没有return</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">const columns = [</div><div class="line">        &#123;title: &apos;扣费单号&apos;, dataIndex: &apos;item_no&apos;, key: &apos;item_no&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费时间&apos;, dataIndex: &apos;item_time&apos;, key: &apos;item_time&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费金额&apos;, dataIndex: &apos;item_money&apos;, key: &apos;item_money&apos;&#125;,</div><div class="line">        &#123;title: &apos;是否成功&apos;, dataIndex: &apos;item_result&apos;, key: &apos;item_result&apos;&#125;,</div><div class="line">    ];</div><div class="line">    let data = [];</div><div class="line">    let reqUrl = `$&#123;url&#125;project/$&#123;record.project_id&#125;/order/$&#123;record.id&#125;`;</div><div class="line">    console.log(`the order detail id is $&#123;reqUrl&#125;`);</div><div class="line">    fetch(reqUrl,&#123;method:&quot;GET&quot;&#125;).then((response)=&gt;&#123;</div><div class="line">        if(response.status===200)&#123;</div><div class="line">           return response.json();</div><div class="line">        &#125;</div><div class="line">    &#125;).then((d)=&gt;&#123;</div><div class="line">        console.log(&apos;order opened!&apos;);</div><div class="line">        if (d.items.length &gt; 0) &#123;</div><div class="line">            console.log(&apos;item &gt;0&apos;);</div><div class="line">            data = d.items.map((obj) =&gt; &#123;</div><div class="line">                let &#123;item_no, item_time, item_result, item_money=`$&#123;record.money&#125;`&#125; = obj;</div><div class="line">                item_time = new Date(item_time * 1000).toLocaleDateString();</div><div class="line">                item_result = item_result === 1 ? &apos;失败&apos; : &apos;成功&apos;;</div><div class="line"></div><div class="line">                return &#123;item_no, item_time, item_result, item_money&#125;;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return (</div><div class="line">        &lt;Table</div><div class="line">            columns=&#123;columns&#125;</div><div class="line">            dataSource=&#123;data&#125;</div><div class="line">            pagination=&#123;true&#125;</div><div class="line">            rowkey=&quot;item_time&quot;</div><div class="line">        /&gt;</div><div class="line">    );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/26/es6/airbnb的javascript编程规范/" itemprop="url">
                   airbnb的javascript编程规范
                 </a>
@@ -1365,130 +1513,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
-                  javascript的遍历
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>数组的遍历</p>
-<p>1) 原始的for循环： 写法比较麻烦</p>
-<p>2) 数组本身的forEach方法： 无法跳出循环</p>
-<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
-<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
-</li>
-<li><p>对象的遍历 :</p>
-<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
-<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1534,7 +1558,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">118</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1542,7 +1566,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1551,7 +1575,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
