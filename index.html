@@ -243,6 +243,125 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/27/docker/docker学习/" itemprop="url">
+                  docker学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-27T16:03:58+08:00" content="2017-03-27">
+              2017-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-为什么docker？"><a href="#一-为什么docker？" class="headerlink" title="一. 为什么docker？"></a>一. 为什么docker？</h3><h4 id="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><a href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！" class="headerlink" title="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"></a>抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</h4><ol>
+<li>docker其实也是一个client和server的架构，docker daemon就是核心的后台进程，它就是在后台启动了一个API server，负责由docker client发送来的请求， 而client的版本很多，只要遵循docker api即可</li>
+<li>docker容器的本质是宿主机上的进程，通过namespace实现资源隔离，通过cgroup实现资源限制，通过copy-on-write实现高效的文本操作</li>
+</ol>
+<h4 id="二-Mac上的docker开发流程"><a href="#二-Mac上的docker开发流程" class="headerlink" title="二.Mac上的docker开发流程"></a>二.Mac上的docker开发流程</h4><ol>
+<li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持<br>2.<br>139     1390002    AOC线缆10G<br>139     1390003    AOC线缆40G<br>139     1390004    光纤线缆2<em>LC-2</em>LC<br>139     1390005    模块SFP_1G_850nm<br>139     1390006    模块SFP+_10G_850nm<br>139     1390007    模块1000BASE-T_SFP<br>139     1390008    托管内存条16G<br>110     1100006    新数据库机型转托管（24C64G3.6T）<br>110     1100007    新数据库机型2转托管（32C64G3.6T）<br>110     1100008    SSD高性能2转托管（32C64G2.8T）<br>110     1100009    H1-V3转托管（32C192G24T）<br>110     1100010    H2-V3转托管（32C192G4.8T）<br>110     1100011    硬盘扩容型转托管（32C96G48T）<br>110     1100012    内存扩容型转托管（32C192G3.6T）<br>110     1100013    GPU物理机（一块K80）转托管（32C192G2.8T）<br>110     1100014    GPU物理机（2块K80卡）转托管（32C192G2.8T）<br>110     1100015    D2转托管（24C96G36T）<br>139     1390009    PDU改造费<br>139     1390001    服务器或交换机运费<br>44         440100    机柜13A<br>44         440101    机柜20A<br>45         450120    核心交换机内网端口<br>45         450121    核心交换机外网端口<br>103     1030100    外网带宽<br>102     1020101    额外外网IP段/29(8)<br>102     1020102    额外外网IP段/28(16)<br>102     1020103    额外外网IP段/27(32)<br>102     1020104    额外外网IP段/26(64)<br>102     1020105    额外外网IP段/25(128)<br>102     1020106    额外外网IP段/24(256)<br>110     1100001    HPSSD物理机+4条内存(按年付赠送2个月)<br>110     1100002    数据库机型转托管(按年付赠送2个月)<br>43         430150    用户租用千兆交换机(Gigabit)<br>102     1020110    外网IP<br>43         430151    用户租用万兆交换机(Gigabit)<br>110     1100003    固定机型for562<br>110     1100004    固定机型(24C,64G,SSD)for562<br>110     1100005    固定机型内存条16GB</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/26/utility/使用vscode作为git difftool/" itemprop="url">
                   使用vscode作为git difftool
                 </a>
@@ -1294,144 +1413,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/15/utility/more about shadowsocks/" itemprop="url">
-                  more about shadowsocks
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-15T10:55:59+08:00" content="2017-03-15">
-              2017-03-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="关于fail2ban"><a href="#关于fail2ban" class="headerlink" title="关于fail2ban"></a>关于fail2ban</h4><p>看到日志里有很多如下的错误，确定是暴力破解，使用fail2ban来防止暴力破解</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017-03-15 10:22:02 ERROR    can not parse header when handling connection from 219.82.134.65:55473</div><div class="line">2017-03-15 10:22:02 WARNING  unsupported addrtype 22, maybe wrong password or encryption method</div></pre></td></tr></table></figure>
-<p>具体的步骤如下：</p>
-<ol>
-<li><p>切换root： sudo su -</p>
-</li>
-<li><p>安装fail2ban  sudo apt-get install fail2ban</p>
-</li>
-<li><p>创建fail2ban相应的ss顾虑器，可以进到/etc/fail2ban/filter.d/，看到有很多创模板过滤器，vim shadowsocks.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[Definition]</div><div class="line"></div><div class="line">_daemon = shadowsocks</div><div class="line"></div><div class="line">failregex = ^\s+ERROR\s+can not parse header when handling connection from &lt;HOST&gt;:\d+$</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改默认的fail2ban配置，vim /etc/fail2ban/jail.conf ，将banaction改成iptables</p>
-</li>
-<li><p>添加jail.local配置， vim /etc/fail2ban/</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[shadowsocks]</div><div class="line">enabled = true</div><div class="line">filter = shadowsocks</div><div class="line">port = 443</div><div class="line">logpath = /var/log/shadowsocks.log</div><div class="line">maxretry = 10 # 最多尝试几次就算失败</div><div class="line">bantime = 3600 # 封锁时间(秒)</div><div class="line">logencoding = utf-8 # log文件编码</div><div class="line">findtime = 86400 # 找寻时间</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动服务 service fail2ban start</p>
-</li>
-<li><p>查看是否生效： fail2ban-client status shadowsocks</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1472,7 +1458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">120</span>
+              <span class="site-state-item-count">121</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1480,7 +1466,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1489,7 +1475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
