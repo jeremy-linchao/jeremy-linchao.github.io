@@ -307,11 +307,25 @@
         
           
             <h3 id="一-为什么docker？"><a href="#一-为什么docker？" class="headerlink" title="一. 为什么docker？"></a>一. 为什么docker？</h3><h4 id="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><a href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！" class="headerlink" title="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"></a>抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</h4><ol>
-<li>docker其实也是一个client和server的架构，docker daemon就是核心的后台进程，它就是在后台启动了一个API server，负责由docker client发送来的请求， 而client的版本很多，只要遵循docker api即可</li>
-<li>docker容器的本质是宿主机上的进程，通过namespace实现资源隔离，通过cgroup实现资源限制，通过copy-on-write实现高效的文本操作</li>
+<li><p>docker其实也是一个client和server的架构，docker daemon就是核心的后台进程，它就是在后台启动了一个API server，负责由docker client发送来的请求， 而client的版本很多，只要遵循docker api即可</p>
+</li>
+<li><p>docker容器的本质是宿主机上的进程，通过namespace实现资源隔离，通过cgroup实现资源限制，通过copy-on-write实现高效的文本操作</p>
+</li>
 </ol>
-<h4 id="二-Mac上的docker开发流程"><a href="#二-Mac上的docker开发流程" class="headerlink" title="二.Mac上的docker开发流程"></a>二.Mac上的docker开发流程</h4><ol>
-<li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持</li>
+<h3 id="二-docker-machine-和-docker-engine的区别"><a href="#二-docker-machine-和-docker-engine的区别" class="headerlink" title="二. docker machine 和 docker engine的区别"></a>二. docker machine 和 docker engine的区别</h3><ol>
+<li><p>docker engine是我们常说的docker，c-s架构，包括docker daemon和client</p>
+</li>
+<li><p>Docker Machine is a tool for provisioning and managing your Dockerized hosts</p>
+</li>
+</ol>
+<h3 id="三-Docker-hub加速"><a href="#三-Docker-hub加速" class="headerlink" title="三. Docker hub加速"></a>三. Docker hub加速</h3><ol>
+<li>如果用的是最新的docker for mac, 只需要在docker的preference里的daemon选项卡里增加个registry mirror，至于地址可以用阿里云或蜂巢的镜像加速功能   ​</li>
+</ol>
+<h3 id="四-Mac上的docker开发流程"><a href="#四-Mac上的docker开发流程" class="headerlink" title="四.Mac上的docker开发流程"></a>四.Mac上的docker开发流程</h3><h4 id="可以参考nodejs的部署过程"><a href="#可以参考nodejs的部署过程" class="headerlink" title="可以参考nodejs的部署过程"></a>可以参考nodejs的部署过程</h4><p><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/nodejs-docker-webapp/</a></p>
+<ol>
+<li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持，因此只需要去官方下载docker for mac即可</li>
+<li>docker hub下载下来的镜像存放在哪里呢？</li>
+<li>​</li>
 </ol>
 
           
