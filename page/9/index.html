@@ -243,6 +243,254 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/21/coding/高阶函数与偏函数/" itemprop="url">
+                  高阶函数与偏函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T15:39:10+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>高阶函数：函数的参数或返回值是个函数</p>
+<p>应用例子：sort()方法，数组的sort()方法就是个典型，根据传的函数不同，可以按照不同形式来排序</p>
+</li>
+<li><p>偏函数：创建一个调用另外一个部分——参数或变量已经预置的函数的函数   ​</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/21/node/关于异步/" itemprop="url">
+                  关于异步
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T10:56:16+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="为什么需要异步？"><a href="#为什么需要异步？" class="headerlink" title="为什么需要异步？"></a>为什么需要异步？</h4><ol>
+<li><p>前端无疑是异步用的最多的地方，举个例子，浏览器中javascript的执行与UI渲染是在同一个线程，这样的话如果javascript如果同步去获取远端一个资源，在这个期间UI的渲染和响应就是停止的，用户点击任何东西是没有反应的，用户体验非常差，通过异步的方式可以消除这个阻塞现象</p>
+</li>
+<li><p>在内核IO调用只有阻塞与非阻塞，在调用阻塞IO时，应用程序需要等待I/O完成才返回结果；而非阻塞I/O则不带数据直接返回，要获取数据，还需要通过文件描述符再次读取</p>
+</li>
+<li><p>前面提到了为了获取完整的数据，应用程序需要重复调用I/O操作来确实是否完成，这种重复调用判断操作是否完成的技术叫做<strong>轮询</strong>，有以下几种形式：</p>
+<p>a) read  b)select  c)epoll 4)   这些个技术对于应用程序而言，仍然只能算是一种同步，因为应用程序需要等待I/O完全返回，等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待时间发生</p>
+</li>
+<li><p>Linux下面存在一种异步IO方式叫AIO，但这个只在linux下有，并且仅支持O_Direct方式读取</p>
+</li>
+<li><p><strong>现实场景下的异步IO：</strong>   线程池模拟异步I/O</p>
+<p>一个线程进行计算处理，让其他线程进行非阻塞I/O加轮询获取数据，通过线程间通信将I/O的数据进行传递</p>
+</li>
+<li><strong><em>我们说node是单线程的，这里的单线程仅仅只是javascript执行在单线程中，内部完成I/O任务的另有线程池</em></strong> </li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/20/es6/ES6 Generate 函数/" itemprop="url">
                   ES6 Generate 函数
                 </a>
@@ -1208,255 +1456,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/javascript/Javascript 错误处理/" itemprop="url">
-                  Javascript中的错误处理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T23:08:41+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.在if语句里很容易发生类型转换错误，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function concat(str1,str2,str3)&#123;</div><div class="line">  var result = str1 + str2;</div><div class="line">  if(str3)&#123;</div><div class="line">    result + = str3;</div><div class="line">  &#125;</div><div class="line">  return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个函数的意思是对字符串做连接，如果第三个字符串不为空，就加上，如果为空就不加，这个本意是好的，但是javascript因为不是强类型的，在函数的参数里是不检测参数类型，所以你不知道会传进来个什么参数，所以如果传个数值1进来，就会被转化成true，进而加上，所以这里最好的做法是检测str3的类型是不是字符串 typeof str3 === “string”</p>
-<p>对于基本类型应该使用typeof来检测，对象类型使用instanceof，所有面向公众的API应该无条件执行类型检查</p>
-<ol>
-<li><p>在发ajax请求时对于url传的查询参数一定要进行编码，使用encodeURIComponent</p>
-</li>
-<li><p>使用try catch</p>
-<p>模块初始化使用循环，如果一个模块出问题就会阻断程序运行，使用try-catch来解决这个问题</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/concept/一个JSON返回中带了“\”的问题/" itemprop="url">
-                  JSON返回带"\"
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T23:01:59+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/concept/" itemprop="url" rel="index">
-                    <span itemprop="name">concept</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>用express的res.json返回数据，发现返回值如下，有很多的”\”</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;&#123;\&quot;RetCode\&quot;:0,\&quot;Action\&quot;:\&quot;GetOrderListResponse\&quot;,\&quot;OrderList\&quot;:[&#123;\&quot;OrganizationId\&quot;:50002374,\&quot;ResourceId\&quot;:\&quot;bs-ryjcde\&quot;,\&quot;OrderNo\&quot;:\&quot;20161215000172504997548\&quot;,\&quot;OrderId\&quot;:62375327,\&quot;TradeNo\&quot;:\&quot;D20161215000272505064367\&quot;,\&quot;CreateTime\&quot;:1481791886,\&quot;StartTime\&quot;:1481793593,\&quot;PaymentTime\&quot;:1481791887,\&quot;EndTime\&quot;:1481797193,\&quot;Quantity\&quot;:1,\&quot;RegionId\&quot;:7001,\&quot;OrderType\&quot;:2,\&quot;State\&quot;:1,\&quot;ChargeType\&quot;:1,\&quot;Am</div></pre></td></tr></table></figure>
-<p>看一下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function (error, httpResponse, body) &#123;</div><div class="line">    if (!error) &#123;</div><div class="line">        console.log(body);</div><div class="line">        res.status(200).json(body);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>其中console.log打出来的值是没有\的，然后通过json函数返回却有，仔细查了下，需要了解清楚两个问题：</p>
-<p>1）res.json()这个函数的参数是什么？ 下面是定义</p>
-<h3 id="res-json-body"><a href="#res-json-body" class="headerlink" title="res.json([body])"></a>res.json([body])</h3><p>Sends a JSON response. This method sends a response (with the correct content-type) that is the parameter converted to a JSON string using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="external">JSON.stringify()</a>.</p>
-<p>The parameter can be any JSON type, including object, array, string, Boolean, or number, and you can also use it to convert other values to JSON, such as <code>null</code>, and <code>undefined</code> (although these are technically not valid JSON).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res.json(null);</div><div class="line">res.json(&#123; user: &apos;tobi&apos; &#125;);</div><div class="line">res.status(500).json(&#123; error: &apos;message&apos; &#125;);</div></pre></td></tr></table></figure>
-<p>可以看到参数是一个json格式</p>
-<p>2）函数返回的body是个什么类型呢？是个json序列化之后的字符串，不是json格式，所以返回的时候会有这个问题</p>
-<p>解决方案就是在调用json函数时先调用JSON.parse()把这个字符串转化成JSON</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1502,7 +1501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">121</span>
+              <span class="site-state-item-count">123</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1519,7 +1518,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">91</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

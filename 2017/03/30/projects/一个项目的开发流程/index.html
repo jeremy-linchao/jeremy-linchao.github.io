@@ -1,0 +1,671 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="projects," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：
+如何集成docker作开发？
+
+如何集成jest
+
+如何利用持续集成？
+
+
+
+
+有tech leader创建git项目，自己去 git clone
+
+创建自己的分支，git checkout -b from_
+
+创建.gitignore文件
+12345678# node_modulesbac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个项目的开发流程">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/projects/一个项目的开发流程/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：
+如何集成docker作开发？
+
+如何集成jest
+
+如何利用持续集成？
+
+
+
+
+有tech leader创建git项目，自己去 git clone
+
+创建自己的分支，git checkout -b from_
+
+创建.gitignore文件
+12345678# node_modulesbac">
+<meta property="og:updated_time" content="2017-03-30T09:57:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个项目的开发流程">
+<meta name="twitter:description" content="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：
+如何集成docker作开发？
+
+如何集成jest
+
+如何利用持续集成？
+
+
+
+
+有tech leader创建git项目，自己去 git clone
+
+创建自己的分支，git checkout -b from_
+
+创建.gitignore文件
+12345678# node_modulesbac">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 一个项目的开发流程 | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一个项目的开发流程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-30T12:04:42+08:00" content="2017-03-30">
+              2017-03-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注："><a href="#项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：" class="headerlink" title="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注："></a>项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：</h4><ol>
+<li><p>如何集成docker作开发？</p>
+</li>
+<li><p>如何集成jest</p>
+</li>
+<li><p>如何利用持续集成？</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>有tech leader创建git项目，自己去 git clone</p>
+</li>
+<li><p>创建自己的分支，git checkout -b from_</p>
+</li>
+<li><p>创建.gitignore文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># node_modules</div><div class="line">backend/node_modules/</div><div class="line"></div><div class="line"># DS_Store</div><div class="line">backend/.DS_Store</div><div class="line"></div><div class="line"># logs</div><div class="line">backend/*.log</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建后端项目目录 mkdir backend &amp;&amp; cd backend</p>
+</li>
+<li><p>后端也准备上typescript，参考技术文档如下 <a href="http://mherman.org/blog/2016/11/05/developing-a-restful-api-with-node-and-typescript/#.WNx4thOGPow" target="_blank" rel="external">http://mherman.org/blog/2016/11/05/developing-a-restful-api-with-node-and-typescript/#.WNx4thOGPow</a></p>
+</li>
+<li><p>首先创建tsconfig， 配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;compilerOptions&quot;: &#123;</div><div class="line">    &quot;target&quot;: &quot;es6&quot;,</div><div class="line">    &quot;module&quot;: &quot;commonjs&quot;,</div><div class="line">    &quot;outDir&quot;: &quot;dist&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;include&quot;: [</div><div class="line">    &quot;src/**/*.ts&quot;</div><div class="line">  ],</div><div class="line">  &quot;exclude&quot;: [</div><div class="line">    &quot;node_modules&quot;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​安装typescript   npm install typescript - - save-dev</p>
+</li>
+<li><p>(安装gulp，为了自动化编译过程 npm install gulp gulp-typescript - -save-dev) 这步觉得没必要</p>
+</li>
+<li><p>安装express和debug    npm install express debug —save</p>
+</li>
+<li><p>安装express，node和debug相应的types, npm i @types/node @types/express @types/debug –save-dev</p>
+</li>
+<li><p>编写index.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">import * as http from &apos;http&apos;;</div><div class="line">import * as debug from &apos;debug&apos;;</div><div class="line"></div><div class="line">import App from &apos;./App&apos;;</div><div class="line"></div><div class="line">debug(&apos;ts-express:server&apos;);</div><div class="line"></div><div class="line">const port = normalizePort(process.env.PORT || 3000);</div><div class="line">App.set(&apos;port&apos;, port);</div><div class="line"></div><div class="line">const server = http.createServer(App);</div><div class="line">server.listen(port);</div><div class="line">server.on(&apos;error&apos;, onError);</div><div class="line">server.on(&apos;listening&apos;, onListening);</div><div class="line"></div><div class="line">function normalizePort(val: number|string): number|string|boolean &#123;</div><div class="line">  let port: number = (typeof val === &apos;string&apos;) ? parseInt(val, 10) : val;</div><div class="line">  if (isNaN(port)) return val;</div><div class="line">  else if (port &gt;= 0) return port;</div><div class="line">  else return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function onError(error: NodeJS.ErrnoException): void &#123;</div><div class="line">  if (error.syscall !== &apos;listen&apos;) throw error;</div><div class="line">  let bind = (typeof port === &apos;string&apos;) ? &apos;Pipe &apos; + port : &apos;Port &apos; + port;</div><div class="line">  switch(error.code) &#123;</div><div class="line">    case &apos;EACCES&apos;:</div><div class="line">      console.error(`$&#123;bind&#125; requires elevated privileges`);</div><div class="line">      process.exit(1);</div><div class="line">      break;</div><div class="line">    case &apos;EADDRINUSE&apos;:</div><div class="line">      console.error(`$&#123;bind&#125; is already in use`);</div><div class="line">      process.exit(1);</div><div class="line">      break;</div><div class="line">    default:</div><div class="line">      throw error;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function onListening(): void &#123;</div><div class="line">  let addr = server.address();</div><div class="line">  let bind = (typeof addr === &apos;string&apos;) ? `pipe $&#123;addr&#125;` : `port $&#123;addr.port&#125;`;</div><div class="line">  debug(`Listening on $&#123;bind&#125;`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写App.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">import * as path from &apos;path&apos;;</div><div class="line">import * as express from &apos;express&apos;;</div><div class="line">import * as logger from &apos;morgan&apos;;</div><div class="line">import * as bodyParser from &apos;body-parser&apos;;</div><div class="line"></div><div class="line">// Creates and configures an ExpressJS web server.</div><div class="line">class App &#123;</div><div class="line"></div><div class="line">  // ref to Express instance</div><div class="line">  public express: express.Application;</div><div class="line"></div><div class="line">  //Run configuration methods on the Express instance.</div><div class="line">  constructor() &#123;</div><div class="line">    this.express = express();</div><div class="line">    this.middleware();</div><div class="line">    this.routes();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Configure Express middleware.</div><div class="line">  private middleware(): void &#123;</div><div class="line">    this.express.use(logger(&apos;dev&apos;));</div><div class="line">    this.express.use(bodyParser.json());</div><div class="line">    this.express.use(bodyParser.urlencoded(&#123; extended: false &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Configure API endpoints.</div><div class="line">  private routes(): void &#123;</div><div class="line">    /* This is just to get up and running, and to make sure what we&apos;ve got is</div><div class="line">     * working so far. This function will change when we start to add more</div><div class="line">     * API endpoints */</div><div class="line">    let router = express.Router();</div><div class="line">    // placeholder route handler</div><div class="line">    router.get(&apos;/&apos;, (req, res, next) =&gt; &#123;</div><div class="line">      res.json(&#123;</div><div class="line">        message: &apos;Hello World!&apos;</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">    this.express.use(&apos;/&apos;, router);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">export default new App().express</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装body-parser, morgan,  npm install body-parser morgan –save</p>
+</li>
+<li><p>安装相应types,    npm install @types/body-parser @types/morgan –save-dev</p>
+</li>
+<li><p>测试下是否能跑起来   gulp scripts;    npm start</p>
+</li>
+<li><p>安装jest，  npm install  jest  ts-jest  @types/jest –save-dev</p>
+</li>
+<li><p>修改package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;jest&quot;: &#123;</div><div class="line">    &quot;transform&quot;: &#123;</div><div class="line">      &quot;.(ts|tsx)&quot;: &quot;&lt;rootDir&gt;/node_modules/ts-jest/preprocessor.js&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;testRegex&quot;: &quot;(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$&quot;,</div><div class="line">    &quot;moduleFileExtensions&quot;: [</div><div class="line">      &quot;ts&quot;,</div><div class="line">      &quot;tsx&quot;,</div><div class="line">      &quot;js&quot;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建test文件目录，并新建App.test.ts目录, 安装axios作为ajax请求框架</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/projects/" rel="tag">#projects</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/docker/docker学习/" rel="next" title="docker学习">
+                <i class="fa fa-chevron-left"></i> docker学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/30/es6/import:export与commonjs/" rel="prev" title="import/export与commonjs">
+                import/export与commonjs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">123</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注："><span class="nav-number">1.</span> <span class="nav-text">项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
