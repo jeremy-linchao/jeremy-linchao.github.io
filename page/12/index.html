@@ -243,6 +243,128 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/01/git/Git 本地操作/" itemprop="url">
+                  Git本地操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-01T10:15:47+08:00" content="2016-12-01">
+              2016-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>git log -p                     Show the patch introduced with each commit. 加上-p可以看到每次提交的修改之处</p>
+<p>git log -p - - stat         Show statistics for files modified in each commit.</p>
+<p>git log  - -pretty=format 可以以指定格式输出</p>
+<h3 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h3><p>git commit - - amend   第一次提交忘记用git add把相关文件加进去了，可以加完之后用这个命令，这样就避免做了两次提交</p>
+<p>git reset HEAD filename  一下子把多个文件加到staged区域里去了，但实际上想做的是分为多次提交，那可以用这个命令把相应的文件拿出来</p>
+<p>git checkout - - file 修改了某个文件但还没有加到staged区域，可以使用这个命令把那些修改重置</p>
+<p>例子： git checkout – bower.json</p>
+<h3 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h3><p>git remote -v 查看远端server的url，origin是指默认的server git当时clone的</p>
+<p>git remote add <shortname> <url> 配置远端server，如果是clone的这步不需要，因为会把origin当做默认的远端server</url></shortname></p>
+<p>git fetch [remote-name] 这个命令会从远端server拿自己没有的数据，如果是clone的用git fetch origin就可以，注意这个命令只是下载，不会merge，同时也不会修改本地的工作目录</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/29/angular/Angular 11.28/" itemprop="url">
                   未命名
                 </a>
@@ -1220,133 +1342,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/08/utility/工具zsh-iterm2-typora/" itemprop="url">
-                  工具zsh-iterm2-typora
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T22:41:26+08:00" content="2016-11-08">
-              2016-11-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装了zsh"><a href="#安装了zsh" class="headerlink" title="安装了zsh"></a><strong>安装了zsh</strong></h2><p>觉得比较好的功能</p>
-<ul>
-<li>ll  代替 ls -l</li>
-<li>.. 代替 cd ..</li>
-<li>cmd +f   可以直接搜索，并用tab来右移选择行</li>
-<li>​</li>
-</ul>
-<h2 id="安装了iterm2"><a href="#安装了iterm2" class="headerlink" title="安装了iterm2"></a><strong>安装了iterm2</strong></h2><p>觉得比较好的功能</p>
-<ul>
-<li>cmd+d 做窗口的分屏</li>
-<li>option+cmd+b 显示历史记录</li>
-<li>​</li>
-</ul>
-<h2 id="安装了Typora"><a href="#安装了Typora" class="headerlink" title="安装了Typora"></a>安装了Typora</h2><p>确实比较美观，看上去特别舒服</p>
-<p>### </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1392,7 +1387,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">123</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1400,7 +1395,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1409,7 +1404,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

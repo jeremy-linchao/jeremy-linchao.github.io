@@ -243,6 +243,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/15/concept/JSON/" itemprop="url">
+                  JSON
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T23:45:13+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>JSON中，对象的属性值必须要用“ ”号括起来</p>
+</li>
+<li><p>JSON的字符串必须用双引号</p>
+</li>
+<li><p>JSON有三种数据类型： 简单值，对象，数组</p>
+</li>
+<li><p>JSON序列化:JSON.stringify()</p>
+<p>把一个javascript对象序列化为一个JSON字符串，接受两个参数，第一个参数是一个过滤器，可以是一个函数或是一个数组，第二个参数是个整数，表示缩进数，注意这个数只要大于0，这个函数会帮我们默认加上换行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jsonText = JSON.stringify(books,function(key,value)&#123;</div><div class="line">  switch(key)&#123;</div><div class="line">    case &quot;authors&quot;:</div><div class="line">    	return value.join(&quot;,&quot;);</div><div class="line">   	case &quot;year&quot;:</div><div class="line">   		return 5000;</div><div class="line">   	case &quot;edition&quot;:</div><div class="line">   		return undifined;</div><div class="line">   	default:</div><div class="line">   		return value;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果某些对象有自定义序列化的需求，可以在这个对象上定义toJSON()方法</p>
+</li>
+<li><p>序列化的内部顺序</p>
+<p>1）如果有toJSON方法，则调用该方法</p>
+<p>2）如果提供了第二个参数，则使用这个过滤器对每一个值序列化</p>
+<p>3）如果提供了第三个参数，执行相应的格式化</p>
+</li>
+<li><p>反序列JSON.parse()选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var bookCopy2 = JSON.parse(jsonText,function(key,value)&#123;</div><div class="line">	if(key===&quot;releaseDate&quot;)&#123;</div><div class="line">		return new Date(value);</div><div class="line">    &#125; else &#123;</div><div class="line">		return value;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/15/javascript/Javascript 错误处理/" itemprop="url">
                   Javascript中的错误处理
                 </a>
@@ -1348,122 +1481,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/08/mac/Mac下启动和重启nginx/" itemprop="url">
-                  mac本地使用nginx
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-08T16:43:59+08:00" content="2016-12-08">
-              2016-12-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通过homebrew 安装的nginx其实是可以通过brew services来管理的</p>
-<p>终端下敲一个brew services可以看到具体的用法比如</p>
-<p>brew services [start|restart|stop] nginx </p>
-<p><strong>如果nginx是run在80端口，需要加sudo</strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1509,7 +1526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">123</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1517,7 +1534,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1526,7 +1543,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

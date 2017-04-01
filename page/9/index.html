@@ -243,6 +243,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/21/coding/函数式编程/" itemprop="url">
+                  函数式编程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T16:41:48+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>有些事物在你得到之前是无足轻重的，得到之后就不可或缺了</p>
+</blockquote>
+<ol>
+<li>纯函数：相同的输入，永远得到相同的输出，而且没有任何可观察的副作用</li>
+<li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
+<li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
+<li><strong>currying</strong> : the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument. </li>
+<li><strong>partial application</strong> : the process of fixing a number of arguments to a function, producing another function of smaller arity</li>
+<li>柯里化和偏函数的区别：区别在于固定的参数不同，柯里化每次固定一个参数，返回一系列一元函数的调用</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/21/coding/高阶函数与偏函数/" itemprop="url">
                   高阶函数与偏函数
                 </a>
@@ -1323,139 +1446,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/concept/JSON/" itemprop="url">
-                  JSON
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T23:45:13+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>JSON中，对象的属性值必须要用“ ”号括起来</p>
-</li>
-<li><p>JSON的字符串必须用双引号</p>
-</li>
-<li><p>JSON有三种数据类型： 简单值，对象，数组</p>
-</li>
-<li><p>JSON序列化:JSON.stringify()</p>
-<p>把一个javascript对象序列化为一个JSON字符串，接受两个参数，第一个参数是一个过滤器，可以是一个函数或是一个数组，第二个参数是个整数，表示缩进数，注意这个数只要大于0，这个函数会帮我们默认加上换行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jsonText = JSON.stringify(books,function(key,value)&#123;</div><div class="line">  switch(key)&#123;</div><div class="line">    case &quot;authors&quot;:</div><div class="line">    	return value.join(&quot;,&quot;);</div><div class="line">   	case &quot;year&quot;:</div><div class="line">   		return 5000;</div><div class="line">   	case &quot;edition&quot;:</div><div class="line">   		return undifined;</div><div class="line">   	default:</div><div class="line">   		return value;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果某些对象有自定义序列化的需求，可以在这个对象上定义toJSON()方法</p>
-</li>
-<li><p>序列化的内部顺序</p>
-<p>1）如果有toJSON方法，则调用该方法</p>
-<p>2）如果提供了第二个参数，则使用这个过滤器对每一个值序列化</p>
-<p>3）如果提供了第三个参数，执行相应的格式化</p>
-</li>
-<li><p>反序列JSON.parse()选项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var bookCopy2 = JSON.parse(jsonText,function(key,value)&#123;</div><div class="line">	if(key===&quot;releaseDate&quot;)&#123;</div><div class="line">		return new Date(value);</div><div class="line">    &#125; else &#123;</div><div class="line">		return value;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1501,7 +1491,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">123</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1509,7 +1499,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1518,7 +1508,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
