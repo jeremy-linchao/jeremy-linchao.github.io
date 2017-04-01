@@ -440,7 +440,8 @@
 <li><p>修改package.json</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;jest&quot;: &#123;</div><div class="line">    &quot;transform&quot;: &#123;</div><div class="line">      &quot;.(ts|tsx)&quot;: &quot;&lt;rootDir&gt;/node_modules/ts-jest/preprocessor.js&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;testRegex&quot;: &quot;(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$&quot;,</div><div class="line">    &quot;moduleFileExtensions&quot;: [</div><div class="line">      &quot;ts&quot;,</div><div class="line">      &quot;tsx&quot;,</div><div class="line">      &quot;js&quot;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>创建test文件目录，并新建App.test.ts目录, 安装axios作为ajax请求框架</p>
+<li><p>创建测试，使用jest</p>
+<p>1） 在根目录下新建<em> </em> test <em> </em>文件夹，</p>
 </li>
 </ol>
 
@@ -979,6 +980,8 @@
 <h5 id="3-interface"><a href="#3-interface" class="headerlink" title="3. interface"></a>3. interface</h5><ol>
 <li>interface是ts的一个核心，它主要用来检查变量值的类型，因为javascript的变量的类型是可变的，实际上是它的值的类型是可变的，interface起到这个作用，它来定义某个变量可以有的类型，因此在编译阶段就能发现此类错误</li>
 </ol>
+<h5 id="4-可索引的类型"><a href="#4-可索引的类型" class="headerlink" title="4. 可索引的类型"></a>4. 可索引的类型</h5><p>​    可以用字符串或者数字来作索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 这是因为当使用<code>number</code>来索引时，JavaScript会将它转换成<code>string</code>然后再去索引对象。</p>
+<p>​</p>
 
           
         
