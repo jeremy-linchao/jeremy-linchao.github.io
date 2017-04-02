@@ -243,6 +243,166 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/08/database/ mysql的中文处理/" itemprop="url">
+                  mysql的中文处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-08T17:29:00+08:00" content="2017-02-08">
+              2017-02-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mysql默认的字符编码可以通过show variables like ‘character%’ 来查看，</p>
+<table>
+<thead>
+<tr>
+<th>client</th>
+<th>为客户端使用的字符集。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connection</td>
+<td>为连接数据库的字符集设置类型，如果程序没有指明连接数据库使用的字符集类型则按照服务器端默认的字符集设置。</td>
+</tr>
+<tr>
+<td>database</td>
+<td>为数据库服务器中某个库使用的字符集设定，如果建库时没有指明，将使用服务器安装时指定的字符集设置。</td>
+</tr>
+<tr>
+<td>results</td>
+<td>为数据库给客户端返回时使用的字符集设定，如果没有指明，使用服务器默认的字符集。</td>
+</tr>
+<tr>
+<td>server</td>
+<td>为服务器安装时指定的默认字符集设定。</td>
+</tr>
+<tr>
+<td>system</td>
+<td>为数据库系统使用的字符集设定。</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p>sudo cp /usr/local/mysql/support-files/my-defalut.cnf /etc/my.cnf</p>
+</li>
+<li><p>停掉mysql ，  sudo vim /etc/my.cnf ，加入</p>
+<p>[mysqld]</p>
+<p>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
+<p>[client]</p>
+<p>default-character-set=utf8 </p>
+</li>
+<li><p>ALTER DATABASE database_name CHARACTER SET utf8 COLLATE utf8_general_ci</p>
+</li>
+</ol>
+<p>（或通过sequel在database中）</p>
+<ol>
+<li>ALTER TABLE table_name CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci(或通过sequel在table info中)</li>
+<li>修改VARCHAR的定义</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/08/utility/swagger运用/" itemprop="url">
                   swagger运用
                 </a>
@@ -1306,120 +1466,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/22/alogrithm/排序并保留原数组索引/" itemprop="url">
-                  排序并保留原数组索引
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-22T14:40:32+08:00" content="2017-01-22">
-              2017-01-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>排序算法不考虑，主要是需要保留原数组索引，这个需求应该还是会很常见</p>
-<p>看到别人的一个思路，构造一个结构体，这个结构体包含原来数组的每个数据以及相应的索引号，通过系统自带排序函数，需要制定下具体排序的函数（通过比较结构体的数据）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1465,7 +1511,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">125</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1473,7 +1519,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1482,7 +1528,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

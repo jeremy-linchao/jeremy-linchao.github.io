@@ -243,6 +243,140 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
+                  使用react的几个注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>如何指定props？ 有几种方法</p>
+<p>1）javascript表达式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
+<p>​    2）字符串字面值常量</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
+<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
+<p>2）javascript表达式也能作为props.children</p>
+</li>
+<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/17/react/ES6语法在react中的运用/" itemprop="url">
                   ES6语法在react中的运用
                 </a>
@@ -1334,166 +1468,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/08/database/ mysql的中文处理/" itemprop="url">
-                  mysql的中文处理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T17:29:00+08:00" content="2017-02-08">
-              2017-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mysql默认的字符编码可以通过show variables like ‘character%’ 来查看，</p>
-<table>
-<thead>
-<tr>
-<th>client</th>
-<th>为客户端使用的字符集。</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>connection</td>
-<td>为连接数据库的字符集设置类型，如果程序没有指明连接数据库使用的字符集类型则按照服务器端默认的字符集设置。</td>
-</tr>
-<tr>
-<td>database</td>
-<td>为数据库服务器中某个库使用的字符集设定，如果建库时没有指明，将使用服务器安装时指定的字符集设置。</td>
-</tr>
-<tr>
-<td>results</td>
-<td>为数据库给客户端返回时使用的字符集设定，如果没有指明，使用服务器默认的字符集。</td>
-</tr>
-<tr>
-<td>server</td>
-<td>为服务器安装时指定的默认字符集设定。</td>
-</tr>
-<tr>
-<td>system</td>
-<td>为数据库系统使用的字符集设定。</td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><p>sudo cp /usr/local/mysql/support-files/my-defalut.cnf /etc/my.cnf</p>
-</li>
-<li><p>停掉mysql ，  sudo vim /etc/my.cnf ，加入</p>
-<p>[mysqld]</p>
-<p>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
-<p>[client]</p>
-<p>default-character-set=utf8 </p>
-</li>
-<li><p>ALTER DATABASE database_name CHARACTER SET utf8 COLLATE utf8_general_ci</p>
-</li>
-</ol>
-<p>（或通过sequel在database中）</p>
-<ol>
-<li>ALTER TABLE table_name CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci(或通过sequel在table info中)</li>
-<li>修改VARCHAR的定义</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1539,7 +1513,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">125</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1547,7 +1521,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1556,7 +1530,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

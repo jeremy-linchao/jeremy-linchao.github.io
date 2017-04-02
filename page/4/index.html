@@ -243,6 +243,127 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/23/react/对于react-router的理解/" itemprop="url">
+                  对于react-router的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-23T14:21:01+08:00" content="2017-02-23">
+              2017-02-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>什么是nesting?</p>
+<p>路由可以嵌套，父组件是其他子组件所共有的，因此父组件里要留个位置给this.props.children， 一般父组件就是个导航栏</p>
+</li>
+<li><p>path属性</p>
+<p>path属性会给所有子路由加路由前缀</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/22/git/Git开发流程/" itemprop="url">
                   Git开发流程
                 </a>
@@ -1360,140 +1481,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
-                  使用react的几个注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
-              2017-02-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>如何指定props？ 有几种方法</p>
-<p>1）javascript表达式:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
-<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
-<p>​    2）字符串字面值常量</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
-<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
-<p>2）javascript表达式也能作为props.children</p>
-</li>
-<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
-</li>
-<li><p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1539,7 +1526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">125</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1547,7 +1534,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1556,7 +1543,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">92</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
