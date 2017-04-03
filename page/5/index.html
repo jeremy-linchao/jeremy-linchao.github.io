@@ -243,6 +243,121 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
+                  API设计时遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/api/" itemprop="url" rel="index">
+                    <span itemprop="name">api</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
                   使用react的几个注意点
                 </a>
@@ -1317,157 +1432,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/react/使用react遇到的几个问题/" itemprop="url">
-                  使用react + ant-design遇到的几个问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T11:23:03+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗</p>
-</li>
-<li><p>接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破</p>
-</li>
-<li><p>ant-design的控件自定义校验如何做？</p>
-</li>
-<li><p>输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?</p>
-</li>
-<li><p>对于远程拿到的id，name数据，用select展示，但select的onChange只能获取value而不能获取相应的id</p>
-</li>
-<li><p>验证报错: async-validator， xxx is not a string, 这个是因为用了getFieldDecorator, 需要设置required参数</p>
-</li>
-<li><p>对于select，用了labelnValue会报Uncaught TypeError: Cannot create property ‘label’ on string ‘’错误,</p>
-<p>原因： 用了getFieldDescriptor，然而设置了个initialValue为””，所以当加了labelInValue的选项时，只有value值却没有label值</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果这个onClick事件是有参数的，并且这个参数不是标准定义的，那这边onClick该怎么写呢</p>
-</li>
-<li><p>如果需要通过编程来做页面跳转会需要一下这个点，</p>
-<p><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating" target="_blank" rel="external">https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating</a></p>
-<p>但这个有个限制是需要用browerHistory，hashHistory是有不行的，是否有办法来解决呢？</p>
-</li>
-<li><p>react-router如果要在不同component之间通过跳转来传多于一个参数该怎么做？</p>
-<p>​    通过this.props.location.query.(name)</p>
-</li>
-<li><p>react如果在页面返回的时候需要重新加载，这不仅浪费资源也降低了用户体验，有什么办法能缓存之前的结果呢？</p>
-</li>
-<li><p>react官方的tutorial强调在每次的state更新的时候使用复制一份，而不是直接更改，这个不是很耗费资源吗？如果数据很大的情况下</p>
-<p>  答： 原因在于比state的内容是否改变是比较耗费性能的，需要遍历对象的所有属性和值然后做比较，但我如果是直接复制个对象，然后改几个参数的话代价在我这端不大，在react那边也只要判断是个新对象就更新就行了</p>
-</li>
-<li><p>react渲染多个元素的时候需要加一个唯一的key值</p>
-</li>
-<li><p>react的setState是一个异步的函数，调用完setState不能确保state值马上就会被更新，如果需要依赖前一个值来更新，比较好的做法是传一个回调函数作为参数，这个回调函数是在setState调用完成后执行的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState((prevState, props) =&gt; &#123;</div><div class="line">  return &#123;myInteger: prevState.myInteger + props.step&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>！不要改变this.state的值，把this.state当作不可改变的值</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1513,7 +1477,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">125</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

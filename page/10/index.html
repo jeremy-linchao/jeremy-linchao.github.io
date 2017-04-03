@@ -243,6 +243,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/17/javascript/Javascript 原型prototype/" itemprop="url">
+                  Javascript的prototype
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-17T20:37:09+08:00" content="2016-12-17">
+              2016-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="为什么要有原型"><a href="#为什么要有原型" class="headerlink" title="为什么要有原型"></a>为什么要有原型</h3><p>考虑一个需要定义一个person对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,job)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">  this.job = job;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个person会有名字、年龄和工作的属性，这些都是每个person对象不一样的地方，但是如果我们要定义一个sayName方法，由于这个sayName方法对于所有person都是一致的，如果我们定义在对象里面会非常麻烦，所以就有了原型</p>
+<h3 id="原型是什么"><a href="#原型是什么" class="headerlink" title="原型是什么"></a>原型是什么</h3><p>无论什么时候只要创建了一个函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象，同时呢，这个原型对象会有个constructor属性，这个属性指向函数对象，即Person.prototype.constructor指向person</p>
+<p>这里有个注意点： 当用构造函数创建了一个新实例后，该实例也有一个内部属性叫[[Prototype]],在浏览器实现中叫_ <em>proto</em> _ ,这个属性是对象和原型之间的连接，而不像prototype那个是构造函数与原型间的连接。</p>
+<ol>
+<li>可以通过Object.getPrototypeOf()来获取对象的原型</li>
+<li>可以通过person.hasOwnPrototype()来判断某个属性是来源于对象还是原型</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/16/javascript/Javascript中的逻辑运算/" itemprop="url">
                   javascript中的逻辑运算
                 </a>
@@ -1354,127 +1475,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
-                  Node学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
-              2016-12-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
-<p>module.exports.a = a;</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1520,7 +1520,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">125</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
