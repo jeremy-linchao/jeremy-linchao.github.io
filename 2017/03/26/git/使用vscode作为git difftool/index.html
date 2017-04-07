@@ -87,10 +87,10 @@
 <meta name="description" content="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用vscode作为git difftool">
-<meta property="og:url" content="http://yoursite.com/2017/03/26/utility/使用vscode作为git difftool/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/git/使用vscode作为git difftool/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带">
-<meta property="og:updated_time" content="2017-03-27T07:20:03.000Z">
+<meta property="og:updated_time" content="2017-04-07T04:01:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用vscode作为git difftool">
 <meta name="twitter:description" content="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带">
@@ -304,9 +304,10 @@
 <li><p>确保vscode可以在命令行下打开:  </p>
 <p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
 </li>
-<li><p>将vscode作为git默认的editor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
-</li>
+</ol>
+<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
+<ol>
 <li><p>配置git difftool</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
 </li>

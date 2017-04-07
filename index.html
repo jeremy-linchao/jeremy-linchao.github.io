@@ -1054,7 +1054,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/26/utility/使用vscode作为git difftool/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/26/git/使用vscode作为git difftool/" itemprop="url">
                   使用vscode作为git difftool
                 </a>
               
@@ -1121,9 +1121,10 @@
 <li><p>确保vscode可以在命令行下打开:  </p>
 <p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
 </li>
-<li><p>将vscode作为git默认的editor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
-</li>
+</ol>
+<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
+<ol>
 <li><p>配置git difftool</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
 </li>
