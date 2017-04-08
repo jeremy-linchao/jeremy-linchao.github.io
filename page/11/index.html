@@ -243,6 +243,168 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/14/concept/API 设计/" itemprop="url">
+                  API设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T10:44:28+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>所有API请求都使用https</p>
+</li>
+<li><p>在response的accept header上加一个版本号，比如 version = 3</p>
+</li>
+<li><p>在所有的response里支持ETags，这样可以允许用户来缓存资源</p>
+</li>
+<li><p>在每个header中包含一个request-id，由uuid构成，目的是为了方便调试和追踪</p>
+</li>
+<li><p>大的response应该用Range头来指定如何获取这些数据<br>​</p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><ol>
+<li>post，put等这些请求的body中只接受序列化的json格式，不要用类似form-endoded的方式，这样可以保持请求和返回的一致</li>
+<li>尽量用复数（加s），除非那个资源是个单实例</li>
+<li>对于每个独立资源，尽量不使用任何special actions，如果需要action，也放在单独的action下   /resources/:resource/actions/:action<ol>
+<li>使用小写字母，对于路径名使用这个划线 “-“，对于属性名，使用下划线_</li>
+<li>路径长度最小化<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2></li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p>返回合适的状态码</p>
+<p>200： GET，POST，DELETE，PATCH同步操作顺利完成</p>
+<p>201：POST，PUT异步创建资源成功</p>
+<p>202：POST，PUT，DELETE异步操作</p>
+<p>206：GET操作成功，但只返回一部分数据</p>
+<p>401 Unauthorized： 鉴权失败</p>
+<p>403 Forbidden：对于某一个资源没有特别的权限</p>
+<p>422：无效参数</p>
+<p>429:   请求次数太频繁，做速率限制</p>
+<p>500：内部服务器错误</p>
+</li>
+<li><p>对于每一个资源提供一个UUID</p>
+</li>
+<li><p>对于每个资源提供时间戳</p>
+</li>
+<li><p>使用UTC times  ISO8601</p>
+</li>
+<li><p>使用嵌入对象做外键引用</p>
+<pre><code>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;service-production&quot;,</div><div class="line">  &quot;owner&quot;: &#123;</div><div class="line">    &quot;id&quot;: &quot;5d8201b0...&quot;,</div><div class="line">    &quot;name&quot;: &quot;Alice&quot;,</div><div class="line">    &quot;email&quot;: &quot;alice@heroku.com&quot;</div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;  </div><div class="line">​</div></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>生成结构化的错误 </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 429 Too Many Requests</div><div class="line">&#123;</div><div class="line">  &quot;id&quot;:      &quot;rate_limit&quot;,</div><div class="line">  &quot;message&quot;: &quot;Account reached its API rate limit.&quot;,</div><div class="line">  &quot;url&quot;:     &quot;https://docs.service.com/rate-limits&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>减少response中json的空格</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/14/node/Express 学习/" itemprop="url">
                   Express学习
                 </a>
@@ -1381,118 +1543,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/javascript/Javascipt 变量基本类型与引用类型/" itemprop="url">
-                  javascript基本类型和引用类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T10:08:31+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date"><a href="#Javascript的变量分为基本类型和引用类型，基本类型有Number-String-Boolean-Null-Undefined-引用类型有Object-Array-Date" class="headerlink" title="Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date"></a>Javascript的变量分为基本类型和引用类型，基本类型有Number,String,Boolean,Null,Undefined, 引用类型有Object,Array,Date</h3><h3 id="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"><a href="#引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针" class="headerlink" title="引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针"></a>引用对象和java很像，就是对象本身是创建在内存的堆之上的，然后有一个变量保存的是对这个对象的引用或者说是一个指针</h3><h3 id="所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"><a href="#所有的变量赋值都是按值复制的，意思即是说当var-a-b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象" class="headerlink" title="所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象"></a>所有的变量赋值都是按值复制的，意思即是说当var a = b时，我不管a是个什么类型的变量，都是在内存中创建一个区域a，放的是b本身的值（b如果是基本类型，就把这个基本类型的值放到a；b如果是个引用类型的值，就把b这个引用值存到a，这样a和b都指向了同一个对象</h3><h3 id="函数传递的时候也是按值来传递"><a href="#函数传递的时候也是按值来传递" class="headerlink" title="函数传递的时候也是按值来传递"></a>函数传递的时候也是按值来传递</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1538,7 +1588,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1546,7 +1596,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1555,7 +1605,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

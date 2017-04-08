@@ -243,6 +243,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/26/utility/rsync学习/" itemprop="url">
+                  rsync学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T17:31:57+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>rsync分两种模式，如果主机之后是用：则是shell模式，即传输是用ssh，如果是用：：则表示是rsync的demon模式</p>
+</li>
+<li><p>rsync常用的参数： -a   archive模式，会复制符号链接，权限，属性，属主等信息</p>
+<p>​                  -z   压缩</p>
+<p>​                  -v   详细信息</p>
+<pre><code>-P   进度信息
+</code></pre></li>
+<li><p>关于目录之后的/，如果不带/，表示将整个目录名以及目录下面的文件一起拷贝，如果带了/表示只拷贝目录下面的内容,这个只对源目录，即rsync后第一个路径参数有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A trailing slash on the source changes this behavior to avoid creating an additional directory level at the destination.  You can think of a trailing / on a source as meaning &quot;copy the contents of this directory&quot; as opposed to &quot;copy the directory by name&quot;,  but  in  both</div><div class="line">cases  the attributes of the containing directory are transferred to the containing directory on the destination.</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/26/utility/rsync问题/" itemprop="url">
                   rsync问题
                 </a>
@@ -1322,129 +1446,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/20/thinking/对于异步编程的理解/" itemprop="url">
-                  对异步编程的理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T12:26:06+08:00" content="2016-12-20">
-              2016-12-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/thinking/" itemprop="url" rel="index">
-                    <span itemprop="name">thinking</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1）为啥需要异步编程的解决方案？</p>
-<p>​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式</p>
-<p>2） 异步方案的难点</p>
-<ol>
-<li><p>try catch无法捕捉异常，因为try catch本身是捕捉当次执行时的报错，而异步的方式那个程序在那个刻还没执行，自然也就catch不到，node在异常处理上形成一种约定，将异常作为回调函数的第一个参数传回，如果为空，则表明没有异常抛出，如果自己编写异步方法必须遵循如下原则：</p>
-<p><strong>必须执行调用者传入的回调函数</strong></p>
-<p><strong>正确传递回异常供调用者判断</strong></p>
-</li>
-<li><p>函数嵌套过深：多个操作存在依赖关系，比如遍历目录，查询数据库做渲染​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1490,7 +1491,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1498,7 +1499,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1507,7 +1508,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
