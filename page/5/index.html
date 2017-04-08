@@ -243,6 +243,263 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
+                  javascript的遍历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
+              2017-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>数组的遍历</p>
+<p>1) 原始的for循环： 写法比较麻烦</p>
+<p>2) 数组本身的forEach方法： 无法跳出循环</p>
+<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
+<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
+</li>
+<li><p>对象的遍历 :</p>
+<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
+<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
+                  使用vim提高编码效率
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
+              2017-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilties/" itemprop="url" rel="index">
+                    <span itemprop="name">utilties</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>选中行或列   shift+v,   ctrl+v</p>
+</li>
+<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
+</li>
+<li><p>向下移动10行， 10j</p>
+</li>
+<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
+</li>
+<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
+</li>
+<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
+</li>
+<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
+</li>
+<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
+</li>
+<li><p>替换 :%s/foo/bar/g</p>
+<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
                   API设计时遇到的问题
                 </a>
@@ -1192,246 +1449,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/utility/webstorm使用优化/" itemprop="url">
-                  webstorm使用优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T17:16:00+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/webstorm/" itemprop="url" rel="index">
-                    <span itemprop="name">webstorm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>开启vim插件，在Preference-&gt;Plugins 下面Browser repositiories, 搜索vim并安装</li>
-<li>给开启terminal设置快捷键，在Preference-&gt; Keymap下，将开启terminal设置成commond + j</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/javascript/javascript的apply,call和bind/" itemprop="url">
-                  javascript的apply,call和bind
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T12:05:59+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"><a href="#在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了" class="headerlink" title="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"></a>在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了</h4><p>#####1. 首先说下call和apply，这两个函数的作用是设置函数体内this对象的值，显然调用方就是一个函数本身，这两个函数的区别不大，第一个参数是作用域值用来给函数本身的this赋值，或者说改变函数的调用方，看到这个函数的解读应该是这样的：用后面第一个参数作为调用对象然后.上这个函数， apply的第二个参数可以是Array实例，也可以是arguments对象，而call函数必须将传入的参数一个个列出来，看一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123; color:&quot;blue&quot; &#125;;</div><div class="line">function sayColor() &#123;</div><div class="line">  alert(this.color);</div><div class="line">&#125;</div><div class="line">sayColor();           //red</div><div class="line">sayColor.call(window);//red</div><div class="line">sayColor.call(o);     //blue</div></pre></td></tr></table></figure>
-<p>这里说明了apply和call函数的用途，他们将对象和方法解耦了，方法不必依赖对象存在，一个方法可以给多个对象用，这个相对于java确实有很大不同，java的对象和方法是完全绑定的，函数在执行时的this在编译时就已经确定好了，而javascript则是要在运行时确定</p>
-<p>#####2. apply由于第二个参数是数组或arguments对象，又多了一个相应的用途，即某些函数接收多个参数作为输入，但是一个个写参数比较麻烦或者有的参数本来就已经是个数组形式了，比如通过api获取的数据，那么用apply就比较方便，看下面一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var list1 = [0,1,2];</div><div class="line">var list2 = [3,4,5];</div><div class="line">Array.prototype.push.apply(list1, list2);</div><div class="line">console.log(list1);// &gt;&gt;&gt; [0,1,2,3,4,5]</div></pre></td></tr></table></figure>
-<p>数组的push方法的参数是一个或多个，参数当然也可以是数组，只是说如果直接传入数组会把整个数组作为一个参数，而不是把数组的元素一个个取出来，因此如果有需求如上面把两个数组的元素连在一起，可以迂回调用下apply方法，这里的apply就不是为了调整this值了，而是利用第二个特性，将数组参数拆开</p>
-<p><em>在ES6里有更简便的方法，即通过扩展运算符</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var lists1 = [0, 1, 2];</div><div class="line">var lists2 = [3, 4, 5];</div><div class="line">lists1.push(...arr2);</div></pre></td></tr></table></figure>
-<p>是不是简单很多？</p>
-<h4 id="3-bind-方法"><a href="#3-bind-方法" class="headerlink" title="3. bind()方法"></a>3. bind()方法</h4><p>为什么有bind方法呢，还是this的原因，因为函数是在执行的时候确定它的this值，如果需要在执行之前就确定，可以通过bind方法，这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123; color:&quot;blue&quot; &#125;;</div><div class="line">function sayColor() &#123;</div><div class="line">  alert(this.color);</div><div class="line">&#125;</div><div class="line">var objectSayColor = sayColor.bind(o);</div><div class="line">objectSayColor();    //blue</div></pre></td></tr></table></figure>
-<p>在这里，sayColor()调用bind() 并 传入对象 o，创建了objectSayColor() 函数。 objectSayColor() 函数的this值等于o， 因此即使是在全局作用域中调用这个函数，也会看到”blue” </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1477,7 +1494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">128</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1494,7 +1511,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">93</span>
+                <span class="site-state-item-count">95</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
