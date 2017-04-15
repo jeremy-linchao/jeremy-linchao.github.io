@@ -243,6 +243,503 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/12/utility/mac上的shadowsocks/" itemprop="url">
+                  mac上的shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T16:09:44+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>首先提一下，mac上的shadowsocks会比windows上的用起来简单一些，mac的不用配代理，原因在于mac下的chrome代理是跟着系统走的，firefox需要手动配置下代理类型，当然也可以跟系统走，但是国内的版本不行</p>
+</li>
+<li><p>全局模式和自动代理模式区别，开启全局模式下会把系统设置为socks代理，开启代理模式会把系统设置为pac代理，shadowsocks的pac代理服务器起在8090端口</p>
+</li>
+<li><p>pac和switchyproxy区别： pac是一个js文件，从shadowsocks起的8090端口的服务器获得，告诉浏览器该怎么找到代理服务器，而switchyproxy则是一个浏览器插件，运行在浏览器端</p>
+</li>
+<li><p>关于dns是否是远程解析的验证方式,开一个wireshark，设定过滤dns，结论</p>
+<ol>
+<li>chrome不管是pac还是socks5都是要remote dns 解析 </li>
+<li>safari也是远程解析</li>
+</ol>
+</li>
+<li>safari也是走的系统默认代理，理论上都能翻，但实际上facebook和twitter大多可以，google基本上不去，怀疑是浏览器问题，不过50.1.0版的firfox 真是垃圾，国际版也是，无论哪种模式都翻不出去</li>
+</ol>
+<p>   ​</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/12/alogrithm/皮萨诺周期/" itemprop="url">
+                  皮萨诺周期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T15:04:59+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="皮萨诺周期"><a href="#皮萨诺周期" class="headerlink" title="皮萨诺周期"></a>皮萨诺周期</h3><p>先解释下皮萨诺周期是什么，我们知道斐波那契数列的通项公式是  F(n) = F(n-1) + F(n-2)，其中F(0) = 0, F(1) = 1,F(n) 对于m求模得到的序列是个周期序列，但周期本身目前还没有计算公式可以得出。现在有个问题要求大斐波那契数列对于m的求余值，为题具体描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given two integers 𝑛 and 𝑚, output 𝐹𝑛 mod 𝑚 (that is, the remainder of 𝐹𝑛 when divided by 𝑚).</div><div class="line">Input Format. The input consists of two integers 𝑛 and 𝑚 given on the same line (separated by a space). Constraints. 1≤𝑛≤10 **18（10的18次方）,2≤𝑚≤10 **5. Output Format. Output 𝐹𝑛 mod 𝑚.</div></pre></td></tr></table></figure>
+<p>由于n太大，计算Fn显然不现实，一来循环的次数很多，更重要的是没有方法来存这个数值，要解决这个问题有几个关键点</p>
+<p>1）设定P(n)是F(n) % m，P(n)是个周期序列，且每个P(n)的周期都是以数字0 1开头</p>
+<p>2）(a+b)%m = (a%m + b%m)%m</p>
+<p>3)  周期的最大值为6*m</p>
+<p>有了这两点基本知识，大体思路就出来了，首先用循环去计算周期，凡是循环到0 1就认为一个周期结束，因为m的最大值只有10的5次方，所以循环最多的次数也就只需要6<em> （10 *</em> 5），这个在1s内是可以完成的，第二个就是计算余数的周期序列，这就要利用性质2了，附一份c++的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">using std::vector;</div><div class="line"></div><div class="line">long long get_fibonacci_huge_fast(long long n, long long  m) &#123;</div><div class="line">    if (n&lt;=1) return 1;</div><div class="line">    vector&lt;long long&gt; p(6 * m);</div><div class="line">    long long count = 1;</div><div class="line">    p[0] = 0;</div><div class="line">    p[1] = 1;</div><div class="line">    for (long long  i=2; i&lt;=6 * m; i++)&#123;</div><div class="line">        p[i] = (p[i-1] + p[i-2]) % m;</div><div class="line">        if(p[i-1] == 0 &amp;&amp; p[i] == 1)&#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    long long k = n % count;</div><div class="line">    return p[k];</div><div class="line">&#125;</div><div class="line">int main() &#123;</div><div class="line">    long long n, m;</div><div class="line">    std::cin &gt;&gt; n &gt;&gt; m;</div><div class="line">    std::cout &lt;&lt; get_fibonacci_huge_fast(n, m) &lt;&lt; &apos;\n&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/04/c++/c++ const/" itemprop="url">
+                  c++ const
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-04T10:56:22+08:00" content="2017-01-04">
+              2017-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>默认状态下，const对象仅在文件内有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const int bufSize = 512;</div></pre></td></tr></table></figure>
+<p>编译器在编译过程会找到所有用到bufSize的地方替换成相应的值。如果程序包含多个文件，则每个用了const对象的文件都必须能访问到它的初始值，所以在每一个用到变量的文件中都要有对它的定义。为了支持这个用法，默认情况下const对象被设定为仅在文件内有效，<strong>当多个文件中出现了同名const变量，其实等同于在不同文件中分别定义了独立的变量</strong></p>
+</li>
+<li><p>如果想在多个文件之间共享const对象，必须在变量的定义之前添加<strong>extern</strong>关键字</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/03/c++/c++引用类型和指针/" itemprop="url">
+                  c++引用类型和指针
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-03T22:10:19+08:00" content="2017-01-03">
+              2017-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>c++中引用类型，引用类型就是一个对象的别名，通过&amp;来声明，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 1024;</div><div class="line">int &amp;refVal = ival;</div></pre></td></tr></table></figure>
+<p>定义了引用之后，所有与之相关的操作都是在与之绑定的对象上进行的，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">refVal = 2;  //把2赋值给了ival</div><div class="line">int ii = refVal;  把ival赋值给ii</div></pre></td></tr></table></figure>
+<p>引用必须初始化，一旦初始化完成，引用将和它的初始值对象一直绑定在一起</p>
+</li>
+<li><p>指针本身就是个对象，允许对指针赋值和拷贝，而且在指针的生命周期内它可以先后指向几个不同的对象；</p>
+<p>指针无须在定义时赋初值；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *ip1, *ip2;</div></pre></td></tr></table></figure>
+<p>可以用取地址符&amp;来获取对象地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div></pre></td></tr></table></figure>
+<p>通过解引用符*来获取指针所指的对象；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div><div class="line">cout &lt;&lt; *p;</div></pre></td></tr></table></figure>
+</li>
+<li><p>指向指针的引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int i = 42;</div><div class="line">int *p;</div><div class="line">int *&amp;r = p;  //r是一个对指针p的引用</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/03/c++/c++输入输出/" itemprop="url">
                   c++输入输出
                 </a>
@@ -938,481 +1435,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/node/pm2学习/" itemprop="url">
-                  pm2学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T16:23:29+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>pm2启动 </li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/node/npm配置依赖/" itemprop="url">
-                  npm配置依赖
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T11:50:07+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><strong>指定版本</strong>：比如<code>1.2.2</code>，遵循“大版本.次要版本.小版本”的格式规定，安装时只安装指定版本。</li>
-<li><strong>波浪号（tilde）+指定版本</strong>：比如<code>~1.2.2</code>，表示安装1.2.x的最新版本（不低于1.2.2），但是不安装1.3.x，也就是说安装时不改变大版本号和次要版本号。</li>
-<li><strong>插入号（caret）+指定版本</strong>：比如ˆ1.2.2，表示安装1.x.x的最新版本（不低于1.2.2），但是不安装2.x.x，也就是说安装时不改变大版本号。需要注意的是，如果大版本号为0，则插入号的行为与波浪号相同，这是因为此时处于开发阶段，即使是次要版本号变动，也可能带来程序的不兼容。</li>
-<li><strong>latest</strong>：安装最新版本。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/27/concept/对于cookie和session的理解/" itemprop="url">
-                  对于cookie和session的理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-27T23:32:42+08:00" content="2016-12-27">
-              2016-12-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/concept/" itemprop="url" rel="index">
-                    <span itemprop="name">concept</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>首先cookie是后端服务器通过response响应传送给浏览器的一个字段，只要不过期，之后浏览器在每次访问的时候就会加上这个字段，在nodejs里，cookie被封装在req.headers.cookie，是个字符串，可以写一个解析函数来转换成js对象</li>
-</ol>
-<ol>
-<li>服务器是通过Set-Cookie这个字段来发送cookie的，最重要的是name=value, 可选项包括Path, Expires,Max-age,httpOnly,Domain,Secure</li>
-<li>Cookie对性能会有影响，表现在如果浏览器会将cooke放到每次请求上，然而对于静态页面，其实是不需要状态的，因此把静态页面用独立域名会减少cookie的传输</li>
-<li>浏览器通过document.cookie把cookie暴露给了js，因此如果你在cookie写些重要的关于业务信息，很容易被篡改</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/concept/http学习/" itemprop="url">
-                  http学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-26T23:40:49+08:00" content="2016-12-26">
-              2016-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/concept/" itemprop="url" rel="index">
-                    <span itemprop="name">concept</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>学习任何一个协议，我觉得首要掌握的就是报文结构，http也是如此，http分为请求和响应报文，请求报文的结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;method&gt; &lt;request-URL&gt; &lt;version&gt;         起始行</div><div class="line">&lt;headers&gt;                                首部</div><div class="line"></div><div class="line">&lt;entity-body&gt;                            主体</div></pre></td></tr></table></figure>
-<p>响应报文：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;version&gt; &lt;status&gt; &lt;reason-phrase&gt;       起始行</div><div class="line">&lt;headers&gt;                                首部</div><div class="line"></div><div class="line">&lt;entity-body&gt;                            主体</div></pre></td></tr></table></figure>
-<p>其中首部和主体之间一般都有一个空行，但许多浏览器并没有遵循</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1453,7 +1480,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">129</span>
+              <span class="site-state-item-count">133</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1461,7 +1488,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1470,7 +1497,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

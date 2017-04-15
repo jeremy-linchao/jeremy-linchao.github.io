@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/27/docker/docker学习/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="一. 为什么docker？抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和">
-<meta property="og:updated_time" content="2017-03-29T08:42:56.000Z">
+<meta property="og:updated_time" content="2017-04-13T00:51:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker学习">
 <meta name="twitter:description" content="一. 为什么docker？抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和">
@@ -320,13 +320,12 @@
 <h3 id="四-registry和repository的区别"><a href="#四-registry和repository的区别" class="headerlink" title="四. registry和repository的区别"></a>四. registry和repository的区别</h3><ol>
 <li>registry是注册服务器，repository是仓库，一个服务器上可以有多个仓库，仓库可以理解为某个目录或某个项目，dl.dockerpool.com/ubuntu 对于这个地址来说，dl.dockerpool.com是注册服务器，ubuntu是仓库名</li>
 </ol>
-<h3 id="五-harbor的使用"><a href="#五-harbor的使用" class="headerlink" title="五. harbor的使用"></a>五. harbor的使用</h3><ol>
-<li><p>由于很多情况下无法访问docker hub并且网络受限，一个内网的私有仓库就显得很有必要了，这里以harbor为例说下使用</p>
-<p>1）登陆 <a href="http://x.x.x.x" target="_blank" rel="external">http://x.x.x.x</a> 去注册一个账号</p>
-<p>2）</p>
-</li>
+<h3 id="五-Docker的build"><a href="#五-Docker的build" class="headerlink" title="五. Docker的build"></a>五. Docker的build</h3><ol>
+<li>docker build [选项] &lt;上下文路径/URL/-&gt;</li>
 </ol>
-<h3 id="五-Mac上的docker开发流程"><a href="#五-Mac上的docker开发流程" class="headerlink" title="五.Mac上的docker开发流程"></a>五.Mac上的docker开发流程</h3><h4 id="可以参考nodejs的部署过程"><a href="#可以参考nodejs的部署过程" class="headerlink" title="可以参考nodejs的部署过程"></a>可以参考nodejs的部署过程</h4><p><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/nodejs-docker-webapp/</a></p>
+<p>当我们进行镜像构建的时候，并非所有定制都会通过 RUN 指令完成，经常会需要将一些本地文件复制进镜像，比如通过 COPY 指令、ADD 指令等。而 docker build 命令构建镜像，其实并非在本地构建，而是在服务端，也就是 Docker 引擎中构建的。那么在这种客户端/服务端的架构中，如何才能让服务端获得本地文件呢？</p>
+<p>这就引入了上下文的概念。当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。</p>
+<h3 id="六-Mac上的docker开发流程"><a href="#六-Mac上的docker开发流程" class="headerlink" title="六. Mac上的docker开发流程"></a>六. Mac上的docker开发流程</h3><h4 id="可以参考nodejs的部署过程"><a href="#可以参考nodejs的部署过程" class="headerlink" title="可以参考nodejs的部署过程"></a>可以参考nodejs的部署过程</h4><p><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/nodejs-docker-webapp/</a></p>
 <ol>
 <li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持，因此只需要去官方下载docker for mac即可</li>
 <li>docker hub下载下来的镜像存放在哪里呢？</li>
@@ -440,7 +439,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">129</span>
+              <span class="site-state-item-count">133</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -448,7 +447,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -457,7 +456,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -486,7 +485,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-为什么docker？"><span class="nav-number">1.</span> <span class="nav-text">一. 为什么docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><span class="nav-number">1.1.</span> <span class="nav-text">抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-docker-machine-和-docker-engine的区别"><span class="nav-number">2.</span> <span class="nav-text">二. docker machine 和 docker engine的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-Docker-hub加速"><span class="nav-number">3.</span> <span class="nav-text">三. Docker hub加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-registry和repository的区别"><span class="nav-number">4.</span> <span class="nav-text">四. registry和repository的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-harbor的使用"><span class="nav-number">5.</span> <span class="nav-text">五. harbor的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-Mac上的docker开发流程"><span class="nav-number">6.</span> <span class="nav-text">五.Mac上的docker开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可以参考nodejs的部署过程"><span class="nav-number">6.1.</span> <span class="nav-text">可以参考nodejs的部署过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-为什么docker？"><span class="nav-number">1.</span> <span class="nav-text">一. 为什么docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><span class="nav-number">1.1.</span> <span class="nav-text">抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-docker-machine-和-docker-engine的区别"><span class="nav-number">2.</span> <span class="nav-text">二. docker machine 和 docker engine的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-Docker-hub加速"><span class="nav-number">3.</span> <span class="nav-text">三. Docker hub加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-registry和repository的区别"><span class="nav-number">4.</span> <span class="nav-text">四. registry和repository的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-Docker的build"><span class="nav-number">5.</span> <span class="nav-text">五. Docker的build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-Mac上的docker开发流程"><span class="nav-number">6.</span> <span class="nav-text">六. Mac上的docker开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可以参考nodejs的部署过程"><span class="nav-number">6.1.</span> <span class="nav-text">可以参考nodejs的部署过程</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
