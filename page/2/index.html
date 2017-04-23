@@ -243,6 +243,123 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/12/node/parseInt 和 escape/" itemprop="url">
+                  parseInt 和 escape
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-12T14:24:30+08:00" content="2017-04-12">
+              2017-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>express处理post提交的数据，如果对接收到的数据做一个escape会强制加上’ ‘， 这样的话如果要取一个整数型变量就会报错，这个该如何处理呢？    </p>
+<p>数据库插入的时候，它并不需要你在程序中转换，mysql会根据你的column的类型来将你传过去的数据做转换，如果无法转换，比如‘15a’ 插入到整型列，就会报列类型错误</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/08/http/HTTP/" itemprop="url">
                   HTTP
                 </a>
@@ -1394,134 +1511,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/git/使用vscode作为git difftool/" itemprop="url">
-                  使用vscode作为git difftool
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T20:36:24+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"><a href="#当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下" class="headerlink" title="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"></a>当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下</h4><ol>
-<li><p>确保vscode可以在命令行下打开:  </p>
-<p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
-</li>
-</ol>
-<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>配置git difftool</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
-</li>
-<li><p>比较</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool &lt;commit&gt; &lt;commit&gt;</div></pre></td></tr></table></figure>
-<p>如果只比较当前版本和之前一个版本，可以更简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool HEAD HEAD~1</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1567,7 +1556,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">139</span>
+              <span class="site-state-item-count">140</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1584,7 +1573,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">103</span>
+                <span class="site-state-item-count">104</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

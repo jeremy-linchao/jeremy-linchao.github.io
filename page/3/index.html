@@ -243,6 +243,134 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/26/git/使用vscode作为git difftool/" itemprop="url">
+                  使用vscode作为git difftool
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-26T20:36:24+08:00" content="2017-03-26">
+              2017-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"><a href="#当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下" class="headerlink" title="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"></a>当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下</h4><ol>
+<li><p>确保vscode可以在命令行下打开:  </p>
+<p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
+</li>
+</ol>
+<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>配置git difftool</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
+</li>
+<li><p>比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool &lt;commit&gt; &lt;commit&gt;</div></pre></td></tr></table></figure>
+<p>如果只比较当前版本和之前一个版本，可以更简单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool HEAD HEAD~1</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/24/typescript/typescript + webpack/" itemprop="url">
                   typescript + webpack
                 </a>
@@ -510,7 +638,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/react/typescript + react/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/22/utility/typescript + react/" itemprop="url">
                   typescript + react
                 </a>
               
@@ -630,7 +758,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/utility/typescript + react/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/22/react/typescript + react/" itemprop="url">
                   typescript + react
                 </a>
               
@@ -1302,131 +1430,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/15/react/create-react-app学习/" itemprop="url">
-                  create-react-app学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-15T10:25:02+08:00" content="2017-03-15">
-              2017-03-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>在index.js主要到有如下一个import</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./index.css&apos;;</div></pre></td></tr></table></figure>
-<p>这个import其实不是ES6的语法，而是webpack对于import的补充，用于将css文件impor到js文件中去</p>
-</li>
-<li><p>在webpack中通过import引入css，font，img的优点</p>
-<p>1）js和css打包在一起并被压缩可以减少网络请求</p>
-<p>2）如果某个文件确实在编译时候报错，而不是在用户请求的时候报404</p>
-<p>3）文件名会带hash值，因此不用担心浏览器会缓存旧版本</p>
-</li>
-<li><p>利用react-snapshot可以做页面静态化</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1472,7 +1475,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">139</span>
+              <span class="site-state-item-count">140</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1489,7 +1492,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">103</span>
+                <span class="site-state-item-count">104</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
