@@ -424,7 +424,10 @@
         
           
             <ol>
-<li>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</li>
+<li><p>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</p>
+<hr>
+<p>补充： json.stringify()这个函数也是有可能会报错的（无法string化）</p>
+</li>
 </ol>
 
           
@@ -551,6 +554,9 @@
 <p>19.0.2</p>
 <p>axios</p>
 <p>0.16.1</p>
+<hr>
+<p>update 5.11</p>
+<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
 
           
         

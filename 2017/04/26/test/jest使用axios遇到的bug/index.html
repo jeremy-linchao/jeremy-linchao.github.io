@@ -94,7 +94,7 @@
 <meta property="og:description" content="今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error
 代码如下
 123456789101112131415161718const axios = require(&amp;apos;axios&amp;apos;);const request = require(&amp;apos;request&amp;apos;);const rp = require(&amp;apos;request-pro">
-<meta property="og:updated_time" content="2017-04-26T12:45:38.000Z">
+<meta property="og:updated_time" content="2017-05-11T06:43:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jest使用axios遇到的bug">
 <meta name="twitter:description" content="今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error
@@ -319,6 +319,9 @@
 <p>19.0.2</p>
 <p>axios</p>
 <p>0.16.1</p>
+<hr>
+<p>update 5.11</p>
+<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
 
       
     </div>
