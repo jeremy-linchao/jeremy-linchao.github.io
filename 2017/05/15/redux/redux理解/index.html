@@ -1,0 +1,631 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述
+
+redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复
+
+关于acti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux理解">
+<meta property="og:url" content="http://yoursite.com/2017/05/15/redux/redux理解/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述
+
+redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复
+
+关于acti">
+<meta property="og:updated_time" content="2017-05-15T08:41:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux理解">
+<meta name="twitter:description" content="redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述
+
+redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复
+
+关于acti">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> redux理解 | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-15T11:21:22+08:00" content="2017-05-15">
+              2017-05-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p>redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述</p>
+</li>
+<li><p>redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复</p>
+</li>
+<li><p>关于action-creator的理解： 为什么需要action creator而不是简单的action，因为有了action之后，当你需要在dispatch一个action之前做一些判断的时候，通过redux-thunk可以做一个简单的判断，而不要在每个dispatch之前判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function addTodoWithoutCheck(text) &#123;</div><div class="line">  return &#123;</div><div class="line">    type: &apos;ADD_TODO&apos;,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export function addTodo(text) &#123;</div><div class="line">  // This form is allowed by Redux Thunk middleware</div><div class="line">  // described below in “Async Action Creators” section.</div><div class="line">  return function (dispatch, getState) &#123;</div><div class="line">    if (getState().todos.length === 3) &#123;</div><div class="line">      // Exit early</div><div class="line">      return</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    dispatch(addTodoWithoutCheck(text))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>middleware是干嘛的？middleware可以在每次dispatch一个action之前增加客户逻辑，举个例子，我先要通过ajax去拉一些api数据，然后根据拉取的数据去dispatch action（永远记住action只是能改变数据）</p>
+</li>
+<li><p>什么是thunk函数: A <a href="https://en.wikipedia.org/wiki/Thunk" target="_blank" rel="external">thunk</a> is a function that wraps an expression to delay its evaluation.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// calculation of 1 + 2 is immediate</div><div class="line">// x === 3</div><div class="line">let x = 1 + 2;</div><div class="line"></div><div class="line">// calculation of 1 + 2 is delayed</div><div class="line">// foo can be called later to perform the calculation</div><div class="line">// foo is a thunk!</div><div class="line">let foo = () =&gt; 1 + 2;</div></pre></td></tr></table></figure>
+</li>
+<li><p>把UI的action和网络请求的action分开</p>
+</li>
+<li><p>state会存很多数据，内存是否有问题？如下是redux作者的回答，这一部分我会做一个实验看看</p>
+<p>Don’t worry about all these items being in memory: unless you’re dealing with tens of thousands of items, and your user rarely closes the tab, you won’t need any sort of cleanup</p>
+</li>
+<li><p>redux中间件: It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer</p>
+</li>
+<li><figure class="highlight plain"><figcaption><span>logger = store =&gt; next =&gt; action =&gt; &#123;  console.log(&#39;dispatching&#39;, action)  let result = next(action)  console.log(&#39;next state&#39;, store.getState())  return result&#125;const crashReporter = store =&gt; next =&gt; action =&gt; &#123;  try &#123;    return next(action)  &#125; catch (err) &#123;    console.error(&#39;Caught an exception!&#39;, err)    Raven.captureException(err, &#123;      extra: &#123;        action,        state: store.getState()      &#125;    &#125;)    throw err  &#125;&#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const logger = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  console.log(&apos;dispatching&apos;, action)</div><div class="line">  let result = next(action)</div><div class="line">  console.log(&apos;next state&apos;, store.getState())</div><div class="line">  return result</div><div class="line">&#125;</div><div class="line"></div><div class="line">const crashReporter = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  try &#123;</div><div class="line">    return next(action)</div><div class="line">  &#125; catch (err) &#123;</div><div class="line">    console.error(&apos;Caught an exception!&apos;, err)</div><div class="line">    Raven.captureException(err, &#123;</div><div class="line">      extra: &#123;</div><div class="line">        action,</div><div class="line">        state: store.getState()</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    throw err</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function logger(store) &#123;</div><div class="line">  return function wrapDispatchToAddLogging(next) &#123;</div><div class="line">    return function dispatchAndLog(action) &#123;</div><div class="line">      console.log(&apos;dispatching&apos;, action)</div><div class="line">      let result = next(action)</div><div class="line">      console.log(&apos;next state&apos;, store.getState())</div><div class="line">      return result</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function applyMiddleware(store, middlewares) &#123;</div><div class="line">  middlewares = middlewares.slice()</div><div class="line">  middlewares.reverse()</div><div class="line"></div><div class="line">  let dispatch = store.dispatch</div><div class="line">  middlewares.forEach(middleware =&gt;</div><div class="line">    dispatch = middleware(store)(dispatch)</div><div class="line">  )</div><div class="line"></div><div class="line">  return Object.assign(&#123;&#125;, store, &#123; dispatch &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redux/" rel="tag">#redux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/redux/redux问题/" rel="next" title="redux问题">
+                <i class="fa fa-chevron-left"></i> redux问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/17/redux/redux运行慢/" rel="prev" title="redux运行慢">
+                redux运行慢 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">158</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">115</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

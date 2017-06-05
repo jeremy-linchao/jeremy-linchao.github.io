@@ -87,7 +87,8 @@
 <meta name="description" content="1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题
 
 ant-design的select不满足多选的需求
-select组件的option渲染时可能没有初始化，因此可能会有TypeE">
+
+select组件的option渲染时可能没有初始化，因此可能会有Type">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redux问题">
 <meta property="og:url" content="http://yoursite.com/2017/05/09/redux/redux问题/index.html">
@@ -95,14 +96,16 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
 <meta property="og:description" content="1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题
 
 ant-design的select不满足多选的需求
-select组件的option渲染时可能没有初始化，因此可能会有TypeE">
-<meta property="og:updated_time" content="2017-05-10T08:55:55.000Z">
+
+select组件的option渲染时可能没有初始化，因此可能会有Type">
+<meta property="og:updated_time" content="2017-05-27T07:13:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux问题">
 <meta name="twitter:description" content="1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题
 
 ant-design的select不满足多选的需求
-select组件的option渲染时可能没有初始化，因此可能会有TypeE">
+
+select组件的option渲染时可能没有初始化，因此可能会有Type">
 
 
 
@@ -311,8 +314,77 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
       
         <p>1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题</p>
 <ol>
-<li>ant-design的select不满足多选的需求</li>
-<li>select组件的option渲染时可能没有初始化，因此可能会有TypeError: Cannot read property ‘type’ of null这个错误，需要用一个三元运算符来初始化一个</li>
+<li><p>ant-design的select不满足多选的需求</p>
+</li>
+<li><p>select组件的option渲染时可能没有初始化，因此可能会有TypeError: Cannot read property ‘type’ of null这个错误，需要用一个三元运算符来初始化一个</p>
+</li>
+<li><p>select 渲染option条目时，由于需要的是一个表达式，因此无法在里面写if… else，但如果用三元运算符，又会涉及到大量的判断，比较好的解决方法是在表达式里写一个函数，这个函数来返回需要的react组件，函数里面可以使用if… else了</p>
+</li>
+<li><p>components如何拿到全局的state</p>
+</li>
+<li><p>component did mount这个函数里如何拿到dispatch</p>
+</li>
+<li><p>在component did mount里拉了下的数据，想更新到state里面，但是这时候props的数据不是最新的</p>
+</li>
+<li><p>如果redux不同组件会加载不同component的state，但是如果组件之间数据有依赖就很麻烦，在一个组件下刷新可能会拿不到其他组件的数据</p>
+</li>
+<li><p>There are frameworks claiming to be similar to Flux, but without a concept of action objects. In terms of being predictable, this is a step backwards from Flux or Redux. If there are no serializable plain object actions, it is impossible to record and replay user sessions, or to implement <a href="https://www.youtube.com/watch?v=xsSnOQynTHs" target="_blank" rel="external">hot reloading with time travel</a>. If you’d rather modify data directly, you don’t need Redux.</p>
+</li>
+<li><p>Without any middleware, <a href="http://redux.js.org/docs/api/Store.html#dispatch" target="_blank" rel="external"><code>dispatch</code></a> only accepts a plain object, so we have to perform AJAX calls inside our components， However, this quickly gets repetitive because different components request data from the same API endpoints. Moreover, we want to reuse some of this logic (e.g., early exit when there is cached data available) from many components.</p>
+<p>异步的操作如果写在组件里没法重用</p>
+</li>
+<li><p>为什么react需要immutate.js: 因为react的渲染是根据state来的，state只要一变，组件就会重新渲染一个大型项目中，state必然是非常复杂的，那么如果需要用递归的方式来比较state是否改变会对性能产生极大的影响，所以当你每次要改变state的时候，请重新new一个state</p>
+</li>
+<li><p><strong>define your state shape in terms of your domain data and app state, not your UI component tree</strong>. </p>
+</li>
+<li><p>funnctional decomposition好处：1. 重用  2. 便于测试</p>
+</li>
+<li><h4 id="Extracting-Case-Reducers"><a href="#Extracting-Case-Reducers" class="headerlink" title="Extracting Case Reducers"></a>Extracting Case Reducers</h4></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function appReducer(state = initialState, action) &#123;</div><div class="line">    switch(action.type) &#123;</div><div class="line">        case &apos;SET_VISIBILITY_FILTER&apos; : return setVisibilityFilter(state, action);</div><div class="line">        case &apos;ADD_TODO&apos; : return addTodo(state, action);</div><div class="line">        case &apos;TOGGLE_TODO&apos; : return toggleTodo(state, action);</div><div class="line">        case &apos;EDIT_TODO&apos; : return editTodo(state, action);</div><div class="line">        default : return state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>mapStateToProps这个函数使用shallow reference equality checks来检查是否需要更新</p>
+</li>
+<li><p>Most applications deal with multiple types of data, which can be broadly divided into three categories:</p>
+<ul>
+<li><em>Domain data</em>: data that the application needs to show, use, or modify (such as “all of the Todos retrieved from the server”)</li>
+<li><em>App state</em>: data that is specific to the application’s behavior (such as “Todo #5 is currently selected”, or “there is a request in progress to fetch Todos”)</li>
+<li><em>UI state</em>: data that represents how the UI is currently displayed (such as “The EditTodo modal dialog is currently open”)</li>
+</ul>
+</li>
+<li><p>Since a Redux reducer is <em>just</em> a function, the same concept applies. You can split some of your reducer logic out into another function, and call that new function from the parent function.</p>
+<p>These new functions would typically fall into one of three categories:</p>
+<ol>
+<li>Small utility functions containing some reusable chunk of logic that is needed in multiple places (which may or may not be actually related to the specific business logic)</li>
+<li>Functions for handling a specific update case, which often need parameters other than the typical <code>(state, action)</code> pair</li>
+<li>Functions which handle <em>all</em> updates for a given slice of state. These functions do generally have the typical <code>(state, action)</code> parameter signature</li>
+</ol>
+</li>
+<li><p>One frequently asked question is whether Redux “calls all reducers” when dispatching an action. Since there really is only one root reducer function, the default answer is “no, it does not”. However, <code>combineReducers</code> has specific behavior that <em>does</em> work that way. In order to assemble the new state tree, <code>combineReducers</code> will call each slice reducer with its current slice of state and the current action, giving the slice reducer a chance to respond and update its slice of state if needed. So, in that sense, using <code>combineReducers</code> <em>does</em> “call all reducers”, or at least all of the slice reducers it is wrapping.</p>
+</li>
+</ol>
+<ol>
+<li><p>Since immutable data updates require all ancestors in the state tree to be copied and updated as well, and new object references will cause connected UI components to re-render, an update to a deeply nested data object could force totally unrelated UI components to re-render even if the data they’re displaying hasn’t actually changed.</p>
+<p>state的设计非常重要，如果嵌套过多，单单叶子节点的一个更新都需要导致整个state渲染，性能影响很大</p>
+<p>因此： the recommended approach to managing relational or nested data in a Redux store is to treat a portion of your store as if it were a database, and keep that data in a <em>normalized</em> form.</p>
+<p>​</p>
+<p>The basic concepts of normalizing data are:</p>
+<ul>
+<li>Each type of data gets its own “table” in the state.</li>
+<li>Each “data table” should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values.</li>
+<li>Any references to individual items should be done by storing the item’s ID.</li>
+<li>Arrays of IDs should be used to indicate ordering.</li>
+</ul>
+</li>
+<li><p>There is no “right” answer for this. Some users prefer to keep every single piece of data in Redux, to maintain a fully serializable and controlled version of their application at all times. Others prefer to keep non-critical or UI state, such as “is this dropdown currently open”, inside a component’s internal state.</p>
+<p><strong>Using local component state is fine</strong>. As a developer, it is <em>your</em> job to determine what kinds of state make up your application, and where each piece of state should live. Find a balance that works for you, and go with </p>
+</li>
+<li><p>redux代码组织问题：</p>
+<p>1） 官方给的例子是components, actions，reducers分别建立目录，这个结构的问题是如果要对state增加一个特性，需要在各个文件分别修改</p>
+<p>2） 社区很多人建议按功能把components，actions，reducer放在一起</p>
+</li>
+<li><p>fat action creater or thin?</p>
+</li>
 </ol>
 
       
@@ -351,6 +423,10 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/15/redux/redux理解/" rel="prev" title="redux理解">
+                redux理解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -418,7 +494,7 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">147</span>
+              <span class="site-state-item-count">158</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -426,7 +502,7 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -435,7 +511,7 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">108</span>
+                <span class="site-state-item-count">115</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -464,7 +540,7 @@ select组件的option渲染时可能没有初始化，因此可能会有TypeE">
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Extracting-Case-Reducers"><span class="nav-number">1.</span> <span class="nav-text">Extracting Case Reducers</span></a></li></ol></div>
             
           </div>
         </section>
