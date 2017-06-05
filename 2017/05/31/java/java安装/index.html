@@ -94,7 +94,7 @@ wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%
 <meta property="og:description" content="大学之后就没有碰过java了，基本的环境配置列一下
 
 wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie” http://download.oracle.com/otn-p">
-<meta property="og:updated_time" content="2017-06-05T08:44:48.000Z">
+<meta property="og:updated_time" content="2017-06-05T10:45:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java安装">
 <meta name="twitter:description" content="大学之后就没有碰过java了，基本的环境配置列一下
@@ -334,9 +334,9 @@ wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%
 <hr>
 <h3 id="mac上的java更新问题"><a href="#mac上的java更新问题" class="headerlink" title="mac上的java更新问题"></a>mac上的java更新问题</h3><p>mac上更新java是可以直接通过控制面板来操作的，但这里有个问题就是oracle的java安装完成之后是放在/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin 目录下的，但是系统的java的path是/usr/bin/java, 这是个软链接</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lrwxr-xr-x   1 root   wheel        74 Nov  9  2016 java -&gt; /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java</div></pre></td></tr></table></figure>
-<p>这个是系统的java，仍然是1.7，所以可以通过修改bashfile来达到目的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div><div class="line">export PATH=/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin:$PATH</div></pre></td></tr></table></figure>
-<p>注： macOS已经不允许修改 /usr/bin/java，所以是无法直接修改/usr/bin/java这个软连接的</p>
+<p>这个是系统的java，仍然是1.7，</p>
+<p>解决办法是直接从oracle官网安装jdk 8即可, 注意是jdk不是jre</p>
+<p>运行/usr/libexec/java_home 可以看到是1.8了</p>
 
       
     </div>
