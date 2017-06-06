@@ -1205,7 +1205,7 @@
 <ol>
 <li><p>cd /usr/maven &amp;&amp; wget <a href="http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz</a></p>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line"></div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:$vPATH</div></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line"></div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:$PATH</div></pre></td></tr></table></figure>
 </li>
 <li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/profile.d/maven.sh</div></pre></td></tr></table></figure>
 </li>
