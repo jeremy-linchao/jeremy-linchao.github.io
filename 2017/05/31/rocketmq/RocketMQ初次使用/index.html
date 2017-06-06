@@ -94,7 +94,7 @@
 <meta property="og:description" content="根据官方quick start来做，遇到几个问题
 1）mac运行会报下面这个错误，在centos上用jdk 1.8运行OK，mac上升级到1.8也没有问题
 1[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project">
-<meta property="og:updated_time" content="2017-06-05T11:01:16.000Z">
+<meta property="og:updated_time" content="2017-06-06T07:39:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RocketMQ初次使用">
 <meta name="twitter:description" content="根据官方quick start来做，遇到几个问题
@@ -311,6 +311,10 @@
 <p>1）mac运行会报下面这个错误，在centos上用jdk 1.8运行OK，mac上升级到1.8也没有问题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project rocketmq-remoting: Execution default-compile of goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile failed: A required class was missing while executing org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile: org/codehaus/plexus/util/cli/CommandLineException</div></pre></td></tr></table></figure>
 <p>2）服务器内存需要大于8G，否则broker起不来</p>
+<p>3) rocketmq的hostname不要修改，否则nameserver起不来，nameserver应该是根据hostname</p>
+<p>的ip来取</p>
+<p>4）bash mqbroker -c ../conf/2m-2s-sync/broker-a.properties -n 192.168.0.2:9876;192.168.0.3:9876</p>
+<p>注意这里官网用的,是错的，应该是;</p>
 <p>​</p>
 </li>
 </ol>
@@ -422,7 +426,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -439,7 +443,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">118</span>
+                <span class="site-state-item-count">119</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
