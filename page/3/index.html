@@ -243,6 +243,1170 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/17/design/react集成material icon/" itemprop="url">
+                  react集成material icon
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T18:21:11+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>安装material icon:   npm install material-design-icons</p>
+</li>
+<li><p>app.css 增加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-style: normal;</div><div class="line">  font-weight: 400;</div><div class="line">  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */</div><div class="line">  src: local(&apos;Material Icons&apos;),</div><div class="line">  local(&apos;MaterialIcons-Regular&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format(&apos;woff2&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format(&apos;woff&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format(&apos;truetype&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的url路径以相对路径，根据自己项目来</p>
+</li>
+<li><p>在app.css再添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">.material-icons &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-weight: normal;</div><div class="line">  font-style: normal;</div><div class="line">  font-size: 24px;  /* Preferred icon size */</div><div class="line">  display: inline-block;</div><div class="line">  line-height: 1;</div><div class="line">  text-transform: none;</div><div class="line">  letter-spacing: normal;</div><div class="line">  word-wrap: normal;</div><div class="line">  white-space: nowrap;</div><div class="line">  direction: ltr;</div><div class="line"></div><div class="line">  /* Support for all WebKit browsers. */</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  /* Support for Safari and Chrome. */</div><div class="line">  text-rendering: optimizeLegibility;</div><div class="line"></div><div class="line">  /* Support for Firefox. */</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line"></div><div class="line">  /* Support for IE. */</div><div class="line">  font-feature-settings: &apos;liga&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于webpack的css-loader会对url() 当做import/require() 来引入，需要增加个url-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,</div><div class="line">  loader: &apos;url-loader&apos;,</div><div class="line">  options: &#123;</div><div class="line">    limit: 10000</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/redux/redux运行慢/" itemprop="url">
+                  redux运行慢
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T10:33:49+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>遇到一个redux慢的问题，拉取很多数据，对数据做处理，最终渲染图表。这里面要搞清楚到底是哪里慢，是reducer慢，还是react渲染慢，或者是api请求慢，网络的问题可以通过console的timeline看出来，reducer的问题只要在reducer的处理函数里统计时间，react渲染在ReactDOM.render这里面统计，最终能看出来究竟是哪里慢</p>
+<p>结论： 用reactjs渲染图表的时候很慢，特别是数据点特变多的时候，渲染8638个点需要3.69s，之后换一个库试试</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/15/redux/redux理解/" itemprop="url">
+                  redux理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-15T11:21:22+08:00" content="2017-05-15">
+              2017-05-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述</p>
+</li>
+<li><p>redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复</p>
+</li>
+<li><p>关于action-creator的理解： 为什么需要action creator而不是简单的action，因为有了action之后，当你需要在dispatch一个action之前做一些判断的时候，通过redux-thunk可以做一个简单的判断，而不要在每个dispatch之前判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function addTodoWithoutCheck(text) &#123;</div><div class="line">  return &#123;</div><div class="line">    type: &apos;ADD_TODO&apos;,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export function addTodo(text) &#123;</div><div class="line">  // This form is allowed by Redux Thunk middleware</div><div class="line">  // described below in “Async Action Creators” section.</div><div class="line">  return function (dispatch, getState) &#123;</div><div class="line">    if (getState().todos.length === 3) &#123;</div><div class="line">      // Exit early</div><div class="line">      return</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    dispatch(addTodoWithoutCheck(text))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>middleware是干嘛的？middleware可以在每次dispatch一个action之前增加客户逻辑，举个例子，我先要通过ajax去拉一些api数据，然后根据拉取的数据去dispatch action（永远记住action只是能改变数据）</p>
+</li>
+<li><p>什么是thunk函数: A <a href="https://en.wikipedia.org/wiki/Thunk" target="_blank" rel="external">thunk</a> is a function that wraps an expression to delay its evaluation.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// calculation of 1 + 2 is immediate</div><div class="line">// x === 3</div><div class="line">let x = 1 + 2;</div><div class="line"></div><div class="line">// calculation of 1 + 2 is delayed</div><div class="line">// foo can be called later to perform the calculation</div><div class="line">// foo is a thunk!</div><div class="line">let foo = () =&gt; 1 + 2;</div></pre></td></tr></table></figure>
+</li>
+<li><p>把UI的action和网络请求的action分开</p>
+</li>
+<li><p>state会存很多数据，内存是否有问题？如下是redux作者的回答，这一部分我会做一个实验看看</p>
+<p>Don’t worry about all these items being in memory: unless you’re dealing with tens of thousands of items, and your user rarely closes the tab, you won’t need any sort of cleanup</p>
+</li>
+<li><p>redux中间件: It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer</p>
+</li>
+<li><figure class="highlight plain"><figcaption><span>logger = store =&gt; next =&gt; action =&gt; &#123;  console.log(&#39;dispatching&#39;, action)  let result = next(action)  console.log(&#39;next state&#39;, store.getState())  return result&#125;const crashReporter = store =&gt; next =&gt; action =&gt; &#123;  try &#123;    return next(action)  &#125; catch (err) &#123;    console.error(&#39;Caught an exception!&#39;, err)    Raven.captureException(err, &#123;      extra: &#123;        action,        state: store.getState()      &#125;    &#125;)    throw err  &#125;&#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const logger = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  console.log(&apos;dispatching&apos;, action)</div><div class="line">  let result = next(action)</div><div class="line">  console.log(&apos;next state&apos;, store.getState())</div><div class="line">  return result</div><div class="line">&#125;</div><div class="line"></div><div class="line">const crashReporter = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  try &#123;</div><div class="line">    return next(action)</div><div class="line">  &#125; catch (err) &#123;</div><div class="line">    console.error(&apos;Caught an exception!&apos;, err)</div><div class="line">    Raven.captureException(err, &#123;</div><div class="line">      extra: &#123;</div><div class="line">        action,</div><div class="line">        state: store.getState()</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    throw err</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function logger(store) &#123;</div><div class="line">  return function wrapDispatchToAddLogging(next) &#123;</div><div class="line">    return function dispatchAndLog(action) &#123;</div><div class="line">      console.log(&apos;dispatching&apos;, action)</div><div class="line">      let result = next(action)</div><div class="line">      console.log(&apos;next state&apos;, store.getState())</div><div class="line">      return result</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function applyMiddleware(store, middlewares) &#123;</div><div class="line">  middlewares = middlewares.slice()</div><div class="line">  middlewares.reverse()</div><div class="line"></div><div class="line">  let dispatch = store.dispatch</div><div class="line">  middlewares.forEach(middleware =&gt;</div><div class="line">    dispatch = middleware(store)(dispatch)</div><div class="line">  )</div><div class="line"></div><div class="line">  return Object.assign(&#123;&#125;, store, &#123; dispatch &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/09/redux/redux问题/" itemprop="url">
+                  redux问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-09T08:37:14+08:00" content="2017-05-09">
+              2017-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题</p>
+<ol>
+<li><p>ant-design的select不满足多选的需求</p>
+</li>
+<li><p>select组件的option渲染时可能没有初始化，因此可能会有TypeError: Cannot read property ‘type’ of null这个错误，需要用一个三元运算符来初始化一个</p>
+</li>
+<li><p>select 渲染option条目时，由于需要的是一个表达式，因此无法在里面写if… else，但如果用三元运算符，又会涉及到大量的判断，比较好的解决方法是在表达式里写一个函数，这个函数来返回需要的react组件，函数里面可以使用if… else了</p>
+</li>
+<li><p>components如何拿到全局的state</p>
+</li>
+<li><p>component did mount这个函数里如何拿到dispatch</p>
+</li>
+<li><p>在component did mount里拉了下的数据，想更新到state里面，但是这时候props的数据不是最新的</p>
+</li>
+<li><p>如果redux不同组件会加载不同component的state，但是如果组件之间数据有依赖就很麻烦，在一个组件下刷新可能会拿不到其他组件的数据</p>
+</li>
+<li><p>There are frameworks claiming to be similar to Flux, but without a concept of action objects. In terms of being predictable, this is a step backwards from Flux or Redux. If there are no serializable plain object actions, it is impossible to record and replay user sessions, or to implement <a href="https://www.youtube.com/watch?v=xsSnOQynTHs" target="_blank" rel="external">hot reloading with time travel</a>. If you’d rather modify data directly, you don’t need Redux.</p>
+</li>
+<li><p>Without any middleware, <a href="http://redux.js.org/docs/api/Store.html#dispatch" target="_blank" rel="external"><code>dispatch</code></a> only accepts a plain object, so we have to perform AJAX calls inside our components， However, this quickly gets repetitive because different components request data from the same API endpoints. Moreover, we want to reuse some of this logic (e.g., early exit when there is cached data available) from many components.</p>
+<p>异步的操作如果写在组件里没法重用</p>
+</li>
+<li><p>为什么react需要immutate.js: 因为react的渲染是根据state来的，state只要一变，组件就会重新渲染一个大型项目中，state必然是非常复杂的，那么如果需要用递归的方式来比较state是否改变会对性能产生极大的影响，所以当你每次要改变state的时候，请重新new一个state</p>
+</li>
+<li><p><strong>define your state shape in terms of your domain data and app state, not your UI component tree</strong>. </p>
+</li>
+<li><p>funnctional decomposition好处：1. 重用  2. 便于测试</p>
+</li>
+<li><h4 id="Extracting-Case-Reducers"><a href="#Extracting-Case-Reducers" class="headerlink" title="Extracting Case Reducers"></a>Extracting Case Reducers</h4></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function appReducer(state = initialState, action) &#123;</div><div class="line">    switch(action.type) &#123;</div><div class="line">        case &apos;SET_VISIBILITY_FILTER&apos; : return setVisibilityFilter(state, action);</div><div class="line">        case &apos;ADD_TODO&apos; : return addTodo(state, action);</div><div class="line">        case &apos;TOGGLE_TODO&apos; : return toggleTodo(state, action);</div><div class="line">        case &apos;EDIT_TODO&apos; : return editTodo(state, action);</div><div class="line">        default : return state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>mapStateToProps这个函数使用shallow reference equality checks来检查是否需要更新</p>
+</li>
+<li><p>Most applications deal with multiple types of data, which can be broadly divided into three categories:</p>
+<ul>
+<li><em>Domain data</em>: data that the application needs to show, use, or modify (such as “all of the Todos retrieved from the server”)</li>
+<li><em>App state</em>: data that is specific to the application’s behavior (such as “Todo #5 is currently selected”, or “there is a request in progress to fetch Todos”)</li>
+<li><em>UI state</em>: data that represents how the UI is currently displayed (such as “The EditTodo modal dialog is currently open”)</li>
+</ul>
+</li>
+<li><p>Since a Redux reducer is <em>just</em> a function, the same concept applies. You can split some of your reducer logic out into another function, and call that new function from the parent function.</p>
+<p>These new functions would typically fall into one of three categories:</p>
+<ol>
+<li>Small utility functions containing some reusable chunk of logic that is needed in multiple places (which may or may not be actually related to the specific business logic)</li>
+<li>Functions for handling a specific update case, which often need parameters other than the typical <code>(state, action)</code> pair</li>
+<li>Functions which handle <em>all</em> updates for a given slice of state. These functions do generally have the typical <code>(state, action)</code> parameter signature</li>
+</ol>
+</li>
+<li><p>One frequently asked question is whether Redux “calls all reducers” when dispatching an action. Since there really is only one root reducer function, the default answer is “no, it does not”. However, <code>combineReducers</code> has specific behavior that <em>does</em> work that way. In order to assemble the new state tree, <code>combineReducers</code> will call each slice reducer with its current slice of state and the current action, giving the slice reducer a chance to respond and update its slice of state if needed. So, in that sense, using <code>combineReducers</code> <em>does</em> “call all reducers”, or at least all of the slice reducers it is wrapping.</p>
+</li>
+</ol>
+<ol>
+<li><p>Since immutable data updates require all ancestors in the state tree to be copied and updated as well, and new object references will cause connected UI components to re-render, an update to a deeply nested data object could force totally unrelated UI components to re-render even if the data they’re displaying hasn’t actually changed.</p>
+<p>state的设计非常重要，如果嵌套过多，单单叶子节点的一个更新都需要导致整个state渲染，性能影响很大</p>
+<p>因此： the recommended approach to managing relational or nested data in a Redux store is to treat a portion of your store as if it were a database, and keep that data in a <em>normalized</em> form.</p>
+<p>​</p>
+<p>The basic concepts of normalizing data are:</p>
+<ul>
+<li>Each type of data gets its own “table” in the state.</li>
+<li>Each “data table” should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values.</li>
+<li>Any references to individual items should be done by storing the item’s ID.</li>
+<li>Arrays of IDs should be used to indicate ordering.</li>
+</ul>
+</li>
+<li><p>There is no “right” answer for this. Some users prefer to keep every single piece of data in Redux, to maintain a fully serializable and controlled version of their application at all times. Others prefer to keep non-critical or UI state, such as “is this dropdown currently open”, inside a component’s internal state.</p>
+<p><strong>Using local component state is fine</strong>. As a developer, it is <em>your</em> job to determine what kinds of state make up your application, and where each piece of state should live. Find a balance that works for you, and go with </p>
+</li>
+<li><p>redux代码组织问题：</p>
+<p>1） 官方给的例子是components, actions，reducers分别建立目录，这个结构的问题是如果要对state增加一个特性，需要在各个文件分别修改</p>
+<p>2） 社区很多人建议按功能把components，actions，reducer放在一起</p>
+</li>
+<li><p>fat action creater or thin?</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/03/utility/axios问题/" itemprop="url">
+                  axios问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-03T11:18:33+08:00" content="2017-05-03">
+              2017-05-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</p>
+<hr>
+<p>补充： json.stringify()这个函数也是有可能会报错的（无法string化）</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
+                  jest使用axios遇到的bug
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jest/" itemprop="url" rel="index">
+                    <span itemprop="name">jest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
+<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
+<p>环境版本如下</p>
+<p>node:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
+<p>jest:</p>
+<p>19.0.2</p>
+<p>axios</p>
+<p>0.16.1</p>
+<hr>
+<p>update 5.11</p>
+<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/javascript/Array.prototype.push()/" itemprop="url">
+                  Array.prototype.push()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T11:33:40+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Array.prototype.push(): adds one or more elements to the end of an array and returns the new length of the array</p>
+<p>例子： 合并两个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var vegetables = [&apos;parsnip&apos;, &apos;potato&apos;];</div><div class="line">var moreVegs = [&apos;celery&apos;, &apos;beetroot&apos;];</div><div class="line"></div><div class="line">// Merge the second array into the first one</div><div class="line">// Equivalent to vegetables.push(&apos;celery&apos;, &apos;beetroot&apos;);</div><div class="line">Array.prototype.push.apply(vegetables, moreVegs);</div><div class="line"></div><div class="line">console.log(vegetables); // [&apos;parsnip&apos;, &apos;potato&apos;, &apos;celery&apos;, &apos;beetroot&apos;]</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/git/git推送分支设置upstream/" itemprop="url">
+                  git推送分支设置upstream
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T10:09:31+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本地和远程都没有master分支，本地切换到master，想推到远端，同时设置upstream</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/25/redux/redux 注意点/" itemprop="url">
+                  redux 注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-25T11:55:51+08:00" content="2017-04-25">
+              2017-04-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>Reducer is a pure funciton </li>
+</ol>
+<p>Things you should <strong>never</strong> do inside a reducer:</p>
+<ul>
+<li>Mutate its arguments;</li>
+<li>Perform side effects like API calls and routing transitions;</li>
+<li>Call non-pure functions, e.g. <code>Date.now()</code> or <code>Math.random()</code>.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/25/redux/redux三个核心方法的实现/" itemprop="url">
                   redux三个核心方法的实现
                 </a>
@@ -335,1100 +1499,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/23/node/nodejs技巧/" itemprop="url">
-                  nodejs技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-23T18:52:24+08:00" content="2017-04-23">
-              2017-04-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>可以nodejs的项目里创建一个.npmrc，里面写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">save=true</div><div class="line">save-exact=true</div></pre></td></tr></table></figure>
-<p>这样的话在npm install的时候不用- -save，同时版本也是精确的</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/21/utility/linux禁用密码登录/" itemprop="url">
-                  linux禁用密码登录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T17:23:22+08:00" content="2017-04-21">
-              2017-04-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>vim /etc/ssh/sshd_config</p>
-</li>
-<li><p>Modify those lines:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PubkeyAuthentication         yes</div><div class="line"></div><div class="line">AuthorizedKeysFile          .ssh/authorized_keys</div><div class="line"></div><div class="line">PasswordAuthentication      no</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建.ssh/authorized_keys文件，加入需要登陆的机器的公钥</p>
-</li>
-<li><p>service sshd restart</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/21/git/git忽略已经被提交的文件/" itemprop="url">
-                  git忽略已经被提交的文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T15:27:07+08:00" content="2017-04-21">
-              2017-04-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>现在项目的根目录放了 <strong>.gitignore</strong> 文件，并且git远程仓库的项目根目录<strong>已经有了</strong> logs文件夹, 但是之后想忽略日志里的内容，光改写.gitignore并不够，正确做法是：</p>
-<ol>
-<li>git rm –cached logs/xx.log</li>
-<li>然后更新 <code>.gitignore</code> 忽略掉目标文件</li>
-<li>最后git commit -m “We really don’t want Git to track this anymore!”</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/21/git/git冲突解决/" itemprop="url">
-                  git冲突解决
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T14:39:33+08:00" content="2017-04-21">
-              2017-04-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>每次git合并时遇到冲突总会感觉非常崩溃，其实对于冲突一点都不需要过于担心，因为总是可以通过git merge - - abort来撤销合并恢复到之前的状态</p>
-</li>
-<li><p>当两个改动发生在同一个文件的同一些行上，我们就要看看发生冲突的文件的内容了。Git 会非常友好地把文件中那些有问题的区域在 “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD” 和 “&gt;&gt;&gt;&gt;&gt;&gt;&gt; [other/branch/name]” 之间标记出来。</p>
-<p>中间用=======来作分割，  第一个HEAD到======表示本地版本的改动， ======到最后那个分支名表示那个版本，理解了git的这个标记的意思非常重要。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/19/test/jest新手错误/" itemprop="url">
-                  jest新手错误
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-19T11:34:02+08:00" content="2017-04-19">
-              2017-04-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>在it里面需要忘记return</p>
-</li>
-<li><p>不需要去catch错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1492574722511 ERROR Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>catch错误后发现日志里多了下面的内容，很jest本身结果没有报错，原因就在于it里面去catch错误了，导致抛出的错误没有传回jest本身，这个格式看来古怪，应该就是jest的格式</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
-                  查看占用端口的进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T21:22:49+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="lsof-i-3000"><a href="#lsof-i-3000" class="headerlink" title="lsof -i:3000"></a>lsof -i:3000</h4><p>lsof -i TCP:port -n </p>
-<p>lsof -i UDP:port -n</p>
-<p>lsof -i :port -n</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/docker/dokcer遇到的问题/" itemprop="url">
-                  dokcer遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T11:48:44+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到一个docker奇怪的问题，npm start 端口正常起来访问没有问题，但打包到docker环境之后，却发现无法访问，docker本身的日志没有报错，并且docker也是运行的，重点是程序打的日志一点输出也没有。咨询了下同事，了解到这是一个docker很基础的问题： 如果docker没有前台进程，docker是会自动退出的，而我在npm start里面用了pm2，这个用法在没用docker时是ok的，但是如果用了docker，就不需要pm2了，附上一个tsconfig.json 和 package.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;dev&quot;: &quot;NODE_ENV=development &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;start&quot;: &quot;NODE_ENV=production &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;test&quot;: &quot;NODE_ENV=development &amp;&amp; jest&quot;,</div><div class="line">    &quot;stop&quot;: &quot;npm run gulp stop&quot;,</div><div class="line">    &quot;gulp&quot;: &quot;gulp&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h4 id="update-4-21"><a href="#update-4-21" class="headerlink" title="update 4.21"></a>update 4.21</h4><ol>
-<li><p>Docker 不是虚拟机，docker就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。<code>CMD</code> 指令就是用于指定默认的容器主进程的启动命令的。</p>
-</li>
-<li><p>在运行时可以指定新的命令来替代镜像设置中的这个默认命令，比如，<code>ubuntu</code> 镜像默认的 <code>CMD</code> 是 <code>/bin/bash</code>，如果我们直接 <code>docker run -it ubuntu</code> 的话，会直接进入 <code>bash</code>。我们也可以在运行时指定运行别的命令，如 <code>docker run -it ubuntu cat /etc/os-release</code>。这就是用 <code>cat /etc/os-release</code> 命令替换了默认的 <code>/bin/bash</code> 命令了，输出了系统版本信息</p>
-</li>
-<li><p>容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念，一些初学者将 <code>CMD</code> 写为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD service nginx start</div></pre></td></tr></table></figure>
-<p>然后发现容器执行后就立即退出了。甚至在容器内去使用 <code>systemctl</code> 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。</p>
-<p>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</p>
-<p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
-<p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/15/AI/Machine Learning/" itemprop="url">
-                  Machine Learning
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-15T14:37:12+08:00" content="2017-04-15">
-              2017-04-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index">
-                    <span itemprop="name">AI</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Machine Learning can be basiclly classfied with two categories:  supervised learning and unsupervised learning</p>
-<p>1) supervised learning: right answer given, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
-<p>​    regression: predict continuous valued output</p>
-<p>​    classification: discrete valued output</p>
-<p>2) unspervised learning: with little or no idea what our results should look like</p>
-<p>​    clustering:</p>
-</li>
-<li><p>gradient decent algorithm: simutaneous   ​</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/12/database/mysql安装/" itemprop="url">
-                  mysql 使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T17:47:37+08:00" content="2017-04-12">
-              2017-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h4><ol>
-<li><p>yum install -y mysql-server</p>
-</li>
-<li><p>chkconfig mysqld on</p>
-</li>
-<li><p>vim /etc/my.cn,  加入utf8字符集并修改下datadir，其他高级配置慢慢研究</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line"></div><div class="line"># add utf-8</div><div class="line">character_set_server = utf8</div><div class="line"></div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line"># Settings user and group are ignored when systemd is used (fedora &gt;= 15).</div><div class="line"># If you need to run mysqld under a different user or group,</div><div class="line"># customize your systemd unit file for mysqld according to the</div><div class="line"># instructions in http://fedoraproject.org/wiki/Systemd</div><div class="line">user=mysql</div><div class="line"></div><div class="line"># Semisynchronous Replication</div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/replication-semisync.html</div><div class="line"># uncomment next line on MASTER</div><div class="line">;plugin-load=rpl_semi_sync_master=semisync_master.so</div><div class="line"># uncomment next line on SLAVE</div><div class="line">;plugin-load=rpl_semi_sync_slave=semisync_slave.so</div><div class="line"></div><div class="line"># Others options for Semisynchronous Replication</div><div class="line">;rpl_semi_sync_master_enabled=1</div><div class="line">;rpl_semi_sync_master_timeout=10</div><div class="line">;rpl_semi_sync_slave_enabled=1</div><div class="line"></div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/performance-schema.html</div><div class="line">;performance_schema</div><div class="line"></div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[mysql]</div><div class="line">no-auto-rehash</div><div class="line">default-character-set=utf8</div></pre></td></tr></table></figure>
-</li>
-<li><p>service mysqld start  启动mysql</p>
-</li>
-<li><p>/usr/bin/mysql_secure_installation 设置root密码等安全特性</p>
-<p>​</p>
-</li>
-</ol>
-<h4 id="新建用户并赋予权限"><a href="#新建用户并赋予权限" class="headerlink" title="新建用户并赋予权限"></a>新建用户并赋予权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE USER &apos;jeremy&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">GRANT ALL ON test.* TO &apos;jeremy&apos;@&apos;%&apos;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1474,7 +1544,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">161</span>
+              <span class="site-state-item-count">170</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1482,7 +1552,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1491,7 +1561,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">124</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
