@@ -307,6 +307,15 @@
         
           
             <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.app &#123;</div><div class="line">  min-height: 100vh;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
+<p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
+<ul>
+<li><strong>vw</strong>——代表视窗(Viewport)的宽度为<code>1%</code>，在我们的例子里<code>50vw = 500px</code>。</li>
+<li><strong>vh</strong>——窗口高度的百分比 <code>50vh = 400px</code>。</li>
+<li><strong>vmin</strong>——vmin的值是当前<code>vw</code>和<code>vh</code>中较小的值。在我们的例子里因为是横向模式，所以<code>50vim = 400px</code>。</li>
+<li><strong>vmax</strong>——大尺寸的百分比。<code>50vmax = 500px</code>。</li>
+</ul>
+
           
         
       
@@ -758,15 +767,14 @@
         
           
             <ol>
-<li><p>flex默认的方向是row， 即flow-direction: row</p>
-</li>
-<li><p>通过order来控制显示的顺序</p>
-</li>
-<li><p>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</p>
-</li>
-<li><p>align-items: 副轴方向的排列​</p>
-<p>​</p>
-</li>
+<li>flex默认的方向是row， 即flow-direction: row</li>
+<li>通过order来控制显示的顺序</li>
+<li>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</li>
+<li>align-items: 副轴方向的排列</li>
+<li>flex-grow：This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up. If all items have <code>flex-grow</code>set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).  <strong>default 0</strong></li>
+<li>flex-shrink: This defines the ability for a flex item to shrink if necessary.  <strong>default 1</strong></li>
+<li>flex-basis: This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.  <strong>default auto</strong></li>
+<li>flex: This is the shorthand for <code>flex-grow,</code> <code>flex-shrink</code>and <code>flex-basis</code>combined. The second and third parameters (<code>flex-shrink</code> and <code>flex-basis</code>) are optional. <strong>Default is 0 1 auto</strong></li>
 </ol>
 
           
@@ -1252,11 +1260,11 @@
       
         
           
-            <h5 id="fabric-react使用ts的时候报了如下错误"><a href="#fabric-react使用ts的时候报了如下错误" class="headerlink" title="fabric-react使用ts的时候报了如下错误"></a>fabric-react使用ts的时候报了如下错误</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts</div><div class="line">(2,28): error TS7016: Could not find a declaration file for module &apos;prop-types&apos;. &apos;/Users/Jeremy/work/udisk-console/node_modules/prop-typ</div><div class="line">es/index.js&apos; implicitly has an &apos;any&apos; type.</div></pre></td></tr></table></figure>
-<p>安装prop-types的类型后仍然报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@types/prop-types/index.d.ts</div><div class="line">(9,41): error TS2312: An interface may only extend a class or another interface.</div></pre></td></tr></table></figure>
+            <h4 id="1-fabric-react使用ts的时候报了如下错误"><a href="#1-fabric-react使用ts的时候报了如下错误" class="headerlink" title="1. fabric-react使用ts的时候报了如下错误"></a>1. fabric-react使用ts的时候报了如下错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts</div><div class="line">(2,28): error TS7016: Could not find a declaration file for module &apos;prop-types&apos;. &apos;/Users/Jeremy/work/udisk-console/node_modules/prop-typ</div><div class="line">es/index.js&apos; implicitly has an &apos;any&apos; type.</div></pre></td></tr></table></figure>
+<h4 id="2-安装prop-types的类型后仍然报错"><a href="#2-安装prop-types的类型后仍然报错" class="headerlink" title="2. 安装prop-types的类型后仍然报错"></a>2. 安装prop-types的类型后仍然报错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@types/prop-types/index.d.ts</div><div class="line">(9,41): error TS2312: An interface may only extend a class or another interface.</div></pre></td></tr></table></figure>
 <p>最后升级了下typesctipt到2.2.1解决，原先是2.1.5</p>
-
+<h4 id="3-如何改变一个icon-button的icon大小？"><a href="#3-如何改变一个icon-button的icon大小？" class="headerlink" title="3. 如何改变一个icon button的icon大小？"></a>3. 如何改变一个icon button的icon大小？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">            iconProps=&#123;&#123; iconName: &apos;AddTo&apos;, width:100, height: 100, style: &#123;fontSize: 50&#125; &#125;&#125; </div><div class="line">            onClick=&#123;this.showDialog.bind(this)&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<h4 id="4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"><a href="#4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？" class="headerlink" title="4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"></a>4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？</h4>
           
         
       

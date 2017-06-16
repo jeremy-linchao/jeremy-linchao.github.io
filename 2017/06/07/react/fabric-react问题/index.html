@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;prop-">
+<meta name="description" content="1. fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;pr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fabric-react问题">
 <meta property="og:url" content="http://yoursite.com/2017/06/07/react/fabric-react问题/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;prop-">
-<meta property="og:updated_time" content="2017-06-07T03:33:55.000Z">
+<meta property="og:description" content="1. fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;pr">
+<meta property="og:updated_time" content="2017-06-16T02:56:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fabric-react问题">
-<meta name="twitter:description" content="fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;prop-">
+<meta name="twitter:description" content="1. fabric-react使用ts的时候报了如下错误123ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts(2,28): error TS7016: Could not find a declaration file for module &amp;apos;pr">
 
 
 
@@ -300,11 +300,11 @@
       
 
       
-        <h5 id="fabric-react使用ts的时候报了如下错误"><a href="#fabric-react使用ts的时候报了如下错误" class="headerlink" title="fabric-react使用ts的时候报了如下错误"></a>fabric-react使用ts的时候报了如下错误</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts</div><div class="line">(2,28): error TS7016: Could not find a declaration file for module &apos;prop-types&apos;. &apos;/Users/Jeremy/work/udisk-console/node_modules/prop-typ</div><div class="line">es/index.js&apos; implicitly has an &apos;any&apos; type.</div></pre></td></tr></table></figure>
-<p>安装prop-types的类型后仍然报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@types/prop-types/index.d.ts</div><div class="line">(9,41): error TS2312: An interface may only extend a class or another interface.</div></pre></td></tr></table></figure>
+        <h4 id="1-fabric-react使用ts的时候报了如下错误"><a href="#1-fabric-react使用ts的时候报了如下错误" class="headerlink" title="1. fabric-react使用ts的时候报了如下错误"></a>1. fabric-react使用ts的时候报了如下错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts</div><div class="line">(2,28): error TS7016: Could not find a declaration file for module &apos;prop-types&apos;. &apos;/Users/Jeremy/work/udisk-console/node_modules/prop-typ</div><div class="line">es/index.js&apos; implicitly has an &apos;any&apos; type.</div></pre></td></tr></table></figure>
+<h4 id="2-安装prop-types的类型后仍然报错"><a href="#2-安装prop-types的类型后仍然报错" class="headerlink" title="2. 安装prop-types的类型后仍然报错"></a>2. 安装prop-types的类型后仍然报错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@types/prop-types/index.d.ts</div><div class="line">(9,41): error TS2312: An interface may only extend a class or another interface.</div></pre></td></tr></table></figure>
 <p>最后升级了下typesctipt到2.2.1解决，原先是2.1.5</p>
-
+<h4 id="3-如何改变一个icon-button的icon大小？"><a href="#3-如何改变一个icon-button的icon大小？" class="headerlink" title="3. 如何改变一个icon button的icon大小？"></a>3. 如何改变一个icon button的icon大小？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">            iconProps=&#123;&#123; iconName: &apos;AddTo&apos;, width:100, height: 100, style: &#123;fontSize: 50&#125; &#125;&#125; </div><div class="line">            onClick=&#123;this.showDialog.bind(this)&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<h4 id="4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"><a href="#4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？" class="headerlink" title="4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"></a>4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？</h4>
       
     </div>
 
@@ -458,7 +458,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#fabric-react使用ts的时候报了如下错误"><span class="nav-number">1.</span> <span class="nav-text">fabric-react使用ts的时候报了如下错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-fabric-react使用ts的时候报了如下错误"><span class="nav-number">1.</span> <span class="nav-text">1. fabric-react使用ts的时候报了如下错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装prop-types的类型后仍然报错"><span class="nav-number">2.</span> <span class="nav-text">2. 安装prop-types的类型后仍然报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-如何改变一个icon-button的icon大小？"><span class="nav-number">3.</span> <span class="nav-text">3. 如何改变一个icon button的icon大小？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"><span class="nav-number">4.</span> <span class="nav-text">4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？</span></a></li></ol></div>
             
           </div>
         </section>
