@@ -84,25 +84,17 @@
 
 
 
-<meta name="description" content="安装material icon:   npm install material-design-icons
-
-app.css 增加如下代码
-1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
+<meta name="description" content="安装material icon:   npm install material-design-icons  app.css 增加如下代码 1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
+<meta name="keywords" content="material icon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react集成material icon">
 <meta property="og:url" content="http://yoursite.com/2017/05/17/design/react集成material icon/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="安装material icon:   npm install material-design-icons
-
-app.css 增加如下代码
-1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
-<meta property="og:updated_time" content="2017-06-05T08:46:24.000Z">
+<meta property="og:description" content="安装material icon:   npm install material-design-icons  app.css 增加如下代码 1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
+<meta property="og:updated_time" content="2017-06-20T08:02:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react集成material icon">
-<meta name="twitter:description" content="安装material icon:   npm install material-design-icons
-
-app.css 增加如下代码
-1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
+<meta name="twitter:description" content="安装material icon:   npm install material-design-icons  app.css 增加如下代码 1234567891011@font-face &amp;#123;  font-family: &amp;apos;Material Icons&amp;apos;;  font-style: normal;  font-weight: 400;  src: url(../node">
 
 
 
@@ -322,6 +314,9 @@ app.css 增加如下代码
 <li><p>由于webpack的css-loader会对url() 当做import/require() 来引入，需要增加个url-loader</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,</div><div class="line">  loader: &apos;url-loader&apos;,</div><div class="line">  options: &#123;</div><div class="line">    limit: 10000</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 </li>
+<li><p>在material-ui中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">    iconClassName=&quot;material-icons&quot;</div><div class="line">    onClick=&#123;() =&gt; fetchUDiskDataSet(common.projectId, common.region, common.zone, &apos;DataDisk&apos;, 0, 30)&#125;</div><div class="line">&gt;</div><div class="line"> autorenew</div><div class="line">&lt;/IconButton&gt;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
@@ -431,7 +426,7 @@ app.css 增加如下代码
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">170</span>
+              <span class="site-state-item-count">172</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -448,7 +443,7 @@ app.css 增加如下代码
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">123</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

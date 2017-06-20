@@ -84,28 +84,17 @@
 
 
 
-<meta name="description" content="1）为啥需要异步编程的解决方案？
-​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
-2） 异步方案的难点
-
-try catch无法捕捉异">
+<meta name="description" content="1）为啥需要异步编程的解决方案？ ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式 2） 异步方案的难点  try catch无法捕捉异">
+<meta name="keywords" content="异步 感悟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对异步编程的理解">
 <meta property="og:url" content="http://yoursite.com/2016/12/20/thinking/对于异步编程的理解/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="1）为啥需要异步编程的解决方案？
-​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
-2） 异步方案的难点
-
-try catch无法捕捉异">
+<meta property="og:description" content="1）为啥需要异步编程的解决方案？ ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式 2） 异步方案的难点  try catch无法捕捉异">
 <meta property="og:updated_time" content="2016-12-22T12:25:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对异步编程的理解">
-<meta name="twitter:description" content="1）为啥需要异步编程的解决方案？
-​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式
-2） 异步方案的难点
-
-try catch无法捕捉异">
+<meta name="twitter:description" content="1）为啥需要异步编程的解决方案？ ​    有一个基础知识是需要理解的，那就是CPU的运行速度是比外部IO的运行速度快的多很多，比如读一个文件的程序，CPU在执行读文件的时候必须等待文件读取到才能继续往下执行，那这段时间的CPU就被闲置了，并且也没有响应，传统的做法就是利用多线程，多线程会引入锁、同步等问题，而node别出溪径，走的是异步的方式 2） 异步方案的难点  try catch无法捕捉异">
 
 
 
@@ -431,7 +420,7 @@ try catch无法捕捉异">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">170</span>
+              <span class="site-state-item-count">172</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -448,7 +437,7 @@ try catch无法捕捉异">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">123</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
