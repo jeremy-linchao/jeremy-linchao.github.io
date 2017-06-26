@@ -243,6 +243,601 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/23/typescript/typescript学习/" itemprop="url">
+                  typescript学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-23T10:56:47+08:00" content="2017-03-23">
+              2017-03-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="typescript是javascript的超集，那超在哪儿？"><a href="#typescript是javascript的超集，那超在哪儿？" class="headerlink" title="typescript是javascript的超集，那超在哪儿？"></a>typescript是javascript的超集，那超在哪儿？</h3><h5 id="1-基本类型增强"><a href="#1-基本类型增强" class="headerlink" title="1. 基本类型增强"></a>1. 基本类型增强</h5><ol>
+<li>tuple： 长度固定的数组，但里面的值不需要是同一个类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let x: [string, number];</div><div class="line">x = [&quot;hello&quot;, 10];</div></pre></td></tr></table></figure>
+<p>如果访问超过了tuple的索引范围，就会使用union type</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x[3] = &quot;world&quot;; // OK, &apos;string&apos; can be assigned to &apos;string | number&apos;</div><div class="line"></div><div class="line">console.log(x[5].toString()); // OK, &apos;string&apos; and &apos;number&apos; both have &apos;toString&apos;</div><div class="line"></div><div class="line">x[6] = true; // Error, &apos;boolean&apos; isn&apos;t &apos;string | number&apos;</div></pre></td></tr></table></figure>
+<ol>
+<li>枚举类型： 所谓枚举无非是给数值类型起一个比较友好的名字罢了，提高开发效率，比如通信状态的返回值可能有很多，用枚举远比数字类型来的直观，没有枚举的话就需要使用对象了</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red, Green, Blue&#125;;</div><div class="line">let c: Color = Color.Green;</div></pre></td></tr></table></figure>
+<ol>
+<li>any类型:  当不确定某个值的类型时可以用any来通过编译</li>
+<li>void类型：没有类型，多用于函数返回值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function warnUser(): void &#123;</div><div class="line">    alert(&quot;This is my warning message&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>never类型：永远不会发生的类型，什么情况下会有用？ 如果一个函数就是抛一个错，那么它的返回值就可以是never</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function error(message: string): never &#123;</div><div class="line">    throw new Error(message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>类型断言：当我们确定某个值是什么类型的时候，像是其他语言里的类型转换，但是不会做类型检查和转换，也不会有运行时的影响，只是单独给编译器使用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+<h5 id="2-类型声明"><a href="#2-类型声明" class="headerlink" title="2. 类型声明"></a>2. 类型声明</h5><ol>
+<li><p>var的作用域会泄露到包含它的函数或者包含它的模块</p>
+</li>
+<li><p>在同一个函数中var声明的变量可以重复声明多次</p>
+</li>
+<li><p>在循环里声明的let和普通的let有很大区别，循环里的let在每次递归时都会创建一个独立的作用域， 再看下这两段经典的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="3-interface"><a href="#3-interface" class="headerlink" title="3. interface"></a>3. interface</h5><ol>
+<li>interface是ts的一个核心，它主要用来检查变量值的类型，因为javascript的变量的类型是可变的，实际上是它的值的类型是可变的，interface起到这个作用，它来定义某个变量可以有的类型，因此在编译阶段就能发现此类错误</li>
+</ol>
+<h5 id="4-可索引的类型"><a href="#4-可索引的类型" class="headerlink" title="4. 可索引的类型"></a>4. 可索引的类型</h5><p>​    可以用字符串或者数字来作索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 这是因为当使用<code>number</code>来索引时，JavaScript会将它转换成<code>string</code>然后再去索引对象。</p>
+<p>​</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/utility/typescript + react/" itemprop="url">
+                  typescript + react
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T22:44:54+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>npm install的时候，会要包含@types/react这个文件，这个文件是typescript为react写的吗？</p>
+</li>
+<li><p>awesomo-typescript-loader又是干嘛的？</p>
+</li>
+<li><p>官网的react+webpack那个文档的webpack配置有问题，1个是./src/index.tsx找不到，这个是因为多带了一个后缀名，第二个是报 You may need an appropriate loader to handle this file type.<br>SyntaxError: Unexpected token (7:4) ， github的issue有这个问题，可以通过的配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/index&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/dist&apos;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // Enable sourcemaps for debugging webpack&apos;s output.</div><div class="line">  devtool: &apos;source-map&apos;,</div><div class="line"></div><div class="line">  resolve: &#123;</div><div class="line">    // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.</div><div class="line">    extensions: [&apos;.webpack.js&apos;, &apos;.web.js&apos;, &apos;.ts&apos;, &apos;.tsx&apos;, &apos;.js&apos;]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;awesome-typescript-loader&apos;.</div><div class="line">      &#123; test: /\.tsx?$/, loader: &apos;awesome-typescript-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // When importing a module whose path matches one of the following, just</div><div class="line">  // assume a corresponding global variable exists and use that instead.</div><div class="line">  // This is important because it allows us to avoid bundling all of our</div><div class="line">  // dependencies, which allows browsers to cache those libraries between builds.</div><div class="line">  externals: &#123;</div><div class="line">    &apos;react&apos;: &apos;React&apos;,</div><div class="line">    &apos;react-dom&apos;: &apos;ReactDOM&apos;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/react/typescript + react/" itemprop="url">
+                  typescript + react
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T22:44:54+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>npm install的时候，会要包含@types/react这个文件，这个文件是typescript为react写的吗？</p>
+</li>
+<li><p>awesomo-typescript-loader又是干嘛的？</p>
+</li>
+<li><p>官网的react+webpack那个文档的webpack配置有问题，1个是./src/index.tsx找不到，这个是因为多带了一个后缀名，第二个是报 You may need an appropriate loader to handle this file type.<br>SyntaxError: Unexpected token (7:4) ， github的issue有这个问题，可以通过的配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/index&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/dist&apos;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // Enable sourcemaps for debugging webpack&apos;s output.</div><div class="line">  devtool: &apos;source-map&apos;,</div><div class="line"></div><div class="line">  resolve: &#123;</div><div class="line">    // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.</div><div class="line">    extensions: [&apos;.webpack.js&apos;, &apos;.web.js&apos;, &apos;.ts&apos;, &apos;.tsx&apos;, &apos;.js&apos;]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;awesome-typescript-loader&apos;.</div><div class="line">      &#123; test: /\.tsx?$/, loader: &apos;awesome-typescript-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // When importing a module whose path matches one of the following, just</div><div class="line">  // assume a corresponding global variable exists and use that instead.</div><div class="line">  // This is important because it allows us to avoid bundling all of our</div><div class="line">  // dependencies, which allows browsers to cache those libraries between builds.</div><div class="line">  externals: &#123;</div><div class="line">    &apos;react&apos;: &apos;React&apos;,</div><div class="line">    &apos;react-dom&apos;: &apos;ReactDOM&apos;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/utility/vscode的一些配置/" itemprop="url">
+                  vscode的一些配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T14:56:44+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>代码格式化快捷键： shift + alt + F</p>
+</li>
+<li><p>缩进设置： 缩进设置是在页面右下角的空格项目，修改成相应的数字就行；同时在配置文件里改下tab键的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;editor.tabSize&quot;: 4</div></pre></td></tr></table></figure>
+</li>
+<li><p>语法规范的实时校验： 每次通过eslint命令来做校验总会有一大堆错误，因此实时检查很有必要，只需安装eslint的插件就可以，至于eslint的规则可以参考airbnb的（虽然还是不习惯两个空格）</p>
+</li>
+<li><p>快键键的设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+1&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex1&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+2&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex2&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+3&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex3&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+4&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex4&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+5&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex5&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+6&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex6&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+7&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex7&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+8&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex8&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+9&quot;,                &quot;command&quot;: &quot;workbench.action.openEditorAtIndex9&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+T&quot;,                &quot;command&quot;: &quot;workbench.action.terminal.new&quot;       &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+right&quot;,            &quot;command&quot;: &quot;workbench.action.terminal.focusNext&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+left&quot;,             &quot;command&quot;: &quot;workbench.action.terminal.focusPrevious&quot; &#125;,</div><div class="line">    &#123; &quot;key&quot;: &quot;cmd+w&quot;,                &quot;command&quot;: &quot;workbench.action.terminal.kill&quot;      &#125;                          ]</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/21/javascript/You-Dont-Know-JS(Async & Performance)/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-21T10:04:06+08:00" content="2017-03-21">
+              2017-03-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>It’s about what happens when part of your program runs <em>now</em>, and another part of your program runs <em>later</em> – there’s a gap between <em>now</em> and <em>later</em> where your program isn’t actively executing, the gap can  be in waiting for user input, requesting data from a database or file system, sending data across the network and waiting for a response, or performing a repeated task at a fixed interval of time (like animation). </p>
+</li>
+<li><p>console.log()此类的函数不是ECMA的语法，而是宿主环境提供的，所以不同的宿主环境下他们的表现可能不同，在某些宿主环境可能会把console.log()这些异步操作，如果真要看一个值得话，最好使用debug以及断点</p>
+</li>
+<li><p>setTimeout()只是设置一个定时器，在指定的时间到之后把回调函数放到事件队列里去，但是如果这个事件队列里还有其他的事件，这个回调函数还需要等其他事件执行完，所以setTimeout()能保证一定在多少时间之后执行，但是不一定在那个时间一定执行。 事件循环可以参考这个伪代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// `eventLoop` is an array that acts as a queue (first-in, first-out)</div><div class="line">var eventLoop = [ ];</div><div class="line">var event;</div><div class="line"></div><div class="line">// keep going &quot;forever&quot;</div><div class="line">while (true) &#123;</div><div class="line">	// perform a &quot;tick&quot;</div><div class="line">	if (eventLoop.length &gt; 0) &#123;</div><div class="line">		// get the next event in the queue</div><div class="line">		event = eventLoop.shift();</div><div class="line"></div><div class="line">		// now, execute the next event</div><div class="line">		try &#123;</div><div class="line">			event();</div><div class="line">		&#125;</div><div class="line">		catch (err) &#123;</div><div class="line">			reportError(err);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Parallel-Threading"><a href="#Parallel-Threading" class="headerlink" title="Parallel Threading"></a>Parallel Threading</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/21/git/利用git来阅读源代码/" itemprop="url">
                   利用git来阅读源代码
                 </a>
@@ -844,561 +1439,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/10/react/react native 初探/" itemprop="url">
-                  react native 初探
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-10T16:30:10+08:00" content="2017-03-10">
-              2017-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>为什么有react native？</p>
-<p>既需要原生良好的用户体验，又需要较好的开发体验</p>
-</li>
-<li><p>react native的底层的运行环境是什么？</p>
-<p>也就是说是什么来解释js，不是node，对于iOS来说，是使用内置的javascript core，Android是使用jsc.so</p>
-</li>
-<li><p>react native 和 ionic的区别</p>
-<p>ionic是使用移动端本身的webview控件包了个网站，而react native调用的是原生的组件，</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/10/utility/webpack学习/" itemprop="url">
-                  webpack学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-10T16:14:20+08:00" content="2017-03-10">
-              2017-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="一-webpack可以干什么？"><a href="#一-webpack可以干什么？" class="headerlink" title="一. webpack可以干什么？"></a>一. webpack可以干什么？</h4><ol>
-<li>bundle ES，AMD，COMMONJS的模块</li>
-<li>可以打成多个chunks来异步加载</li>
-<li>在编译时候解决依赖问题，减少运行时消耗</li>
-<li>可以做预处理，将TS转换为JS，images转化成Base64格式</li>
-<li>​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/utility/chrome默认将http转换成https/" itemprop="url">
-                  chrome默认将http转换成https
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-09T17:52:50+08:00" content="2017-03-09">
-              2017-03-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>今天在调试的时候发现chrome会将http的请求转化成https，可以在地址栏输入chrome://net-internals/，然后找到HSTS，删除掉指定域名即可</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/utility/nginx的underscores_in_headers /" itemprop="url">
-                  nginx的underscores_in_headers
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T15:38:53+08:00" content="2017-03-08">
-              2017-03-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>默认情况下nginx会忽略收到的req中headers里面的”_”, 即underscores_in_headers为off，在某些情况下别人丢给nginx的header可能是有下划线的，那就要在server配置里打开</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3001;</div><div class="line">            proxy_set_header remote_user jeremy.lin;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 3001;</div><div class="line">        underscores_in_headers on;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3000;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>​    这里如果在80端口的server上添加了一个带下划线的header，如果在3001这个server上不加underscores_in_headers, 则在最后的3000这个server上是拿不到这个header的</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/git/git ignore用法/" itemprop="url">
-                  git ignore 文件用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T10:16:15+08:00" content="2017-03-08">
-              2017-03-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>“ #”   号是注释</li>
-<li>！ 表示取反</li>
-<li>结尾的“/”代表匹配那个目录和那个目录下面的文件</li>
-<li>开头的“/“代表匹配当前路径下的文件</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1444,7 +1484,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1452,7 +1492,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1461,7 +1501,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

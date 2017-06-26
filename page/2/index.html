@@ -243,6 +243,574 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/13/javascript/import的一个注意点/" itemprop="url">
+                  import的一个注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T17:41:41+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行"><a href="#平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行" class="headerlink" title="平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行"></a>平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/13/es6/async:awati循环并发/" itemprop="url">
+                  async/awati循环并发
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T11:30:54+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/async-await/" itemprop="url" rel="index">
+                    <span itemprop="name">async/await</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天写了这么一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后babel编译时候一直报错‘await is a reserved word’ ,其他地方用async/await都没有问题，那么这里问题出在哪儿了呢？</p>
+<p>await只能用在async函数里，虽然我在最外面的函数里写了async，但是离这个await最近的是map函数里面的匿名函数，而这个函数却不是async的，</p>
+<p>那么如果我们在这个匿名函数前面加async呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(async function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这样的结果就是map函数会立即返回，这样的话你就无法知道这么多promise什么时候结束，因此无法拿到最后的结果</p>
+<h4 id="解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值"><a href="#解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值" class="headerlink" title="解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值"></a>解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line"></div><div class="line">return Promise.all(docs.map(function (doc) &#123;</div><div class="line">  return db.post(doc);</div><div class="line">&#125;)).then(function (results) &#123;</div><div class="line">  console.log(results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line">let promises = docs.map((doc) =&gt; db.post(doc));</div><div class="line"></div><div class="line">let results = [];</div><div class="line">for (let promise of promises) &#123;</div><div class="line">  results.push(await promise);</div><div class="line">&#125;</div><div class="line">console.log(results);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/12/design/flex学习/" itemprop="url">
+                  flex学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-12T18:13:26+08:00" content="2017-06-12">
+              2017-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/flex/" itemprop="url" rel="index">
+                    <span itemprop="name">flex</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>flex默认的方向是row， 即flow-direction: row</li>
+<li>通过order来控制显示的顺序</li>
+<li>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</li>
+<li>align-items: 副轴方向的排列</li>
+<li>flex-grow：This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up. If all items have <code>flex-grow</code>set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).  <strong>default 0</strong></li>
+<li>flex-shrink: This defines the ability for a flex item to shrink if necessary.  <strong>default 1</strong></li>
+<li>flex-basis: This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.  <strong>default auto</strong></li>
+<li>flex: This is the shorthand for <code>flex-grow,</code> <code>flex-shrink</code>and <code>flex-basis</code>combined. The second and third parameters (<code>flex-shrink</code> and <code>flex-basis</code>) are optional. <strong>Default is 0 1 auto</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/12/design/导航的简单实现/" itemprop="url">
+                  导航的简单实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-12T18:06:46+08:00" content="2017-06-12">
+              2017-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;title&gt;Flex&lt;/title&gt;</div><div class="line">  &lt;link href=&apos;./main.css&apos; rel=&quot;stylesheet&quot; /&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;nav class=&quot;main-nav&quot;&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;work&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;life&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;dream&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;game&lt;/a&gt;&lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">&lt;/nav&gt;  </div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.main-nav ul &#123;</div><div class="line">  list-style: none;</div><div class="line">  display: inline-flex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav li &#123;</div><div class="line">  width: 100px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav a &#123;</div><div class="line">  text-decoration: none;</div><div class="line">  color: black;</div><div class="line">  font-size: 21px;</div><div class="line">  font-weight: 600;</div><div class="line">  color: #00a9d9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/08/utility/ELK学习/" itemprop="url">
+                  ELK学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-08T10:46:51+08:00" content="2017-06-08">
+              2017-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index">
+                    <span itemprop="name">ELK</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合"><a href="#ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合" class="headerlink" title="ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合"></a>ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合</h3><h4 id="1-Elasticsearch"><a href="#1-Elasticsearch" class="headerlink" title="1. Elasticsearch:"></a>1. Elasticsearch:</h4><p>Elasticsearch是一个基于<a href="https://lucene.apache.org/core/" target="_blank" rel="external">Apache Lucene(TM)</a>的开源搜索引擎, 但它提供restful的API来隐藏Lucene的复杂性，从而让全文搜索变得简单</p>
+<ul>
+<li>分布式的实时文件存储，每个字段都被索引并可被搜索</li>
+<li>分布式的实时分析搜索引擎</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/08/css/css学习/" itemprop="url">
                   css学习
                 </a>
@@ -880,653 +1448,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/05/es6/ES6 generator/" itemprop="url">
-                  ES6 generator
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-05T16:00:44+08:00" content="2017-06-05">
-              2017-06-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>生成器是一种可以从中退出并在之后重新进入的函数。生成器的环境（绑定的变量）会在每次执行后被保存，下次进入时可继续使用。</p>
-<p>调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器（iterator）对象。当这个迭代器的next()方法被调用时，生成器函数的主体会被执行直至第一个yield表达式，该表达式定义了迭代器返回的值，或者，被 yield*委派至另一个生成器函数。next()方法返回一个对象，该对象有一个value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/02/redis/redis数据类型/" itemprop="url">
-                  redis数据类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-02T16:01:58+08:00" content="2017-06-02">
-              2017-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ol>
-<li><p>字符串</p>
-</li>
-<li><p>Lists：collections of string elements sorted according to the order of insertion. They are basically <em>linked lists</em>.   列表，但元素是字符串，实际上是链表</p>
-</li>
-<li><p>Sets:  collections of unique, unsorted string elements,  无序的字符串集合</p>
-</li>
-<li><p>Sorted Sets: 有序集合</p>
-</li>
-<li><p>Hashes: 字典， 键和值都需要为字符串</p>
-</li>
-<li><p>bitarray: 位数组</p>
-</li>
-</ol>
-<h3 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h3><ol>
-<li>keys是二进制安全的，也就是说可以用二级制值比如一个jpeg文件作为key，甚至空的字符串仍然是有效的​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/01/redis/redis主从/" itemprop="url">
-                  redis主从
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-01T15:30:58+08:00" content="2017-06-01">
-              2017-06-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
-<li><p>redis使用异步复制机制，从2.8开始，slave会周期性确认收到的数据</p>
-</li>
-<li><p>一个master可以有多个slave</p>
-</li>
-<li><p>redis复制在master端是不blocking的</p>
-<ol>
-<li>redis复制在slave也是不blocking的，当slave做初次同步时，它可以用老版本的数据集，在同步完之后，会短暂blocking进入的连接（如果数据量大的话将会有几秒钟）</li>
-</ol>
-</li>
-<li><p>当使用主从时，强烈建议在master上开启数据持久化，如果无法做到的话，那要避免redis服务自动重启（比如使用pm2之类的进程管理器），原因如下：</p>
-<ol>
-<li>假设A是master， B和C是A的slave，如果A crash了并且A的数据持久化被关闭，这时候进程管理器会重启redis服务，但是数据集为空，这时候B和C将会同步到一个空数据集</li>
-</ol>
-</li>
-<li><p>复制过程： 全量同步，master会在后台起一个saving进程来生成RDB文件，同时会把从这个时候开始收到的新的写入命令缓冲起来，当后台保存进程完毕后，master就会将这个文件发送到slave，slave会将它存在磁盘上，然后倒入到内存，之后master会把所有缓存的命令发送给slave，从2.8开始有不落盘复制</p>
-</li>
-</ol>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/01/redis/redis哨兵模式/" itemprop="url">
-                  redis哨兵模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-01T10:05:41+08:00" content="2017-06-01">
-              2017-06-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一-Redis哨兵模式功能"><a href="#一-Redis哨兵模式功能" class="headerlink" title="一. Redis哨兵模式功能"></a>一. Redis哨兵模式功能</h3><ol>
-<li><p>监控： 哨兵会不断检查redis的主备实例是否正常运行</p>
-</li>
-<li><p>告警通知： 当受监控的redis实例异常时，哨兵可以通知系统管理员或者以API形式告知其他程序</p>
-</li>
-<li><p>自动故障迁移：当master节点无法工作时，哨兵会将slave节点提升为master</p>
-</li>
-<li><p>服务发现：哨兵为客户端提供服务发现，客户端向哨兵查询当前的master地址</p>
-</li>
-</ol>
-<h3 id="二-Redis哨兵特性"><a href="#二-Redis哨兵特性" class="headerlink" title="二.Redis哨兵特性"></a>二.Redis哨兵特性</h3><p>redis 哨兵本身是一个分布式系统，同时会有多个哨兵进程一起在运行</p>
-<h3 id="三-Redis哨兵部署"><a href="#三-Redis哨兵部署" class="headerlink" title="三.Redis哨兵部署"></a>三.Redis哨兵部署</h3><h4 id="3-1-部署注意点"><a href="#3-1-部署注意点" class="headerlink" title="3.1 部署注意点"></a>3.1 部署注意点</h4><ol>
-<li>至少三个哨兵节点</li>
-<li>多个哨兵节点需要部署在不同节点上</li>
-<li>哨兵模式无法失败时的写入可以被重新获取到，因为redis本身是异步复制，但是这个丢失的窗口可以通过配置被降低</li>
-<li>哨兵模式会和其他nat模式组冲突，比如docker，如有nat需要单独在配置文件中修改</li>
-</ol>
-<h4 id="3-2-配置说明"><a href="#3-2-配置说明" class="headerlink" title="3.2 配置说明"></a>3.2 配置说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1. bind ip1 ip2 ...</div><div class="line">   protected-mode no</div></pre></td></tr></table></figure>
-<p>默认哨兵只能通过localhost访问，可以通过指定绑定的接口ip或者 protected-mode no来允许其他接口通信</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2. sentinel announce-ip &lt;ip&gt;</div><div class="line">   sentinel announce-port &lt;port&gt;</div></pre></td></tr></table></figure>
-<p>在nat模式下使用，指定hello包里的声明的ip和port</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</div></pre></td></tr></table></figure>
-<p>指定哨兵监控的master</p>
-<p>master-name:  master名字，必须是A-z 0-9, “. - _”中的一个</p>
-<p>quorum：认为master不可达的哨兵数量，只有达到了这个数量，哨兵才有可能做fail-over，但是需要注意，这个数只是用来检测失败，实际上最后决定时候要真正的fail-over是通过一次投票来决定的，举一个例子：</p>
-<p>如果有5个哨兵进程，quorum被配置成2，那么当有2个哨兵进程发现master不可达时，他们中间的一个就会试着来做fail-over，这时会进行一场投票，如果此时有3个（5个中的大多数）哨兵是存活的，就会启动fail-over</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</div></pre></td></tr></table></figure>
-<p>哨兵同主redis，从redis通信时的密码，这个密码必须一致</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5. sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
-<p>过多久认为节点（包括主，从和哨兵本身）不可用，单位毫秒，默认为30s</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;</div></pre></td></tr></table></figure>
-<p>设置在一次failover之后有多少个slave会同时去和新的master同步，这个数设的越小，整个fail-over的时间就越长，但是因同步过程会有个中断，如果slave提供读服务的话 ，可以将这个值设为1来保证fail-over之后同时只有一个slave会断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
-<p>failover的超时时间，默认3分钟</p>
-<h4 id="3-3-哨兵查看命令"><a href="#3-3-哨兵查看命令" class="headerlink" title="3.3 哨兵查看命令"></a>3.3 哨兵查看命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1. sentinel master mymaster</div></pre></td></tr></table></figure>
-<p>向哨兵询问master节点的状态，可以重点关注如下几个参数</p>
-<p>num-other-sentinels： 其他哨兵的数量</p>
-<p>num-slaves：slave数量</p>
-<p>flag: 节点状态，master代表主节点，如果master 宕了，会有s_down或者是o_down状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. sentinel slaves mymaster</div></pre></td></tr></table></figure>
-<p>向哨兵询问slave节点状态，参数形式同上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel sentinels mymaster</div></pre></td></tr></table></figure>
-<p>向哨兵询问其他哨兵节点状态，参数形式同上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel get-master-addr-by-name mymaster</div></pre></td></tr></table></figure>
-<p>查询当前master</p>
-<h3 id="4-部署模式建议"><a href="#4-部署模式建议" class="headerlink" title="4 部署模式建议"></a>4 部署模式建议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">           +----+</div><div class="line">       | M1 |</div><div class="line">       | S1 |</div><div class="line">       +----+</div><div class="line">          |</div><div class="line">+----+    |    +----+</div><div class="line">| R2 |----+----| R3 |</div><div class="line">| S2 |         | S3 |</div><div class="line">+----+         +----+</div><div class="line"></div><div class="line">Configuration: quorum = 2</div></pre></td></tr></table></figure>
-<p>M:  代表master</p>
-<p>R：代表slave</p>
-<p>S：代表哨兵</p>
-<ol>
-<li><h4 id="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"><a href="#哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上" class="headerlink" title="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"></a>哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上</h4></li>
-<li><h4 id="redis建议以一主两备运行"><a href="#redis建议以一主两备运行" class="headerlink" title="redis建议以一主两备运行"></a>redis建议以一主两备运行</h4></li>
-<li><h4 id="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce"><a href="#在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce" class="headerlink" title="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce"></a>在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce</h4></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/31/rocketmq/RocketMQ初次使用/" itemprop="url">
-                  RocketMQ初次使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-31T18:36:05+08:00" content="2017-05-31">
-              2017-05-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/rocketmq/" itemprop="url" rel="index">
-                    <span itemprop="name">rocketmq</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>根据官方quick start来做，遇到几个问题</p>
-<p>1）mac运行会报下面这个错误，在centos上用jdk 1.8运行OK，mac上升级到1.8也没有问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project rocketmq-remoting: Execution default-compile of goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile failed: A required class was missing while executing org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile: org/codehaus/plexus/util/cli/CommandLineException</div></pre></td></tr></table></figure>
-<p>2）服务器内存需要大于8G，否则broker起不来</p>
-<p>3) rocketmq的hostname不要修改，否则nameserver起不来，nameserver应该是根据hostname</p>
-<p>的ip来取</p>
-<p>4）bash mqbroker -c ../conf/2m-2s-sync/broker-a.properties -n 192.168.0.2:9876;192.168.0.3:9876</p>
-<p>注意这里官网用的,是错的，应该是;</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1572,7 +1493,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1580,7 +1501,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1589,7 +1510,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

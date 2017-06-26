@@ -243,6 +243,609 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/21/git/git忽略已经被提交的文件/" itemprop="url">
+                  git忽略已经被提交的文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-21T15:27:07+08:00" content="2017-04-21">
+              2017-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>现在项目的根目录放了 <strong>.gitignore</strong> 文件，并且git远程仓库的项目根目录<strong>已经有了</strong> logs文件夹, 但是之后想忽略日志里的内容，光改写.gitignore并不够，正确做法是：</p>
+<ol>
+<li>git rm –cached logs/xx.log</li>
+<li>然后更新 <code>.gitignore</code> 忽略掉目标文件</li>
+<li>最后git commit -m “We really don’t want Git to track this anymore!”</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/21/git/git冲突解决/" itemprop="url">
+                  git冲突解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-21T14:39:33+08:00" content="2017-04-21">
+              2017-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>每次git合并时遇到冲突总会感觉非常崩溃，其实对于冲突一点都不需要过于担心，因为总是可以通过git merge - - abort来撤销合并恢复到之前的状态</p>
+</li>
+<li><p>当两个改动发生在同一个文件的同一些行上，我们就要看看发生冲突的文件的内容了。Git 会非常友好地把文件中那些有问题的区域在 “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD” 和 “&gt;&gt;&gt;&gt;&gt;&gt;&gt; [other/branch/name]” 之间标记出来。</p>
+<p>中间用=======来作分割，  第一个HEAD到======表示本地版本的改动， ======到最后那个分支名表示那个版本，理解了git的这个标记的意思非常重要。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/19/test/jest新手错误/" itemprop="url">
+                  jest新手错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-19T11:34:02+08:00" content="2017-04-19">
+              2017-04-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在it里面需要忘记return</p>
+</li>
+<li><p>不需要去catch错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1492574722511 ERROR Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>catch错误后发现日志里多了下面的内容，很jest本身结果没有报错，原因就在于it里面去catch错误了，导致抛出的错误没有传回jest本身，这个格式看来古怪，应该就是jest的格式</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
+                  查看占用端口的进程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-18T21:22:49+08:00" content="2017-04-18">
+              2017-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="lsof-i-3000"><a href="#lsof-i-3000" class="headerlink" title="lsof -i:3000"></a>lsof -i:3000</h4><p>lsof -i TCP:port -n </p>
+<p>lsof -i UDP:port -n</p>
+<p>lsof -i :port -n</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/18/docker/dokcer遇到的问题/" itemprop="url">
+                  dokcer遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-18T11:48:44+08:00" content="2017-04-18">
+              2017-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>今天遇到一个docker奇怪的问题，npm start 端口正常起来访问没有问题，但打包到docker环境之后，却发现无法访问，docker本身的日志没有报错，并且docker也是运行的，重点是程序打的日志一点输出也没有。咨询了下同事，了解到这是一个docker很基础的问题： 如果docker没有前台进程，docker是会自动退出的，而我在npm start里面用了pm2，这个用法在没用docker时是ok的，但是如果用了docker，就不需要pm2了，附上一个tsconfig.json 和 package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;dev&quot;: &quot;NODE_ENV=development &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;start&quot;: &quot;NODE_ENV=production &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;test&quot;: &quot;NODE_ENV=development &amp;&amp; jest&quot;,</div><div class="line">    &quot;stop&quot;: &quot;npm run gulp stop&quot;,</div><div class="line">    &quot;gulp&quot;: &quot;gulp&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h4 id="update-4-21"><a href="#update-4-21" class="headerlink" title="update 4.21"></a>update 4.21</h4><ol>
+<li><p>Docker 不是虚拟机，docker就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。<code>CMD</code> 指令就是用于指定默认的容器主进程的启动命令的。</p>
+</li>
+<li><p>在运行时可以指定新的命令来替代镜像设置中的这个默认命令，比如，<code>ubuntu</code> 镜像默认的 <code>CMD</code> 是 <code>/bin/bash</code>，如果我们直接 <code>docker run -it ubuntu</code> 的话，会直接进入 <code>bash</code>。我们也可以在运行时指定运行别的命令，如 <code>docker run -it ubuntu cat /etc/os-release</code>。这就是用 <code>cat /etc/os-release</code> 命令替换了默认的 <code>/bin/bash</code> 命令了，输出了系统版本信息</p>
+</li>
+<li><p>容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念，一些初学者将 <code>CMD</code> 写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD service nginx start</div></pre></td></tr></table></figure>
+<p>然后发现容器执行后就立即退出了。甚至在容器内去使用 <code>systemctl</code> 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。</p>
+<p>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</p>
+<p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
+<p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/15/AI/Machine Learning/" itemprop="url">
                   Machine Learning
                 </a>
@@ -822,670 +1425,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/javascript/一个跨域options方法的问题/" itemprop="url">
-                  一个跨域options方法的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-07T16:09:05+08:00" content="2017-04-07">
-              2017-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>同事遇到的一个问题，记录一下： 用fetch去跨域时，post使用json，到一个需要cookie的服务提交，报302</p>
-<p>查了option的文档 <a href="https://www.w3.org/TR/cors/#preflight-request，" target="_blank" rel="external">https://www.w3.org/TR/cors/#preflight-request，</a> 当用options的方法时，会<strong>exclude</strong>掉如下信息</p>
-<ul>
-<li><p>Exclude the <a href="https://www.w3.org/TR/cors/#author-request-headers" target="_blank" rel="external">author request headers</a>.</p>
-</li>
-<li><p>Exclude <a href="https://www.w3.org/TR/cors/#user-credentials" target="_blank" rel="external">user credentials</a>.</p>
-</li>
-<li><p>Exclude the <a href="https://www.w3.org/TR/cors/#request-entity-body" target="_blank" rel="external">request entity body</a>.</p>
-<p>因此，fetch的时候即使你加入了include credientials也没用，解决的办法是让自己的提交是简单请求，不需要预检，是否需要预检如下，</p>
-</li>
-</ul>
-<p>当浏览器的请求方式是HEAD、GET或者POST，并且HTTP的头信息中不会超出以下字段:</p>
-<ul>
-<li>Accept</li>
-<li>Accept-Language</li>
-<li>Content-Language</li>
-<li>Last-Event-ID</li>
-<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
-</ul>
-<p>时，浏览器会将该请求定义为简单请求，否则就是预检请求。预检请求会在正式通信之前，增加一次HTTP查询请求。浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。预检请求的发送请求：</p>
-<p>当然这个问题是出在了服务提供方，对于预检请求不应该去检查cookie</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/es6/一个async:await问题/" itemprop="url">
-                  一个async/await问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-07T15:59:31+08:00" content="2017-04-07">
-              2017-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public async getUTechServicePrice(req: express.Request, res: express.Response) &#123;</div><div class="line">    let result = null;</div><div class="line">    try &#123;</div><div class="line">      logger.info(&apos;getUTechService is called&apos;);</div><div class="line">      result = await this.getUTechServicePricePromise(req, res);</div><div class="line">      result.then((val) = &gt; &#123;</div><div class="line">        console.log(val);</div><div class="line">      &#125;)</div><div class="line">    &#125; catch (err) &#123;</div><div class="line">      logger.error(err);</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>写了这一段代码，执行的时候一直报错说result.then 不是一个函数，百思不得其解，和同事讨论了下终于发现问题所在，await 后面要跟一个promise对象，但await是等待这个promise解析结束，因此它的值要不是解析出来，要不就是出错被catch，因此这里的result就是一个确定的值，不需要再用then方法了，说到底还是对async和await的理解不够深</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/03/database/数据库系统(mooc)/" itemprop="url">
-                  数据库系统(mooc)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-03T14:30:40+08:00" content="2017-04-03">
-              2017-04-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>关系与表的关系： 关系是关系模型里一个数学概念，而表是DBMS实现时用的一个称呼，两者在大多数情况下都是相同的，但关系里不能有重复的record，表里可以有</p>
-</li>
-<li><p>如何描述一个关系:   1) 先确定域，域的所有取值是能够确定下来的，同时有多少个域也是能确定下来的</p>
-<p>2）使用域作笛卡尔乘积，从中挑选一些有意义的record的集合作为一个关系</p>
-</li>
-<li><p>完整性约束：  1） 实体完整性：  主键不能为空       2）参照完整性：  外键的值的取值为null或者为参照表的主键中的取值   3） 自定义完整性：  用户自己定义的约束，比如字符串长度，数字长度</p>
-</li>
-<li><p>候选键（能唯一标识所有用户的属性组）   主键： 从候选键中选出一个属性组    外键： 在某一个关系下不是候选键，但在另一个关系下是主键，用来连接关系​</p>
-</li>
-<li><p>关系代数的基本动作： 并， 差， 乘积， 选择， 投影</p>
-</li>
-<li><p>并相容性：  两个关系的属性的数量以及每个属性的取值范围必须相同。  并，交， 差运算需满足并相容性</p>
-</li>
-<li><p>theta-join,  等值连接: 特殊的theta-join</p>
-</li>
-<li><p>Natual-join: 特殊的等值连接</p>
-</li>
-<li><p>外连接： 为什么需要外链接？内连接由于是需要属性相同并且值也相同，因此会丢失一部分信息。</p>
-<p>定义：连接时如果在另外一张表中找不到对应的元祖，则以空值作为代替连接</p>
-</li>
-<li><p>DDL:   CREATE, ALTER, DROP</p>
-<p>DML:  INSERT, DELETE, UPDATE, SELECT</p>
-<p>DCL:   GRANT, REVOKE</p>
-</li>
-<li><p>批量插入   INSERT INTO Table(col1, col2)   子查询</p>
-</li>
-<li><p>删除： DELETE  FROM   表名   [WHERE 表达式]</p>
-</li>
-<li><p>更新： UPDATE  表名  SET 列名 = 表达式|（子查询）[WHERE 条件表达式] </p>
-</li>
-<li><p>子查询： 出现在Where子句中的Select语句，  IN 与 NOT IN；  theta   some | all</p>
-</li>
-<li><p>E-R模型：  Enitity-Relation Model，四个要素：实体、属性、联系、关键字</p>
-</li>
-<li><p>一对多和多对多关系的区别: 一对多的联系可以通过外键来保存，对多对的联系只能单独再建一个联系表</p>
-</li>
-<li><p>一对多联系如何转换： 将单方参与实体的关键字作为多方参与实体对应关系的属性</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/02/database/introduction to databases/" itemprop="url">
-                  introduction to databases
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-02T11:50:29+08:00" content="2017-04-02">
-              2017-04-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/databases/" itemprop="url" rel="index">
-                    <span itemprop="name">databases</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>DBMS特点： massive, persistent, safe, multi-user, convenient, efficient, reliable</p>
-</li>
-<li><p>Key concepts:</p>
-<p>1）Data Model:  </p>
-<ol>
-<li>relation dbms: it regrads data as a set of records</li>
-<li>xml: as a hierarchical structure, of labelled values</li>
-<li>graph data model: all data is in the form of nodes and edges</li>
-<li>schema versus data:    like types and variable in programing language</li>
-<li>DDL:  Data Definition Language (   <strong>set up schema</strong> <strong>data</strong> )</li>
-<li>DML:  Data manipulation or query language  ( <strong>querying and modifying data</strong>  )</li>
-</ol>
-</li>
-<li><p>Relation Model</p>
-<p>key:  表的某一个属性，这个属性的所有的值都是唯一的</p>
-</li>
-<li><p><strong>Step</strong> </p>
-<ol>
-<li>Design schema, create using DDL</li>
-<li>load initial data</li>
-<li>query an modifying the data </li>
-</ol>
-</li>
-<li><p>a query over a set of tables will return also a relation( table )</p>
-</li>
-</ol>
-<h3 id="二-relation-algebra"><a href="#二-relation-algebra" class="headerlink" title="二.   relation algebra"></a>二.   relation algebra</h3><ol>
-<li>select:    σ  with the condition as the subscript </li>
-<li>projection:  π with list of attibutes</li>
-<li>union operator:  vertically union</li>
-<li>what is natural join ?</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/01/密码学/密码学/" itemprop="url">
-                  密码学
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-01T09:36:58+08:00" content="2017-04-01">
-              2017-04-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/密码学/" itemprop="url" rel="index">
-                    <span itemprop="name">密码学</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>cipher 是什么？</p>
-<p>A cipher defined over the (K, M, C) is a pair of “effcient” alogrithms (E, D) where </p>
-<p>E: (K, M) -&gt; C      D：(K, C) -&gt;  M</p>
-</li>
-<li><p>one time pad:    E:      Key  xor  M -&gt;  C      D:      C  xor  K -&gt; M</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1531,7 +1470,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1539,7 +1478,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1548,7 +1487,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

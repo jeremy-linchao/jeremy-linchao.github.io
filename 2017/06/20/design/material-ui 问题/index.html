@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错 1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title=&amp;">
+<meta name="description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错  1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title">
 <meta name="keywords" content="material-ui">
 <meta property="og:type" content="article">
 <meta property="og:title" content="material-ui 问题">
 <meta property="og:url" content="http://yoursite.com/2017/06/20/design/material-ui 问题/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错 1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title=&amp;">
-<meta property="og:updated_time" content="2017-06-20T09:38:49.000Z">
+<meta property="og:description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错  1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title">
+<meta property="og:updated_time" content="2017-06-23T06:14:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="material-ui 问题">
-<meta name="twitter:description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错 1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title=&amp;">
+<meta name="twitter:description" content="在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错  1Type &amp;apos;Element&amp;apos; is not assignable to type &amp;apos;ReactElement&amp;lt;any&amp;gt;&amp;quot; 问题是定位在iconElementLeft这个上面 12345&amp;lt;AppBar          title">
 
 
 
@@ -301,7 +301,9 @@
       
 
       
-        <p>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</p>
+        <ol>
+<li>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Type &apos;Element&apos; is not assignable to type &apos;ReactElement&lt;any&gt;&quot;</div></pre></td></tr></table></figure>
 <p>问题是定位在iconElementLeft这个上面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;AppBar</div><div class="line">          title=&quot;Title&quot;</div><div class="line">          iconElementLeft=&#123;&lt;IconButton&gt;&lt;NavigationClose /&gt;&lt;/IconButton&gt;&#125;</div><div class="line">          iconElementRight=&#123;this.state.logged ? &lt;Logged /&gt; : &lt;Login /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
@@ -309,7 +311,10 @@
 <p>@types/react: 15.0.5</p>
 <p>react: 15.4.2</p>
 <p>typescript: 2.2.1</p>
-<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4>
+<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4><ol>
+<li>dropdown menu的文档中是有menuItemStyle这个属性的，然而在ts的类型文件中没有，如果引入组件时使用了这个属性会导致编译出错，可以自行修改类型声明解决</li>
+</ol>
+
       
     </div>
 
@@ -417,7 +422,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -425,7 +430,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -434,7 +439,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

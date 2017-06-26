@@ -243,6 +243,632 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
+                  javascript的遍历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
+              2017-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>数组的遍历</p>
+<p>1) 原始的for循环： 写法比较麻烦</p>
+<p>2) 数组本身的forEach方法： 无法跳出循环</p>
+<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
+<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
+</li>
+<li><p>对象的遍历 :</p>
+<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
+<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
+                  使用vim提高编码效率
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
+              2017-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilties/" itemprop="url" rel="index">
+                    <span itemprop="name">utilties</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>选中行或列   shift+v,   ctrl+v</p>
+</li>
+<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
+</li>
+<li><p>向下移动10行， 10j</p>
+</li>
+<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
+</li>
+<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
+</li>
+<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
+</li>
+<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
+</li>
+<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
+</li>
+<li><p>替换 :%s/foo/bar/g</p>
+<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
+                  API设计时遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/api/" itemprop="url" rel="index">
+                    <span itemprop="name">api</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
+                  使用react的几个注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>如何指定props？ 有几种方法</p>
+<p>1）javascript表达式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
+<p>​    2）字符串字面值常量</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
+<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
+<p>2）javascript表达式也能作为props.children</p>
+</li>
+<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/react/ES6语法在react中的运用/" itemprop="url">
+                  ES6语法在react中的运用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T09:35:24+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>扩展运算符(…) :   作为props传递，这个props如果是个基础容器，比如包含位置等基本属性，这个是值得用的，但在其他情况下要慎用，因为它来许多其他的不相关的props</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function App1() &#123;</div><div class="line">  return &lt;Greeting firstName=&quot;Ben&quot; lastName=&quot;Hector&quot; /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function App2() &#123;</div><div class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</div><div class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>扩展运算符还可以用在setState里，因为react有个算是要求吧，主要为了性能考虑，在setState里不要直接更改里面内容的值，比如下面这个state里面的words，words本身是个数组，更新的时候不要改words的内容，而是copy一份得到一个新的数组，如果words是个对象也是先copy一份(对象的扩展运算符号在2017是个提案)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: prevState.words.concat([&apos;marklar&apos;])</div><div class="line">  &#125;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ES6中可以用扩展运算符来实现copy这个操作，非常方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: [...prevState.words, &apos;marklar&apos;],</div><div class="line">  &#125;));</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/16/database/SQL学习/" itemprop="url">
                   SQL学习
                 </a>
@@ -823,681 +1449,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/utility/webstorm使用优化/" itemprop="url">
-                  webstorm使用优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T17:16:00+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/webstorm/" itemprop="url" rel="index">
-                    <span itemprop="name">webstorm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>开启vim插件，在Preference-&gt;Plugins 下面Browser repositiories, 搜索vim并安装</li>
-<li>给开启terminal设置快捷键，在Preference-&gt; Keymap下，将开启terminal设置成commond + j</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/javascript/javascript的apply,call和bind/" itemprop="url">
-                  javascript的apply,call和bind
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T12:05:59+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"><a href="#在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了" class="headerlink" title="在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了"></a>在初次看《javascript高级程序设计》的时候，遇到apply，call，bind这一节的时候也是迷糊的跳过了，但之后发现会经常遇到apply和bind这两个函数，是时候回顾下这几个函数的意思了</h4><p>#####1. 首先说下call和apply，这两个函数的作用是设置函数体内this对象的值，显然调用方就是一个函数本身，这两个函数的区别不大，第一个参数是作用域值用来给函数本身的this赋值，或者说改变函数的调用方，看到这个函数的解读应该是这样的：用后面第一个参数作为调用对象然后.上这个函数， apply的第二个参数可以是Array实例，也可以是arguments对象，而call函数必须将传入的参数一个个列出来，看一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123; color:&quot;blue&quot; &#125;;</div><div class="line">function sayColor() &#123;</div><div class="line">  alert(this.color);</div><div class="line">&#125;</div><div class="line">sayColor();           //red</div><div class="line">sayColor.call(window);//red</div><div class="line">sayColor.call(o);     //blue</div></pre></td></tr></table></figure>
-<p>这里说明了apply和call函数的用途，他们将对象和方法解耦了，方法不必依赖对象存在，一个方法可以给多个对象用，这个相对于java确实有很大不同，java的对象和方法是完全绑定的，函数在执行时的this在编译时就已经确定好了，而javascript则是要在运行时确定</p>
-<p>#####2. apply由于第二个参数是数组或arguments对象，又多了一个相应的用途，即某些函数接收多个参数作为输入，但是一个个写参数比较麻烦或者有的参数本来就已经是个数组形式了，比如通过api获取的数据，那么用apply就比较方便，看下面一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var list1 = [0,1,2];</div><div class="line">var list2 = [3,4,5];</div><div class="line">Array.prototype.push.apply(list1, list2);</div><div class="line">console.log(list1);// &gt;&gt;&gt; [0,1,2,3,4,5]</div></pre></td></tr></table></figure>
-<p>数组的push方法的参数是一个或多个，参数当然也可以是数组，只是说如果直接传入数组会把整个数组作为一个参数，而不是把数组的元素一个个取出来，因此如果有需求如上面把两个数组的元素连在一起，可以迂回调用下apply方法，这里的apply就不是为了调整this值了，而是利用第二个特性，将数组参数拆开</p>
-<p><em>在ES6里有更简便的方法，即通过扩展运算符</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var lists1 = [0, 1, 2];</div><div class="line">var lists2 = [3, 4, 5];</div><div class="line">lists1.push(...arr2);</div></pre></td></tr></table></figure>
-<p>是不是简单很多？</p>
-<h4 id="3-bind-方法"><a href="#3-bind-方法" class="headerlink" title="3. bind()方法"></a>3. bind()方法</h4><p>为什么有bind方法呢，还是this的原因，因为函数是在执行的时候确定它的this值，如果需要在执行之前就确定，可以通过bind方法，这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123; color:&quot;blue&quot; &#125;;</div><div class="line">function sayColor() &#123;</div><div class="line">  alert(this.color);</div><div class="line">&#125;</div><div class="line">var objectSayColor = sayColor.bind(o);</div><div class="line">objectSayColor();    //blue</div></pre></td></tr></table></figure>
-<p>在这里，sayColor()调用bind() 并 传入对象 o，创建了objectSayColor() 函数。 objectSayColor() 函数的this值等于o， 因此即使是在全局作用域中调用这个函数，也会看到”blue” </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/react/使用react遇到的几个问题/" itemprop="url">
-                  使用react + ant-design遇到的几个问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T11:23:03+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>有一个控件的数据需要通过api获取，但这个数据只需要获取一次就行，这个获取函数的调用是放在哪里，他父空间的构造函数里吗</p>
-</li>
-<li><p>接着第一个问题，通过api是异步获取数据的，很有可能控件在初始化的时候这个值还是空的，因而无法显示，这该如何破</p>
-</li>
-<li><p>ant-design的控件自定义校验如何做？</p>
-</li>
-<li><p>输入框结合远程获取数据的例子，如果这个serachInput是在一个表单中，通过表单的values无法获取数据?</p>
-</li>
-<li><p>对于远程拿到的id，name数据，用select展示，但select的onChange只能获取value而不能获取相应的id</p>
-</li>
-<li><p>验证报错: async-validator， xxx is not a string, 这个是因为用了getFieldDecorator, 需要设置required参数</p>
-</li>
-<li><p>对于select，用了labelnValue会报Uncaught TypeError: Cannot create property ‘label’ on string ‘’错误,</p>
-<p>原因： 用了getFieldDescriptor，然而设置了个initialValue为””，所以当加了labelInValue的选项时，只有value值却没有label值</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果这个onClick事件是有参数的，并且这个参数不是标准定义的，那这边onClick该怎么写呢</p>
-</li>
-<li><p>如果需要通过编程来做页面跳转会需要一下这个点，</p>
-<p><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating" target="_blank" rel="external">https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating</a></p>
-<p>但这个有个限制是需要用browerHistory，hashHistory是有不行的，是否有办法来解决呢？</p>
-</li>
-<li><p>react-router如果要在不同component之间通过跳转来传多于一个参数该怎么做？</p>
-<p>​    通过this.props.location.query.(name)</p>
-</li>
-<li><p>react如果在页面返回的时候需要重新加载，这不仅浪费资源也降低了用户体验，有什么办法能缓存之前的结果呢？</p>
-</li>
-<li><p>react官方的tutorial强调在每次的state更新的时候使用复制一份，而不是直接更改，这个不是很耗费资源吗？如果数据很大的情况下</p>
-<p>  答： 原因在于比state的内容是否改变是比较耗费性能的，需要遍历对象的所有属性和值然后做比较，但我如果是直接复制个对象，然后改几个参数的话代价在我这端不大，在react那边也只要判断是个新对象就更新就行了</p>
-</li>
-<li><p>react渲染多个元素的时候需要加一个唯一的key值</p>
-</li>
-<li><p>react的setState是一个异步的函数，调用完setState不能确保state值马上就会被更新，如果需要依赖前一个值来更新，比较好的做法是传一个回调函数作为参数，这个回调函数是在setState调用完成后执行的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState((prevState, props) =&gt; &#123;</div><div class="line">  return &#123;myInteger: prevState.myInteger + props.step&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>！不要改变this.state的值，把this.state当作不可改变的值</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/08/database/ mysql的中文处理/" itemprop="url">
-                  mysql的中文处理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T17:29:00+08:00" content="2017-02-08">
-              2017-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mysql默认的字符编码可以通过show variables like ‘character%’ 来查看，</p>
-<table>
-<thead>
-<tr>
-<th>client</th>
-<th>为客户端使用的字符集。</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>connection</td>
-<td>为连接数据库的字符集设置类型，如果程序没有指明连接数据库使用的字符集类型则按照服务器端默认的字符集设置。</td>
-</tr>
-<tr>
-<td>database</td>
-<td>为数据库服务器中某个库使用的字符集设定，如果建库时没有指明，将使用服务器安装时指定的字符集设置。</td>
-</tr>
-<tr>
-<td>results</td>
-<td>为数据库给客户端返回时使用的字符集设定，如果没有指明，使用服务器默认的字符集。</td>
-</tr>
-<tr>
-<td>server</td>
-<td>为服务器安装时指定的默认字符集设定。</td>
-</tr>
-<tr>
-<td>system</td>
-<td>为数据库系统使用的字符集设定。</td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><p>sudo cp /usr/local/mysql/support-files/my-defalut.cnf /etc/my.cnf</p>
-</li>
-<li><p>停掉mysql ，  sudo vim /etc/my.cnf ，加入</p>
-<p>[mysqld]</p>
-<p>character-set-server=utf8<br>collation-server=utf8_general_ci</p>
-<p>[client]</p>
-<p>default-character-set=utf8 </p>
-</li>
-<li><p>ALTER DATABASE database_name CHARACTER SET utf8 COLLATE utf8_general_ci</p>
-</li>
-</ol>
-<p>（或通过sequel在database中）</p>
-<ol>
-<li>ALTER TABLE table_name CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci(或通过sequel在table info中)</li>
-<li>修改VARCHAR的定义</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/08/utility/swagger运用/" itemprop="url">
-                  swagger运用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T16:16:19+08:00" content="2017-02-08">
-              2017-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>看了一天的swagger官网文档，对swagger这个生态大概有了了解，包括swagger-core，swagger-codegen（根据定义的api文档生成相应的客户端与服务端脚手架代码），swagger-ui（根据api yaml文件生成相应文档）。这里的swagger-codegen只能生成一个脚手架，细看生成的代码发现是不够的，还需要自己去写。有没有更好的办法呢？swagger-node就是一个很好的项目，他把swagger和node很好的结合起来，可参考<a href="https://github.com/swagger-api/swagger-node/tree/master/docs了解基本使用" target="_blank" rel="external">https://github.com/swagger-api/swagger-node/tree/master/docs了解基本使用</a></p>
-<p>实际例子教程可参考scotch这个文档<a href="https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger" target="_blank" rel="external">https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger</a></p>
-</li>
-<li><p>在启动swagger项目的时候我们用的命令是swagger project start 而不是传统的node app.js，这里面的区别有什么呢？或者swagger project这个命令做了哪些增加的操作？主要包含以下三个方面</p>
-<p>1）executes using nodemon, so it restarts on changes to the yaml, js, or json files (also coffee, fwiw)</p>
-<p>2）enables CORS so the swagger editor’s “try it” functionality will work</p>
-<p>3）optionally enables mocking for the controllers</p>
-</li>
-<li><p>如果使用swagger project start -m表以mock模式运行，这时候请求不会到controller，而是会到api目录下面的mocks目录</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1543,7 +1494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1551,7 +1502,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1560,7 +1511,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

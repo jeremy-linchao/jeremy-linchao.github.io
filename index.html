@@ -243,6 +243,591 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/26/redux/记录一个redux问题/" itemprop="url">
+                  记录一个redux问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T16:43:13+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在写一个component的时报了换一个某某某 is not a function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123; display: &apos;flex&apos;, flex: &apos;0 1 70%&apos; &#125;&#125;&gt;</div><div class="line">                &lt;RaisedButton label=&quot;北京&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onClick=&#123;(event: object) =&gt; &#123;</div><div class="line">                  console.log(&apos;bj&apos;);</div><div class="line">                  selectRegion(&apos;cn-bj2&apos;, &apos;cn-bj2-02&apos;);</div><div class="line">                &#125;&#125; backgroundColor=&#123; selectedRegion === &apos;cn-bj2&apos; ? &apos;grey&apos;: &apos;white&apos;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;上海&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-sh2&apos;, &apos;cn-sh2-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;广州&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-gd&apos;, &apos;cn-gd-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>我检查了下这个props是在render函数时定义的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
+<p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
+<p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/23/utility/xargs/" itemprop="url">
+                  find与xargs联动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-23T15:47:50+08:00" content="2017-06-23">
+              2017-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &quot;*tsx&quot; | xargs grep Button</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/23/utility/grep使用/" itemprop="url">
+                  grep使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-23T15:36:13+08:00" content="2017-06-23">
+              2017-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/grep/" itemprop="url" rel="index">
+                    <span itemprop="name">grep</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>基本语法： grep  搜索词   搜索文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep version package.json</div></pre></td></tr></table></figure>
+<p>该命令会查找package.json下面的version字段</p>
+</li>
+<li><p>搜索目录  grep -r 搜索词 目录   ​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/22/utility/vscode常用快捷键/" itemprop="url">
+                  vscode常用快捷键
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-22T14:41:02+08:00" content="2017-06-22">
+              2017-06-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>开关闭左边侧边栏： cmd + b</li>
+<li>分割的窗口间切换：  cmd + k 然后按方向键</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/22/utility/mac常用快捷键/" itemprop="url">
+                  mac常用快捷键
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-22T10:03:31+08:00" content="2017-06-22">
+              2017-06-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>全屏： cmd + ctrl + f</li>
+<li>在浏览器中切换tab：  下一个  ctrl + tab    上一个  shift + ctrl + tab</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/21/react/react事件/" itemprop="url">
                   react事件
                 </a>
@@ -436,7 +1021,9 @@
       
         
           
-            <p>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</p>
+            <ol>
+<li>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Type &apos;Element&apos; is not assignable to type &apos;ReactElement&lt;any&gt;&quot;</div></pre></td></tr></table></figure>
 <p>问题是定位在iconElementLeft这个上面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;AppBar</div><div class="line">          title=&quot;Title&quot;</div><div class="line">          iconElementLeft=&#123;&lt;IconButton&gt;&lt;NavigationClose /&gt;&lt;/IconButton&gt;&#125;</div><div class="line">          iconElementRight=&#123;this.state.logged ? &lt;Logged /&gt; : &lt;Login /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
@@ -444,7 +1031,10 @@
 <p>@types/react: 15.0.5</p>
 <p>react: 15.4.2</p>
 <p>typescript: 2.2.1</p>
-<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4>
+<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4><ol>
+<li>dropdown menu的文档中是有menuItemStyle这个属性的，然而在ts的类型文件中没有，如果引入组件时使用了这个属性会导致编译出错，可以自行修改类型声明解决</li>
+</ol>
+
           
         
       
@@ -674,7 +1264,8 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.app &#123;</div><div class="line">  min-height: 100vh;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.nav &#123;</div><div class="line">  height: calc(100vh - 64px)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在左侧导航条的div设置这个css，可以保证顶部不变</p>
 <p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
 <p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
 <ul>
@@ -838,574 +1429,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/13/javascript/import的一个注意点/" itemprop="url">
-                  import的一个注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-13T17:41:41+08:00" content="2017-06-13">
-              2017-06-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行"><a href="#平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行" class="headerlink" title="平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行"></a>平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行</h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/13/es6/async:awati循环并发/" itemprop="url">
-                  async/awati循环并发
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-13T11:30:54+08:00" content="2017-06-13">
-              2017-06-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/async-await/" itemprop="url" rel="index">
-                    <span itemprop="name">async/await</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天写了这么一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>然后babel编译时候一直报错‘await is a reserved word’ ,其他地方用async/await都没有问题，那么这里问题出在哪儿了呢？</p>
-<p>await只能用在async函数里，虽然我在最外面的函数里写了async，但是离这个await最近的是map函数里面的匿名函数，而这个函数却不是async的，</p>
-<p>那么如果我们在这个匿名函数前面加async呢</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(async function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>这样的结果就是map函数会立即返回，这样的话你就无法知道这么多promise什么时候结束，因此无法拿到最后的结果</p>
-<h4 id="解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值"><a href="#解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值" class="headerlink" title="解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值"></a>解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line"></div><div class="line">return Promise.all(docs.map(function (doc) &#123;</div><div class="line">  return db.post(doc);</div><div class="line">&#125;)).then(function (results) &#123;</div><div class="line">  console.log(results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line">let promises = docs.map((doc) =&gt; db.post(doc));</div><div class="line"></div><div class="line">let results = [];</div><div class="line">for (let promise of promises) &#123;</div><div class="line">  results.push(await promise);</div><div class="line">&#125;</div><div class="line">console.log(results);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/12/design/flex学习/" itemprop="url">
-                  flex学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-12T18:13:26+08:00" content="2017-06-12">
-              2017-06-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/flex/" itemprop="url" rel="index">
-                    <span itemprop="name">flex</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>flex默认的方向是row， 即flow-direction: row</li>
-<li>通过order来控制显示的顺序</li>
-<li>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</li>
-<li>align-items: 副轴方向的排列</li>
-<li>flex-grow：This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up. If all items have <code>flex-grow</code>set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).  <strong>default 0</strong></li>
-<li>flex-shrink: This defines the ability for a flex item to shrink if necessary.  <strong>default 1</strong></li>
-<li>flex-basis: This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.  <strong>default auto</strong></li>
-<li>flex: This is the shorthand for <code>flex-grow,</code> <code>flex-shrink</code>and <code>flex-basis</code>combined. The second and third parameters (<code>flex-shrink</code> and <code>flex-basis</code>) are optional. <strong>Default is 0 1 auto</strong></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/12/design/导航的简单实现/" itemprop="url">
-                  导航的简单实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-12T18:06:46+08:00" content="2017-06-12">
-              2017-06-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;title&gt;Flex&lt;/title&gt;</div><div class="line">  &lt;link href=&apos;./main.css&apos; rel=&quot;stylesheet&quot; /&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;nav class=&quot;main-nav&quot;&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;work&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;life&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;dream&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;game&lt;/a&gt;&lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">&lt;/nav&gt;  </div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.main-nav ul &#123;</div><div class="line">  list-style: none;</div><div class="line">  display: inline-flex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav li &#123;</div><div class="line">  width: 100px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav a &#123;</div><div class="line">  text-decoration: none;</div><div class="line">  color: black;</div><div class="line">  font-size: 21px;</div><div class="line">  font-weight: 600;</div><div class="line">  color: #00a9d9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/08/utility/ELK学习/" itemprop="url">
-                  ELK学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-08T10:46:51+08:00" content="2017-06-08">
-              2017-06-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ELK/" itemprop="url" rel="index">
-                    <span itemprop="name">ELK</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合"><a href="#ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合" class="headerlink" title="ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合"></a>ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合</h3><h4 id="1-Elasticsearch"><a href="#1-Elasticsearch" class="headerlink" title="1. Elasticsearch:"></a>1. Elasticsearch:</h4><p>Elasticsearch是一个基于<a href="https://lucene.apache.org/core/" target="_blank" rel="external">Apache Lucene(TM)</a>的开源搜索引擎, 但它提供restful的API来隐藏Lucene的复杂性，从而让全文搜索变得简单</p>
-<ul>
-<li>分布式的实时文件存储，每个字段都被索引并可被搜索</li>
-<li>分布式的实时分析搜索引擎</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1451,7 +1474,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">173</span>
+              <span class="site-state-item-count">178</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1459,7 +1482,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1468,7 +1491,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">127</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
