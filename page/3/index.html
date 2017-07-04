@@ -243,6 +243,180 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/05/rocketmq/RocketMQ高可用/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-05T18:43:41+08:00" content="2017-06-05">
+              2017-06-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-RocketMQ部署考虑点"><a href="#一-RocketMQ部署考虑点" class="headerlink" title="一. RocketMQ部署考虑点"></a>一. RocketMQ部署考虑点</h3><ol>
+<li><p>Name Server: RocketMQ的寻址服务。用于把Broker的路由信息做聚合。客户端依靠Name Server决定去获取对应topic的路由信息，从而决定对哪些Broker做连接，因此为了保证系统的高可用，<strong>建议部署两台Name server</strong></p>
+</li>
+<li><p>Broker Server:  Broker是处理消息存储，转发等处理的服务器， <strong>建议部署两个group，每个group部署一主一从</strong></p>
+</li>
+<li><p>主从复制模式：</p>
+<p>采用同步双写方式，主备都写成功，向应用返回成功, 这样的话数据与服务都无单点，Master宕机情况下，消息无延迟，服务可用性与数据可用性都非常高</p>
+</li>
+</ol>
+<h3 id="二-部署建议"><a href="#二-部署建议" class="headerlink" title="二. 部署建议"></a>二. 部署建议</h3><h4 id="1-部署实例分布（在ucloud使用云主机测试）"><a href="#1-部署实例分布（在ucloud使用云主机测试）" class="headerlink" title="1. 部署实例分布（在ucloud使用云主机测试）"></a>1. 部署实例分布（在ucloud使用云主机测试）</h4><h5 id="Name-Server"><a href="#Name-Server" class="headerlink" title="Name Server"></a>Name Server</h5><table>
+<thead>
+<tr>
+<th>NameServer集群</th>
+<th>IP地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NameServer-1</td>
+<td>10.9.145.211</td>
+</tr>
+<tr>
+<td>NameServer-2</td>
+<td>10.9.88.201</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h5><table>
+<thead>
+<tr>
+<th>brokerName</th>
+<th>brokerId</th>
+<th>brokerRole</th>
+<th>IP地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>broker-a</td>
+<td>0</td>
+<td>SYNC_MASTER</td>
+<td>10.9.145.211</td>
+</tr>
+<tr>
+<td>broker-a</td>
+<td>1</td>
+<td>SLAVE</td>
+<td>10.9.88.201</td>
+</tr>
+<tr>
+<td>broker-b</td>
+<td>0</td>
+<td>SYNC_MASTER</td>
+<td>10.9.145.241</td>
+</tr>
+<tr>
+<td>broker-b</td>
+<td>1</td>
+<td>SLAVE</td>
+<td>10.9.164.107</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-Broker配置"><a href="#2-Broker配置" class="headerlink" title="2. Broker配置"></a>2. Broker配置</h4><p>修改conf/2m-2s-sync下的四个配置</p>
+<h5 id="broker-a-master"><a href="#broker-a-master" class="headerlink" title="broker-a, master"></a>broker-a, master</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-a</div><div class="line"># broker名字</div><div class="line">brokerId=0</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/</div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024</div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04	</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SYNC_MASTER</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH </div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-a-slave"><a href="#broker-a-slave" class="headerlink" title="broker-a, slave"></a>broker-a, slave</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-a</div><div class="line"># broker名字</div><div class="line">brokerId=1</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/ </div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024</div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SLAVE</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH</div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-b-master"><a href="#broker-b-master" class="headerlink" title="broker-b, master"></a>broker-b, master</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911 </div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-b</div><div class="line"># broker名字</div><div class="line">brokerId=0</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/</div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024 </div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SYNC_MASTER</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH</div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-b-slave"><a href="#broker-b-slave" class="headerlink" title="broker-b,slave"></a>broker-b,slave</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-b	</div><div class="line"># broker名字</div><div class="line">brokerId=1</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/ </div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/ </div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024 </div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48	</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SLAVE</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH </div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h4 id="3-启动"><a href="#3-启动" class="headerlink" title="3. 启动"></a>3. 启动</h4><ol>
+<li><p>在10.9.145.211和10.9.88.201上启动nameserver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup sh bin/mqnamesrv &amp;</div></pre></td></tr></table></figure>
+</li>
+<li><p>分别启动四个broker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.145.211:   nohup bin/mqbroker -c conf/2m-2s-sync/broker-a.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.88.201:    nohup bin/mqbroker -c conf/2m-2s-sync/broker-a-s.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.145.241：  nohup bin/mqbroker -c conf/2m-2s-sync/broker-b.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.164.107:   nohup bin/mqbroker -c conf/2m-2s-sync/broker-b-s.properties &amp;</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询集群状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/mqadmin clusterList -n 10.9.145.211:9876</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/05/es6/ES6 generator/" itemprop="url">
                   ES6 generator
                 </a>
@@ -1370,123 +1544,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/17/redux/redux运行慢/" itemprop="url">
-                  redux运行慢
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-17T10:33:49+08:00" content="2017-05-17">
-              2017-05-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>遇到一个redux慢的问题，拉取很多数据，对数据做处理，最终渲染图表。这里面要搞清楚到底是哪里慢，是reducer慢，还是react渲染慢，或者是api请求慢，网络的问题可以通过console的timeline看出来，reducer的问题只要在reducer的处理函数里统计时间，react渲染在ReactDOM.render这里面统计，最终能看出来究竟是哪里慢</p>
-<p>结论： 用reactjs渲染图表的时候很慢，特别是数据点特变多的时候，渲染8638个点需要3.69s，之后换一个库试试</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1532,7 +1589,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">178</span>
+              <span class="site-state-item-count">179</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1540,7 +1597,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
