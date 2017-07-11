@@ -243,6 +243,240 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/11/react/react ref/" itemprop="url">
+                  react ref
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T12:04:55+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>react中ref本身是一个函数，它可以用在Component，也可以用在html元素之上，如果用在html元素之上，这个函数接收一个参数，参数代表下面的html元素的值，如果用在组件之上，那这个ref的参数代表的是下面的那个组件</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/11/react/react受控组件/" itemprop="url">
+                  react受控组件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T11:45:39+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><p>```<br>class NameForm extends React.Component {<br>  constructor(props) {<br>    super(props);<br>    this.state = {value: ‘’};</p>
+<pre><code>this.handleChange = this.handleChange.bind(this);
+this.handleSubmit = this.handleSubmit.bind(this);
+</code></pre><p>  }</p>
+<p>  handleChange(event) {<br>    this.setState({value: event.target.value});<br>  }</p>
+<p>  handleSubmit(event) {<br>    alert(‘A name was submitted: ‘ + this.state.value);<br>    event.preventDefault();<br>  }</p>
+<p>  render() {<br>    return (<br>      <form onsubmit="{this.handleSubmit}"><br>        <label><br>          Name:<br>          <input type="text" value="{this.state.value}" onchange="{this.handleChange}"><br>        </label><br>        <input type="submit" value="Submit"><br>      </form><br>    );<br>  }<br>}</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/04/utility/vscode小技巧/" itemprop="url">
                   vscode小技巧
                 </a>
@@ -307,9 +541,21 @@
         
           
             <ol>
-<li>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</li>
-<li>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</li>
+<li><p>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</p>
+</li>
+<li><p>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</p>
+</li>
+<li><p>f12是跳转到定义，但是mac默认把f12作为功能键，</p>
+<p>首先</p>
+<ol>
+<li>从苹果菜单中，选取“系统偏好设置”。</li>
+<li>点按“键盘”。</li>
+<li>如果未处于高亮显示状态，请点按“键盘”标签。</li>
+<li>选择“将 F1、F2 等键用作标准功能键”</li>
 </ol>
+</li>
+</ol>
+<p>​        但是这还不够，mac默认将f12改为显示dashboard的功能键，所以在键盘的快捷键设置中可以勾选掉mission control前的control</p>
 
           
         
@@ -428,6 +674,122 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
 <p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
 <p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/react/react-router学习/" itemprop="url">
+                  react-router
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T10:51:16+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####1. route parameter的作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=/(:message) component=&#123;Home&#125; &gt;</div><div class="line">&lt;/Route&gt;</div><div class="line"></div><div class="line">这里的message是url里面/后面的路径，这个路径会作为props传到Home这个组件里去，Home组件的用法如下</div></pre></td></tr></table></figure></p>
+<p>const Home = (props) =&gt; {<br>  <div>{props.param.message}</div><br>}</p>
+<p>可以看到这里Home组件是可以通过props.param.message这个参数来读到<br>这个有什么作用呢，如果Home下面的组件结构都一致，只需要通过一个参数来改变形态，那就可以使用这种做法，一般用于消息列表等等</p>
+<p>####2. query parameter的用法<br>即在url中？组成的query string是可以被componet读到的</p>
 
           
         
@@ -1053,376 +1415,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/20/design/material-ui 问题/" itemprop="url">
-                  material-ui 问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-20T17:38:41+08:00" content="2017-06-20">
-              2017-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material-ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Type &apos;Element&apos; is not assignable to type &apos;ReactElement&lt;any&gt;&quot;</div></pre></td></tr></table></figure>
-<p>问题是定位在iconElementLeft这个上面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;AppBar</div><div class="line">          title=&quot;Title&quot;</div><div class="line">          iconElementLeft=&#123;&lt;IconButton&gt;&lt;NavigationClose /&gt;&lt;/IconButton&gt;&#125;</div><div class="line">          iconElementRight=&#123;this.state.logged ? &lt;Logged /&gt; : &lt;Login /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
-<p>版本：</p>
-<p>@types/react: 15.0.5</p>
-<p>react: 15.4.2</p>
-<p>typescript: 2.2.1</p>
-<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4><ol>
-<li>dropdown menu的文档中是有menuItemStyle这个属性的，然而在ts的类型文件中没有，如果引入组件时使用了这个属性会导致编译出错，可以自行修改类型声明解决</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/20/git/git初始化项目操作/" itemprop="url">
-                  git初始化项目操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-20T09:44:35+08:00" content="2017-06-20">
-              2017-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>创建项目目录</li>
-<li>github上创建repo</li>
-<li>git init</li>
-<li>git remote add origin (github repo地址)</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/14/css/css占据整个页面/" itemprop="url">
-                  css占据整个页面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-14T18:37:19+08:00" content="2017-06-14">
-              2017-06-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.nav &#123;</div><div class="line">  height: calc(100vh - 64px)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在左侧导航条的div设置这个css，可以保证顶部不变</p>
-<p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
-<p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
-<ul>
-<li><strong>vw</strong>——代表视窗(Viewport)的宽度为<code>1%</code>，在我们的例子里<code>50vw = 500px</code>。</li>
-<li><strong>vh</strong>——窗口高度的百分比 <code>50vh = 400px</code>。</li>
-<li><strong>vmin</strong>——vmin的值是当前<code>vw</code>和<code>vh</code>中较小的值。在我们的例子里因为是横向模式，所以<code>50vim = 400px</code>。</li>
-<li><strong>vmax</strong>——大尺寸的百分比。<code>50vmax = 500px</code>。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1463,7 +1460,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">179</span>
+              <span class="site-state-item-count">182</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1480,7 +1477,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">127</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
