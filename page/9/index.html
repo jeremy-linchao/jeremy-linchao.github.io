@@ -243,6 +243,124 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/08/utility/nginx的underscores_in_headers /" itemprop="url">
+                  nginx的underscores_in_headers
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T15:38:53+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>默认情况下nginx会忽略收到的req中headers里面的”_”, 即underscores_in_headers为off，在某些情况下别人丢给nginx的header可能是有下划线的，那就要在server配置里打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3001;</div><div class="line">            proxy_set_header remote_user jeremy.lin;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 3001;</div><div class="line">        underscores_in_headers on;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3000;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>​    这里如果在80端口的server上添加了一个带下划线的header，如果在3001这个server上不加underscores_in_headers, 则在最后的3000这个server上是拿不到这个header的</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/08/git/git ignore用法/" itemprop="url">
                   git ignore 文件用法
                 </a>
@@ -1334,127 +1452,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/23/react/对于react-router的理解/" itemprop="url">
-                  对于react-router的理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-23T14:21:01+08:00" content="2017-02-23">
-              2017-02-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>什么是nesting?</p>
-<p>路由可以嵌套，父组件是其他子组件所共有的，因此父组件里要留个位置给this.props.children， 一般父组件就是个导航栏</p>
-</li>
-<li><p>path属性</p>
-<p>path属性会给所有子路由加路由前缀</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1500,7 +1497,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">184</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

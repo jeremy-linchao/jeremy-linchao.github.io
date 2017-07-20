@@ -243,6 +243,134 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
+                  jest使用axios遇到的bug
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jest/" itemprop="url" rel="index">
+                    <span itemprop="name">jest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
+<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
+<p>环境版本如下</p>
+<p>node:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
+<p>jest:</p>
+<p>19.0.2</p>
+<p>axios</p>
+<p>0.16.1</p>
+<hr>
+<p>update 5.11</p>
+<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/26/javascript/Array.prototype.push()/" itemprop="url">
                   Array.prototype.push()
                 </a>
@@ -1284,121 +1412,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
-                  查看占用端口的进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T21:22:49+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="lsof-i-3000"><a href="#lsof-i-3000" class="headerlink" title="lsof -i:3000"></a>lsof -i:3000</h4><p>lsof -i TCP:port -n </p>
-<p>lsof -i UDP:port -n</p>
-<p>lsof -i :port -n</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1444,7 +1457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">184</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

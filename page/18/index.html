@@ -243,6 +243,107 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/01/git/Git 分支 /" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-01T10:18:50+08:00" content="2016-12-01">
+              2016-12-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title: Git分支</p>
+<p>categories: git<br>tags: git</p>
+<ol>
+<li>每一个commit对象包含了几样东西，1）size 2）一个指向tree的指针 3）一个指向parent的指针 4）author和committer</li>
+<li>所谓的分支就是一个可移动的指针，指向某个commit对象，创建一个分支git branch就是创建了这么一个指针，这个命令不会移动HEAD指针    </li>
+<li>那Git如何知道现在是工作在哪个分支呢？通过HEAD指针</li>
+<li>可以用Git checkout 移动HEAD指针来指向不同的分支</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/01/git/Git 本地操作/" itemprop="url">
                   Git本地操作
                 </a>
@@ -1229,119 +1330,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/09/utility/ssh免密登录/" itemprop="url">
-                  ssh免密登陆
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-09T11:14:16+08:00" content="2016-11-09">
-              2016-11-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"><a href="#1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600" class="headerlink" title="1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"></a>1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600</h3><h3 id="2-把id-rsa-pub的内容cat出来"><a href="#2-把id-rsa-pub的内容cat出来" class="headerlink" title="2. 把id_rsa.pub的内容cat出来"></a>2. 把id_rsa.pub的内容cat出来</h3><h3 id="3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将该文件-不是-ssh文件夹-权限改为600-这步不是强制要求，主要是为了不让其他人看到"><a href="#3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将该文件-不是-ssh文件夹-权限改为600-这步不是强制要求，主要是为了不让其他人看到" class="headerlink" title="3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将该文件(不是.ssh文件夹)权限改为600 (这步不是强制要求，主要是为了不让其他人看到)"></a>3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将该文件(不是.ssh文件夹)权限改为600 (这步不是强制要求，主要是为了不让其他人看到)</h3><h3 id="4-更进一步，为了使用简写名字登陆，可按如下配置"><a href="#4-更进一步，为了使用简写名字登陆，可按如下配置" class="headerlink" title="4. 更进一步，为了使用简写名字登陆，可按如下配置"></a>4. 更进一步，为了使用简写名字登陆，可按如下配置</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy.lin</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1387,7 +1375,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">184</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

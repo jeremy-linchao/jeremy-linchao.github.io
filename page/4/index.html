@@ -243,6 +243,172 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/01/redis/redis哨兵模式/" itemprop="url">
+                  redis哨兵模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T10:05:41+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-Redis哨兵模式功能"><a href="#一-Redis哨兵模式功能" class="headerlink" title="一. Redis哨兵模式功能"></a>一. Redis哨兵模式功能</h3><ol>
+<li><p>监控： 哨兵会不断检查redis的主备实例是否正常运行</p>
+</li>
+<li><p>告警通知： 当受监控的redis实例异常时，哨兵可以通知系统管理员或者以API形式告知其他程序</p>
+</li>
+<li><p>自动故障迁移：当master节点无法工作时，哨兵会将slave节点提升为master</p>
+</li>
+<li><p>服务发现：哨兵为客户端提供服务发现，客户端向哨兵查询当前的master地址</p>
+</li>
+</ol>
+<h3 id="二-Redis哨兵特性"><a href="#二-Redis哨兵特性" class="headerlink" title="二.Redis哨兵特性"></a>二.Redis哨兵特性</h3><p>redis 哨兵本身是一个分布式系统，同时会有多个哨兵进程一起在运行</p>
+<h3 id="三-Redis哨兵部署"><a href="#三-Redis哨兵部署" class="headerlink" title="三.Redis哨兵部署"></a>三.Redis哨兵部署</h3><h4 id="3-1-部署注意点"><a href="#3-1-部署注意点" class="headerlink" title="3.1 部署注意点"></a>3.1 部署注意点</h4><ol>
+<li>至少三个哨兵节点</li>
+<li>多个哨兵节点需要部署在不同节点上</li>
+<li>哨兵模式无法失败时的写入可以被重新获取到，因为redis本身是异步复制，但是这个丢失的窗口可以通过配置被降低</li>
+<li>哨兵模式会和其他nat模式组冲突，比如docker，如有nat需要单独在配置文件中修改</li>
+</ol>
+<h4 id="3-2-配置说明"><a href="#3-2-配置说明" class="headerlink" title="3.2 配置说明"></a>3.2 配置说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1. bind ip1 ip2 ...</div><div class="line">   protected-mode no</div></pre></td></tr></table></figure>
+<p>默认哨兵只能通过localhost访问，可以通过指定绑定的接口ip或者 protected-mode no来允许其他接口通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2. sentinel announce-ip &lt;ip&gt;</div><div class="line">   sentinel announce-port &lt;port&gt;</div></pre></td></tr></table></figure>
+<p>在nat模式下使用，指定hello包里的声明的ip和port</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</div></pre></td></tr></table></figure>
+<p>指定哨兵监控的master</p>
+<p>master-name:  master名字，必须是A-z 0-9, “. - _”中的一个</p>
+<p>quorum：认为master不可达的哨兵数量，只有达到了这个数量，哨兵才有可能做fail-over，但是需要注意，这个数只是用来检测失败，实际上最后决定时候要真正的fail-over是通过一次投票来决定的，举一个例子：</p>
+<p>如果有5个哨兵进程，quorum被配置成2，那么当有2个哨兵进程发现master不可达时，他们中间的一个就会试着来做fail-over，这时会进行一场投票，如果此时有3个（5个中的大多数）哨兵是存活的，就会启动fail-over</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</div></pre></td></tr></table></figure>
+<p>哨兵同主redis，从redis通信时的密码，这个密码必须一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5. sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>过多久认为节点（包括主，从和哨兵本身）不可用，单位毫秒，默认为30s</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;</div></pre></td></tr></table></figure>
+<p>设置在一次failover之后有多少个slave会同时去和新的master同步，这个数设的越小，整个fail-over的时间就越长，但是因同步过程会有个中断，如果slave提供读服务的话 ，可以将这个值设为1来保证fail-over之后同时只有一个slave会断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>failover的超时时间，默认3分钟</p>
+<h4 id="3-3-哨兵查看命令"><a href="#3-3-哨兵查看命令" class="headerlink" title="3.3 哨兵查看命令"></a>3.3 哨兵查看命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1. sentinel master mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问master节点的状态，可以重点关注如下几个参数</p>
+<p>num-other-sentinels： 其他哨兵的数量</p>
+<p>num-slaves：slave数量</p>
+<p>flag: 节点状态，master代表主节点，如果master 宕了，会有s_down或者是o_down状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. sentinel slaves mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问slave节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel sentinels mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问其他哨兵节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel get-master-addr-by-name mymaster</div></pre></td></tr></table></figure>
+<p>查询当前master</p>
+<h3 id="4-部署模式建议"><a href="#4-部署模式建议" class="headerlink" title="4 部署模式建议"></a>4 部署模式建议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">           +----+</div><div class="line">       | M1 |</div><div class="line">       | S1 |</div><div class="line">       +----+</div><div class="line">          |</div><div class="line">+----+    |    +----+</div><div class="line">| R2 |----+----| R3 |</div><div class="line">| S2 |         | S3 |</div><div class="line">+----+         +----+</div><div class="line"></div><div class="line">Configuration: quorum = 2</div></pre></td></tr></table></figure>
+<p>M:  代表master</p>
+<p>R：代表slave</p>
+<p>S：代表哨兵</p>
+<ol>
+<li><h4 id="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"><a href="#哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上" class="headerlink" title="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"></a>哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上</h4></li>
+<li><h4 id="redis建议以一主两备运行"><a href="#redis建议以一主两备运行" class="headerlink" title="redis建议以一主两备运行"></a>redis建议以一主两备运行</h4></li>
+<li><h4 id="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce"><a href="#在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce" class="headerlink" title="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce"></a>在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce</h4></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/31/rocketmq/RocketMQ初次使用/" itemprop="url">
                   RocketMQ初次使用
                 </a>
@@ -1406,134 +1572,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
-                  jest使用axios遇到的bug
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/jest/" itemprop="url" rel="index">
-                    <span itemprop="name">jest</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
-<p>代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
-<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
-<p>环境版本如下</p>
-<p>node:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
-<p>jest:</p>
-<p>19.0.2</p>
-<p>axios</p>
-<p>0.16.1</p>
-<hr>
-<p>update 5.11</p>
-<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1579,7 +1617,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">184</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

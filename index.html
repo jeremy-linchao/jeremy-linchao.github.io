@@ -243,6 +243,130 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
+                  redux实践的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-20T16:58:35+08:00" content="2017-07-20">
+              2017-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>UI的状态，比如一个dialog是否open的状态是否也还要放到redux store里去？</p>
+<p>如果这个状态只有那么一个组件用，没必要放到store里去，如果某个数据是要跨全局使用的，那放到store里</p>
+<p>看一下redux作者的回答</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Use React for ephemeral state that doesn&apos;t matter to the app globally and doesn&apos;t mutate in complex ways. For example, a toggle in some UI element, a form input state. Use Redux for state that matters globally or is mutated in complex ways. For example, cached users, or a post draft.</div><div class="line"></div><div class="line">Sometimes you&apos;ll want to move from Redux state to React state (when storing something in Redux gets awkward) or the other way around (when more components need to have access to some state that used to be local).</div><div class="line"></div><div class="line">The rule of thumb is: do whatever is less awkward.</div></pre></td></tr></table></figure>
+</li>
+<li><p>一些ajax调用但不太会影响state的状态，比如实际遇到的一个恢复的api，返回值只有成功或失败，这个需要写action吗？</p>
+<p>redux的建议是把任何有副作用的函数都放到action creator里去，因为这样可以做到重用。但如果这个api调用只有可能在那个组件里使用呢？</p>
+<p>放在component的问题是，错误信息变成local的state了，store里看不到错误信息</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/18/javascript/javascript函数/" itemprop="url">
                   javascript函数
                 </a>
@@ -1293,122 +1417,6 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/22/utility/vscode常用快捷键/" itemprop="url">
-                  vscode常用快捷键
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-22T14:41:02+08:00" content="2017-06-22">
-              2017-06-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>开关闭左边侧边栏： cmd + b</li>
-<li>分割的窗口间切换：  cmd + k 然后按方向键</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1454,7 +1462,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">184</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
