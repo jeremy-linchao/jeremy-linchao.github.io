@@ -243,6 +243,158 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/03/database/数据库系统(mooc)/" itemprop="url">
+                  数据库系统(mooc)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-03T14:30:40+08:00" content="2017-04-03">
+              2017-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>关系与表的关系： 关系是关系模型里一个数学概念，而表是DBMS实现时用的一个称呼，两者在大多数情况下都是相同的，但关系里不能有重复的record，表里可以有</p>
+</li>
+<li><p>如何描述一个关系:   1) 先确定域，域的所有取值是能够确定下来的，同时有多少个域也是能确定下来的</p>
+<p>2）使用域作笛卡尔乘积，从中挑选一些有意义的record的集合作为一个关系</p>
+</li>
+<li><p>完整性约束：  1） 实体完整性：  主键不能为空       2）参照完整性：  外键的值的取值为null或者为参照表的主键中的取值   3） 自定义完整性：  用户自己定义的约束，比如字符串长度，数字长度</p>
+</li>
+<li><p>候选键（能唯一标识所有用户的属性组）   主键： 从候选键中选出一个属性组    外键： 在某一个关系下不是候选键，但在另一个关系下是主键，用来连接关系​</p>
+</li>
+<li><p>关系代数的基本动作： 并， 差， 乘积， 选择， 投影</p>
+</li>
+<li><p>并相容性：  两个关系的属性的数量以及每个属性的取值范围必须相同。  并，交， 差运算需满足并相容性</p>
+</li>
+<li><p>theta-join,  等值连接: 特殊的theta-join</p>
+</li>
+<li><p>Natual-join: 特殊的等值连接</p>
+</li>
+<li><p>外连接： 为什么需要外链接？内连接由于是需要属性相同并且值也相同，因此会丢失一部分信息。</p>
+<p>定义：连接时如果在另外一张表中找不到对应的元祖，则以空值作为代替连接</p>
+</li>
+<li><p>DDL:   CREATE, ALTER, DROP</p>
+<p>DML:  INSERT, DELETE, UPDATE, SELECT</p>
+<p>DCL:   GRANT, REVOKE</p>
+</li>
+<li><p>批量插入   INSERT INTO Table(col1, col2)   子查询</p>
+</li>
+<li><p>删除： DELETE  FROM   表名   [WHERE 表达式]</p>
+</li>
+<li><p>更新： UPDATE  表名  SET 列名 = 表达式|（子查询）[WHERE 条件表达式] </p>
+</li>
+<li><p>子查询： 出现在Where子句中的Select语句，  IN 与 NOT IN；  theta   some | all</p>
+</li>
+<li><p>E-R模型：  Enitity-Relation Model，四个要素：实体、属性、联系、关键字</p>
+</li>
+<li><p>一对多和多对多关系的区别: 一对多的联系可以通过外键来保存，对多对的联系只能单独再建一个联系表</p>
+</li>
+<li><p>一对多联系如何转换： 将单方参与实体的关键字作为多方参与实体对应关系的属性</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/02/database/introduction to databases/" itemprop="url">
                   introduction to databases
                 </a>
@@ -1395,126 +1547,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/22/utility/typescript + react/" itemprop="url">
-                  typescript + react
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T22:44:54+08:00" content="2017-03-22">
-              2017-03-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>npm install的时候，会要包含@types/react这个文件，这个文件是typescript为react写的吗？</p>
-</li>
-<li><p>awesomo-typescript-loader又是干嘛的？</p>
-</li>
-<li><p>官网的react+webpack那个文档的webpack配置有问题，1个是./src/index.tsx找不到，这个是因为多带了一个后缀名，第二个是报 You may need an appropriate loader to handle this file type.<br>SyntaxError: Unexpected token (7:4) ， github的issue有这个问题，可以通过的配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/index&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/dist&apos;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // Enable sourcemaps for debugging webpack&apos;s output.</div><div class="line">  devtool: &apos;source-map&apos;,</div><div class="line"></div><div class="line">  resolve: &#123;</div><div class="line">    // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.</div><div class="line">    extensions: [&apos;.webpack.js&apos;, &apos;.web.js&apos;, &apos;.ts&apos;, &apos;.tsx&apos;, &apos;.js&apos;]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;awesome-typescript-loader&apos;.</div><div class="line">      &#123; test: /\.tsx?$/, loader: &apos;awesome-typescript-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // When importing a module whose path matches one of the following, just</div><div class="line">  // assume a corresponding global variable exists and use that instead.</div><div class="line">  // This is important because it allows us to avoid bundling all of our</div><div class="line">  // dependencies, which allows browsers to cache those libraries between builds.</div><div class="line">  externals: &#123;</div><div class="line">    &apos;react&apos;: &apos;React&apos;,</div><div class="line">    &apos;react-dom&apos;: &apos;ReactDOM&apos;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1560,7 +1592,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">185</span>
+              <span class="site-state-item-count">186</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1577,7 +1609,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-count">131</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

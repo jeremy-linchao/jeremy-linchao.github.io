@@ -243,6 +243,130 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
+                  react声明周期函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-21T08:40:49+08:00" content="2017-07-21">
+              2017-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>render():    render函数是组件的必需函数，并且需要为纯函数</li>
+<li>constructor(): 在构造器里需要先调用super(props)，否则构造器里的this.props将为空，如果不需要初始化state状态，也不需要bind， 那可以不用构造器</li>
+<li>如果componet里使用了state，而state又想是通过props来作初始化，这里可能就会有潜在的bug，因为如果只在constructor里做初始化，props变了之后并不能改变state，那样还需要自己去实现<a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps(nextProps)</code></a> 这个函数，不如lifting state up</li>
+<li>componentWillMount() 这个函数是在render函数之前执行，在这里同步地执行setState时不会导致重新渲染的，不要在这里还引入side-effects</li>
+<li>componentDidMount() 在这里发起ajax，并且在这个函数去setState()会发生重新渲染</li>
+<li>componentWillReceiveProps(nextProps)：当收到新的props就会调用这个函数，react本身也会调用这个函数，即使props没有变化，因此在这个函数里一定要写个if判断props是否变化了。在初始挂载的时候不会调用这个函数，调用setState()是不会触发这个函数的</li>
+<li>shouldComponentUpdate(nextProps, nextState)： 现在的话如果这个函数return false， componentWillMount， render和componetDidMount都不会被调用了</li>
+<li>componentWillUpdate(nextProps, nextState) ：这也是个在渲染之前做准备工作的函数，它和componentWillReceiveProps很想，但是在这个函数里不能调用setState， 初始挂载也不会调用这个函数</li>
+<li>componentDidUpdate(prevProps, prevState)：这里也是好地方做ajax，并且可以比较props和state，并且这个函数在初挂载时也不会被调用</li>
+<li>setState():由于setState()可能会被延迟执行，因此在setState()之后立马通过this.state去读取可能会有问题</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
                   redux实践的问题
                 </a>
@@ -785,13 +909,8 @@
       
         
           
-            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><p>```<br>class NameForm extends React.Component {<br>  constructor(props) {<br>    super(props);<br>    this.state = {value: ‘’};</p>
-<pre><code>this.handleChange = this.handleChange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
-</code></pre><p>  }</p>
-<p>  handleChange(event) {<br>    this.setState({value: event.target.value});<br>  }</p>
-<p>  handleSubmit(event) {<br>    alert(‘A name was submitted: ‘ + this.state.value);<br>    event.preventDefault();<br>  }</p>
-<p>  render() {<br>    return (<br>      <form onsubmit="{this.handleSubmit}"><br>        <label><br>          Name:<br>          <input type="text" value="{this.state.value}" onchange="{this.handleChange}"><br>        </label><br>        <input type="submit" value="Submit"><br>      </form><br>    );<br>  }<br>}</p>
+            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子受控组件是html的基本element，实际中碰到更多的是一个组件控制另外一个组件的值，也就是父组件控制子组件，这时候子组件不需要自己存一个state了，它的值是由props传进来的，这个很好理解，但子组件的值变了之后怎么通知父组件呢，这就需要父组件还要相应的传一个回调函数</p>
 
           
         
@@ -1297,126 +1416,6 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/utility/grep使用/" itemprop="url">
-                  grep使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-23T15:36:13+08:00" content="2017-06-23">
-              2017-06-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/grep/" itemprop="url" rel="index">
-                    <span itemprop="name">grep</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>基本语法： grep  搜索词   搜索文</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep version package.json</div></pre></td></tr></table></figure>
-<p>该命令会查找package.json下面的version字段</p>
-</li>
-<li><p>搜索目录  grep -r 搜索词 目录   ​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1462,7 +1461,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">185</span>
+              <span class="site-state-item-count">186</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1479,7 +1478,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-count">131</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

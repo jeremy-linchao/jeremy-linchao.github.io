@@ -243,6 +243,117 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/01/redis/redis主从/" itemprop="url">
+                  redis主从
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T15:30:58+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
+<li><p>redis使用异步复制机制，从2.8开始，slave会周期性确认收到的数据</p>
+</li>
+<li><p>一个master可以有多个slave</p>
+</li>
+<li><p>redis复制在master端是不blocking的</p>
+<ol>
+<li>redis复制在slave也是不blocking的，当slave做初次同步时，它可以用老版本的数据集，在同步完之后，会短暂blocking进入的连接（如果数据量大的话将会有几秒钟）</li>
+</ol>
+</li>
+<li><p>当使用主从时，强烈建议在master上开启数据持久化，如果无法做到的话，那要避免redis服务自动重启（比如使用pm2之类的进程管理器），原因如下：</p>
+<ol>
+<li>假设A是master， B和C是A的slave，如果A crash了并且A的数据持久化被关闭，这时候进程管理器会重启redis服务，但是数据集为空，这时候B和C将会同步到一个空数据集</li>
+</ol>
+</li>
+<li><p>复制过程： 全量同步，master会在后台起一个saving进程来生成RDB文件，同时会把从这个时候开始收到的新的写入命令缓冲起来，当后台保存进程完毕后，master就会将这个文件发送到slave，slave会将它存在磁盘上，然后倒入到内存，之后master会把所有缓存的命令发送给slave，从2.8开始有不落盘复制</p>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/01/redis/redis哨兵模式/" itemprop="url">
                   redis哨兵模式
                 </a>
@@ -1454,124 +1565,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/utility/axios问题/" itemprop="url">
-                  axios问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-03T11:18:33+08:00" content="2017-05-03">
-              2017-05-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</p>
-<hr>
-<p>补充： json.stringify()这个函数也是有可能会报错的（无法string化）</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1617,7 +1610,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">185</span>
+              <span class="site-state-item-count">186</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1634,7 +1627,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-count">131</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

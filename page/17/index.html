@@ -243,6 +243,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/10/node/Node 学习/" itemprop="url">
+                  Node学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-10T09:14:33+08:00" content="2016-12-10">
+              2016-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Stream： 什么是stream？stream翻译过来是流，也就是说所有的网络或者文件读取的东西都是可以不过内存来处理，比如网络上传的文件，文件的每一部分被读取到都可以直接写到磁盘里，而不用说需要先把整个文件读到内存然后再写磁盘，一个典型的读取磁盘文件如下：</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var file = fs.createReadStream(&apos;fruits.txt&apos;);</div><div class="line">file.on(&apos;readable&apos;,function()&#123;</div><div class="line">  var chunk = null;</div><div class="line">  while((chunk=file.read())!==null)&#123;</div><div class="line">    console.log(chunk.toString());      </div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Module:  module.exports = a; 这样写的话在文件中只能导出一个函数，如果要导出多个函数，需要写成这样</p>
+<p>module.exports.a = a;</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/09/git/Git reset 和 git checkout 的区别/" itemprop="url">
                   Git reset 和 git checkout 的区别
                 </a>
@@ -1370,121 +1491,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/git/Git 在key正确的情况下仍然无法push的一个可能原因/" itemprop="url">
-                  Git 在key正确的情况下仍然无法push的一个可能原因
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T12:09:17+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有个很小白的问题之前一直困扰，就是git push的时候无法使用ssh key，这个问题按同事的说法就是既没效率，又不安全，所以仔细研究了下。</p>
-<p>首先判断key是否正确，使用ssh -T git@github.com，如果能显示Hi username! You’ve successfully authenticated, but GitHub does notprovide shell access.说明key添加的是没有问题的，我确实是这个情况</p>
-<p>第二就是判断你git push或pull的时候到底用的是哪个url，这个可以通过git remote -v来看，如果看到是https的url那就知道问题所在了，用的是https方式传输当然只会让你输入用户名和密码了，改的方式也很简单，git remote set-url origin <a href="https://github.com/USERNAME/OTHERREPOSITORY.git" target="_blank" rel="external">https://github.com/USERNAME/OTHERREPOSITORY.git</a> ，后面的username/other可以照抄https的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1530,7 +1536,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">185</span>
+              <span class="site-state-item-count">186</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1547,7 +1553,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-count">131</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
