@@ -243,6 +243,830 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
+                  vscode不好用排查记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-13T11:22:09+08:00" content="2017-07-13">
+              2017-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index">
+                    <span itemprop="name">vscode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>工具的好坏真的很影响效率，这几天一直被vscode搞得很烦，而现在又已经感觉离不开vscode了，特别是在写ts的情况下。简单说下这几天的一个问题，在写componet的props，写着写着就卡死，提示加载中，查看下active monitor发现code helper把cpu吃满了，搜了一圈看到说用下面命令排查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ps -eo pcpu,user,pid,command | grep Code</div><div class="line">  0.0 root             19842 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper</div><div class="line">  0.0 Jeremy           58063 /Applications/Visual Studio Code.app/Contents/MacOS/Electron</div><div class="line">  0.0 Jeremy           58064 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=gpu-process --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=0,1,10,23,25,35,38,45,51,59,61,62,63,64,66,70,71,73,81,82,83,86,88,89 --gpu-vendor-id=0x8086 --gpu-device-id=0x0a2e --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --gpu-active-vendor-id=0x8086 --gpu-active-device-id=0x0a2e --service-request-channel-token=F64EF82C1B4AE380AE7BB33F7D6350D9</div><div class="line">  0.0 Jeremy           58066 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=E0605B7E030E5A8FA29ECC035BA659D5 --lang=zh-CN --node-integration=true --background-color=#1e1e1e --disable-blink-features=Auxclick --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=E0605B7E030E5A8FA29ECC035BA659D5 --renderer-client-id=4</div><div class="line">  0.0 Jeremy           58068 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=517025C0E30485EB8424196A08BA8C56 --lang=zh-CN --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=517025C0E30485EB8424196A08BA8C56 --renderer-client-id=6</div><div class="line">  0.0 Jeremy           58296 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=terminal</div><div class="line">100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=extensionHost</div><div class="line">  0.0 Jeremy           58298 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=watcherService</div><div class="line">  0.0 Jeremy           58300 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Resources/crashpad_handler --database=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --metrics-dir=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --url=https://rink.hockeyapp.net/api/2/apps/21a48a66799e47fea4f52c0ff81e803d/crashes/upload --handshake-fd=58</div><div class="line">  0.0 Jeremy           58533 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/node_modules/vscode-languageclient/lib/utils/electronForkStart /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/server/server.js --node-ipc</div><div class="line">  0.0 Jeremy           58534 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript/out/utils/electronForkStart /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/tsserver.js --useSingleInferredProject --enableTelemetry --cancellationPipeName /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tscancellation-b7c49ca6478648eabc66.sock* --logVerbosity verbose --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/tsserver.log</div><div class="line">  0.0 Jeremy           58536 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=searchService</div><div class="line">  0.0 Jeremy           58553 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /Users/Jeremy/Library/Caches/typescript/2.4 --enableTelemetry --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/ti-58534.log</div><div class="line">  0.0 Jeremy           58567 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/node_modules/vscode-languageclient/lib/utils/electronForkStart /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/server/out/jsonServerMain.js --node-ipc</div><div class="line">  0.0 Jeremy           58853 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn Code</div></pre></td></tr></table></figure>
+<p>可以看到</p>
+<p>100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap –type=extensionHost</p>
+<p>是这个extensionHost把code helper吃满的， </p>
+<p>extension表示是插件影响的，但至于是哪个插件还不知道，只能一个一个排查，最后发现时auto rename这个插件</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/11/react/react ref/" itemprop="url">
+                  react ref
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T12:04:55+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>react中ref本身是一个函数，它可以用在Component，也可以用在html元素之上，如果用在html元素之上，这个函数接收一个参数，参数代表下面的html元素的值，如果用在组件之上，那这个ref的参数代表的是下面的那个组件</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/11/react/react受控组件/" itemprop="url">
+                  react受控组件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T11:45:39+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子受控组件是html的基本element，实际中碰到更多的是一个组件控制另外一个组件的值，也就是父组件控制子组件，这时候子组件不需要自己存一个state了，它的值是由props传进来的，这个很好理解，但子组件的值变了之后怎么通知父组件呢，这就需要父组件还要相应的传一个回调函数</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/04/utility/vscode小技巧/" itemprop="url">
+                  vscode小技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-04T10:59:56+08:00" content="2017-07-04">
+              2017-07-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index">
+                    <span itemprop="name">vscode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</p>
+</li>
+<li><p>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</p>
+</li>
+<li><p>f12是跳转到定义，但是mac默认把f12作为功能键，</p>
+<p>首先</p>
+<ol>
+<li>从苹果菜单中，选取“系统偏好设置”。</li>
+<li>点按“键盘”。</li>
+<li>如果未处于高亮显示状态，请点按“键盘”标签。</li>
+<li>选择“将 F1、F2 等键用作标准功能键”</li>
+</ol>
+</li>
+</ol>
+<p>​        但是这还不够，mac默认将f12改为显示dashboard的功能键，所以在键盘的快捷键设置中可以勾选掉mission control前的control</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/redux/记录一个redux问题/" itemprop="url">
+                  记录一个redux问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T16:43:13+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在写一个component的时报了换一个某某某 is not a function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123; display: &apos;flex&apos;, flex: &apos;0 1 70%&apos; &#125;&#125;&gt;</div><div class="line">                &lt;RaisedButton label=&quot;北京&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onClick=&#123;(event: object) =&gt; &#123;</div><div class="line">                  console.log(&apos;bj&apos;);</div><div class="line">                  selectRegion(&apos;cn-bj2&apos;, &apos;cn-bj2-02&apos;);</div><div class="line">                &#125;&#125; backgroundColor=&#123; selectedRegion === &apos;cn-bj2&apos; ? &apos;grey&apos;: &apos;white&apos;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;上海&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-sh2&apos;, &apos;cn-sh2-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;广州&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-gd&apos;, &apos;cn-gd-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>我检查了下这个props是在render函数时定义的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
+<p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
+<p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/react/react-router学习/" itemprop="url">
+                  react-router
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T10:51:16+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####1. route parameter的作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=/(:message) component=&#123;Home&#125; &gt;</div><div class="line">&lt;/Route&gt;</div><div class="line"></div><div class="line">这里的message是url里面/后面的路径，这个路径会作为props传到Home这个组件里去，Home组件的用法如下</div></pre></td></tr></table></figure></p>
+<p>const Home = (props) =&gt; {<br>  <div>{props.param.message}</div><br>}</p>
+<p>可以看到这里Home组件是可以通过props.param.message这个参数来读到<br>这个有什么作用呢，如果Home下面的组件结构都一致，只需要通过一个参数来改变形态，那就可以使用这种做法，一般用于消息列表等等</p>
+<p>####2. query parameter的用法<br>即在url中？组成的query string是可以被componet读到的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/23/utility/xargs/" itemprop="url">
+                  find与xargs联动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-23T15:47:50+08:00" content="2017-06-23">
+              2017-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &quot;*tsx&quot; | xargs grep Button</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/23/utility/grep使用/" itemprop="url">
                   grep使用
                 </a>
@@ -574,847 +1398,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/21/react/react事件/" itemprop="url">
-                  react事件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-21T10:43:08+08:00" content="2017-06-21">
-              2017-06-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-React事件写法"><a href="#1-React事件写法" class="headerlink" title="1. React事件写法"></a>1. React事件写法</h4><p>通常html中的事件是这样写的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;button onclick=&quot;activateLasers()&quot;&gt;</div><div class="line">  Activate Lasers</div><div class="line">&lt;/button&gt;</div></pre></td></tr></table></figure>
-<p>但是到了react，需要改成如下写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</div><div class="line">  Activate Lasers</div><div class="line">&lt;/button&gt;</div></pre></td></tr></table></figure>
-<p>区别在于onClick的事件需要用驼峰写法，并且传递的是一个函数而不是一个字符串，另外不能用return false来阻止默认行为，需要显示调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function ActionLink() &#123;</div><div class="line">  function handleClick(e) &#123;</div><div class="line">    e.preventDefault();</div><div class="line">    console.log(&apos;The link was clicked.&apos;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return (</div><div class="line">    &lt;a href=&quot;#&quot; onClick=&#123;handleClick&#125;&gt;</div><div class="line">      Click me</div><div class="line">    &lt;/a&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="2-react本身有哪些事件呢？"><a href="#2-react本身有哪些事件呢？" class="headerlink" title="2. react本身有哪些事件呢？"></a>2. react本身有哪些事件呢？</h3><p>react的事件是follow w3c的标准的，具体可以参考这个</p>
-<p><a href="https://facebook.github.io/react/docs/events.html" target="_blank" rel="external">https://facebook.github.io/react/docs/events.html</a></p>
-<h3 id="3-事件的注意点"><a href="#3-事件的注意点" class="headerlink" title="3. 事件的注意点"></a>3. 事件的注意点</h3><p>由于javasctipt的this是运行时绑定，如果按下面的写法 onClick的回调函数里的this会丢失，因此需要显示绑定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Toggle extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;isToggleOn: true&#125;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    this.setState(prevState =&gt; (&#123;</div><div class="line">      isToggleOn: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        &#123;this.state.isToggleOn ? &apos;ON&apos; : &apos;OFF&apos;&#125;</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>增加如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Toggle extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;isToggleOn: true&#125;;</div><div class="line"></div><div class="line">    // 这里binding下this</div><div class="line">    this.handleClick = this.handleClick.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    this.setState(prevState =&gt; (&#123;</div><div class="line">      isToggleOn: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        &#123;this.state.isToggleOn ? &apos;ON&apos; : &apos;OFF&apos;&#125;</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>推荐的写法是property initializer syntax，即直接在class内部定义某个属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个需要babel支持，create-react-app默认开启,</p>
-<p>另外还有种写法就是在onClick里面创建一个回调函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  handleClick() &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    // This syntax ensures `this` is bound within handleClick</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;(e) =&gt; this.handleClick(e)&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>但这个方法会有个性能问题，在于说每次这个LoggingButton渲染，都会新创建一个新的匿名函数，在这个例子因为是直接传给最基础的button是没有关系的，但如果说这个匿名函数是作为一个props传递到了下面一个Componet，那么即使下面这个Componet的props没有变化，仍然会重新渲染（因为这个函数作为prop变了）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/20/design/material-ui 问题/" itemprop="url">
-                  material-ui 问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-20T17:38:41+08:00" content="2017-06-20">
-              2017-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material-ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>在用material-ui + typescript的时候跑官网的一个App Bar的时候就遇到了如下报错</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Type &apos;Element&apos; is not assignable to type &apos;ReactElement&lt;any&gt;&quot;</div></pre></td></tr></table></figure>
-<p>问题是定位在iconElementLeft这个上面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;AppBar</div><div class="line">          title=&quot;Title&quot;</div><div class="line">          iconElementLeft=&#123;&lt;IconButton&gt;&lt;NavigationClose /&gt;&lt;/IconButton&gt;&#125;</div><div class="line">          iconElementRight=&#123;this.state.logged ? &lt;Logged /&gt; : &lt;Login /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
-<p>版本：</p>
-<p>@types/react: 15.0.5</p>
-<p>react: 15.4.2</p>
-<p>typescript: 2.2.1</p>
-<h4 id="根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行"><a href="#根据stackflow的回答，是因为15-0-5-的react类型定义文件引入的问题，降级到15-0-4就行" class="headerlink" title="根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行"></a>根据stackflow的回答，是因为15.0.5 的react类型定义文件引入的问题，降级到15.0.4就行</h4><ol>
-<li>dropdown menu的文档中是有menuItemStyle这个属性的，然而在ts的类型文件中没有，如果引入组件时使用了这个属性会导致编译出错，可以自行修改类型声明解决</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/20/git/git初始化项目操作/" itemprop="url">
-                  git初始化项目操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-20T09:44:35+08:00" content="2017-06-20">
-              2017-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>创建项目目录</li>
-<li>github上创建repo</li>
-<li>git init</li>
-<li>git remote add origin (github repo地址)</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/14/css/css占据整个页面/" itemprop="url">
-                  css占据整个页面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-14T18:37:19+08:00" content="2017-06-14">
-              2017-06-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.nav &#123;</div><div class="line">  height: calc(100vh - 64px)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在左侧导航条的div设置这个css，可以保证顶部不变</p>
-<p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
-<p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
-<ul>
-<li><strong>vw</strong>——代表视窗(Viewport)的宽度为<code>1%</code>，在我们的例子里<code>50vw = 500px</code>。</li>
-<li><strong>vh</strong>——窗口高度的百分比 <code>50vh = 400px</code>。</li>
-<li><strong>vmin</strong>——vmin的值是当前<code>vw</code>和<code>vh</code>中较小的值。在我们的例子里因为是横向模式，所以<code>50vim = 400px</code>。</li>
-<li><strong>vmax</strong>——大尺寸的百分比。<code>50vmax = 500px</code>。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/14/utility/elasticsearch学习/" itemprop="url">
-                  elasticsearch学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-14T17:16:10+08:00" content="2017-06-14">
-              2017-06-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utiltity/" itemprop="url" rel="index">
-                    <span itemprop="name">utiltity</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="ElasticSearch是什么？"><a href="#ElasticSearch是什么？" class="headerlink" title="ElasticSearch是什么？"></a>ElasticSearch是什么？</h4><p><em>Elasticsearch</em> 是一个实时的分布式搜索分析引擎</p>
-<h4 id="ElasticSearch能干什么？"><a href="#ElasticSearch能干什么？" class="headerlink" title="ElasticSearch能干什么？"></a>ElasticSearch能干什么？</h4><p>除了搜索之外，ES还提供了数据的存储，Elastcisearch 是分布式的 <em>文档</em> 存储。它能存储和检索复杂的数据结构–序列化成为JSON文档–以 <em>实时</em> 的方式。</p>
-<h4 id="什么是文档"><a href="#什么是文档" class="headerlink" title="什么是文档"></a>什么是文档</h4><p>最顶层或者根对象, 这个根对象被序列化成 JSON 并存储到 Elasticsearch 中，指定了唯一 ID</p>
-<h4 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h4><p>一个文档不仅仅包含它的数据 ，也包含 <em>元数据</em> —— <em>有关</em> 文档的信息。 三个必须的元数据元素如下：</p>
-<ul>
-<li><p><code>_index</code></p>
-<p>文档在哪存放</p>
-</li>
-<li><p><code>_type</code></p>
-<p>文档表示的对象类别</p>
-</li>
-<li><p><code>_id</code></p>
-<p>文档唯一标识</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/13/javascript/import的一个注意点/" itemprop="url">
-                  import的一个注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-13T17:41:41+08:00" content="2017-06-13">
-              2017-06-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行"><a href="#平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行" class="headerlink" title="平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行"></a>平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行</h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/13/es6/async:awati循环并发/" itemprop="url">
-                  async/awati循环并发
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-13T11:30:54+08:00" content="2017-06-13">
-              2017-06-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/async-await/" itemprop="url" rel="index">
-                    <span itemprop="name">async/await</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天写了这么一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>然后babel编译时候一直报错‘await is a reserved word’ ,其他地方用async/await都没有问题，那么这里问题出在哪儿了呢？</p>
-<p>await只能用在async函数里，虽然我在最外面的函数里写了async，但是离这个await最近的是map函数里面的匿名函数，而这个函数却不是async的，</p>
-<p>那么如果我们在这个匿名函数前面加async呢</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(async function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>这样的结果就是map函数会立即返回，这样的话你就无法知道这么多promise什么时候结束，因此无法拿到最后的结果</p>
-<h4 id="解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值"><a href="#解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值" class="headerlink" title="解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值"></a>解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line"></div><div class="line">return Promise.all(docs.map(function (doc) &#123;</div><div class="line">  return db.post(doc);</div><div class="line">&#125;)).then(function (results) &#123;</div><div class="line">  console.log(results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line">let promises = docs.map((doc) =&gt; db.post(doc));</div><div class="line"></div><div class="line">let results = [];</div><div class="line">for (let promise of promises) &#123;</div><div class="line">  results.push(await promise);</div><div class="line">&#125;</div><div class="line">console.log(results);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1455,7 +1443,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">186</span>
+              <span class="site-state-item-count">193</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1463,7 +1451,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1472,7 +1460,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">131</span>
+                <span class="site-state-item-count">138</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

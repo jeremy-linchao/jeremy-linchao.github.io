@@ -243,6 +243,870 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/21/git/利用git来阅读源代码/" itemprop="url">
+                  利用git来阅读源代码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-21T09:18:25+08:00" content="2017-03-21">
+              2017-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当需要看一个开源库的源代码的时候，比较好的做法是从他比较早的版本来看，如果时间充裕，也可以直接从第一版开始看，这里就需要比较多的git切换操作，有几个命令会很常用，这里列一下</p>
+<ol>
+<li>git log - - pretty=oneline : 这个命令用于列出到当前head位置所有的历史提交</li>
+<li>版本切换 git checkout 5dg322fasf    可以加 -f 来强制切换，在某些情况自己改了某个版本的文件情况下会有用</li>
+<li>git reflog:  查看git的操作记录， 因为git log只是列出到当前commit的历史提交，一旦checkout到较早的commit，想回到较早的版本得找到最近一次提交，git reflog提供了所有关于版本移动的历史，可以通过这个来找到最原始的commit号，当然github本身网站上也有这些信息，只是那样会慢很多还需要网络，不是太方便</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/19/react/react的state更新/" itemprop="url">
+                  react的state更新问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-19T16:59:08+08:00" content="2017-03-19">
+              2017-03-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下："><a href="#在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下：" class="headerlink" title="在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下："></a>在react官方的教程中有这么一段说明，因为react可能会把多个setState合并到一个更新上去，所以setState本身是异步的，不能依赖他们的值来计算下个state的值，官方的例子如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Wrong</div><div class="line">this.setState(&#123;</div><div class="line">  counter: this.state.counter + this.props.increment,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>而我在实际项目中也有遇到这种问题，我希望在进入if之后就能立即更新setState的值，从而锁死这个if的分支，不让其他程序进入，但如果这个setState的更新可能是异步的，这里就会存在多次进入的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">handleCreate() &#123;</div><div class="line">  if ( !this.state.createServiceOrderLoading ) &#123;</div><div class="line">      this.setState(&#123;</div><div class="line">        createServiceOrderLoading: true</div><div class="line">      &#125;);</div><div class="line">      doBusiness();</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据网上的一些文章说setState有些情况是同步的，有些情况是异步的，这部分我想得看下react的源代码才能搞清楚</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/utility/more about shadowsocks/" itemprop="url">
+                  more about shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:55:59+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="关于fail2ban"><a href="#关于fail2ban" class="headerlink" title="关于fail2ban"></a>关于fail2ban</h4><p>看到日志里有很多如下的错误，确定是暴力破解，使用fail2ban来防止暴力破解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017-03-15 10:22:02 ERROR    can not parse header when handling connection from 219.82.134.65:55473</div><div class="line">2017-03-15 10:22:02 WARNING  unsupported addrtype 22, maybe wrong password or encryption method</div></pre></td></tr></table></figure>
+<p>具体的步骤如下：</p>
+<ol>
+<li><p>切换root： sudo su -</p>
+</li>
+<li><p>安装fail2ban  sudo apt-get install fail2ban</p>
+</li>
+<li><p>创建fail2ban相应的ss顾虑器，可以进到/etc/fail2ban/filter.d/，看到有很多创模板过滤器，vim shadowsocks.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[Definition]</div><div class="line"></div><div class="line">_daemon = shadowsocks</div><div class="line"></div><div class="line">failregex = ^\s+ERROR\s+can not parse header when handling connection from &lt;HOST&gt;:\d+$</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认的fail2ban配置，vim /etc/fail2ban/jail.conf ，将banaction改成iptables</p>
+</li>
+<li><p>添加jail.local配置， vim /etc/fail2ban/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[shadowsocks]</div><div class="line">enabled = true</div><div class="line">filter = shadowsocks</div><div class="line">port = 443</div><div class="line">logpath = /var/log/shadowsocks.log</div><div class="line">maxretry = 10 # 最多尝试几次就算失败</div><div class="line">bantime = 3600 # 封锁时间(秒)</div><div class="line">logencoding = utf-8 # log文件编码</div><div class="line">findtime = 86400 # 找寻时间</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务 service fail2ban start</p>
+</li>
+<li><p>查看是否生效： fail2ban-client status shadowsocks</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/react/create-react-app学习/" itemprop="url">
+                  create-react-app学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:25:02+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在index.js主要到有如下一个import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./index.css&apos;;</div></pre></td></tr></table></figure>
+<p>这个import其实不是ES6的语法，而是webpack对于import的补充，用于将css文件impor到js文件中去</p>
+</li>
+<li><p>在webpack中通过import引入css，font，img的优点</p>
+<p>1）js和css打包在一起并被压缩可以减少网络请求</p>
+<p>2）如果某个文件确实在编译时候报错，而不是在用户请求的时候报404</p>
+<p>3）文件名会带hash值，因此不用担心浏览器会缓存旧版本</p>
+</li>
+<li><p>利用react-snapshot可以做页面静态化</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/13/utility/nginx使用/" itemprop="url">
+                  nginx使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-13T14:05:11+08:00" content="2017-03-13">
+              2017-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-nginx如何处理一个request"><a href="#一-nginx如何处理一个request" class="headerlink" title="一. nginx如何处理一个request"></a>一. nginx如何处理一个request</h3><ol>
+<li><p>nginx会首先检查请求的ip和port与server里的listen来作比较</p>
+</li>
+<li><p>nginx然后检查”Host” header与sever里的server_name作比较，如果有多个匹配，优先级如下</p>
+<p>1）精确匹配</p>
+<p>2）以*开头的最长通配符匹配</p>
+<p>3）以*结尾的最长通配符匹配</p>
+<p>4）第一个正则表达式匹配</p>
+</li>
+<li><p>“_”代表所有server</p>
+</li>
+<li><p>“” 代表请求中没有Host头</p>
+</li>
+<li><p>防止恶意解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80  default_server;</div><div class="line">    server_name  _;</div><div class="line">    return       444;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/10/react/react native 初探/" itemprop="url">
+                  react native 初探
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-10T16:30:10+08:00" content="2017-03-10">
+              2017-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>为什么有react native？</p>
+<p>既需要原生良好的用户体验，又需要较好的开发体验</p>
+</li>
+<li><p>react native的底层的运行环境是什么？</p>
+<p>也就是说是什么来解释js，不是node，对于iOS来说，是使用内置的javascript core，Android是使用jsc.so</p>
+</li>
+<li><p>react native 和 ionic的区别</p>
+<p>ionic是使用移动端本身的webview控件包了个网站，而react native调用的是原生的组件，</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/10/utility/webpack学习/" itemprop="url">
+                  webpack学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-10T16:14:20+08:00" content="2017-03-10">
+              2017-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="一-webpack可以干什么？"><a href="#一-webpack可以干什么？" class="headerlink" title="一. webpack可以干什么？"></a>一. webpack可以干什么？</h4><ol>
+<li>bundle ES，AMD，COMMONJS的模块</li>
+<li>可以打成多个chunks来异步加载</li>
+<li>在编译时候解决依赖问题，减少运行时消耗</li>
+<li>可以做预处理，将TS转换为JS，images转化成Base64格式</li>
+<li>​</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/09/utility/chrome默认将http转换成https/" itemprop="url">
                   chrome默认将http转换成https
                 </a>
@@ -535,905 +1399,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/javascript/现代javacript/" itemprop="url">
-                  现代javacript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T10:02:16+08:00" content="2017-03-08">
-              2017-03-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>nodejs： nodejs是一个javascript运行时环境，可以类比于java的虚拟机，在后端的作用比较好理解，业务逻辑开发，工具脚本开发等都是它的用武之地，但是在前端开发中也会经常包含node，这点有时候不是太好理解。nodejs在前端的作用主要有如下几个： 前端程序的打包，测试，以及语法规范检查等等</p>
-</li>
-<li><p>npm： node默认的包管理器</p>
-</li>
-<li><p>yarn： 新的node包管理器，速度更快，离线support，并且获取依赖会更快</p>
-</li>
-<li><p>package.json:  项目的描述和配置文件，包括项目名称，版本，贡献者，依赖等等，除了可以用npm init之外，也可以用yarn init来生成</p>
-</li>
-<li><p>babel-node的作用：replace your call to the node binary and execute ES6 files directly on the fly，之前看到这句话不是很理解，node不是对ES6支持的非常好吗，为什么还需要babel呢？回想一下，有一个语法是至少现在的node是不支持的，那就是模块。node的模块化系统用的是COMMONJS标准，而ES6用的是import和export，这里就需要babel-node来做转化了</p>
-</li>
-<li><p>ES-lint:  ESLint is the linter of choice for ES6 code. A linter gives you recommendations about code formatting, which enforces style consistency in your code, and code you share with your team. It’s also a great way to learn about JavaScript by making mistakes that ESLint will catch.</p>
-<p>我的理解：ES-lint就是一种代码格式化的规范，有了他团队协作开发就很方便，之前可能还需要在code_review里做些代码格式的检查，那现在只需要选一种规范，加载到ES-lint去，团队每个成员的代码都能自动遵循某个规范了，这里面可以用airbnb的<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">规范</a></p>
-<p>另外ESlint可以集成到IDE里去，不要用IDE本身的lint，因为那样的话无法达成统一的规范</p>
-</li>
-<li><p>Flow: A static type checker by Facebook. It detects inconsistent types in your code. For instance, it will give you an error if you try to use a string where should be using a number.</p>
-<p>如果说ES-lint是代码格式检查的工具，那Flow就是对javascript不是强类型作规范</p>
-<p>yarn add –dev flow-bin babel-preset-flow babel-eslint eslint-plugin-flowtype</p>
-<p><code>flow-bin</code> is the binary to run Flow in our <code>scripts</code> tasks, <code>babel-preset-flow</code> is the preset for Babel to understand Flow annotations, <code>babel-eslint</code> is a package to enable ESLint <em>to rely on Babel’s parser</em> instead of its own, and <code>eslint-plugin-flowtype</code> is an ESLint plugin to lint Flow annotations</p>
-</li>
-<li><p>Jest: 一个facebook的测试库，可以测试react</p>
-</li>
-<li><p>Husky： git钩子， 可以在git commit和git push之前运行脚本测试代码</p>
-</li>
-<li><p>​</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/es6/ 进一步理解箭头函数/" itemprop="url">
-                  进一步理解函数的this
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-07T09:18:52+08:00" content="2017-03-07">
-              2017-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>箭头函数的写法可以总结以下几个注意点： </p>
-<p>1） 如果没有参数或者多于一个参数，需要在参数列表里加上（）</p>
-<p>2） 一个参数可以不加（）</p>
-<p>3）语句多于一行，需要用大括号括起来，并且使用return语句返回</p>
-<p>4）如果直接返回一个用{ }创建的对象，需要用（）包裹起来</p>
-</li>
-<li><p><code>this</code> is not an author-time binding but a runtime binding. It is contextual based on the conditions of the function’s invocation. <code>this</code> binding has nothing to do with where a function is declared, but has instead everything to do with the manner in which the function is called</p>
-<p>this是运行时绑定，绑定的是call-site，也就是某个函数的调用方</p>
-</li>
-<li><p>下面这段代码非常迷惑，里面的this值得是啥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = obj.foo; // function reference/alias!</div><div class="line"></div><div class="line">var a = &quot;oops, global&quot;; // `a` also property on global object</div><div class="line"></div><div class="line">bar(); // &quot;oops, global&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。举个例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line">var id = 21;</div><div class="line">foo.call(&#123; id: 42 &#125;);</div></pre></td></tr></table></figure>
-<p>这个箭头函数里面的this指的是它定义时所在的对象，定义是在foo这个函数里定义的，那this就是foo()这个对象了</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/utility/理解前端构建-webpack/" itemprop="url">
-                  理解前端构建-webpack
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-07T09:13:25+08:00" content="2017-03-07">
-              2017-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="为什么需要前端构建工具"><a href="#为什么需要前端构建工具" class="headerlink" title="为什么需要前端构建工具"></a>为什么需要前端构建工具</h4><p>现在的理解： 随着前端各种各样的javascript库层出不穷，前端的模块导入成为一个很大的问题，一个模块可能需要依赖另一个模块，如果仅仅靠自己在前端<script></script> 来控制加载顺序，这个难度就台麻烦了，而且这还只是js，还有css，sass等，</p>
-<h4 id="webpack到底是个什么工具"><a href="#webpack到底是个什么工具" class="headerlink" title="webpack到底是个什么工具"></a>webpack到底是个什么工具</h4><ol>
-<li>module bundler  用来打包所有需要的模块</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/react/Cannot set property 'innerText' of null/" itemprop="url">
-                  Cannot set property 'innerText' of null
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-05T13:53:14+08:00" content="2017-03-05">
-              2017-03-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>遇到这个错误的原因是javascript的脚本放在了head加载，在head里面条用了document.body.innerText，而此时body还是个空值</p>
-<p>解决办法： 把javascipt放到body里面加载</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/04/utility/mac下nginx问题汇总/" itemprop="url">
-                  mac下nginx问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-04T13:40:47+08:00" content="2017-03-04">
-              2017-03-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start nginx</div></pre></td></tr></table></figure>
-<p>这条命令的作用是在开机启动时启动nginx，而并非nginx本身的开关</p>
-</li>
-<li><p>启动   nginx; 关闭 nginx -s stop;  重启 nginx -s reload;</p>
-</li>
-<li><p>403错误可能是nginx的父目录没有执行权限（没有遇到）</p>
-</li>
-<li><p>mac上使用brew 卸载nginx并不会删除/usr/local/etc/nginx下的配置文件，需要手动删除下，403错误重新卸载生效</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/28/es6/你不知道的promise/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-28T17:48:21+08:00" content="2017-02-28">
-              2017-02-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">doSomething().then(function () &#123;</div><div class="line">  return doSomethingElse();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">doSomething().then(function () &#123;</div><div class="line">  doSomethingElse();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这两个函数有什么区别</p>
-</li>
-<li><p>这是个陷阱</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// I want to remove() all docs</div><div class="line">db.allDocs(&#123;include_docs: true&#125;).then(function (result) &#123;</div><div class="line">  result.rows.forEach(function (row) &#123;</div><div class="line">    db.remove(row.doc);  </div><div class="line">  &#125;);</div><div class="line">&#125;).then(function () &#123;</div><div class="line">  // I naively believe all docs have been removed() now!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>promise是什么？<br>A Promise represents a value which may be available now, or in the future, or never</p>
-<p>Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的</p>
-</li>
-<li><p>Promise有以下几种状态:</p>
-<p>​    pending: 初始状态, 既不是 fulfilled 也不是 rejected.</p>
-<p>​    fulfilled: 表示异步代码成功执行（没有错误抛出），且返回值已填充（fulfilled）</p>
-<p>​    rejected: <strong>表示executor执行失败</strong>，Promise被拒绝</p>
-</li>
-<li><p>对于三方库如果是promise-based，即返回的是一个promise</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(function(result) &#123;</div><div class="line">  console.log(result); // &quot;Stuff worked!&quot;</div><div class="line">&#125;, function(err) &#123;</div><div class="line">  console.log(err); // Error: &quot;It broke&quot;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>.then()   添加肯定和否定回调到当前 promise, 返回一个新的 promise, <strong>将以回调的返回值 来resolve</strong></p>
-</li>
-<li><p>如果函数里面不返回，一下的userAccount将会是undefined</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">getUserByName(&apos;nolan&apos;).then(function (user) &#123;</div><div class="line">  return getUserAccountById(user.id);</div><div class="line">&#125;).then(function (userAccount) &#123;</div><div class="line">  // I got a user account!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>建议: 在then函数里面显示指定返回值</p>
-</li>
-<li><p>promise可以catch回调里面的err，这个需要实践下</p>
-</li>
-<li><p>.catch(rejectHandler)和.then(resolveHandler, rejectHandler) 这两个有什么区别呢？看下面一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;).catch(function (err) &#123;</div><div class="line">  // I caught your error! :)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;, function (err) &#123;</div><div class="line">  // I didn&apos;t catch your error! :(</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>最开始使用promise是这样的 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fetch(reqPostUrl,&#123;</div><div class="line">	method: &apos;POST&apos;,</div><div class="line">    headers: &#123;</div><div class="line">        &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">    &#125;,</div><div class="line">    body: submitFormUrled</div><div class="line">&#125;.then((response)=&gt;&#123;</div><div class="line">  	if(response.status===201)&#123;</div><div class="line">      fetch(reqGetUrl,&#123;</div><div class="line">        method: &apos;GET&apos;</div><div class="line">      &#125;).then((response)=&gt;&#123;</div><div class="line">      	if(response.status===200)&#123;</div><div class="line">          response.json().then((data)=&gt;&#123;</div><div class="line">            doSomethingWith(data);</div><div class="line">          &#125;)</div><div class="line">      	&#125; </div><div class="line">      &#125;);</div><div class="line">  	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">fetch(reqUrl, &#123;</div><div class="line">                method: &apos;POST&apos;,</div><div class="line">                headers: &#123;</div><div class="line">                    &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">                &#125;,</div><div class="line">                body: submitFormUrled</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 201) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125;</div><div class="line">            &#125;).catch((err)=&gt;&#123;</div><div class="line">                console.log(err);</div><div class="line">            &#125;).then((data) =&gt; &#123;</div><div class="line">                let reqUrlProjectDetail = `$&#123;url&#125;project/$&#123;data.id&#125;/`;</div><div class="line">                return fetch(reqUrlProjectDetail);</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 200) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&quot;创建项目失败，请检查客户邮箱是否正确&quot;);</div><div class="line">                &#125;</div><div class="line">            &#125;).then((obj) =&gt; &#123;</div><div class="line">                let map_serivce_provider = &#123;</div><div class="line">                    1: &apos;UCloud&apos;,</div><div class="line">                    2: &apos;三方&apos;,</div><div class="line">                    3: &apos;UCloud与三方&apos;</div><div class="line">                &#125;;</div><div class="line">                const &#123;data, total&#125; = obj;</div><div class="line">                if (total &gt; 0) &#123;</div><div class="line">                    let &#123;service_provider, third_product_name = &quot;无&quot;, engineer_name = &quot;无&quot;&#125; = data[0];</div><div class="line">                    service_provider = map_serivce_provider[service_provider];</div><div class="line">                    let newProjectData = [...that.state.projectData, &#123;</div><div class="line">                        ...data[0],</div><div class="line">                        service_provider,</div><div class="line">                        third_product_name,</div><div class="line">                        engineer_name</div><div class="line">                    &#125;];</div><div class="line">                    form.resetFields();</div><div class="line">                    that.setState(&#123;</div><div class="line">                        visible: false,</div><div class="line">                        projectData: newProjectData</div><div class="line">                    &#125;);</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&apos;创建项目失败&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
-<p>​    11. callback没有回调，没有return</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">const columns = [</div><div class="line">        &#123;title: &apos;扣费单号&apos;, dataIndex: &apos;item_no&apos;, key: &apos;item_no&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费时间&apos;, dataIndex: &apos;item_time&apos;, key: &apos;item_time&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费金额&apos;, dataIndex: &apos;item_money&apos;, key: &apos;item_money&apos;&#125;,</div><div class="line">        &#123;title: &apos;是否成功&apos;, dataIndex: &apos;item_result&apos;, key: &apos;item_result&apos;&#125;,</div><div class="line">    ];</div><div class="line">    let data = [];</div><div class="line">    let reqUrl = `$&#123;url&#125;project/$&#123;record.project_id&#125;/order/$&#123;record.id&#125;`;</div><div class="line">    console.log(`the order detail id is $&#123;reqUrl&#125;`);</div><div class="line">    fetch(reqUrl,&#123;method:&quot;GET&quot;&#125;).then((response)=&gt;&#123;</div><div class="line">        if(response.status===200)&#123;</div><div class="line">           return response.json();</div><div class="line">        &#125;</div><div class="line">    &#125;).then((d)=&gt;&#123;</div><div class="line">        console.log(&apos;order opened!&apos;);</div><div class="line">        if (d.items.length &gt; 0) &#123;</div><div class="line">            console.log(&apos;item &gt;0&apos;);</div><div class="line">            data = d.items.map((obj) =&gt; &#123;</div><div class="line">                let &#123;item_no, item_time, item_result, item_money=`$&#123;record.money&#125;`&#125; = obj;</div><div class="line">                item_time = new Date(item_time * 1000).toLocaleDateString();</div><div class="line">                item_result = item_result === 1 ? &apos;失败&apos; : &apos;成功&apos;;</div><div class="line"></div><div class="line">                return &#123;item_no, item_time, item_result, item_money&#125;;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return (</div><div class="line">        &lt;Table</div><div class="line">            columns=&#123;columns&#125;</div><div class="line">            dataSource=&#123;data&#125;</div><div class="line">            pagination=&#123;true&#125;</div><div class="line">            rowkey=&quot;item_time&quot;</div><div class="line">        /&gt;</div><div class="line">    );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/26/es6/airbnb的javascript编程规范/" itemprop="url">
-                  airbnb的javascript编程规范
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-26T16:25:15+08:00" content="2017-02-26">
-              2017-02-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>对于所有引用类型使用const，这样可以避免对类型变量重新赋值，注意const类型也是块级作用域的</p>
-</li>
-<li><p>创建对象尽量使用字面值常量语法</p>
-</li>
-<li><p>对象的属性和方法使用简写方法</p>
-</li>
-<li><p>定义对象属性值尽量不加引号，除非有-这种字符</p>
-</li>
-<li><p>使用扩展运算符来copy对象，如果忽略对象时使用剩余运算符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const original = &#123; a: 1, b: 2 &#125;;</div><div class="line">const copy = &#123; ...original, c: 3 &#125;; // copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</div><div class="line"></div><div class="line">const &#123; a, ...noA &#125; = copy; // noA =&gt; &#123; b: 2, c: 3 &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用push方法来向数组添加元素，使用扩展运算符来copy数组</p>
-</li>
-<li><p>使用对象解构来访问对象的多个属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const firstName = user.firstName;</div><div class="line">  const lastName = user.lastName;</div><div class="line"></div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const &#123; firstName, lastName &#125; = user;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// best</div><div class="line">function getFullName(&#123; firstName, lastName &#125;) &#123;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>常量字符串使用单引号而不是双引号</p>
-</li>
-<li><p>如果要通过编程来构建字符串，使用模板字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return &apos;How are you, &apos; + name + &apos;?&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return [&apos;How are you, &apos;, name, &apos;?&apos;].join();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123; name &#125;?`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123;name&#125;?`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要判断函数参数</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1474,7 +1444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">186</span>
+              <span class="site-state-item-count">193</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1482,7 +1452,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1491,7 +1461,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">131</span>
+                <span class="site-state-item-count">138</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

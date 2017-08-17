@@ -243,6 +243,853 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/15/AI/Machine Learning/" itemprop="url">
+                  Machine Learning
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-15T14:37:12+08:00" content="2017-04-15">
+              2017-04-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Machine Learning can be basiclly classfied with two categories:  supervised learning and unsupervised learning</p>
+<p>1) supervised learning: right answer given, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
+<p>​    regression: predict continuous valued output</p>
+<p>​    classification: discrete valued output</p>
+<p>2) unspervised learning: with little or no idea what our results should look like</p>
+<p>​    clustering:</p>
+</li>
+<li><p>gradient decent algorithm: simutaneous   ​</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/database/mysql安装/" itemprop="url">
+                  mysql 使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-12T17:47:37+08:00" content="2017-04-12">
+              2017-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h4><ol>
+<li><p>yum install -y mysql-server</p>
+</li>
+<li><p>chkconfig mysqld on</p>
+</li>
+<li><p>vim /etc/my.cn,  加入utf8字符集并修改下datadir，其他高级配置慢慢研究</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line"></div><div class="line"># add utf-8</div><div class="line">character_set_server = utf8</div><div class="line"></div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line"># Settings user and group are ignored when systemd is used (fedora &gt;= 15).</div><div class="line"># If you need to run mysqld under a different user or group,</div><div class="line"># customize your systemd unit file for mysqld according to the</div><div class="line"># instructions in http://fedoraproject.org/wiki/Systemd</div><div class="line">user=mysql</div><div class="line"></div><div class="line"># Semisynchronous Replication</div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/replication-semisync.html</div><div class="line"># uncomment next line on MASTER</div><div class="line">;plugin-load=rpl_semi_sync_master=semisync_master.so</div><div class="line"># uncomment next line on SLAVE</div><div class="line">;plugin-load=rpl_semi_sync_slave=semisync_slave.so</div><div class="line"></div><div class="line"># Others options for Semisynchronous Replication</div><div class="line">;rpl_semi_sync_master_enabled=1</div><div class="line">;rpl_semi_sync_master_timeout=10</div><div class="line">;rpl_semi_sync_slave_enabled=1</div><div class="line"></div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/performance-schema.html</div><div class="line">;performance_schema</div><div class="line"></div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[mysql]</div><div class="line">no-auto-rehash</div><div class="line">default-character-set=utf8</div></pre></td></tr></table></figure>
+</li>
+<li><p>service mysqld start  启动mysql</p>
+</li>
+<li><p>/usr/bin/mysql_secure_installation 设置root密码等安全特性</p>
+<p>​</p>
+</li>
+</ol>
+<h4 id="新建用户并赋予权限"><a href="#新建用户并赋予权限" class="headerlink" title="新建用户并赋予权限"></a>新建用户并赋予权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE USER &apos;jeremy&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">GRANT ALL ON test.* TO &apos;jeremy&apos;@&apos;%&apos;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/utility/使用supertest作单元测试的注意点/" itemprop="url">
+                  使用supertest作单元测试的注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-12T15:04:05+08:00" content="2017-04-12">
+              2017-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>supertest底层是使用superagent来发http请求的，对于post的类型要特别注意查看官方的文档说明，</p>
+<p><a href="https://visionmedia.github.io/superagent/#post-/-put-requests" target="_blank" rel="external">https://visionmedia.github.io/superagent/#post-/-put-requests</a></p>
+<p>默认post的请求类型是json，如果需要用application/x-www-form-urlencoded，需要显示设置一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">request.post(&apos;/&apos;)</div><div class="line">   .set(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;)</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/node/parseInt 和 escape/" itemprop="url">
+                  parseInt 和 escape
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-12T14:24:30+08:00" content="2017-04-12">
+              2017-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>express处理post提交的数据，如果对接收到的数据做一个escape会强制加上’ ‘， 这样的话如果要取一个整数型变量就会报错，这个该如何处理呢？    </p>
+<p>数据库插入的时候，它并不需要你在程序中转换，mysql会根据你的column的类型来将你传过去的数据做转换，如果无法转换，比如‘15a’ 插入到整型列，就会报列类型错误</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/08/http/HTTP/" itemprop="url">
+                  HTTP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-08T14:27:17+08:00" content="2017-04-08">
+              2017-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>今天遇到一个关于http的问题，在client端使用post请求传了几个整型参数，在服务端想要取这几个参数的时候取出来的时候switch判断一致出错，后来查看类型原来是字符串，关于这部分的理解一致不是很到位，这个错误让我印象就极为深刻了，所以服务端在拿到客户端的数据时，需要做一个parseInt</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/07/javascript/一个跨域options方法的问题/" itemprop="url">
+                  一个跨域options方法的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-07T16:09:05+08:00" content="2017-04-07">
+              2017-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>同事遇到的一个问题，记录一下： 用fetch去跨域时，post使用json，到一个需要cookie的服务提交，报302</p>
+<p>查了option的文档 <a href="https://www.w3.org/TR/cors/#preflight-request，" target="_blank" rel="external">https://www.w3.org/TR/cors/#preflight-request，</a> 当用options的方法时，会<strong>exclude</strong>掉如下信息</p>
+<ul>
+<li><p>Exclude the <a href="https://www.w3.org/TR/cors/#author-request-headers" target="_blank" rel="external">author request headers</a>.</p>
+</li>
+<li><p>Exclude <a href="https://www.w3.org/TR/cors/#user-credentials" target="_blank" rel="external">user credentials</a>.</p>
+</li>
+<li><p>Exclude the <a href="https://www.w3.org/TR/cors/#request-entity-body" target="_blank" rel="external">request entity body</a>.</p>
+<p>因此，fetch的时候即使你加入了include credientials也没用，解决的办法是让自己的提交是简单请求，不需要预检，是否需要预检如下，</p>
+</li>
+</ul>
+<p>当浏览器的请求方式是HEAD、GET或者POST，并且HTTP的头信息中不会超出以下字段:</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
+</ul>
+<p>时，浏览器会将该请求定义为简单请求，否则就是预检请求。预检请求会在正式通信之前，增加一次HTTP查询请求。浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。预检请求的发送请求：</p>
+<p>当然这个问题是出在了服务提供方，对于预检请求不应该去检查cookie</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/07/es6/一个async:await问题/" itemprop="url">
+                  一个async/await问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-07T15:59:31+08:00" content="2017-04-07">
+              2017-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public async getUTechServicePrice(req: express.Request, res: express.Response) &#123;</div><div class="line">    let result = null;</div><div class="line">    try &#123;</div><div class="line">      logger.info(&apos;getUTechService is called&apos;);</div><div class="line">      result = await this.getUTechServicePricePromise(req, res);</div><div class="line">      result.then((val) = &gt; &#123;</div><div class="line">        console.log(val);</div><div class="line">      &#125;)</div><div class="line">    &#125; catch (err) &#123;</div><div class="line">      logger.error(err);</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>写了这一段代码，执行的时候一直报错说result.then 不是一个函数，百思不得其解，和同事讨论了下终于发现问题所在，await 后面要跟一个promise对象，但await是等待这个promise解析结束，因此它的值要不是解析出来，要不就是出错被catch，因此这里的result就是一个确定的值，不需要再用then方法了，说到底还是对async和await的理解不够深</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/03/database/数据库系统(mooc)/" itemprop="url">
                   数据库系统(mooc)
                 </a>
@@ -639,919 +1486,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/30/es6/import:export与commonjs/" itemprop="url">
-                  import/export与commonjs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-30T18:33:26+08:00" content="2017-03-30">
-              2017-03-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>对于node开发，如果引用的第三方模块是用COMMONJS语法导出的，而导入又想使用import/export 语法怎么做呢?</p>
-<p>比如supertest这个库，他的index.js的代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Module dependencies.</div><div class="line"> */</div><div class="line"></div><div class="line">var methods = require(&apos;methods&apos;)</div><div class="line">  , Test = require(&apos;./lib/test&apos;)</div><div class="line">  , http = require(&apos;http&apos;);</div><div class="line"></div><div class="line">/**</div><div class="line"> * Test against the given `app`,</div><div class="line"> * returning a new `Test`.</div><div class="line"> *</div><div class="line"> * @param &#123;Function|Server&#125; app</div><div class="line"> * @return &#123;Test&#125;</div><div class="line"> * @api public</div><div class="line"> */</div><div class="line"></div><div class="line">module.exports = function(app)&#123;</div><div class="line">  if (&apos;function&apos; == typeof app) app = http.createServer(app);</div><div class="line">  var obj = &#123;&#125;;</div><div class="line"></div><div class="line">  methods.forEach(function(method)&#123;</div><div class="line">    obj[method] = function(url)&#123;</div><div class="line">      return new Test(app, method, url);</div><div class="line">    &#125;;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // Support previous use of del</div><div class="line">  obj.del = obj[&apos;delete&apos;];</div><div class="line"></div><div class="line">  return obj;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Expose `Test`</div><div class="line"> */</div><div class="line"></div><div class="line">module.exports.Test = Test;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Expose the agent function</div><div class="line"> */</div><div class="line"></div><div class="line">module.exports.agent = require(&apos;./lib/agent&apos;);</div></pre></td></tr></table></figure>
-<p>可以看到它是commonJS的导出方法，</p>
-<!--CommonJS规范规定，每个模块内部，`module`变量代表当前模块。这个变量是一个对象，它的`exports`属性（即`module.exports`）是对外的接口。加载某个模块，其实是加载该模块的`module.exports`属性-->
-<p>module.exports这个对象上有一个匿名函数，同时还有两个函数，这里要注意下commonjs 一般是不写module.exports.default的，如果用import方式来导入，因为没有default export，因此不能用import request from ‘supertest’这种语法，这样写的话其实读的是module.exports.default属性，而应该使用 import * as request from ‘supertest’, console打出来能看到request是如下组成，可以直接通过request()来调用上面的匿名函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; [Function] Test: [Function: Test], agent: [Function: TestAgent] &#125;</div></pre></td></tr></table></figure>
-<p>这种导入方式其实和require(‘supertest’) 一样，导入的是整个对象</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/30/projects/一个项目的开发流程/" itemprop="url">
-                  一个项目的开发流程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-30T12:04:42+08:00" content="2017-03-30">
-              2017-03-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注："><a href="#项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：" class="headerlink" title="项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注："></a>项目需求其实很简单，几条简单的api，一个不复杂的前端，但我想把整个项目的流程走通，有以下几点我非常关注：</h4><ol>
-<li><p>如何集成docker作开发？</p>
-</li>
-<li><p>如何集成jest</p>
-</li>
-<li><p>如何利用持续集成？</p>
-</li>
-</ol>
-<hr>
-<ol>
-<li><p>有tech leader创建git项目，自己去 git clone</p>
-</li>
-<li><p>创建自己的分支，git checkout -b from_</p>
-</li>
-<li><p>创建.gitignore文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># node_modules</div><div class="line">backend/node_modules/</div><div class="line"></div><div class="line"># DS_Store</div><div class="line">backend/.DS_Store</div><div class="line"></div><div class="line"># logs</div><div class="line">backend/*.log</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建后端项目目录 mkdir backend &amp;&amp; cd backend</p>
-</li>
-<li><p>后端也准备上typescript，参考技术文档如下 <a href="http://mherman.org/blog/2016/11/05/developing-a-restful-api-with-node-and-typescript/#.WNx4thOGPow" target="_blank" rel="external">http://mherman.org/blog/2016/11/05/developing-a-restful-api-with-node-and-typescript/#.WNx4thOGPow</a></p>
-</li>
-<li><p>首先创建tsconfig， 配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;compilerOptions&quot;: &#123;</div><div class="line">    &quot;target&quot;: &quot;es6&quot;,</div><div class="line">    &quot;module&quot;: &quot;commonjs&quot;,</div><div class="line">    &quot;outDir&quot;: &quot;dist&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;include&quot;: [</div><div class="line">    &quot;src/**/*.ts&quot;</div><div class="line">  ],</div><div class="line">  &quot;exclude&quot;: [</div><div class="line">    &quot;node_modules&quot;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>​安装typescript   npm install typescript - - save-dev</p>
-</li>
-<li><p>(安装gulp，为了自动化编译过程 npm install gulp gulp-typescript - -save-dev) 这步觉得没必要</p>
-</li>
-<li><p>安装express和debug    npm install express debug —save</p>
-</li>
-<li><p>安装express，node和debug相应的types, npm i @types/node @types/express @types/debug –save-dev</p>
-</li>
-<li><p>编写index.ts</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">import * as http from &apos;http&apos;;</div><div class="line">import * as debug from &apos;debug&apos;;</div><div class="line"></div><div class="line">import App from &apos;./App&apos;;</div><div class="line"></div><div class="line">debug(&apos;ts-express:server&apos;);</div><div class="line"></div><div class="line">const port = normalizePort(process.env.PORT || 3000);</div><div class="line">App.set(&apos;port&apos;, port);</div><div class="line"></div><div class="line">const server = http.createServer(App);</div><div class="line">server.listen(port);</div><div class="line">server.on(&apos;error&apos;, onError);</div><div class="line">server.on(&apos;listening&apos;, onListening);</div><div class="line"></div><div class="line">function normalizePort(val: number|string): number|string|boolean &#123;</div><div class="line">  let port: number = (typeof val === &apos;string&apos;) ? parseInt(val, 10) : val;</div><div class="line">  if (isNaN(port)) return val;</div><div class="line">  else if (port &gt;= 0) return port;</div><div class="line">  else return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function onError(error: NodeJS.ErrnoException): void &#123;</div><div class="line">  if (error.syscall !== &apos;listen&apos;) throw error;</div><div class="line">  let bind = (typeof port === &apos;string&apos;) ? &apos;Pipe &apos; + port : &apos;Port &apos; + port;</div><div class="line">  switch(error.code) &#123;</div><div class="line">    case &apos;EACCES&apos;:</div><div class="line">      console.error(`$&#123;bind&#125; requires elevated privileges`);</div><div class="line">      process.exit(1);</div><div class="line">      break;</div><div class="line">    case &apos;EADDRINUSE&apos;:</div><div class="line">      console.error(`$&#123;bind&#125; is already in use`);</div><div class="line">      process.exit(1);</div><div class="line">      break;</div><div class="line">    default:</div><div class="line">      throw error;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function onListening(): void &#123;</div><div class="line">  let addr = server.address();</div><div class="line">  let bind = (typeof addr === &apos;string&apos;) ? `pipe $&#123;addr&#125;` : `port $&#123;addr.port&#125;`;</div><div class="line">  debug(`Listening on $&#123;bind&#125;`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编写App.ts</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">import * as path from &apos;path&apos;;</div><div class="line">import * as express from &apos;express&apos;;</div><div class="line">import * as logger from &apos;morgan&apos;;</div><div class="line">import * as bodyParser from &apos;body-parser&apos;;</div><div class="line"></div><div class="line">// Creates and configures an ExpressJS web server.</div><div class="line">class App &#123;</div><div class="line"></div><div class="line">  // ref to Express instance</div><div class="line">  public express: express.Application;</div><div class="line"></div><div class="line">  //Run configuration methods on the Express instance.</div><div class="line">  constructor() &#123;</div><div class="line">    this.express = express();</div><div class="line">    this.middleware();</div><div class="line">    this.routes();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Configure Express middleware.</div><div class="line">  private middleware(): void &#123;</div><div class="line">    this.express.use(logger(&apos;dev&apos;));</div><div class="line">    this.express.use(bodyParser.json());</div><div class="line">    this.express.use(bodyParser.urlencoded(&#123; extended: false &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Configure API endpoints.</div><div class="line">  private routes(): void &#123;</div><div class="line">    /* This is just to get up and running, and to make sure what we&apos;ve got is</div><div class="line">     * working so far. This function will change when we start to add more</div><div class="line">     * API endpoints */</div><div class="line">    let router = express.Router();</div><div class="line">    // placeholder route handler</div><div class="line">    router.get(&apos;/&apos;, (req, res, next) =&gt; &#123;</div><div class="line">      res.json(&#123;</div><div class="line">        message: &apos;Hello World!&apos;</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">    this.express.use(&apos;/&apos;, router);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">export default new App().express</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装body-parser, morgan,  npm install body-parser morgan –save</p>
-</li>
-<li><p>安装相应types,    npm install @types/body-parser @types/morgan –save-dev</p>
-</li>
-<li><p>测试下是否能跑起来   gulp scripts;    npm start</p>
-</li>
-<li><p>安装jest，  npm install  jest  ts-jest  @types/jest –save-dev</p>
-</li>
-<li><p>修改package.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;jest&quot;: &#123;</div><div class="line">    &quot;transform&quot;: &#123;</div><div class="line">      &quot;.(ts|tsx)&quot;: &quot;&lt;rootDir&gt;/node_modules/ts-jest/preprocessor.js&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;testRegex&quot;: &quot;(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$&quot;,</div><div class="line">    &quot;moduleFileExtensions&quot;: [</div><div class="line">      &quot;ts&quot;,</div><div class="line">      &quot;tsx&quot;,</div><div class="line">      &quot;js&quot;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建测试，使用jest</p>
-<p>1） 在根目录下新建<em> </em> test <em> </em>文件夹，</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/docker/docker学习/" itemprop="url">
-                  docker学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T16:03:58+08:00" content="2017-03-27">
-              2017-03-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一-为什么docker？"><a href="#一-为什么docker？" class="headerlink" title="一. 为什么docker？"></a>一. 为什么docker？</h3><h4 id="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><a href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！" class="headerlink" title="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"></a>抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</h4><p><a href="https://yeasy.gitbooks.io/docker_practice" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice</a></p>
-<p>这个电子书不错</p>
-<ol>
-<li><p>docker其实也是一个client和server的架构，docker daemon就是核心的后台进程，它就是在后台启动了一个API server，负责由docker client发送来的请求， 而client的版本很多，只要遵循docker api即可</p>
-</li>
-<li><p>docker容器的本质是宿主机上的进程，通过namespace实现资源隔离，通过cgroup实现资源限制，通过copy-on-write实现高效的文本操作</p>
-</li>
-</ol>
-<h3 id="二-docker-machine-和-docker-engine的区别"><a href="#二-docker-machine-和-docker-engine的区别" class="headerlink" title="二. docker machine 和 docker engine的区别"></a>二. docker machine 和 docker engine的区别</h3><ol>
-<li><p>docker engine是我们常说的docker，c-s架构，包括docker daemon和client</p>
-</li>
-<li><p>Docker Machine is a tool for provisioning and managing your Dockerized hosts</p>
-</li>
-</ol>
-<h3 id="三-Docker-hub加速"><a href="#三-Docker-hub加速" class="headerlink" title="三. Docker hub加速"></a>三. Docker hub加速</h3><ol>
-<li>如果用的是最新的docker for mac, 只需要在docker的preference里的daemon选项卡里增加个registry mirror，至于地址可以用阿里云或蜂巢的镜像加速功能   </li>
-</ol>
-<h3 id="四-registry和repository的区别"><a href="#四-registry和repository的区别" class="headerlink" title="四. registry和repository的区别"></a>四. registry和repository的区别</h3><ol>
-<li>registry是注册服务器，repository是仓库，一个服务器上可以有多个仓库，仓库可以理解为某个目录或某个项目，dl.dockerpool.com/ubuntu 对于这个地址来说，dl.dockerpool.com是注册服务器，ubuntu是仓库名</li>
-</ol>
-<h3 id="五-Docker的build"><a href="#五-Docker的build" class="headerlink" title="五. Docker的build"></a>五. Docker的build</h3><ol>
-<li>docker build [选项] &lt;上下文路径/URL/-&gt;</li>
-</ol>
-<p>当我们进行镜像构建的时候，并非所有定制都会通过 RUN 指令完成，经常会需要将一些本地文件复制进镜像，比如通过 COPY 指令、ADD 指令等。而 docker build 命令构建镜像，其实并非在本地构建，而是在服务端，也就是 Docker 引擎中构建的。那么在这种客户端/服务端的架构中，如何才能让服务端获得本地文件呢？</p>
-<p>这就引入了上下文的概念。当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。</p>
-<h3 id="六-Mac上的docker开发流程"><a href="#六-Mac上的docker开发流程" class="headerlink" title="六. Mac上的docker开发流程"></a>六. Mac上的docker开发流程</h3><h4 id="可以参考nodejs的部署过程"><a href="#可以参考nodejs的部署过程" class="headerlink" title="可以参考nodejs的部署过程"></a>可以参考nodejs的部署过程</h4><p><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/nodejs-docker-webapp/</a></p>
-<ol>
-<li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持，因此只需要去官方下载docker for mac即可</li>
-<li>docker hub下载下来的镜像存放在哪里呢？</li>
-<li>​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/git/使用vscode作为git difftool/" itemprop="url">
-                  使用vscode作为git difftool
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T20:36:24+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"><a href="#当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下" class="headerlink" title="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"></a>当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下</h4><ol>
-<li><p>确保vscode可以在命令行下打开:  </p>
-<p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
-</li>
-</ol>
-<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>配置git difftool</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
-</li>
-<li><p>比较</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool &lt;commit&gt; &lt;commit&gt;</div></pre></td></tr></table></figure>
-<p>如果只比较当前版本和之前一个版本，可以更简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool HEAD HEAD~1</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/24/typescript/typescript + webpack/" itemprop="url">
-                  typescript + webpack
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-24T10:52:14+08:00" content="2017-03-24">
-              2017-03-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Typescript和webpack是现代javascript两个非常核心的东西，那么在一个程序中如何把这两个结合起来呢？-webpack的官网给出了教程"><a href="#Typescript和webpack是现代javascript两个非常核心的东西，那么在一个程序中如何把这两个结合起来呢？-webpack的官网给出了教程" class="headerlink" title="Typescript和webpack是现代javascript两个非常核心的东西，那么在一个程序中如何把这两个结合起来呢？ webpack的官网给出了教程"></a>Typescript和webpack是现代javascript两个非常核心的东西，那么在一个程序中如何把这两个结合起来呢？ webpack的官网给出了教程</h4><ol>
-<li>在项目里安装typescript的编译器，npm install typescript - - dev-save</li>
-<li>在项目里安装ts的loader，               npm instal ts-loader - - dev-save</li>
-<li>创建并配置tsconfig                         </li>
-<li>创建webpack.dev.js</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/23/typescript/typescript学习/" itemprop="url">
-                  typescript学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-23T10:56:47+08:00" content="2017-03-23">
-              2017-03-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="typescript是javascript的超集，那超在哪儿？"><a href="#typescript是javascript的超集，那超在哪儿？" class="headerlink" title="typescript是javascript的超集，那超在哪儿？"></a>typescript是javascript的超集，那超在哪儿？</h3><h5 id="1-基本类型增强"><a href="#1-基本类型增强" class="headerlink" title="1. 基本类型增强"></a>1. 基本类型增强</h5><ol>
-<li>tuple： 长度固定的数组，但里面的值不需要是同一个类型</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let x: [string, number];</div><div class="line">x = [&quot;hello&quot;, 10];</div></pre></td></tr></table></figure>
-<p>如果访问超过了tuple的索引范围，就会使用union type</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x[3] = &quot;world&quot;; // OK, &apos;string&apos; can be assigned to &apos;string | number&apos;</div><div class="line"></div><div class="line">console.log(x[5].toString()); // OK, &apos;string&apos; and &apos;number&apos; both have &apos;toString&apos;</div><div class="line"></div><div class="line">x[6] = true; // Error, &apos;boolean&apos; isn&apos;t &apos;string | number&apos;</div></pre></td></tr></table></figure>
-<ol>
-<li>枚举类型： 所谓枚举无非是给数值类型起一个比较友好的名字罢了，提高开发效率，比如通信状态的返回值可能有很多，用枚举远比数字类型来的直观，没有枚举的话就需要使用对象了</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red, Green, Blue&#125;;</div><div class="line">let c: Color = Color.Green;</div></pre></td></tr></table></figure>
-<ol>
-<li>any类型:  当不确定某个值的类型时可以用any来通过编译</li>
-<li>void类型：没有类型，多用于函数返回值</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function warnUser(): void &#123;</div><div class="line">    alert(&quot;This is my warning message&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>never类型：永远不会发生的类型，什么情况下会有用？ 如果一个函数就是抛一个错，那么它的返回值就可以是never</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function error(message: string): never &#123;</div><div class="line">    throw new Error(message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>类型断言：当我们确定某个值是什么类型的时候，像是其他语言里的类型转换，但是不会做类型检查和转换，也不会有运行时的影响，只是单独给编译器使用</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
-<h5 id="2-类型声明"><a href="#2-类型声明" class="headerlink" title="2. 类型声明"></a>2. 类型声明</h5><ol>
-<li><p>var的作用域会泄露到包含它的函数或者包含它的模块</p>
-</li>
-<li><p>在同一个函数中var声明的变量可以重复声明多次</p>
-</li>
-<li><p>在循环里声明的let和普通的let有很大区别，循环里的let在每次递归时都会创建一个独立的作用域， 再看下这两段经典的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="3-interface"><a href="#3-interface" class="headerlink" title="3. interface"></a>3. interface</h5><ol>
-<li>interface是ts的一个核心，它主要用来检查变量值的类型，因为javascript的变量的类型是可变的，实际上是它的值的类型是可变的，interface起到这个作用，它来定义某个变量可以有的类型，因此在编译阶段就能发现此类错误</li>
-</ol>
-<h5 id="4-可索引的类型"><a href="#4-可索引的类型" class="headerlink" title="4. 可索引的类型"></a>4. 可索引的类型</h5><p>​    可以用字符串或者数字来作索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 这是因为当使用<code>number</code>来索引时，JavaScript会将它转换成<code>string</code>然后再去索引对象。</p>
-<p>​</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/22/react/typescript + react/" itemprop="url">
-                  typescript + react
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T22:44:54+08:00" content="2017-03-22">
-              2017-03-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>npm install的时候，会要包含@types/react这个文件，这个文件是typescript为react写的吗？</p>
-</li>
-<li><p>awesomo-typescript-loader又是干嘛的？</p>
-</li>
-<li><p>官网的react+webpack那个文档的webpack配置有问题，1个是./src/index.tsx找不到，这个是因为多带了一个后缀名，第二个是报 You may need an appropriate loader to handle this file type.<br>SyntaxError: Unexpected token (7:4) ， github的issue有这个问题，可以通过的配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/index&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/dist&apos;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // Enable sourcemaps for debugging webpack&apos;s output.</div><div class="line">  devtool: &apos;source-map&apos;,</div><div class="line"></div><div class="line">  resolve: &#123;</div><div class="line">    // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.</div><div class="line">    extensions: [&apos;.webpack.js&apos;, &apos;.web.js&apos;, &apos;.ts&apos;, &apos;.tsx&apos;, &apos;.js&apos;]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;awesome-typescript-loader&apos;.</div><div class="line">      &#123; test: /\.tsx?$/, loader: &apos;awesome-typescript-loader&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // When importing a module whose path matches one of the following, just</div><div class="line">  // assume a corresponding global variable exists and use that instead.</div><div class="line">  // This is important because it allows us to avoid bundling all of our</div><div class="line">  // dependencies, which allows browsers to cache those libraries between builds.</div><div class="line">  externals: &#123;</div><div class="line">    &apos;react&apos;: &apos;React&apos;,</div><div class="line">    &apos;react-dom&apos;: &apos;ReactDOM&apos;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1592,7 +1531,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">186</span>
+              <span class="site-state-item-count">193</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1600,7 +1539,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1609,7 +1548,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">131</span>
+                <span class="site-state-item-count">138</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

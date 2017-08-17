@@ -243,6 +243,891 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/16/typescript/typescript recap/" itemprop="url">
+                  typescript recap
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T21:51:56+08:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><a href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点" class="headerlink" title="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"></a>Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</h4><h4 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型:"></a>1.基础类型:</h4><ol>
+<li><p>增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如果用枚举值可以更方便地管理； API的返回值很多可以用枚举值了</p>
+<p>另外需要注意的是对于枚举值是数值的枚举类型，是可以从值来返回枚举名字本身的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red = 1, Green, Blue&#125;</div><div class="line">let colorName: string = Color[2];</div><div class="line"></div><div class="line">alert(colorName);</div></pre></td></tr></table></figure>
+</li>
+<li><p>类型断言：当我们比编译器知道更多关于一个变量的类型的时候可以用类型断言，有点像其他语言里的强制类型转换，但它实际上不会对数据做任何操作，仅供编译器用，有两种写法，一种是&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (&lt;string&gt;someValue).length;</div></pre></td></tr></table></figure>
+<p>另一种是as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-声明"><a href="#2-声明" class="headerlink" title="2.声明"></a>2.声明</h4><ol>
+<li><p>var是函数作用域， let是块级作用域，还是再看下这个经典的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    // capture the current state of &apos;i&apos;</div><div class="line">    // by invoking a function with its current value</div><div class="line">    (function(i) &#123;</div><div class="line">        setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里是用了变量捕获，即 each time a scope is run, it creates an “environment” of variables. That environment and its captured variables can exist even after everything within its scope has finished executing</p>
+<p>而在循环中声明的let就是类似的作用， 每次循环都会创建一个新的scope，然后会捕获那个i</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h4><ol>
+<li><p>对象的readonly属性，即这个属性只在对象初始化时改变，之后就不能再被修改了，就像使用const一样尽可能使用readonly</p>
+</li>
+<li><p>ReadonlyArray<t>, 不可变数组</t></p>
+</li>
+<li><p>对象字面量在赋值给其他变量或函数参数时会被加强检查的，说的是如果对象字面量里有任何属性目标对象里没有时就会报错，这里的函数参数是用对象字面量，但color拼错了，在js这没有问题，但ts这里会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createSquare(config: SquareConfig): &#123; color: string; area: number &#125; &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySquare = createSquare(&#123; colour: &quot;red&quot;, width: 100 &#125;);</div></pre></td></tr></table></figure>
+<p>解决办法有几个，1个是强制转换，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let mySquare = createSquare(&#123; width: 100, opacity: 0.5 &#125; as SquareConfig);</div></pre></td></tr></table></figure>
+<p>或者可以在声明文件里加索引签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">    [propName: string]: any;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者先赋值给一个变量，再传参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let squareOptions = &#123; colour: &quot;red&quot;, width: 100 &#125;;</div><div class="line">let mySquare = createSquare(squareOptions);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可索引类型</p>
+<h4 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h4></li>
+<li><p>TS对函数做了增强，表现在TS中的函数每一个参数都是必须要传的，除非显示指定为可选参数或者默认参数，这和JS有很大不同，JS中所有参数参数都是可选的，如果你不传，表示你传的是undefined</p>
+</li>
+<li><p>默认参数是ES6就有的</p>
+</li>
+<li><p>剩余参数也是ES6有的，即多余的函数参数不在放到arguments里，而是用…一个剩余参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildName(firstName: string, ...restOfName: string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let employeeName = buildName(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数显示绑定this,  Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked</p>
+</li>
+<li><p>TS支持函数重载：对同一个函数作多个声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/12/javascript/javascript对象的扩展运算符/" itemprop="url">
+                  javascript对象的扩展运算符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-12T12:57:53+08:00" content="2017-08-12">
+              2017-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>扩展运算符（<code>...</code>）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let z = &#123; a: 3, b: 4 &#125;;</div><div class="line">let n = &#123; ...z &#125;;</div><div class="line">n // &#123; a: 3, b: 4 &#125;</div></pre></td></tr></table></figure>
+<p>这等同于使用<code>Object.assign</code>方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let aClone = &#123; ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aClone = Object.assign(&#123;&#125;, a);</div></pre></td></tr></table></figure>
+<p>但是要注意的是…只是一个浅拷贝，上面的对象z有两个属性a和b，如果a和b都是个对象，那做一个剩余操作符，只是改了最外面一个对象名，其他值还是原来的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/12/javascript/javascript filter问题/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-12T12:23:33+08:00" content="2017-08-12">
+              2017-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在使用filter的时候踩了一个新手很常见的问题，但因为使用方式的隐蔽，一开始没看出来，具体的问题是这样的:</p>
+<p>我又一个对象是叫availableHosts,然后这个对象有两个属性，一个是byId，这个是一个对象，另一个属性叫allIds,是个字符串数组，我的需求是过滤下allIds这个数组，删除掉指定的字符串，然后我写下了如下一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">availableHosts.allIds.filter((hostId: string) =&gt; &#123;</div><div class="line">   if (hostId === someone) &#123;</div><div class="line">     return false;</div><div class="line">   &#125; else &#123;</div><div class="line">     return true;</div><div class="line">   &#125;   </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>然后console.log打印availableHosts，发现无论你怎么过滤，allId这个字符串数组都没有变，甚至你直接return false都没用，然后我突然想到filter这个是返回一个新数组，我这里没有对属性赋值，引用的还是老数组，所以当然没变了。这个问题之所以查了很久，原因在于之前用filter是在一个数组上用的，然后直接赋值，但这次是在一个对象的属性上，这就很容易忘记赋值这个操作，需要吸取教训。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/12/ops/mysql崩溃自动重启/" itemprop="url">
+                  mysql崩溃自动重启
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-12T08:40:11+08:00" content="2017-08-12">
+              2017-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ops/" itemprop="url" rel="index">
+                    <span itemprop="name">ops</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有个mysql服务总是会崩溃，一时也找不出原因，索性使用crontab来检测</p>
+<ol>
+<li><p>配置crontab运行脚本  vim listen.sh (注意下启动的命令不能用service mysqld start)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">pidof mysqld &gt;/dev/null</div><div class="line">if [ $? -eq 0 ]</div><div class="line">then</div><div class="line">echo &quot;It is running.&quot;</div><div class="line">else</div><div class="line">echo &quot;At `date` MySQL Server was stopped&quot;&gt;&gt; /home/mysql_log</div><div class="line">/etc/init.d/mysqld start</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改脚本的权限 chmod 777 ./listen.sh</p>
+</li>
+<li><p>安装crontab</p>
+<p>3.1 确认crontab是否安装：</p>
+<p>执行 crontab 命令如果报 command not found，就表明没有安装</p>
+<p>3.2  安装 crontab</p>
+<p>执行 yum install -y vixie-cron</p>
+<p>3.3 确认是否安装成功:</p>
+<p>执行 crontab -l</p>
+<p>3.4 看是否设置了开机自动启动</p>
+<p>chkconfig –list crond 或者chkconfig crond on</p>
+<p>3.5 启动crontab</p>
+<p>service crond start</p>
+<p>3.6 添加计划任务</p>
+<p>crontab -e</p>
+<p>crontab -l</p>
+<p>3.7 脚本sh设置777权限</p>
+</li>
+<li><p>配置crontab监控</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * sh /etc/mysqld/listen.sh</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
+                  typescript的字面量类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
+              2017-08-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescipt/" itemprop="url" rel="index">
+                    <span itemprop="name">typescipt</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
+<p>这时候如果你把foo赋值成“World”就会报错，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
+<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
+<p>先定义type 的枚举类型，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>接着定义acton类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>最后创建联合类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
+<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/04/design/Material UI TextField的类型问题/" itemprop="url">
+                  Material UI TextField的类型问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-04T16:06:21+08:00" content="2017-08-04">
+              2017-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/material-ui/" itemprop="url" rel="index">
+                    <span itemprop="name">material ui</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在使用material的textfiled组件时，为了表示是个数字输入，我将type设为number，但改变这个值的时候发现这个值的类型仍然是string，导致在于数字比较的时候总是不相等， 这里需要注意下</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/31/react/material ui的select问题/" itemprop="url">
+                  material ui的select问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-31T14:38:49+08:00" content="2017-07-31">
+              2017-07-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/material-ui/" itemprop="url" rel="index">
+                    <span itemprop="name">material ui</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到一个material ui的selecfield的选中问题， 具体现象为一开始选中了一个menu item，但是当重新获取所有的数据时，选中的那个menu item消失了。</p>
+<p>最后排查原因发现： selectedField的value选的是一个对象， 当重新获取新的数组的时候，之前的那个对象不在这个新数组之中了</p>
+<p>另外如果存了换一个数组之后，没必要再存一个选中的对象，只需要存一下那个索引即可，否则不仅重复存了，还容易引起更多的bug</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
                   react声明周期函数
                 </a>
@@ -592,835 +1477,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
-                  vscode不好用排查记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-13T11:22:09+08:00" content="2017-07-13">
-              2017-07-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工具的好坏真的很影响效率，这几天一直被vscode搞得很烦，而现在又已经感觉离不开vscode了，特别是在写ts的情况下。简单说下这几天的一个问题，在写componet的props，写着写着就卡死，提示加载中，查看下active monitor发现code helper把cpu吃满了，搜了一圈看到说用下面命令排查</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ps -eo pcpu,user,pid,command | grep Code</div><div class="line">  0.0 root             19842 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper</div><div class="line">  0.0 Jeremy           58063 /Applications/Visual Studio Code.app/Contents/MacOS/Electron</div><div class="line">  0.0 Jeremy           58064 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=gpu-process --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=0,1,10,23,25,35,38,45,51,59,61,62,63,64,66,70,71,73,81,82,83,86,88,89 --gpu-vendor-id=0x8086 --gpu-device-id=0x0a2e --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --gpu-active-vendor-id=0x8086 --gpu-active-device-id=0x0a2e --service-request-channel-token=F64EF82C1B4AE380AE7BB33F7D6350D9</div><div class="line">  0.0 Jeremy           58066 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=E0605B7E030E5A8FA29ECC035BA659D5 --lang=zh-CN --node-integration=true --background-color=#1e1e1e --disable-blink-features=Auxclick --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=E0605B7E030E5A8FA29ECC035BA659D5 --renderer-client-id=4</div><div class="line">  0.0 Jeremy           58068 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=517025C0E30485EB8424196A08BA8C56 --lang=zh-CN --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=517025C0E30485EB8424196A08BA8C56 --renderer-client-id=6</div><div class="line">  0.0 Jeremy           58296 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=terminal</div><div class="line">100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=extensionHost</div><div class="line">  0.0 Jeremy           58298 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=watcherService</div><div class="line">  0.0 Jeremy           58300 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Resources/crashpad_handler --database=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --metrics-dir=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --url=https://rink.hockeyapp.net/api/2/apps/21a48a66799e47fea4f52c0ff81e803d/crashes/upload --handshake-fd=58</div><div class="line">  0.0 Jeremy           58533 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/node_modules/vscode-languageclient/lib/utils/electronForkStart /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/server/server.js --node-ipc</div><div class="line">  0.0 Jeremy           58534 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript/out/utils/electronForkStart /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/tsserver.js --useSingleInferredProject --enableTelemetry --cancellationPipeName /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tscancellation-b7c49ca6478648eabc66.sock* --logVerbosity verbose --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/tsserver.log</div><div class="line">  0.0 Jeremy           58536 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=searchService</div><div class="line">  0.0 Jeremy           58553 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /Users/Jeremy/Library/Caches/typescript/2.4 --enableTelemetry --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/ti-58534.log</div><div class="line">  0.0 Jeremy           58567 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/node_modules/vscode-languageclient/lib/utils/electronForkStart /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/server/out/jsonServerMain.js --node-ipc</div><div class="line">  0.0 Jeremy           58853 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn Code</div></pre></td></tr></table></figure>
-<p>可以看到</p>
-<p>100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap –type=extensionHost</p>
-<p>是这个extensionHost把code helper吃满的， </p>
-<p>extension表示是插件影响的，但至于是哪个插件还不知道，只能一个一个排查，最后发现时auto rename这个插件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/11/react/react ref/" itemprop="url">
-                  react ref
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-11T12:04:55+08:00" content="2017-07-11">
-              2017-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>react中ref本身是一个函数，它可以用在Component，也可以用在html元素之上，如果用在html元素之上，这个函数接收一个参数，参数代表下面的html元素的值，如果用在组件之上，那这个ref的参数代表的是下面的那个组件</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/11/react/react受控组件/" itemprop="url">
-                  react受控组件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-11T11:45:39+08:00" content="2017-07-11">
-              2017-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的例子受控组件是html的基本element，实际中碰到更多的是一个组件控制另外一个组件的值，也就是父组件控制子组件，这时候子组件不需要自己存一个state了，它的值是由props传进来的，这个很好理解，但子组件的值变了之后怎么通知父组件呢，这就需要父组件还要相应的传一个回调函数</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/04/utility/vscode小技巧/" itemprop="url">
-                  vscode小技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-04T10:59:56+08:00" content="2017-07-04">
-              2017-07-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</p>
-</li>
-<li><p>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</p>
-</li>
-<li><p>f12是跳转到定义，但是mac默认把f12作为功能键，</p>
-<p>首先</p>
-<ol>
-<li>从苹果菜单中，选取“系统偏好设置”。</li>
-<li>点按“键盘”。</li>
-<li>如果未处于高亮显示状态，请点按“键盘”标签。</li>
-<li>选择“将 F1、F2 等键用作标准功能键”</li>
-</ol>
-</li>
-</ol>
-<p>​        但是这还不够，mac默认将f12改为显示dashboard的功能键，所以在键盘的快捷键设置中可以勾选掉mission control前的control</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/26/redux/记录一个redux问题/" itemprop="url">
-                  记录一个redux问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-26T16:43:13+08:00" content="2017-06-26">
-              2017-06-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在写一个component的时报了换一个某某某 is not a function</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123; display: &apos;flex&apos;, flex: &apos;0 1 70%&apos; &#125;&#125;&gt;</div><div class="line">                &lt;RaisedButton label=&quot;北京&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onClick=&#123;(event: object) =&gt; &#123;</div><div class="line">                  console.log(&apos;bj&apos;);</div><div class="line">                  selectRegion(&apos;cn-bj2&apos;, &apos;cn-bj2-02&apos;);</div><div class="line">                &#125;&#125; backgroundColor=&#123; selectedRegion === &apos;cn-bj2&apos; ? &apos;grey&apos;: &apos;white&apos;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;上海&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-sh2&apos;, &apos;cn-sh2-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;广州&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-gd&apos;, &apos;cn-gd-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div></pre></td></tr></table></figure>
-<p>我检查了下这个props是在render函数时定义的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
-<p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
-<p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/26/react/react-router学习/" itemprop="url">
-                  react-router
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-26T10:51:16+08:00" content="2017-06-26">
-              2017-06-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>####1. route parameter的作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=/(:message) component=&#123;Home&#125; &gt;</div><div class="line">&lt;/Route&gt;</div><div class="line"></div><div class="line">这里的message是url里面/后面的路径，这个路径会作为props传到Home这个组件里去，Home组件的用法如下</div></pre></td></tr></table></figure></p>
-<p>const Home = (props) =&gt; {<br>  <div>{props.param.message}</div><br>}</p>
-<p>可以看到这里Home组件是可以通过props.param.message这个参数来读到<br>这个有什么作用呢，如果Home下面的组件结构都一致，只需要通过一个参数来改变形态，那就可以使用这种做法，一般用于消息列表等等</p>
-<p>####2. query parameter的用法<br>即在url中？组成的query string是可以被componet读到的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/utility/xargs/" itemprop="url">
-                  find与xargs联动
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-23T15:47:50+08:00" content="2017-06-23">
-              2017-06-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &quot;*tsx&quot; | xargs grep Button</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1461,7 +1522,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">186</span>
+              <span class="site-state-item-count">193</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1469,7 +1530,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1478,7 +1539,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">131</span>
+                <span class="site-state-item-count">138</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

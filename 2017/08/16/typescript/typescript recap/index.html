@@ -1,0 +1,638 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="typescipt," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点1.基础类型: 增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如">
+<meta name="keywords" content="typescipt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typescript recap">
+<meta property="og:url" content="http://yoursite.com/2017/08/16/typescript/typescript recap/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点1.基础类型: 增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如">
+<meta property="og:updated_time" content="2017-08-17T16:51:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="typescript recap">
+<meta name="twitter:description" content="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点1.基础类型: 增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> typescript recap | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                typescript recap
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T21:51:56+08:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><a href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点" class="headerlink" title="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"></a>Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</h4><h4 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型:"></a>1.基础类型:</h4><ol>
+<li><p>增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如果用枚举值可以更方便地管理； API的返回值很多可以用枚举值了</p>
+<p>另外需要注意的是对于枚举值是数值的枚举类型，是可以从值来返回枚举名字本身的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red = 1, Green, Blue&#125;</div><div class="line">let colorName: string = Color[2];</div><div class="line"></div><div class="line">alert(colorName);</div></pre></td></tr></table></figure>
+</li>
+<li><p>类型断言：当我们比编译器知道更多关于一个变量的类型的时候可以用类型断言，有点像其他语言里的强制类型转换，但它实际上不会对数据做任何操作，仅供编译器用，有两种写法，一种是&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (&lt;string&gt;someValue).length;</div></pre></td></tr></table></figure>
+<p>另一种是as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-声明"><a href="#2-声明" class="headerlink" title="2.声明"></a>2.声明</h4><ol>
+<li><p>var是函数作用域， let是块级作用域，还是再看下这个经典的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    // capture the current state of &apos;i&apos;</div><div class="line">    // by invoking a function with its current value</div><div class="line">    (function(i) &#123;</div><div class="line">        setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里是用了变量捕获，即 each time a scope is run, it creates an “environment” of variables. That environment and its captured variables can exist even after everything within its scope has finished executing</p>
+<p>而在循环中声明的let就是类似的作用， 每次循环都会创建一个新的scope，然后会捕获那个i</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h4><ol>
+<li><p>对象的readonly属性，即这个属性只在对象初始化时改变，之后就不能再被修改了，就像使用const一样尽可能使用readonly</p>
+</li>
+<li><p>ReadonlyArray<t>, 不可变数组</t></p>
+</li>
+<li><p>对象字面量在赋值给其他变量或函数参数时会被加强检查的，说的是如果对象字面量里有任何属性目标对象里没有时就会报错，这里的函数参数是用对象字面量，但color拼错了，在js这没有问题，但ts这里会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createSquare(config: SquareConfig): &#123; color: string; area: number &#125; &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySquare = createSquare(&#123; colour: &quot;red&quot;, width: 100 &#125;);</div></pre></td></tr></table></figure>
+<p>解决办法有几个，1个是强制转换，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let mySquare = createSquare(&#123; width: 100, opacity: 0.5 &#125; as SquareConfig);</div></pre></td></tr></table></figure>
+<p>或者可以在声明文件里加索引签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">    [propName: string]: any;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者先赋值给一个变量，再传参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let squareOptions = &#123; colour: &quot;red&quot;, width: 100 &#125;;</div><div class="line">let mySquare = createSquare(squareOptions);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可索引类型</p>
+<h4 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h4></li>
+<li><p>TS对函数做了增强，表现在TS中的函数每一个参数都是必须要传的，除非显示指定为可选参数或者默认参数，这和JS有很大不同，JS中所有参数参数都是可选的，如果你不传，表示你传的是undefined</p>
+</li>
+<li><p>默认参数是ES6就有的</p>
+</li>
+<li><p>剩余参数也是ES6有的，即多余的函数参数不在放到arguments里，而是用…一个剩余参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildName(firstName: string, ...restOfName: string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let employeeName = buildName(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数显示绑定this,  Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked</p>
+</li>
+<li><p>TS支持函数重载：对同一个函数作多个声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/typescipt/" rel="tag">#typescipt</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/javascript/javascript对象的扩展运算符/" rel="next" title="javascript对象的扩展运算符">
+                <i class="fa fa-chevron-left"></i> javascript对象的扩展运算符
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">193</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">138</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><span class="nav-number">1.</span> <span class="nav-text">Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基础类型"><span class="nav-number">2.</span> <span class="nav-text">1.基础类型:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-声明"><span class="nav-number">3.</span> <span class="nav-text">2.声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接口"><span class="nav-number">4.</span> <span class="nav-text">3. 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-函数"><span class="nav-number">5.</span> <span class="nav-text">4. 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-泛型"><span class="nav-number">6.</span> <span class="nav-text">5. 泛型</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
