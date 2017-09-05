@@ -91,7 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/16/typescript/typescript recap/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点1.基础类型: 增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如">
-<meta property="og:updated_time" content="2017-08-17T16:51:28.000Z">
+<meta property="og:updated_time" content="2017-08-20T09:01:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typescript recap">
 <meta name="twitter:description" content="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点1.基础类型: 增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如">
@@ -349,7 +349,46 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4>
+<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4><ol>
+<li>坦率说我现在也不知道怎么来定义什么是泛型，我的理解是泛型是一种通用的写法，可以是一个函数，可以是一个类型，不用把变量和属性的参数类型固定死而同时又能加上类型限制的方式，可以通过&lt;&gt;这种形式来捕获输入的变量类型，然后可以通过这个类型来限制其他的类型，比如输出的类型，输入的其他变量类型，最简单的是官方的echo函数的例子，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: number): number &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    如果这样写的话参数只能是数值类型，但我如果要一个字符串类型的echo函数呢？又或者数组呢？不可能每个都写一遍吧，一个方法是写成any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: any): any &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    但any有个问题，输入和输出的关系丢失了，我输入是个number，输出也可以是个string，所以这时候泛型就可以派上用长了，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这样写的话T可以捕获输入的类型，同时限制了输出的类型，这是一个最简单的例子</p>
+<ol>
+<li><p>泛型限制</p>
+<p>如果我们想限制T的范围呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function loggingIdentity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Error: T doesn&apos;t have .length</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面我想调T的length，但是不是所有T都有length这个属性，因此可以对T做下限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">interface Lengthwise &#123;</div><div class="line">    length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Now we know it has a .length property, so no more error</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面这个例子也是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K) &#123;</div><div class="line">    return obj[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="6-类型推断"><a href="#6-类型推断" class="headerlink" title="6. 类型推断"></a>6. 类型推断</h4><ol>
+<li><p>类型推断发生在什么时候？变量初始化时，设置参数默认值时，决定函数返回值时，上下文类型，前三个比较好理解，这里要重点学习下上下类型推导，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.onmousedown = function(mouseEvent) &#123;</div><div class="line">    console.log(mouseEvent.buton);  //&lt;- Error</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里如果这个onmousedown之前定义过，那么mouseEvent的类型就能被推导出来</p>
+<h4 id="7-高级类型"><a href="#7-高级类型" class="headerlink" title="7. 高级类型"></a>7. 高级类型</h4></li>
+<li><p>交叉类型  &amp;：  多种类型的加和</p>
+</li>
+<li><p>联合类型 ！：  多种类型中的一种</p>
+</li>
+<li><p>自定义类型保护：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isFish(pet: Fish | Bird): pet is Fish &#123;</div><div class="line">    return (&lt;Fish&gt;pet).swim !== undefined;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>typeof 类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function padLeft(value: string, padding: string | number) &#123;</div><div class="line">    if (typeof padding === &quot;number&quot;) &#123;</div><div class="line">        return Array(padding + 1).join(&quot; &quot;) + value;</div><div class="line">    &#125;</div><div class="line">    if (typeof padding === &quot;string&quot;) &#123;</div><div class="line">        return padding + value;</div><div class="line">    &#125;</div><div class="line">    throw new Error(`Expected string or number, got &apos;$&#123;padding&#125;&apos;.`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="8-模块"><a href="#8-模块" class="headerlink" title="8. 模块"></a>8. 模块</h4><p>模块在其自身的作用域里执行，而不是在全局作用域里，这意味着定义在一个模块里的变量，函数，类等等在模块外部是不可见的，除非你明确地使用export导出它们</p>
+<p>1、 具有副作用的导入模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &quot;./my-module.js&quot;;</div></pre></td></tr></table></figure>
+<p>在导入CSS文件里可以看到这种写法，这会导入整个模块，并且是全局的</p>
+
       
     </div>
 
@@ -386,6 +425,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/22/typescript/typescript d.ts管理/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -453,7 +496,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">193</span>
+              <span class="site-state-item-count">197</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -499,7 +542,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><span class="nav-number">1.</span> <span class="nav-text">Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基础类型"><span class="nav-number">2.</span> <span class="nav-text">1.基础类型:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-声明"><span class="nav-number">3.</span> <span class="nav-text">2.声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接口"><span class="nav-number">4.</span> <span class="nav-text">3. 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-函数"><span class="nav-number">5.</span> <span class="nav-text">4. 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-泛型"><span class="nav-number">6.</span> <span class="nav-text">5. 泛型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><span class="nav-number">1.</span> <span class="nav-text">Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基础类型"><span class="nav-number">2.</span> <span class="nav-text">1.基础类型:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-声明"><span class="nav-number">3.</span> <span class="nav-text">2.声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接口"><span class="nav-number">4.</span> <span class="nav-text">3. 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-函数"><span class="nav-number">5.</span> <span class="nav-text">4. 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-泛型"><span class="nav-number">6.</span> <span class="nav-text">5. 泛型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-类型推断"><span class="nav-number">7.</span> <span class="nav-text">6. 类型推断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-高级类型"><span class="nav-number">8.</span> <span class="nav-text">7. 高级类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-模块"><span class="nav-number">9.</span> <span class="nav-text">8. 模块</span></a></li></ol></div>
             
           </div>
         </section>

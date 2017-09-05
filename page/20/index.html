@@ -243,6 +243,486 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/21/thinking/为什么要打包/" itemprop="url">
+                  为什么要打包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T21:08:28+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>浏览器在解析js的时候是按顺序来作解析的，如果你把基础依赖放到最后，那浏览器在解析到前面几行就会报错，所以一般要把依赖最大的放到最上面，但是这样比较麻烦，所以打包工具的的用途就体现出来了，他能帮助我们解决打包的问题</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/16/utility/Vim 环境打造/" itemprop="url">
+                  Vim 环境打造
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T17:47:18+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间"><a href="#1-思路是使用spf13来配置vim，https-github-com-spf13-spf13-vim，可以节省比较多的时间" class="headerlink" title="1. 思路是使用spf13来配置vim，https://github.com/spf13/spf13-vim，可以节省比较多的时间"></a>1. 思路是使用spf13来配置vim，<a href="https://github.com/spf13/spf13-vim，可以节省比较多的时间" target="_blank" rel="external">https://github.com/spf13/spf13-vim，可以节省比较多的时间</a></h3><h3 id="2-几个常用插件使用方式"><a href="#2-几个常用插件使用方式" class="headerlink" title="2. 几个常用插件使用方式"></a>2. 几个常用插件使用方式</h3><ul>
+<li><p>注释和取消注释： ，+ c + space</p>
+</li>
+<li><p>查找文件： ctrl + p ，然后使用 ctrl + j,k 来上下移动</p>
+</li>
+<li><p>打开工程目录：  ctrl + e, 然后使用t来打开文件，在左边和右边窗口移动使用ctrl + H，L来左右移动鼠标，在多个tab之间使用gt来切换</p>
+</li>
+<li><p>颜色配置：在.vimrc那个文件找到solarized那一段，let g:solarized _termcolors = 16 这样的话文本不会太暗</p>
+</li>
+<li><p>字体配置： 首先把let g:airline_powerline_fonts=1这段写到.vimrc.before.local，同时在终端的perference上配置下字体为SourceCodePro</p>
+</li>
+</ul>
+<h3 id="3-暂时不用的插件先都关闭掉"><a href="#3-暂时不用的插件先都关闭掉" class="headerlink" title="3.暂时不用的插件先都关闭掉"></a>3.暂时不用的插件先都关闭掉</h3><ul>
+<li>echo UnBundle \’AutoClose\’ &gt;&gt; ~/.vimrc.bundles.local  把不需要的插件写到.vimrc.local，然后:BundleClean! 移除插件目录</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/09/utility/ssh免密登录/" itemprop="url">
+                  ssh免密登陆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T11:14:16+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"><a href="#1-首先确保-ssh-下有id-rsa-pub-和-id-rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600" class="headerlink" title="1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600"></a>1. 首先确保 ~/.ssh/下有id_rsa.pub 和 id_rsa这两个公钥和私钥，如果没有使用ssh-keygen生成并保证目录权限为600</h3><h3 id="2-把id-rsa-pub的内容cat出来"><a href="#2-把id-rsa-pub的内容cat出来" class="headerlink" title="2. 把id_rsa.pub的内容cat出来"></a>2. 把id_rsa.pub的内容cat出来</h3><h3 id="3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将该文件-不是-ssh文件夹-权限改为600-这步不是强制要求，主要是为了不让其他人看到"><a href="#3-在服务器的Home目录下创建-ssh目录，并在这个目录下创建authorized-keys文件，并且将该文件-不是-ssh文件夹-权限改为600-这步不是强制要求，主要是为了不让其他人看到" class="headerlink" title="3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将该文件(不是.ssh文件夹)权限改为600 (这步不是强制要求，主要是为了不让其他人看到)"></a>3. 在服务器的Home目录下创建 .ssh目录，并在这个目录下创建authorized_keys文件，并且将该文件(不是.ssh文件夹)权限改为600 (这步不是强制要求，主要是为了不让其他人看到)</h3><h3 id="4-更进一步，为了使用简写名字登陆，可按如下配置"><a href="#4-更进一步，为了使用简写名字登陆，可按如下配置" class="headerlink" title="4. 更进一步，为了使用简写名字登陆，可按如下配置"></a>4. 更进一步，为了使用简写名字登陆，可按如下配置</h3><p>Host dev1<br>Hostname 192.168.150.229<br>User jeremy.lin</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/08/utility/工具zsh-iterm2-typora/" itemprop="url">
+                  工具zsh-iterm2-typora
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T22:41:26+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装了zsh"><a href="#安装了zsh" class="headerlink" title="安装了zsh"></a><strong>安装了zsh</strong></h2><p>觉得比较好的功能</p>
+<ul>
+<li>ll  代替 ls -l</li>
+<li>.. 代替 cd ..</li>
+<li>cmd +f   可以直接搜索，并用tab来右移选择行</li>
+<li>​</li>
+</ul>
+<h2 id="安装了iterm2"><a href="#安装了iterm2" class="headerlink" title="安装了iterm2"></a><strong>安装了iterm2</strong></h2><p>觉得比较好的功能</p>
+<ul>
+<li>cmd+d 做窗口的分屏</li>
+<li>option+cmd+b 显示历史记录</li>
+<li>​</li>
+</ul>
+<h2 id="安装了Typora"><a href="#安装了Typora" class="headerlink" title="安装了Typora"></a>安装了Typora</h2><p>确实比较美观，看上去特别舒服</p>
+<p>### </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/08/thinking/对前端工具的感悟/" itemprop="url">
                   对前端工具的感悟
                 </a>
@@ -657,7 +1137,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">193</span>
+              <span class="site-state-item-count">197</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

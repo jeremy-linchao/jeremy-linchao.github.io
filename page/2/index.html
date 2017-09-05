@@ -243,6 +243,491 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/31/react/material ui的select问题/" itemprop="url">
+                  material ui的select问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-31T14:38:49+08:00" content="2017-07-31">
+              2017-07-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/material-ui/" itemprop="url" rel="index">
+                    <span itemprop="name">material ui</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到一个material ui的selecfield的选中问题， 具体现象为一开始选中了一个menu item，但是当重新获取所有的数据时，选中的那个menu item消失了。</p>
+<p>最后排查原因发现： selectedField的value选的是一个对象， 当重新获取新的数组的时候，之前的那个对象不在这个新数组之中了</p>
+<p>另外如果存了换一个数组之后，没必要再存一个选中的对象，只需要存一下那个索引即可，否则不仅重复存了，还容易引起更多的bug</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
+                  react声明周期函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-21T08:40:49+08:00" content="2017-07-21">
+              2017-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>render():    render函数是组件的必需函数，并且需要为纯函数</li>
+<li>constructor(): 在构造器里需要先调用super(props)，否则构造器里的this.props将为空，如果不需要初始化state状态，也不需要bind， 那可以不用构造器</li>
+<li>如果componet里使用了state，而state又想是通过props来作初始化，这里可能就会有潜在的bug，因为如果只在constructor里做初始化，props变了之后并不能改变state，那样还需要自己去实现<a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps(nextProps)</code></a> 这个函数，不如lifting state up</li>
+<li>componentWillMount() 这个函数是在render函数之前执行，在这里同步地执行setState时不会导致重新渲染的，不要在这里还引入side-effects</li>
+<li>componentDidMount() 在这里发起ajax，并且在这个函数去setState()会发生重新渲染</li>
+<li>componentWillReceiveProps(nextProps)：当收到新的props就会调用这个函数，react本身也会调用这个函数，即使props没有变化，因此在这个函数里一定要写个if判断props是否变化了。在初始挂载的时候不会调用这个函数，调用setState()是不会触发这个函数的</li>
+<li>shouldComponentUpdate(nextProps, nextState)： 现在的话如果这个函数return false， componentWillMount， render和componetDidMount都不会被调用了</li>
+<li>componentWillUpdate(nextProps, nextState) ：这也是个在渲染之前做准备工作的函数，它和componentWillReceiveProps很想，但是在这个函数里不能调用setState， 初始挂载也不会调用这个函数</li>
+<li>componentDidUpdate(prevProps, prevState)：这里也是好地方做ajax，并且可以比较props和state，并且这个函数在初挂载时也不会被调用</li>
+<li>setState():由于setState()可能会被延迟执行，因此在setState()之后立马通过this.state去读取可能会有问题</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
+                  redux实践的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-20T16:58:35+08:00" content="2017-07-20">
+              2017-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>UI的状态，比如一个dialog是否open的状态是否也还要放到redux store里去？</p>
+<p>如果这个状态只有那么一个组件用，没必要放到store里去，如果某个数据是要跨全局使用的，那放到store里</p>
+<p>看一下redux作者的回答</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Use React for ephemeral state that doesn&apos;t matter to the app globally and doesn&apos;t mutate in complex ways. For example, a toggle in some UI element, a form input state. Use Redux for state that matters globally or is mutated in complex ways. For example, cached users, or a post draft.</div><div class="line"></div><div class="line">Sometimes you&apos;ll want to move from Redux state to React state (when storing something in Redux gets awkward) or the other way around (when more components need to have access to some state that used to be local).</div><div class="line"></div><div class="line">The rule of thumb is: do whatever is less awkward.</div></pre></td></tr></table></figure>
+</li>
+<li><p>一些ajax调用但不太会影响state的状态，比如实际遇到的一个恢复的api，返回值只有成功或失败，这个需要写action吗？</p>
+<p>redux的建议是把任何有副作用的函数都放到action creator里去，因为这样可以做到重用。但如果这个api调用只有可能在那个组件里使用呢？</p>
+<p>放在component的问题是，错误信息变成local的state了，store里看不到错误信息</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/18/javascript/javascript函数/" itemprop="url">
+                  javascript函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-18T08:02:42+08:00" content="2017-07-18">
+              2017-07-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>关于javascript最重要的一点我觉得需要记住的是： javascript函数是一个对象，函数名是指向这个对象的指针</li>
+<li>既然函数名是指针，那就能理解为什么javascript函数没有重载了(重载只不过是改变了指针的指向)</li>
+<li>函数声明（function开头) 与函数表达式的区别仅在于函数声明有个叫函数声明提升的过程，因此即使函数是写在最底部，解释器在执行的时候也是会将它提到前面来解析</li>
+<li>函数内部有两个特殊对象arguments和this， 其中arguments是一个类数组对象，包含着传入的所有参数，这个数组对象有一个叫callee的属性，指向函数本身。 this对象则是引用函数据以执行的环境对象。javascript的this和java是有很大区别的，在于说js的this只有在运行时才能确定，而java的this在开发时就能定下来</li>
+<li>函数对象还有一个caller的属性，指向调用当前函数，严格模式下访问caller和arguments.callee都会报错</li>
+<li>函数还有两个属性 length和prototype，前者表示函数希望接收的命名参数的数量，prototype专门再研究</li>
+<li>函数对象还有两个非继承而来的方法，apply()和call(), 这两个方法都是在特定的作用域中<strong>调用函数</strong>，实际上等于设置函数体内this的值， 他们都接收两个参数，区别在于接收函数的参数方式不同，call必须每一个都列出来，而apply则是可以通过数组或arguments参数传进去，call和applay的意义在于解耦了对象和方法，对象和方法不需要有耦合关系，这点也是js相对于java一个很重要的区别</li>
+<li>函数的bind方法，这个方法和apply和call容易混淆，他们都是改变了对象的this值，所不同的是bind方法是返回一个新函数，而不是立即调用，返回的这个新函数的this值被修改了</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
                   vscode不好用排查记
                 </a>
@@ -931,473 +1416,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/utility/xargs/" itemprop="url">
-                  find与xargs联动
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-23T15:47:50+08:00" content="2017-06-23">
-              2017-06-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &quot;*tsx&quot; | xargs grep Button</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/utility/grep使用/" itemprop="url">
-                  grep使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-23T15:36:13+08:00" content="2017-06-23">
-              2017-06-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/grep/" itemprop="url" rel="index">
-                    <span itemprop="name">grep</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>基本语法： grep  搜索词   搜索文</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep version package.json</div></pre></td></tr></table></figure>
-<p>该命令会查找package.json下面的version字段</p>
-</li>
-<li><p>搜索目录  grep -r 搜索词 目录   ​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/22/utility/vscode常用快捷键/" itemprop="url">
-                  vscode常用快捷键
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-22T14:41:02+08:00" content="2017-06-22">
-              2017-06-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>开关闭左边侧边栏： cmd + b</li>
-<li>分割的窗口间切换：  cmd + k 然后按方向键</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/22/utility/mac常用快捷键/" itemprop="url">
-                  mac常用快捷键
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-22T10:03:31+08:00" content="2017-06-22">
-              2017-06-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>全屏： cmd + ctrl + f</li>
-<li>在浏览器中切换tab：  下一个  ctrl + tab    上一个  shift + ctrl + tab</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1443,7 +1461,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">193</span>
+              <span class="site-state-item-count">197</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

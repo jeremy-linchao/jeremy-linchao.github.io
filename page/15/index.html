@@ -243,6 +243,479 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/30/node/mocha遇到EADDRINUSE问题/" itemprop="url">
+                  mocha遇到EADDRINUSE问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-30T15:06:37+08:00" content="2016-12-30">
+              2016-12-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在用mocha测试API接口的时候报了这么一个错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">1)  Uncaught error outside test suite:</div><div class="line">    Uncaught Error: listen EADDRINUSE :::8080</div><div class="line">     at Object.exports._errnoException (util.js:1022:11)</div><div class="line">     at exports._exceptionWithHostPort (util.js:1045:20)</div><div class="line">     at Server._listen2 (net.js:1259:14)</div><div class="line">     at listen (net.js:1295:10)</div><div class="line">     at Server.listen (net.js:1391:5)</div><div class="line">     at EventEmitter.listen (node_modules/express/lib/application.js:617:24)</div><div class="line">     at Object.&lt;anonymous&gt; (server.js:43:5)</div><div class="line">     at require (internal/module.js:20:19)</div><div class="line">     at Object.&lt;anonymous&gt; (test/book.js:10:14)</div><div class="line">     at require (internal/module.js:20:19)</div><div class="line">     at Array.forEach (native)</div><div class="line">     at run (bootstrap_node.js:394:7)</div><div class="line">     at startup (bootstrap_node.js:149:9)</div><div class="line">     at bootstrap_node.js:509:3</div></pre></td></tr></table></figure>
+<p>仔细看这个原因是地址已经被使用了，可是我明明就起了一个3000的express，所以仔细看下测试的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//During the test the env variable is set to test</div><div class="line">process.env.NODE_ENV = &apos;test&apos;;</div><div class="line"></div><div class="line">let mongoose = require(&quot;mongoose&quot;);</div><div class="line">let Book = require(&apos;../app/models/book&apos;);</div><div class="line"></div><div class="line">//Require the dev-dependencies</div><div class="line">let chai = require(&apos;chai&apos;);</div><div class="line">let chaiHttp = require(&apos;chai-http&apos;);</div><div class="line">let server = require(&apos;../server&apos;);</div><div class="line">let should = chai.should();</div><div class="line"></div><div class="line">chai.use(chaiHttp);</div><div class="line">//Our parent block</div><div class="line">describe(&apos;Books&apos;, () =&gt; &#123;</div><div class="line">    beforeEach((done) =&gt; &#123; //Before each test we empty the database</div><div class="line">        Book.remove(&#123;&#125;, (err) =&gt; &#123;</div><div class="line">            done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    /*</div><div class="line">     * Test the /GET route</div><div class="line">     */</div><div class="line">    describe(&apos;/GET book&apos;, () =&gt; &#123;</div><div class="line">        it(&apos;it should GET all the books&apos;, (done) =&gt; &#123;</div><div class="line">            chai.request(server)</div><div class="line">                .get(&apos;/book&apos;)</div><div class="line">                .end((err, res) =&gt; &#123;</div><div class="line">                    res.should.have.status(200);</div><div class="line">                    res.body.should.be.a(&apos;array&apos;);</div><div class="line">                    res.body.length.should.be.eql(0);</div><div class="line">                    done();</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里面有个chai.request(server)，实际上会新起一个server，这就导致了会监听在重复的端口</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/node/nodemon和morgan/" itemprop="url">
+                  nodemon和morgan
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T17:44:52+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.nodemon可以用来管理和重启node的进程，如果要重启只需要随时输入个rs命令即可，</p>
+<p>2.morgan可以将http的请求打到控制台，节省了自己写console.log的工作，当然如果是生产环境还是会用log4js专门记录到日志文件中去</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/es6/Generator(2)/" itemprop="url">
+                  Generator
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T11:19:12+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>定义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* idMaker()&#123;</div><div class="line">  var index = 0;</div><div class="line">  while(index&lt;3)</div><div class="line">    yield index++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>调用：    var gen = idMaker();    调用一个<strong>生成器函数</strong>并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。</p>
+</li>
+<li><p>使用：该表达式定义了迭代器返回的值，或者，被 yield委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(gen.next().value); // 0</div><div class="line">console.log(gen.next().value); // 1</div><div class="line">console.log(gen.next().value); // 2</div><div class="line">console.log(gen.next().value); // undefined</div></pre></td></tr></table></figure>
+<p>next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值；done属性是一个布尔值，表示Generator函数是否执行完毕，即是否还有下一个阶段</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/28/es6/Promise/" itemprop="url">
+                  Promise
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-28T17:29:26+08:00" content="2016-12-28">
+              2016-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>Creating Promises with the constructor;</li>
+<li>Handling success with resolve;</li>
+<li>Handling errors with reject; and</li>
+<li>Setting up control flow with then and catch</li>
+</ol>
+<p><a href="https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics" target="_blank" rel="external">https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/28/node/pm2学习/" itemprop="url">
                   pm2学习
                 </a>
@@ -931,490 +1404,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/utility/跳板机共享token/" itemprop="url">
-                  跳板机共享token
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-26T11:50:07+08:00" content="2016-12-26">
-              2016-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在一次变更中，需要登陆多次跳板机，但由于跳板机采用双因素登陆，每次都得输入token非常麻烦，因此一个比较好的办法是共享一个登陆跳板机的连接，后续的连接不需要再输入token了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ControlMaster auto</div><div class="line">ControlPath ~/.ssh/.ujump.socket</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/24/node/利用event来解决数据库的雪崩效应/" itemprop="url">
-                  利用event来解决数据库的雪崩效应
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-24T12:32:21+08:00" content="2016-12-24">
-              2016-12-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="利用event来解决数据库的雪崩效应"><a href="#利用event来解决数据库的雪崩效应" class="headerlink" title="利用event来解决数据库的雪崩效应"></a>利用event来解决数据库的雪崩效应</h2><p>在一个网站中经常会有缓存放在数据库之前来减少数据库的重复请求，但是当网站刚上线的时候，缓存中是没有数据的，这时候如果对于数据库有大量请求，数据库会停止响应，可以看下如下的select函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var select = function(callback)&#123;</div><div class="line">  db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">    callback(results);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一个办法就是加一个状态锁,这样的缺点就是只有第一次查询是可以的，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var status = &quot;ready&quot;;</div><div class="line">var select = function(callback)&#123;</div><div class="line">  if (status=&quot;ready&quot;)&#123;</div><div class="line">    status = &quot;pending&quot;;</div><div class="line">    db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">      status = &quot;ready&quot;;</div><div class="line">      callback(results);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>更好的解决办法是使用事件队列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var proxy = new event.EventEmitter();</div><div class="line">var status = &quot;ready&quot;;</div><div class="line">var select = function(callback)&#123;</div><div class="line">  proxy.once(&quot;selected&quot;,callback);</div><div class="line">  if (status===&quot;ready&quot;)&#123;</div><div class="line">    status = &quot;pending&quot;;</div><div class="line">    db.select(&quot;SQL&quot;,function(results)&#123;</div><div class="line">      proxy.emit(&quot;selected&quot;,resuts);</div><div class="line">      status = &quot;ready&quot;;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/21/utility/Markdown 学习/" itemprop="url">
-                  Markdown 学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T16:42:40+08:00" content="2016-12-21">
-              2016-12-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>引用别人的话    “&gt;”</p>
-</li>
-<li><p>任务列表           “- []”</p>
-</li>
-<li><p>代码引用           “```”</p>
-</li>
-<li><p>表格                  “| first header | seconder header |”</p>
-</li>
-<li><p>水平线              “—“</p>
-</li>
-<li><p>脚注                  “[^]”</p>
-</li>
-<li><p>目录                 “[toc]”</p>
-</li>
-<li><p>链接                  This is <a href="http://example.com/" title="Title" target="_blank" rel="external">an example</a> inline link​​</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/21/coding/函数式编程/" itemprop="url">
-                  函数式编程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T16:41:48+08:00" content="2016-12-21">
-              2016-12-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index">
-                    <span itemprop="name">coding</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>有些事物在你得到之前是无足轻重的，得到之后就不可或缺了</p>
-</blockquote>
-<ol>
-<li>纯函数：相同的输入，永远得到相同的输出，而且没有任何可观察的副作用</li>
-<li>副作用：在计算结果的过程中，系统状态的一种变化，或者与外部世界进行可观察的交互</li>
-<li>函数的柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</li>
-<li><strong>currying</strong> : the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument. </li>
-<li><strong>partial application</strong> : the process of fixing a number of arguments to a function, producing another function of smaller arity</li>
-<li>柯里化和偏函数的区别：区别在于固定的参数不同，柯里化每次固定一个参数，返回一系列一元函数的调用</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1460,7 +1449,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">193</span>
+              <span class="site-state-item-count">197</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
