@@ -243,6 +243,573 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/19/go/go学习/" itemprop="url">
+                  go学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-19T11:32:28+08:00" content="2017-09-19">
+              2017-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码</p>
+</li>
+<li><p>go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件</p>
+</li>
+<li><p>GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，go的安装目录默认在/usr/local, 因此在~/.zshrc下面要设置下GOPATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/work/go</div></pre></td></tr></table></figure>
+<p>另外正如前面所说，所有编译好的目录都在go的workspace下，因此也可以把GOPATH下的bin加到PATH环境变量下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:$(go env GOPATH)/bin&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Go的package都是静态链接的，因此运行时是不需要库存在的</p>
+</li>
+<li><p>go的第一行必须是package name，可执行的命令必须用package main</p>
+</li>
+<li><p>用go get获取远程仓库的package</p>
+<hr>
+</li>
+</ol>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ol>
+<li><p>大写字母开头的成员才会被导出</p>
+</li>
+<li><p>类型是写在变量后面，函数可以返回任意数量的结果</p>
+</li>
+<li><p>返回值也能被命名，尽量不要用naked return（返回值的名字是写在函数定义行里）</p>
+</li>
+<li><p>在函数内部可以用 := 来声明变量，这里可以省去var关键字以及类型，当然这个只适用于函数内部</p>
+<ol>
+<li>go的基础类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">bool</div><div class="line"></div><div class="line">string</div><div class="line"></div><div class="line">int  int8  int16  int32  int64</div><div class="line">uint uint8 uint16 uint32 uint64 uintptr</div><div class="line"></div><div class="line">byte // alias for uint8</div><div class="line"></div><div class="line">rune // alias for int32</div><div class="line">     // represents a Unicode code point</div><div class="line"></div><div class="line">float32 float64</div><div class="line"></div><div class="line">complex64 complex128</div></pre></td></tr></table></figure>
+<p>这里的int， unit， uintptr的位数是根据目标机器是架构来的，如果是32位机器就是32， 64位机器则为64</p>
+</li>
+<li><p>变量在定义时如果没有初始化则会给一个0值， 具体是值</p>
+<p>如果是数值类型，默认是0， 如果是bool类型，默认是false，如果是字符串类型，默认为”“</p>
+</li>
+<li><p>强制转化的语法是T(v) ,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var i int = 42</div><div class="line">var f float64 = float64(i)</div><div class="line">var u uint = uint(f)</div></pre></td></tr></table></figure>
+<p>go里没有隐式转换</p>
+</li>
+<li><p>常量用const关键字，并且常量名首字母大写</p>
+</li>
+<li><p>只有for循环，for虚幻的初始化，判断条件不需要括号，执行体的花括号还是需要的</p>
+</li>
+<li><p>if也不需要括号  </p>
+</li>
+<li><p>go的switch只要命中case就中止，不会继续往下走，因此就不需要break了</p>
+</li>
+<li><p>没有条件的switch可以用来代替长if else</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line">	t := time.Now()</div><div class="line">	switch &#123;</div><div class="line">	case t.Hour() &lt; 12:</div><div class="line">		fmt.Println(&quot;Good morning!&quot;)</div><div class="line">	case t.Hour() &lt; 17:</div><div class="line">		fmt.Println(&quot;Good afternoon.&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;Good evening.&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>defer语句：A defer statement defers the execution of a function until the surrounding function returns.</p>
+</li>
+<li><p>数组： 数组的长度在编译时就是固定的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a [10]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice：is a dynamically-sized, flexible view into the elements of an array， slice像是对底层数组的引用，改变slice的值会改变底层数组的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	primes := [6]int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line"></div><div class="line">	var s []int = primes[1:4]</div><div class="line">	fmt.Println(s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[]bool&#123;true, true, false&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Slice length and capacity   这块不太懂</p>
+</li>
+<li><p>map,  使用make来生成map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/13/es6/关于generator的理解/" itemprop="url">
+                  关于generator的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T09:38:58+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/generaotr/" itemprop="url" rel="index">
+                    <span itemprop="name">generaotr</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>generator函数和普通函数有什么本质上区别呢？我们知道普通函数是一种“run-to-completion“的机制，即函数会一直运行到结束，中间不会有什么暂停之类的，看看下面这段代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&quot;Hello World&quot;);</div><div class="line">&#125;,1);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    // NOTE: don&apos;t ever do crazy long-running loops like this</div><div class="line">    for (var i=0; i&lt;=1E10; i++) &#123;</div><div class="line">        console.log(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">// 0..1E10</div><div class="line">// &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p>虽然我们设置了个定时器，但是由于foo的循环需要超过1ms的时间运行，定时器无法打断这个函数的执行，只能等到函数执行完了才可以。</p>
+</li>
+<li><p>语法： 在语法上，generator和普通函数区别不大，主要有两点，一个是在函数定义上，需要在函数名前面加个*，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    // ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一个就是yield表达式，当重启或者继续generator时，外部会传一个值进来，这个值就会作为yield表达式的计算值，当函数内部遇到yield表达式时，也会将yield后面的表达式的值传出去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    var x = 1 + (yield &quot;foo&quot;);</div><div class="line">    console.log(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如上面这段代码，当代码执行遇到yield “foo”时，函数会暂停并将“foo“传出去，过一会儿也可能是很久，外面重新启动了这个yield函数，会将某个值传进来，作为这个表达式的返回值</p>
+</li>
+<li><p>generator iterator: 调用generator只会生成一个iterator，这个iterator是我们在外面控制generator的方式，举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先我们要创建一个generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var it = foo();</div></pre></td></tr></table></figure>
+<p>接下来我们要开始迭代我们的iterator，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message = it.next();</div></pre></td></tr></table></figure>
+<p>在generator内部会执行到第一个yield表达式结束，并返回那个yield表达式的值，让我们看一下message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(message); // &#123; value:1, done:false &#125;</div></pre></td></tr></table></figure>
+<p>这里看到返回值不仅是value，还有一个表示状态的done，因为generator还没结束，这里为false， 让我们继续iterate，这里需要注意的是即使运行到了yield 5，done仍然是false，从技术上来说，generator这时候还没结束，只有再调用一次next才可以，而且如果我们要在这次next调用时传值，那这个值必须是5，才能保证结束    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log( it.next() ); // &#123; value:2, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:3, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:4, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:5, done:false &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>理解下generator的数据交换用下面这个例子就够了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function *foo(x) &#123;</div><div class="line">    var y = 2 * (yield (x + 1));</div><div class="line">    var z = yield (y / 3);</div><div class="line">    return (x + y + z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo( 5 );</div><div class="line"></div><div class="line">// note: not sending anything into `next()` here</div><div class="line">console.log( it.next() );       // &#123; value:6, done:false &#125;</div><div class="line">console.log( it.next( 12 ) );   // &#123; value:8, done:false &#125;</div><div class="line">console.log( it.next( 13 ) );   // &#123; value:42, done:true &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>generator还能被for … of 循环捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">    return 6;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var v of foo()) &#123;</div><div class="line">    console.log( v );</div><div class="line">&#125;</div><div class="line">// 1 2 3 4 5</div><div class="line"></div><div class="line">console.log( v ); // still `5`, not `6` :(</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T22:35:59+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>parseInt和类型转换是有区别的，parseInt只作用域字符串，但这个字符串里可以有非数字的字符，一旦遇到非数字字符就停止解析，返回之前解析的数值，而类型转换是不能容忍字符的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = &quot;42px&quot;;</div><div class="line"></div><div class="line">Number( a );	// 42</div><div class="line">parseInt( a );	// 42</div><div class="line"></div><div class="line">Number( b );	// NaN</div><div class="line">parseInt( b );	// 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>parseInt默认是当作10机制来解析，如果是0x开头则当作16进制来解析，0开头的不会当八进制解析，这有效的防止了分钟和小时那种前面带0的字符串被错误的解析成了8进制的数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parseInt( 0.000008 );		// 0   (&quot;0&quot; from &quot;0.000008&quot;)</div><div class="line">parseInt( 0.0000008 );		// 8   (&quot;8&quot; from &quot;8e-7&quot;)</div><div class="line">parseInt( false, 16 );		// 250 (&quot;fa&quot; from &quot;false&quot;)</div><div class="line">parseInt( parseInt, 16 );	// 15  (&quot;f&quot; from &quot;function..&quot;)</div><div class="line"></div><div class="line">parseInt( &quot;0x10&quot; );			// 16</div><div class="line">parseInt( &quot;103&quot;, 2 );		// 2</div></pre></td></tr></table></figure>
+<p>这里很多的结果可能跟你想的不一致，原因在于parseInt在收到一个非字符串的时候，都会先转化成string，所以只要记住一点，parseInt的参数一定要是个字符串</p>
+</li>
+<li><p>！可以用来将一个非boolean的值强制转化成boolean， 所以能看到下面这种代码，因为！还会将布尔值反转，第二个！就是把它转回来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = &quot;0&quot;;</div><div class="line">var b = [];</div><div class="line">var c = &#123;&#125;;</div><div class="line"></div><div class="line">var d = &quot;&quot;;</div><div class="line">var e = 0;</div><div class="line">var f = null;</div><div class="line">var g;</div><div class="line"></div><div class="line">!!a;	// true</div><div class="line">!!b;	// true</div><div class="line">!!c;	// true</div><div class="line"></div><div class="line">!!d;	// false</div><div class="line">!!e;	// false</div><div class="line">!!f;	// false</div><div class="line">!!g;	// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何判断+是数值相加还是字符串连接呢？ 很简单，只要有一个操作符是字符串（或者可以转变成字符串）， 就是字符串连接，否则就是数值相加</p>
+</li>
+<li><p>== 和 === 区别： ==允许做一个隐式的类型转换， === 不允许</p>
+</li>
+<li><p>字符串和数值的隐式比较，都是利用toNumber()方法将字符串先转成数值再比较</p>
+</li>
+<li><p>​和boolean值的==比较， 规则如下，会先将boolean值toNumber（）转化成数值，变成了之前讲的数字和字符串比较，规则也是先将字符串转化成数值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = true;</div><div class="line">var y = &quot;42&quot;;</div><div class="line"></div><div class="line">x == y; // false</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/05/typescript/typescript寻找声明文件/" itemprop="url">
+                  typescript寻找声明文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T11:14:09+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Typescript默认会先去node_modules下的@types去找，如果找不到，会去项目目录下的types目录继续寻找.d.ts文件（这一步官方文档貌似没有明确说明），但实践了下确实可以， 当然可以用///显示声明依赖，只是如果types文件可以统一管理，会好很多</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/31/javascript/你不知道的javascript/" itemprop="url">
                   未命名
                 </a>
@@ -1100,504 +1667,11 @@ d: [1,2,3]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/12/javascript/javascript filter问题/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T12:23:33+08:00" content="2017-08-12">
-              2017-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用filter的时候踩了一个新手很常见的问题，但因为使用方式的隐蔽，一开始没看出来，具体的问题是这样的:</p>
-<p>我又一个对象是叫availableHosts,然后这个对象有两个属性，一个是byId，这个是一个对象，另一个属性叫allIds,是个字符串数组，我的需求是过滤下allIds这个数组，删除掉指定的字符串，然后我写下了如下一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">availableHosts.allIds.filter((hostId: string) =&gt; &#123;</div><div class="line">   if (hostId === someone) &#123;</div><div class="line">     return false;</div><div class="line">   &#125; else &#123;</div><div class="line">     return true;</div><div class="line">   &#125;   </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>然后console.log打印availableHosts，发现无论你怎么过滤，allId这个字符串数组都没有变，甚至你直接return false都没用，然后我突然想到filter这个是返回一个新数组，我这里没有对属性赋值，引用的还是老数组，所以当然没变了。这个问题之所以查了很久，原因在于之前用filter是在一个数组上用的，然后直接赋值，但这次是在一个对象的属性上，这就很容易忘记赋值这个操作，需要吸取教训。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/12/ops/mysql崩溃自动重启/" itemprop="url">
-                  mysql崩溃自动重启
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T08:40:11+08:00" content="2017-08-12">
-              2017-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ops/" itemprop="url" rel="index">
-                    <span itemprop="name">ops</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有个mysql服务总是会崩溃，一时也找不出原因，索性使用crontab来检测</p>
-<ol>
-<li><p>配置crontab运行脚本  vim listen.sh (注意下启动的命令不能用service mysqld start)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">pidof mysqld &gt;/dev/null</div><div class="line">if [ $? -eq 0 ]</div><div class="line">then</div><div class="line">echo &quot;It is running.&quot;</div><div class="line">else</div><div class="line">echo &quot;At `date` MySQL Server was stopped&quot;&gt;&gt; /home/mysql_log</div><div class="line">/etc/init.d/mysqld start</div><div class="line">fi</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改脚本的权限 chmod 777 ./listen.sh</p>
-</li>
-<li><p>安装crontab</p>
-<p>3.1 确认crontab是否安装：</p>
-<p>执行 crontab 命令如果报 command not found，就表明没有安装</p>
-<p>3.2  安装 crontab</p>
-<p>执行 yum install -y vixie-cron</p>
-<p>3.3 确认是否安装成功:</p>
-<p>执行 crontab -l</p>
-<p>3.4 看是否设置了开机自动启动</p>
-<p>chkconfig –list crond 或者chkconfig crond on</p>
-<p>3.5 启动crontab</p>
-<p>service crond start</p>
-<p>3.6 添加计划任务</p>
-<p>crontab -e</p>
-<p>crontab -l</p>
-<p>3.7 脚本sh设置777权限</p>
-</li>
-<li><p>配置crontab监控</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * sh /etc/mysqld/listen.sh</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
-                  typescript的字面量类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
-              2017-08-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescipt/" itemprop="url" rel="index">
-                    <span itemprop="name">typescipt</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
-<p>这时候如果你把foo赋值成“World”就会报错，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
-<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
-<p>先定义type 的枚举类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>接着定义acton类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>最后创建联合类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
-<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/04/design/Material UI TextField的类型问题/" itemprop="url">
-                  Material UI TextField的类型问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-04T16:06:21+08:00" content="2017-08-04">
-              2017-08-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用material的textfiled组件时，为了表示是个数字输入，我将type设为number，但改变这个值的时候发现这个值的类型仍然是string，导致在于数字比较的时候总是不相等， 这里需要注意下</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1638,7 +1712,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">197</span>
+              <span class="site-state-item-count">201</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1646,7 +1720,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1655,7 +1729,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">138</span>
+                <span class="site-state-item-count">141</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
