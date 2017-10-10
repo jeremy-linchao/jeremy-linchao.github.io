@@ -243,6 +243,1129 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T22:35:59+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>parseInt和类型转换是有区别的，parseInt只作用域字符串，但这个字符串里可以有非数字的字符，一旦遇到非数字字符就停止解析，返回之前解析的数值，而类型转换是不能容忍字符的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = &quot;42px&quot;;</div><div class="line"></div><div class="line">Number( a );	// 42</div><div class="line">parseInt( a );	// 42</div><div class="line"></div><div class="line">Number( b );	// NaN</div><div class="line">parseInt( b );	// 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>parseInt默认是当作10机制来解析，如果是0x开头则当作16进制来解析，0开头的不会当八进制解析，这有效的防止了分钟和小时那种前面带0的字符串被错误的解析成了8进制的数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parseInt( 0.000008 );		// 0   (&quot;0&quot; from &quot;0.000008&quot;)</div><div class="line">parseInt( 0.0000008 );		// 8   (&quot;8&quot; from &quot;8e-7&quot;)</div><div class="line">parseInt( false, 16 );		// 250 (&quot;fa&quot; from &quot;false&quot;)</div><div class="line">parseInt( parseInt, 16 );	// 15  (&quot;f&quot; from &quot;function..&quot;)</div><div class="line"></div><div class="line">parseInt( &quot;0x10&quot; );			// 16</div><div class="line">parseInt( &quot;103&quot;, 2 );		// 2</div></pre></td></tr></table></figure>
+<p>这里很多的结果可能跟你想的不一致，原因在于parseInt在收到一个非字符串的时候，都会先转化成string，所以只要记住一点，parseInt的参数一定要是个字符串</p>
+</li>
+<li><p>！可以用来将一个非boolean的值强制转化成boolean， 所以能看到下面这种代码，因为！还会将布尔值反转，第二个！就是把它转回来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = &quot;0&quot;;</div><div class="line">var b = [];</div><div class="line">var c = &#123;&#125;;</div><div class="line"></div><div class="line">var d = &quot;&quot;;</div><div class="line">var e = 0;</div><div class="line">var f = null;</div><div class="line">var g;</div><div class="line"></div><div class="line">!!a;	// true</div><div class="line">!!b;	// true</div><div class="line">!!c;	// true</div><div class="line"></div><div class="line">!!d;	// false</div><div class="line">!!e;	// false</div><div class="line">!!f;	// false</div><div class="line">!!g;	// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何判断+是数值相加还是字符串连接呢？ 很简单，只要有一个操作符是字符串（或者可以转变成字符串）， 就是字符串连接，否则就是数值相加</p>
+</li>
+<li><p>== 和 === 区别： ==允许做一个隐式的类型转换， === 不允许</p>
+</li>
+<li><p>字符串和数值的隐式比较，都是利用toNumber()方法将字符串先转成数值再比较</p>
+</li>
+<li><p>​和boolean值的==比较， 规则如下，会先将boolean值toNumber（）转化成数值，变成了之前讲的数字和字符串比较，规则也是先将字符串转化成数值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = true;</div><div class="line">var y = &quot;42&quot;;</div><div class="line"></div><div class="line">x == y; // false</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/05/typescript/typescript寻找声明文件/" itemprop="url">
+                  typescript寻找声明文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T11:14:09+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Typescript默认会先去node_modules下的@types去找，如果找不到，会去项目目录下的types目录继续寻找.d.ts文件（这一步官方文档貌似没有明确说明），但实践了下确实可以， 当然可以用///显示声明依赖，只是如果types文件可以统一管理，会好很多</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/31/javascript/你不知道的javascript/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T22:22:52+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖这个bug了</p>
+</li>
+<li><p>javascript的变量是没有类型的，真正有类型的是值，具体来说，JS的变量可以在一个赋值语句中被赋值为number,可以在接下来一个赋值语句中赋值成string。 因此如果你在JS用typeof， 它的意思是在问这个变量的值是什么类型，而不是变量本身</p>
+</li>
+<li><p>undefined并不是undeclared</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined is a value that a declared variable can hold. &quot;Undeclared&quot; means a variable has never been declared</div></pre></td></tr></table></figure>
+<p>对一个未声明过的变量typeof， 返回的是undefined</p>
+</li>
+<li><p>JS的数据不要求里面的元素都是一个类型，因此声明成下面这个也不要感到奇怪</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, &quot;2&quot;, [3] ];</div></pre></td></tr></table></figure>
+<p>JS的数组是可以用字符串来做索引的，原因在于数组其实也是个object， 但是用字符串索引的是不会被记到length里去的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[&quot;foobar&quot;] = 2;</div><div class="line"></div><div class="line">a.length;		// 1</div><div class="line">a[&quot;foobar&quot;];	// 2</div><div class="line">a.foobar;		// 2</div></pre></td></tr></table></figure>
+<p>一般来说也建议不要用数组的字符串索引</p>
+</li>
+<li><p>将array-like的元素，比如dom元素转化为真正的数组(这样就可以调用诸如indexOf, forEach等方法了) ，有两种实现方式，一种是用Array.prototype.slice.call(arguments)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var arr = Array.prototype.slice.call( arguments );</div><div class="line">	arr.push( &quot;bam&quot; );</div><div class="line">	console.log( arr );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( &quot;bar&quot;, &quot;baz&quot; ); // [&quot;bar&quot;,&quot;baz&quot;,&quot;bam&quot;]</div></pre></td></tr></table></figure>
+<p>另一种是ES6的Array.from</p>
+</li>
+<li><p>JS的string和字符数组一样吗？表面看上去他们有点一样，比如都有indexOf方法，都有concat方法，都有length属性，但实际上他们很不一样。一个最大的区别在于说string是不可以改变的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = &quot;foo&quot;;</div><div class="line">var b = [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;];</div><div class="line">a[1] = &quot;O&quot;;</div><div class="line">b[1] = &quot;O&quot;;</div><div class="line">a; // &quot;foo&quot;</div><div class="line">b; // [&quot;f&quot;,&quot;O&quot;,&quot;o&quot;]</div></pre></td></tr></table></figure>
+<p>另外string本身也没有join，reverse方法，因此一个常见的面试提： 给你一个字符串，让你去反转，这个该如何操作呢？可以先把字符串转化成字符数组，然后调用相应方法，最后再join</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var c = a</div><div class="line">	// split `a` into an array of characters</div><div class="line">	.split( &quot;&quot; )</div><div class="line">	// reverse the array of characters</div><div class="line">	.reverse()</div><div class="line">	// join the array of characters back to a string</div><div class="line">	.join( &quot;&quot; );</div><div class="line"></div><div class="line">c; // &quot;oof&quot;</div></pre></td></tr></table></figure>
+<p>注： 书上说对于multibype characters无效，我测试中文是可以的</p>
+<p>This approach <strong>doesn’t work</strong> for <code>string</code>s with complex (unicode) characters in them (astral symbols, multibyte characters, etc.).</p>
+</li>
+<li><p>JS的number类型是直接可以调用Number的方法的，比如保留小数点位数的toFixed()方法   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">a.toFixed( 0 ); // &quot;43&quot;</div><div class="line">a.toFixed( 1 ); // &quot;42.6&quot;</div><div class="line">a.toFixed( 2 ); // &quot;42.59&quot;</div><div class="line">a.toFixed( 3 ); // &quot;42.590&quot;</div><div class="line">a.toFixed( 4 ); // &quot;42.5900&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3 是返回的false！！！</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS的整形最大值是2的53次方-1，这个数还是要记住的，因为在某些情况下会有用，比如定义数据库的ID时，不能用64位的整数，只能用string来存，使用Number.MAX_SAFE_INTEGER这个来定义，最小值是-9007199254740991，使用Number.MIN_SAFE_INTEGER这个来定义，</p>
+<p>浮点型的最大值是1.798e+308，使用Number.MAX_VALUE这个来定义，最小值是5e-324，使用Number.MIN_VALUE这个来定义</p>
+</li>
+<li><p>32为有符号整数： 为什么需要32位整数呢？ 有些操作只能用于32位整数，比如位操作。把一个number类型的数变为32位有符号数的方式是 | 0</p>
+</li>
+<li><p>void 操作符，确保某个表达式的返回值是undefined，他不会修改已有的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 42;</div><div class="line">console.log( void a, a ); // undefined 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>NaN最好理解成 invalid number，而不是字面意义上的not a number，解释看下面一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof NaN // number</div></pre></td></tr></table></figure>
+<p>NaN与自身比较是返回false的, 这也是javascrpt里面唯一一个自己与自己比较不相等是返回true的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NaN !== NaN  // true</div><div class="line">null !== null // false</div><div class="line">undefined !== null // false</div></pre></td></tr></table></figure>
+<p>所以比较一个数是不是NaN要用ES6的Number.isNaN方法，这里不能用ES5的window.isNaN，因为对于其他非数组类型，window.isNaN也会返回true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN(b);  // false;</div><div class="line">window.isNaN(b);  // true</div></pre></td></tr></table></figure>
+<p>有两种实现Number.isNaN方法，都值得学习下，第一种是加了一个typeof判断，因为NaN其实也是个number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">	Number.isNaN = function(n) &#123;</div><div class="line">		return (</div><div class="line">			typeof n === &quot;number&quot; &amp;&amp;</div><div class="line">			window.isNaN( n )</div><div class="line">		);</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种方法是巧妙地利用了NaN是唯一一个自身与自身比较不相等是返回true的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNan)&#123;</div><div class="line">  Number.isNaN = function(n) &#123;</div><div class="line">    return n !== n;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS有 +0 和 -0之分，主要是为了用在某些场合需要方向的情况下，但+0 和 -0不能简单的用===来比较，那样他们是相等的，ES6有个Object.is方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = -3 * 0;</div><div class="line"></div><div class="line">Object.is( a, NaN );	// true</div><div class="line">Object.is( b, -0 );		// true</div><div class="line"></div><div class="line">Object.is( b, 0 );		// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS中有值传递与引用传递， 但这个是根据变量本身的类型来的，我们没有控制权利</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Simple values are always assigned/passed by value-copy: null, undefined, string, number, boolean, and ES6&apos;s symbol.</div><div class="line"></div><div class="line">Compound values -- objects (including arrays, and all boxed object wrappers -- see Chapter 3) and functions -- always create a copy of the reference on assignment or passing.</div></pre></td></tr></table></figure>
+<p>经典例子如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">	x.push( 4 );</div><div class="line">	x; // [1,2,3,4]</div><div class="line"></div><div class="line">	// later</div><div class="line">	x = [4,5,6];</div><div class="line">	x.push( 7 );</div><div class="line">	x; // [4,5,6,7]</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">foo( a );</div><div class="line"></div><div class="line">a; // [1,2,3,4]  not  [4,5,6,7]</div></pre></td></tr></table></figure>
+<p>这里面的第二次复制 x = [4, 5, 6] 只是将x指向了一个新的数组，不能让原来的a改变指向</p>
+</li>
+<li><p>natives，比如String(),  Number(), 这些有点像其他语言的构造函数，  为什么要这些natives，因为基本类型没有属性方法，比如一个string，没有.length属性，没有toUpperCase()方法， number没有.toFixed()方法， JS默认会自动会基本类型加上包装</p>
+<p>比如你顶一个string，是可以直接调用toUpperCase()方法</p>
+</li>
+<li><p>Date()和Error()是两个比较有用的natives，因为没有对应的基本类型，获取当前时间戳的两种方式</p>
+<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(new Date()).getTime()</div><div class="line">Date.now()</div><div class="line">​</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>​  经常看到console.log打印对象会打出诸如”[object Object]”这样的东西，这是因为如果没有实现对象的toString()方法，默认打出的是[[class]]属性</p>
+</li>
+<li><p>JSON.stringify()会自动忽略掉 undefined, null 和 symbol，如果这些值是在数组中，会用null来代替，如果是在一个对象中，则这个属性会被排除掉</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line"></div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JSON.stringify是有两个可选参数的，一个叫replacer，可以是数组或是函数，用来指定对象中哪些需要保留在最终的json字符串中，哪些需要剔除，而第三个参数是为了美观用的，指明每一行的分隔符</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line"></div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
+<p>var a = {</p>
+<pre><code>b: 42,
+c: &quot;42&quot;,
+d: [1,2,3]
+</code></pre><p>};</p>
+<p>JSON.stringify( a, null, 3 );<br>// “{<br>//    “b”: 42,<br>//    “c”: “42”,<br>//    “d”: [<br>//       1,<br>//       2,<br>//       3<br>//    ]<br>// }”</p>
+<p>JSON.stringify( a, null, “—–” );<br>// “{<br>// —–”b”: 42,<br>// —–”c”: “42”,<br>// —–”d”: [<br>// ———-1,<br>// ———-2,<br>// ———-3<br>// —–]<br>// }”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20. falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21. 显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
+<p>var a = 42;<br>var b = String( a );</p>
+<p>var c = “3.14”;<br>var d = Number( c );</p>
+<p>b; // “42”<br>d; // 3.14</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22. 单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
+<p>var d = new Date();</p>
+<p>+d; // 1408369986000</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23. ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
+<p>~42;    // -(42+1) ==&gt; -43</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对于 -1 ， ~-1 是返回0，其余都是非0， 这个特性可以用在indexOf的返回值上</div></pre></td></tr></table></figure>
+<p>var a = “Hello World”;</p>
+<p>~a.indexOf( “lo” );            // -4   &lt;– truthy!</p>
+<p>if (~a.indexOf( “lo” )) {    // true<br> // found it!<br>}</p>
+<p>~a.indexOf( “ol” );            // 0    &lt;– falsy!<br>!~a.indexOf( “ol” );        // true</p>
+<p>if (!~a.indexOf( “ol” )) {    // true<br> // not found!<br>}<br>```</p>
+<p>~~有点像floor取整，但他们不一样！ </p>
+<p>~~的原理是先转换成一个Int32，然后取反，第二个~再取反，所以小数部分会被结掉，但这个有试用范围，首先只适用于32位的整数，其次只适用于正数</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/31/utility/使用rsync指定非默认ssh端口/" itemprop="url">
+                  使用rsync指定非默认ssh端口
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T14:29:50+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>rsync -avz -e “ssh -p 11111”  src  dst</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/23/javascript/Ajax里用window.open被拦截问题/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-23T11:22:49+08:00" content="2017-08-23">
+              2017-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>浏览器安全机制中，页面弹窗，必须是在用户触发的，才算合法弹窗；由ajax或定时执行的弹窗均为非用户触发。会被浏览器或相关安全软件理解为广告被拦截掉；</p>
+<p>因此window.open需要写在ajax之前</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/22/typescript/typescript d.ts管理/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-22T10:06:54+08:00" content="2017-08-22">
+              2017-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>After installing any npm package as a dependency or dev dependency, immediately try to install the <code>.d.ts</code> file via <code>@types</code>.</li>
+<li>If the library has a <code>.d.ts</code> file on DefinitelyTyped, the install will succeed and you are done. If the install fails because the package doesn’t exist, continue to step 3.</li>
+<li>Make sure you project is <a href="https://github.com/Microsoft/TypeScript-Node-Starter#setting-up-typescript-to-look-for-dts-files-in-another-folder" target="_blank" rel="external">configured for supplying your own <code>d.ts</code> files</a></li>
+<li>Try to <a href="https://github.com/Microsoft/TypeScript-Node-Starter#using-dts-gen" target="_blank" rel="external">generate a <code>.d.ts</code> file with dts-gen</a>. If it succeeds, you are done. If not, continue to step 5.</li>
+<li>Create a file called <code>.d.ts</code> in your <code>types</code> folder.</li>
+<li>Add the following code:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">declare module &quot;&lt;some-library&gt;&quot;;</div></pre></td></tr></table></figure>
+<ol>
+<li>At this point everything should compile with no errors and you can either improve the types in the <code>.d.ts</code> file by following this <a href="http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html" target="_blank" rel="external">guide on authoring <code>.d.ts</code> files</a> or continue with no types.</li>
+<li>If you are still having issues, let me know by sending me an email or pinging me on twitter, I will help you.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/16/typescript/typescript recap/" itemprop="url">
+                  typescript recap
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T21:51:56+08:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><a href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点" class="headerlink" title="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"></a>Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</h4><h4 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型:"></a>1.基础类型:</h4><ol>
+<li><p>增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如果用枚举值可以更方便地管理； API的返回值很多可以用枚举值了</p>
+<p>另外需要注意的是对于枚举值是数值的枚举类型，是可以从值来返回枚举名字本身的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red = 1, Green, Blue&#125;</div><div class="line">let colorName: string = Color[2];</div><div class="line"></div><div class="line">alert(colorName);</div></pre></td></tr></table></figure>
+</li>
+<li><p>类型断言：当我们比编译器知道更多关于一个变量的类型的时候可以用类型断言，有点像其他语言里的强制类型转换，但它实际上不会对数据做任何操作，仅供编译器用，有两种写法，一种是&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (&lt;string&gt;someValue).length;</div></pre></td></tr></table></figure>
+<p>另一种是as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-声明"><a href="#2-声明" class="headerlink" title="2.声明"></a>2.声明</h4><ol>
+<li><p>var是函数作用域， let是块级作用域，还是再看下这个经典的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    // capture the current state of &apos;i&apos;</div><div class="line">    // by invoking a function with its current value</div><div class="line">    (function(i) &#123;</div><div class="line">        setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里是用了变量捕获，即 each time a scope is run, it creates an “environment” of variables. That environment and its captured variables can exist even after everything within its scope has finished executing</p>
+<p>而在循环中声明的let就是类似的作用， 每次循环都会创建一个新的scope，然后会捕获那个i</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h4><ol>
+<li><p>对象的readonly属性，即这个属性只在对象初始化时改变，之后就不能再被修改了，就像使用const一样尽可能使用readonly</p>
+</li>
+<li><p>ReadonlyArray<t>, 不可变数组</t></p>
+</li>
+<li><p>对象字面量在赋值给其他变量或函数参数时会被加强检查的，说的是如果对象字面量里有任何属性目标对象里没有时就会报错，这里的函数参数是用对象字面量，但color拼错了，在js这没有问题，但ts这里会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createSquare(config: SquareConfig): &#123; color: string; area: number &#125; &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySquare = createSquare(&#123; colour: &quot;red&quot;, width: 100 &#125;);</div></pre></td></tr></table></figure>
+<p>解决办法有几个，1个是强制转换，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let mySquare = createSquare(&#123; width: 100, opacity: 0.5 &#125; as SquareConfig);</div></pre></td></tr></table></figure>
+<p>或者可以在声明文件里加索引签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">    [propName: string]: any;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者先赋值给一个变量，再传参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let squareOptions = &#123; colour: &quot;red&quot;, width: 100 &#125;;</div><div class="line">let mySquare = createSquare(squareOptions);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可索引类型</p>
+<h4 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h4></li>
+<li><p>TS对函数做了增强，表现在TS中的函数每一个参数都是必须要传的，除非显示指定为可选参数或者默认参数，这和JS有很大不同，JS中所有参数参数都是可选的，如果你不传，表示你传的是undefined</p>
+</li>
+<li><p>默认参数是ES6就有的</p>
+</li>
+<li><p>剩余参数也是ES6有的，即多余的函数参数不在放到arguments里，而是用…一个剩余参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildName(firstName: string, ...restOfName: string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let employeeName = buildName(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数显示绑定this,  Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked</p>
+</li>
+<li><p>TS支持函数重载：对同一个函数作多个声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4><ol>
+<li>坦率说我现在也不知道怎么来定义什么是泛型，我的理解是泛型是一种通用的写法，可以是一个函数，可以是一个类型，不用把变量和属性的参数类型固定死而同时又能加上类型限制的方式，可以通过&lt;&gt;这种形式来捕获输入的变量类型，然后可以通过这个类型来限制其他的类型，比如输出的类型，输入的其他变量类型，最简单的是官方的echo函数的例子，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: number): number &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    如果这样写的话参数只能是数值类型，但我如果要一个字符串类型的echo函数呢？又或者数组呢？不可能每个都写一遍吧，一个方法是写成any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: any): any &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    但any有个问题，输入和输出的关系丢失了，我输入是个number，输出也可以是个string，所以这时候泛型就可以派上用长了，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这样写的话T可以捕获输入的类型，同时限制了输出的类型，这是一个最简单的例子</p>
+<ol>
+<li><p>泛型限制</p>
+<p>如果我们想限制T的范围呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function loggingIdentity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Error: T doesn&apos;t have .length</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面我想调T的length，但是不是所有T都有length这个属性，因此可以对T做下限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">interface Lengthwise &#123;</div><div class="line">    length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Now we know it has a .length property, so no more error</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面这个例子也是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K) &#123;</div><div class="line">    return obj[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="6-类型推断"><a href="#6-类型推断" class="headerlink" title="6. 类型推断"></a>6. 类型推断</h4><ol>
+<li><p>类型推断发生在什么时候？变量初始化时，设置参数默认值时，决定函数返回值时，上下文类型，前三个比较好理解，这里要重点学习下上下类型推导，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.onmousedown = function(mouseEvent) &#123;</div><div class="line">    console.log(mouseEvent.buton);  //&lt;- Error</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里如果这个onmousedown之前定义过，那么mouseEvent的类型就能被推导出来</p>
+<h4 id="7-高级类型"><a href="#7-高级类型" class="headerlink" title="7. 高级类型"></a>7. 高级类型</h4></li>
+<li><p>交叉类型  &amp;：  多种类型的加和</p>
+</li>
+<li><p>联合类型 ！：  多种类型中的一种</p>
+</li>
+<li><p>自定义类型保护：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isFish(pet: Fish | Bird): pet is Fish &#123;</div><div class="line">    return (&lt;Fish&gt;pet).swim !== undefined;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>typeof 类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function padLeft(value: string, padding: string | number) &#123;</div><div class="line">    if (typeof padding === &quot;number&quot;) &#123;</div><div class="line">        return Array(padding + 1).join(&quot; &quot;) + value;</div><div class="line">    &#125;</div><div class="line">    if (typeof padding === &quot;string&quot;) &#123;</div><div class="line">        return padding + value;</div><div class="line">    &#125;</div><div class="line">    throw new Error(`Expected string or number, got &apos;$&#123;padding&#125;&apos;.`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="8-模块"><a href="#8-模块" class="headerlink" title="8. 模块"></a>8. 模块</h4><p>模块在其自身的作用域里执行，而不是在全局作用域里，这意味着定义在一个模块里的变量，函数，类等等在模块外部是不可见的，除非你明确地使用export导出它们</p>
+<p>1、 具有副作用的导入模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &quot;./my-module.js&quot;;</div></pre></td></tr></table></figure>
+<p>在导入CSS文件里可以看到这种写法，这会导入整个模块，并且是全局的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/12/javascript/javascript对象的扩展运算符/" itemprop="url">
+                  javascript对象的扩展运算符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-12T12:57:53+08:00" content="2017-08-12">
+              2017-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>扩展运算符（<code>...</code>）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let z = &#123; a: 3, b: 4 &#125;;</div><div class="line">let n = &#123; ...z &#125;;</div><div class="line">n // &#123; a: 3, b: 4 &#125;</div></pre></td></tr></table></figure>
+<p>这等同于使用<code>Object.assign</code>方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let aClone = &#123; ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aClone = Object.assign(&#123;&#125;, a);</div></pre></td></tr></table></figure>
+<p>但是要注意的是…只是一个浅拷贝，上面的对象z有两个属性a和b，如果a和b都是个对象，那做一个剩余操作符，只是改了最外面一个对象名，其他值还是原来的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/12/javascript/javascript filter问题/" itemprop="url">
                   未命名
                 </a>
@@ -476,963 +1599,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
-                  typescript的字面量类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
-              2017-08-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescipt/" itemprop="url" rel="index">
-                    <span itemprop="name">typescipt</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
-<p>这时候如果你把foo赋值成“World”就会报错，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
-<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
-<p>先定义type 的枚举类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>接着定义acton类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>最后创建联合类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
-<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/04/design/Material UI TextField的类型问题/" itemprop="url">
-                  Material UI TextField的类型问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-04T16:06:21+08:00" content="2017-08-04">
-              2017-08-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用material的textfiled组件时，为了表示是个数字输入，我将type设为number，但改变这个值的时候发现这个值的类型仍然是string，导致在于数字比较的时候总是不相等， 这里需要注意下</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/31/react/material ui的select问题/" itemprop="url">
-                  material ui的select问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T14:38:49+08:00" content="2017-07-31">
-              2017-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个material ui的selecfield的选中问题， 具体现象为一开始选中了一个menu item，但是当重新获取所有的数据时，选中的那个menu item消失了。</p>
-<p>最后排查原因发现： selectedField的value选的是一个对象， 当重新获取新的数组的时候，之前的那个对象不在这个新数组之中了</p>
-<p>另外如果存了换一个数组之后，没必要再存一个选中的对象，只需要存一下那个索引即可，否则不仅重复存了，还容易引起更多的bug</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
-                  react声明周期函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-21T08:40:49+08:00" content="2017-07-21">
-              2017-07-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>render():    render函数是组件的必需函数，并且需要为纯函数</li>
-<li>constructor(): 在构造器里需要先调用super(props)，否则构造器里的this.props将为空，如果不需要初始化state状态，也不需要bind， 那可以不用构造器</li>
-<li>如果componet里使用了state，而state又想是通过props来作初始化，这里可能就会有潜在的bug，因为如果只在constructor里做初始化，props变了之后并不能改变state，那样还需要自己去实现<a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps(nextProps)</code></a> 这个函数，不如lifting state up</li>
-<li>componentWillMount() 这个函数是在render函数之前执行，在这里同步地执行setState时不会导致重新渲染的，不要在这里还引入side-effects</li>
-<li>componentDidMount() 在这里发起ajax，并且在这个函数去setState()会发生重新渲染</li>
-<li>componentWillReceiveProps(nextProps)：当收到新的props就会调用这个函数，react本身也会调用这个函数，即使props没有变化，因此在这个函数里一定要写个if判断props是否变化了。在初始挂载的时候不会调用这个函数，调用setState()是不会触发这个函数的</li>
-<li>shouldComponentUpdate(nextProps, nextState)： 现在的话如果这个函数return false， componentWillMount， render和componetDidMount都不会被调用了</li>
-<li>componentWillUpdate(nextProps, nextState) ：这也是个在渲染之前做准备工作的函数，它和componentWillReceiveProps很想，但是在这个函数里不能调用setState， 初始挂载也不会调用这个函数</li>
-<li>componentDidUpdate(prevProps, prevState)：这里也是好地方做ajax，并且可以比较props和state，并且这个函数在初挂载时也不会被调用</li>
-<li>setState():由于setState()可能会被延迟执行，因此在setState()之后立马通过this.state去读取可能会有问题</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
-                  redux实践的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-20T16:58:35+08:00" content="2017-07-20">
-              2017-07-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>UI的状态，比如一个dialog是否open的状态是否也还要放到redux store里去？</p>
-<p>如果这个状态只有那么一个组件用，没必要放到store里去，如果某个数据是要跨全局使用的，那放到store里</p>
-<p>看一下redux作者的回答</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Use React for ephemeral state that doesn&apos;t matter to the app globally and doesn&apos;t mutate in complex ways. For example, a toggle in some UI element, a form input state. Use Redux for state that matters globally or is mutated in complex ways. For example, cached users, or a post draft.</div><div class="line"></div><div class="line">Sometimes you&apos;ll want to move from Redux state to React state (when storing something in Redux gets awkward) or the other way around (when more components need to have access to some state that used to be local).</div><div class="line"></div><div class="line">The rule of thumb is: do whatever is less awkward.</div></pre></td></tr></table></figure>
-</li>
-<li><p>一些ajax调用但不太会影响state的状态，比如实际遇到的一个恢复的api，返回值只有成功或失败，这个需要写action吗？</p>
-<p>redux的建议是把任何有副作用的函数都放到action creator里去，因为这样可以做到重用。但如果这个api调用只有可能在那个组件里使用呢？</p>
-<p>放在component的问题是，错误信息变成local的state了，store里看不到错误信息</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/18/javascript/javascript函数/" itemprop="url">
-                  javascript函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-18T08:02:42+08:00" content="2017-07-18">
-              2017-07-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>关于javascript最重要的一点我觉得需要记住的是： javascript函数是一个对象，函数名是指向这个对象的指针</li>
-<li>既然函数名是指针，那就能理解为什么javascript函数没有重载了(重载只不过是改变了指针的指向)</li>
-<li>函数声明（function开头) 与函数表达式的区别仅在于函数声明有个叫函数声明提升的过程，因此即使函数是写在最底部，解释器在执行的时候也是会将它提到前面来解析</li>
-<li>函数内部有两个特殊对象arguments和this， 其中arguments是一个类数组对象，包含着传入的所有参数，这个数组对象有一个叫callee的属性，指向函数本身。 this对象则是引用函数据以执行的环境对象。javascript的this和java是有很大区别的，在于说js的this只有在运行时才能确定，而java的this在开发时就能定下来</li>
-<li>函数对象还有一个caller的属性，指向调用当前函数，严格模式下访问caller和arguments.callee都会报错</li>
-<li>函数还有两个属性 length和prototype，前者表示函数希望接收的命名参数的数量，prototype专门再研究</li>
-<li>函数对象还有两个非继承而来的方法，apply()和call(), 这两个方法都是在特定的作用域中<strong>调用函数</strong>，实际上等于设置函数体内this的值， 他们都接收两个参数，区别在于接收函数的参数方式不同，call必须每一个都列出来，而apply则是可以通过数组或arguments参数传进去，call和applay的意义在于解耦了对象和方法，对象和方法不需要有耦合关系，这点也是js相对于java一个很重要的区别</li>
-<li>函数的bind方法，这个方法和apply和call容易混淆，他们都是改变了对象的this值，所不同的是bind方法是返回一个新函数，而不是立即调用，返回的这个新函数的this值被修改了</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
-                  vscode不好用排查记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-13T11:22:09+08:00" content="2017-07-13">
-              2017-07-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工具的好坏真的很影响效率，这几天一直被vscode搞得很烦，而现在又已经感觉离不开vscode了，特别是在写ts的情况下。简单说下这几天的一个问题，在写componet的props，写着写着就卡死，提示加载中，查看下active monitor发现code helper把cpu吃满了，搜了一圈看到说用下面命令排查</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ps -eo pcpu,user,pid,command | grep Code</div><div class="line">  0.0 root             19842 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper</div><div class="line">  0.0 Jeremy           58063 /Applications/Visual Studio Code.app/Contents/MacOS/Electron</div><div class="line">  0.0 Jeremy           58064 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=gpu-process --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=0,1,10,23,25,35,38,45,51,59,61,62,63,64,66,70,71,73,81,82,83,86,88,89 --gpu-vendor-id=0x8086 --gpu-device-id=0x0a2e --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --gpu-active-vendor-id=0x8086 --gpu-active-device-id=0x0a2e --service-request-channel-token=F64EF82C1B4AE380AE7BB33F7D6350D9</div><div class="line">  0.0 Jeremy           58066 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=E0605B7E030E5A8FA29ECC035BA659D5 --lang=zh-CN --node-integration=true --background-color=#1e1e1e --disable-blink-features=Auxclick --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=E0605B7E030E5A8FA29ECC035BA659D5 --renderer-client-id=4</div><div class="line">  0.0 Jeremy           58068 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=517025C0E30485EB8424196A08BA8C56 --lang=zh-CN --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=517025C0E30485EB8424196A08BA8C56 --renderer-client-id=6</div><div class="line">  0.0 Jeremy           58296 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=terminal</div><div class="line">100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=extensionHost</div><div class="line">  0.0 Jeremy           58298 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=watcherService</div><div class="line">  0.0 Jeremy           58300 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Resources/crashpad_handler --database=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --metrics-dir=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --url=https://rink.hockeyapp.net/api/2/apps/21a48a66799e47fea4f52c0ff81e803d/crashes/upload --handshake-fd=58</div><div class="line">  0.0 Jeremy           58533 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/node_modules/vscode-languageclient/lib/utils/electronForkStart /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/server/server.js --node-ipc</div><div class="line">  0.0 Jeremy           58534 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript/out/utils/electronForkStart /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/tsserver.js --useSingleInferredProject --enableTelemetry --cancellationPipeName /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tscancellation-b7c49ca6478648eabc66.sock* --logVerbosity verbose --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/tsserver.log</div><div class="line">  0.0 Jeremy           58536 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=searchService</div><div class="line">  0.0 Jeremy           58553 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /Users/Jeremy/Library/Caches/typescript/2.4 --enableTelemetry --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/ti-58534.log</div><div class="line">  0.0 Jeremy           58567 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/node_modules/vscode-languageclient/lib/utils/electronForkStart /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/server/out/jsonServerMain.js --node-ipc</div><div class="line">  0.0 Jeremy           58853 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn Code</div></pre></td></tr></table></figure>
-<p>可以看到</p>
-<p>100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap –type=extensionHost</p>
-<p>是这个extensionHost把code helper吃满的， </p>
-<p>extension表示是插件影响的，但至于是哪个插件还不知道，只能一个一个排查，最后发现时auto rename这个插件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/11/react/react ref/" itemprop="url">
-                  react ref
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-11T12:04:55+08:00" content="2017-07-11">
-              2017-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>react中ref本身是一个函数，它可以用在Component，也可以用在html元素之上，如果用在html元素之上，这个函数接收一个参数，参数代表下面的html元素的值，如果用在组件之上，那这个ref的参数代表的是下面的那个组件</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1478,7 +1644,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">201</span>
+              <span class="site-state-item-count">209</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1486,7 +1652,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1495,7 +1661,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">141</span>
+                <span class="site-state-item-count">144</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

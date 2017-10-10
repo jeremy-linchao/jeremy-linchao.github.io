@@ -243,6 +243,1012 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/05/html&css/html&css/" itemprop="url">
+                  css
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-05T13:02:27+08:00" content="2017-02-05">
+              2017-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/html-css/" itemprop="url" rel="index">
+                    <span itemprop="name">html/css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>css也可以注释，使用/<em>    </em>/</p>
+</li>
+<li><p>color代表前景色，background-color代表背景色</p>
+</li>
+<li><p>css中对同一个选择器的多个声明，最后一个生效，这个特点可以用来作浏览器兼容，比如在color上，第一行写一个所有浏览器都兼容的color表示法，下面一行写一个较新的表示法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  color: rgb(22, 34, 88);</div><div class="line">  color: rgba(22, 34, 88, 0.4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个html元素可以加上多个css类，但最好限制在4个最多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 class=&quot;book domestic&quot;&gt;The Way of the Deep&lt;/h1&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>盒模型的width和height</p>
+<p> 1) 用像素表示： 表示盒子的精确大小</p>
+<p>2）ems: 相对于盒子里面文字的倍数</p>
+<p>3）百分数：相对于父盒子的比例</p>
+</li>
+<li><p>当margin:auto被用来做居中时，必须同时加上width这个属性用来标明该元素的宽度，否则这个div的宽度就被设置成它父元素的宽度了，也就没有居中的说法了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#banner-content &#123;</div><div class="line">  border: 1px solid rgb(255,0,0);</div><div class="line">  position: relative;</div><div class="line">  top: 20%;</div><div class="line">  width: 60%;</div><div class="line">  padding:30px 10px;</div><div class="line">  margin:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>display属性有如下几个： inline,block,incline-block,none</p>
+</li>
+<li><p>默认盒模型有一个缺点，就是padding和border会增加width，因此无法计算每个元素的实际大小</p>
+</li>
+<li><p>盒模型使用box-sizing这个属性指定的，默认值为content-box，这个模型的width并不是实际渲染的大小，实际元素为加上boder的宽度以及pading，为了解决这个问题可以把box-sizing改为border-box，在这个模型下，width就是实际渲染出来的大小，padding和border会被相应地减掉</p>
+</li>
+<li><p>position用来指定元素的位置，有如下四个取值</p>
+<p>1）static： 默认值</p>
+<p>2）relative：这个将元素设定为相对，因此还需要指定top,left,bottom和right属性，表示相对于四周的像素值</p>
+<p>3）absolute: 这个元素表示该元素就被固定在那边，其他元素会将他视而不见</p>
+<p>4)   fixed: 会固定住这个元素，即使在有滚动条的情况下</p>
+</li>
+<li><p>当一个元素是float时，在同一个父元素下的其他元素会靠着它流动起来，同时float的元素必须指定宽度</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/23/utility/moment计算时间差/" itemprop="url">
+                  moment计算时间差
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-23T17:18:27+08:00" content="2017-01-23">
+              2017-01-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有个简单需求计算现在到将来某个固定时间的时间差，搜了下有moment.js这个很强大的库，但在使用的时候需要注意，当用数组形式构建日期是，月份数为所写数加1，原因在于moment也是从0开始计月份数的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/22/react/React Native和ss的全局模式冲突/" itemprop="url">
+                  React Native和ss的全局模式冲突
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T17:08:34+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>react和ss的全局模式冲突，先记录下来</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/22/utility/关于CLion 调试时报Configuration is not specified/" itemprop="url">
+                  关于CLion 调试时报Configuration is not specified
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T15:54:08+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一般是没有cmake配置，导入项目时选择import而不是open，这样会生成cmake配置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/22/alogrithm/排序并保留原数组索引/" itemprop="url">
+                  排序并保留原数组索引
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T14:40:32+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>排序算法不考虑，主要是需要保留原数组索引，这个需求应该还是会很常见</p>
+<p>看到别人的一个思路，构造一个结构体，这个结构体包含原来数组的每个数据以及相应的索引号，通过系统自带排序函数，需要制定下具体排序的函数（通过比较结构体的数据）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/17/react/react学习/" itemprop="url">
+                  react学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-17T09:14:29+08:00" content="2017-01-17">
+              2017-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>正如研究任何一种框架一样，研究react也要搞清楚作者开发他的动机，其实说白了就是前段组件化，这样的好处是可以复用很多代码，不仅仅是自己写的组件，别人的组件也可以，这是不是很酷呢？</p>
+<p>既然是组件，那组件势必要把view显示和逻辑封装在一起，这个就和很多之前的前端MVC开发方式有很多不同，是需要适应的，但我觉得组件这个东西并不新颖，在UI开发的历史上早就存在</p>
+<p>既然是组件，有几个概念很重要，compenent不用多说，那如何把数据传到component中呢，比如我有一个表格需要显示数据，怎么把数据传进来呢？组件是怎么来处理css的呢，毕竟组件需要提供很多不同显示样式？这些都是需要带着的问题去看react的</p>
+<ol>
+<li><p>prop和state的区别，他们是用来干嘛的?  这里有句话：State is similar to props, but it is private and fully controlled by the component.  显然他的意思是说state是组件自有的属性，完全私有。那么它用来做什么呢？举个例子，有个时钟的组件，时钟每秒钟都得更新下，如果用props是不可以的，因为props传进来是不能改变的，而state是可变的，同时对于时钟来说，时间这个属性本来就是完全它自己的，不需要外面传数据进来。</p>
+</li>
+<li><p>react的数据是单向绑定，state只能用setState函数来修改(除了构造函数)，state的更新可能是异步的</p>
+</li>
+<li><p>react的事件命名是驼峰的，事件处理器本身是一个JSX表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Toggle extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;isToggleOn: true&#125;;</div><div class="line"></div><div class="line">    // This binding is necessary to make `this` work in the callback</div><div class="line">    this.handleClick = this.handleClick.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    this.setState(prevState =&gt; (&#123;</div><div class="line">      isToggleOn: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/" target="_blank" rel="external">https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/</a></p>
+<p>js类里的成员函数默认是不绑定的，这篇文章解释的比较清楚</p>
+</blockquote>
+</li>
+<li><p>react-router如何与ant-design的组件结合?</p>
+<p>有一个问题一直想不通，就是像ant-design的menu组件不是都有超链接了嘛，router这个link又是用来干嘛呢？这里一定要搞清楚一个问题，在menu组件里的连接可以认为就是带了<a>标签的跳转，但是跳转到哪儿去是有react-router里的各条route来决定的，他们之间并不冲突</a></p>
+</li>
+<li><p>Components must return a single root element，所以return的element必须加一个包裹</p>
+</li>
+<li><p>All React components must act like pure functions with respect to their props</p>
+</li>
+<li><p>当把函数式组件改为class组件时，有两点需要注意，1）多加了个render函数，里面定义个return函数，这其实是个闭包 2）不需要写函数参数props，反而是在函数需要用到props的时候写this.props.date</p>
+</li>
+<li><p>While <code>this.props</code> is set up by React itself and <code>this.state</code> has a special meaning, you are free to add additional fields to the class manually if you need to store something that is not used for the visual output.</p>
+<p>If you don’t use something in <code>render()</code>, it shouldn’t be in the state.</p>
+</li>
+<li><p>关于setState的三个注意点： 1）所有修改state数据只能用this.setState方法，换句话说除了在构造函数能访通过this.state=的形式来设置state，其余地方都只能用函数，<strong>但是访问是没有问题的</strong> 2）states的更新可能是异步的，React may batch multiple setState() calls into a single update for performance. 要更新的话需要用setState的第二种用法，参数传一个回调函数 3）states的更新是合并在一起的，但不同的setState不会影响各自</p>
+</li>
+<li><p>事件处理一般是类的成员函数，但是需要在构造函数里绑定this或者成员函数写成=的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>渲染多个组件可以使用map()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li&gt;&#123;number&#125;&lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Keys should be given to the elements inside the array to give the elements a stable identity:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li key=&#123;number.toString()&#125;&gt;</div><div class="line">    &#123;number&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>受控组件： 比如一个最基本的文本输入框，正常文本框的显示是html自身组件控制的，但是如果你加上了state状态，这个文本值的显示是完全受控的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>lifting state的例子还没有完全搞懂</p>
+</li>
+<li><p>composition是什么意思？这点没搞明白</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/12/utility/mac上的shadowsocks/" itemprop="url">
+                  mac上的shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T16:09:44+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>首先提一下，mac上的shadowsocks会比windows上的用起来简单一些，mac的不用配代理，原因在于mac下的chrome代理是跟着系统走的，firefox需要手动配置下代理类型，当然也可以跟系统走，但是国内的版本不行</p>
+</li>
+<li><p>全局模式和自动代理模式区别，开启全局模式下会把系统设置为socks代理，开启代理模式会把系统设置为pac代理，shadowsocks的pac代理服务器起在8090端口</p>
+</li>
+<li><p>pac和switchyproxy区别： pac是一个js文件，从shadowsocks起的8090端口的服务器获得，告诉浏览器该怎么找到代理服务器，而switchyproxy则是一个浏览器插件，运行在浏览器端</p>
+</li>
+<li><p>关于dns是否是远程解析的验证方式,开一个wireshark，设定过滤dns，结论</p>
+<ol>
+<li>chrome不管是pac还是socks5都是要remote dns 解析 </li>
+<li>safari也是远程解析</li>
+</ol>
+</li>
+<li>safari也是走的系统默认代理，理论上都能翻，但实际上facebook和twitter大多可以，google基本上不去，怀疑是浏览器问题，不过50.1.0版的firfox 真是垃圾，国际版也是，无论哪种模式都翻不出去</li>
+</ol>
+<p>   ​</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/12/alogrithm/皮萨诺周期/" itemprop="url">
+                  皮萨诺周期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T15:04:59+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="皮萨诺周期"><a href="#皮萨诺周期" class="headerlink" title="皮萨诺周期"></a>皮萨诺周期</h3><p>先解释下皮萨诺周期是什么，我们知道斐波那契数列的通项公式是  F(n) = F(n-1) + F(n-2)，其中F(0) = 0, F(1) = 1,F(n) 对于m求模得到的序列是个周期序列，但周期本身目前还没有计算公式可以得出。现在有个问题要求大斐波那契数列对于m的求余值，为题具体描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given two integers 𝑛 and 𝑚, output 𝐹𝑛 mod 𝑚 (that is, the remainder of 𝐹𝑛 when divided by 𝑚).</div><div class="line">Input Format. The input consists of two integers 𝑛 and 𝑚 given on the same line (separated by a space). Constraints. 1≤𝑛≤10 **18（10的18次方）,2≤𝑚≤10 **5. Output Format. Output 𝐹𝑛 mod 𝑚.</div></pre></td></tr></table></figure>
+<p>由于n太大，计算Fn显然不现实，一来循环的次数很多，更重要的是没有方法来存这个数值，要解决这个问题有几个关键点</p>
+<p>1）设定P(n)是F(n) % m，P(n)是个周期序列，且每个P(n)的周期都是以数字0 1开头</p>
+<p>2）(a+b)%m = (a%m + b%m)%m</p>
+<p>3)  周期的最大值为6*m</p>
+<p>有了这两点基本知识，大体思路就出来了，首先用循环去计算周期，凡是循环到0 1就认为一个周期结束，因为m的最大值只有10的5次方，所以循环最多的次数也就只需要6<em> （10 *</em> 5），这个在1s内是可以完成的，第二个就是计算余数的周期序列，这就要利用性质2了，附一份c++的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">using std::vector;</div><div class="line"></div><div class="line">long long get_fibonacci_huge_fast(long long n, long long  m) &#123;</div><div class="line">    if (n&lt;=1) return 1;</div><div class="line">    vector&lt;long long&gt; p(6 * m);</div><div class="line">    long long count = 1;</div><div class="line">    p[0] = 0;</div><div class="line">    p[1] = 1;</div><div class="line">    for (long long  i=2; i&lt;=6 * m; i++)&#123;</div><div class="line">        p[i] = (p[i-1] + p[i-2]) % m;</div><div class="line">        if(p[i-1] == 0 &amp;&amp; p[i] == 1)&#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    long long k = n % count;</div><div class="line">    return p[k];</div><div class="line">&#125;</div><div class="line">int main() &#123;</div><div class="line">    long long n, m;</div><div class="line">    std::cin &gt;&gt; n &gt;&gt; m;</div><div class="line">    std::cout &lt;&lt; get_fibonacci_huge_fast(n, m) &lt;&lt; &apos;\n&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/04/c++/c++ const/" itemprop="url">
                   c++ const
                 </a>
@@ -472,955 +1478,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/c++/c++输入输出/" itemprop="url">
-                  c++输入输出
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T13:43:32+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>c++不像c语言那样提供输入输出语句，而是使用标准库来提供IO机制，有两个运算符</p>
-<ol>
-<li><p>“&lt;&lt;” 输出运算符，左侧必须是一个osteam对象，右侧是要打印的对象，返回的结果是左侧的对象，在输出介绍时需要加上std::endl 来将缓冲区的内容刷新到设备中去</p>
-</li>
-<li><p>“&gt;&gt;” 输入运算符，左侧必须是一个isteam对象，右侧是一个变量存储对象，返回的结果是左侧的对象</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/math/一元高阶方程求数值解/" itemprop="url">
-                  一元高阶方程求数值解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T11:55:27+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/math/" itemprop="url" rel="index">
-                    <span itemprop="name">math</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天同事给我一个求增长率的问题，比如年底时候月消费额是a，老板定了个指标一季度的消费额要到b，求每月的增长率是多少，抽象成数学问题就是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a*(1+x) + a*(1+x)*(1+x) + a*(1+x)*(1+x)*(1+x) = b</div></pre></td></tr></table></figure>
-<p>搜了很多，解决方案是通过python的sympy库</p>
-<p>from sympy.solvers import solve</p>
-<p>from sympy import Symbol</p>
-<p>x = Symbol(‘x’)</p>
-<p>solve(x<strong> 3+x</strong> 2+ x -4.054, x)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/30/node/mocha遇到EADDRINUSE问题/" itemprop="url">
-                  mocha遇到EADDRINUSE问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-30T15:06:37+08:00" content="2016-12-30">
-              2016-12-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在用mocha测试API接口的时候报了这么一个错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">1)  Uncaught error outside test suite:</div><div class="line">    Uncaught Error: listen EADDRINUSE :::8080</div><div class="line">     at Object.exports._errnoException (util.js:1022:11)</div><div class="line">     at exports._exceptionWithHostPort (util.js:1045:20)</div><div class="line">     at Server._listen2 (net.js:1259:14)</div><div class="line">     at listen (net.js:1295:10)</div><div class="line">     at Server.listen (net.js:1391:5)</div><div class="line">     at EventEmitter.listen (node_modules/express/lib/application.js:617:24)</div><div class="line">     at Object.&lt;anonymous&gt; (server.js:43:5)</div><div class="line">     at require (internal/module.js:20:19)</div><div class="line">     at Object.&lt;anonymous&gt; (test/book.js:10:14)</div><div class="line">     at require (internal/module.js:20:19)</div><div class="line">     at Array.forEach (native)</div><div class="line">     at run (bootstrap_node.js:394:7)</div><div class="line">     at startup (bootstrap_node.js:149:9)</div><div class="line">     at bootstrap_node.js:509:3</div></pre></td></tr></table></figure>
-<p>仔细看这个原因是地址已经被使用了，可是我明明就起了一个3000的express，所以仔细看下测试的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//During the test the env variable is set to test</div><div class="line">process.env.NODE_ENV = &apos;test&apos;;</div><div class="line"></div><div class="line">let mongoose = require(&quot;mongoose&quot;);</div><div class="line">let Book = require(&apos;../app/models/book&apos;);</div><div class="line"></div><div class="line">//Require the dev-dependencies</div><div class="line">let chai = require(&apos;chai&apos;);</div><div class="line">let chaiHttp = require(&apos;chai-http&apos;);</div><div class="line">let server = require(&apos;../server&apos;);</div><div class="line">let should = chai.should();</div><div class="line"></div><div class="line">chai.use(chaiHttp);</div><div class="line">//Our parent block</div><div class="line">describe(&apos;Books&apos;, () =&gt; &#123;</div><div class="line">    beforeEach((done) =&gt; &#123; //Before each test we empty the database</div><div class="line">        Book.remove(&#123;&#125;, (err) =&gt; &#123;</div><div class="line">            done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    /*</div><div class="line">     * Test the /GET route</div><div class="line">     */</div><div class="line">    describe(&apos;/GET book&apos;, () =&gt; &#123;</div><div class="line">        it(&apos;it should GET all the books&apos;, (done) =&gt; &#123;</div><div class="line">            chai.request(server)</div><div class="line">                .get(&apos;/book&apos;)</div><div class="line">                .end((err, res) =&gt; &#123;</div><div class="line">                    res.should.have.status(200);</div><div class="line">                    res.body.should.be.a(&apos;array&apos;);</div><div class="line">                    res.body.length.should.be.eql(0);</div><div class="line">                    done();</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这里面有个chai.request(server)，实际上会新起一个server，这就导致了会监听在重复的端口</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/29/node/nodemon和morgan/" itemprop="url">
-                  nodemon和morgan
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-29T17:44:52+08:00" content="2016-12-29">
-              2016-12-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.nodemon可以用来管理和重启node的进程，如果要重启只需要随时输入个rs命令即可，</p>
-<p>2.morgan可以将http的请求打到控制台，节省了自己写console.log的工作，当然如果是生产环境还是会用log4js专门记录到日志文件中去</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/29/es6/Generator(2)/" itemprop="url">
-                  Generator
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-29T11:19:12+08:00" content="2016-12-29">
-              2016-12-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>定义:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* idMaker()&#123;</div><div class="line">  var index = 0;</div><div class="line">  while(index&lt;3)</div><div class="line">    yield index++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>调用：    var gen = idMaker();    调用一个<strong>生成器函数</strong>并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。</p>
-</li>
-<li><p>使用：该表达式定义了迭代器返回的值，或者，被 yield委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(gen.next().value); // 0</div><div class="line">console.log(gen.next().value); // 1</div><div class="line">console.log(gen.next().value); // 2</div><div class="line">console.log(gen.next().value); // undefined</div></pre></td></tr></table></figure>
-<p>next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值；done属性是一个布尔值，表示Generator函数是否执行完毕，即是否还有下一个阶段</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/es6/Promise/" itemprop="url">
-                  Promise
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T17:29:26+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Creating Promises with the constructor;</li>
-<li>Handling success with resolve;</li>
-<li>Handling errors with reject; and</li>
-<li>Setting up control flow with then and catch</li>
-</ol>
-<p><a href="https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics" target="_blank" rel="external">https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/node/pm2学习/" itemprop="url">
-                  pm2学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T16:23:29+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>pm2启动 </li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/node/npm配置依赖/" itemprop="url">
-                  npm配置依赖
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T11:50:07+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><strong>指定版本</strong>：比如<code>1.2.2</code>，遵循“大版本.次要版本.小版本”的格式规定，安装时只安装指定版本。</li>
-<li><strong>波浪号（tilde）+指定版本</strong>：比如<code>~1.2.2</code>，表示安装1.2.x的最新版本（不低于1.2.2），但是不安装1.3.x，也就是说安装时不改变大版本号和次要版本号。</li>
-<li><strong>插入号（caret）+指定版本</strong>：比如ˆ1.2.2，表示安装1.x.x的最新版本（不低于1.2.2），但是不安装2.x.x，也就是说安装时不改变大版本号。需要注意的是，如果大版本号为0，则插入号的行为与波浪号相同，这是因为此时处于开发阶段，即使是次要版本号变动，也可能带来程序的不兼容。</li>
-<li><strong>latest</strong>：安装最新版本。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1466,7 +1523,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">201</span>
+              <span class="site-state-item-count">209</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1474,7 +1531,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1483,7 +1540,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">141</span>
+                <span class="site-state-item-count">144</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

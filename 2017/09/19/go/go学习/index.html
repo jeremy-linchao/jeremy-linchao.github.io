@@ -91,7 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/19/go/go学习/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码  go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件  GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，">
-<meta property="og:updated_time" content="2017-09-19T10:13:42.000Z">
+<meta property="og:updated_time" content="2017-09-20T06:58:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go学习">
 <meta name="twitter:description" content="go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码  go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件  GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，">
@@ -367,8 +367,27 @@
 <li><p>map,  使用make来生成map</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>​</p>
+<li><p>len() 和 cap():</p>
+<p>The length of a slice is the number of elements it contains.</p>
+<p>The capacity of a slice is the number of elements in the underlying array, <strong>counting from the first element in the slice</strong>.  </p>
+<ol>
+<li>cap的话只要slice不移动数组的头，那这个slice的cap是不会变的</li>
+<li>slice里再取slice，如果第二个slice的范围小，则是在前一个slice里取，如果第二个slice的返回大，则是相当于 re-slicing了，根据是底层的数组以及这个slice的capcity</li>
+</ol>
+<p>下面这个例子能说出来这个也就理解了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	s := []int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Slice the slice to give it zero length.</div><div class="line">	//s = s[:0]</div><div class="line">	//printSlice(s)</div><div class="line"></div><div class="line">	// Extend its length.</div><div class="line">	s = s[:4]</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Drop its first two values.</div><div class="line">	s = s[2:]</div><div class="line">	printSlice(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func printSlice(s []int) &#123;</div><div class="line">	fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>answer：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">len=6 cap=6 [2 3 5 7 11 13]</div><div class="line">len=4 cap=6 [2 3 5 7]</div><div class="line">len=2 cap=4 [5 7]</div></pre></td></tr></table></figure>
 </li>
+<li><p>map类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>method： 一个特殊的函数，带有一个receiver参数，这个receiver表示的是这个函数是用在哪个类型上，如果是指针类型的recevier，可以修改receiver的值</p>
+</li>
+<li><p>接口： 我觉得有点像JS里的this的绑定，就是说一个方法不是现实声明在某个对象下面，我可以先声明这个方法的接口，然后通过methods里面的receive的不同类型来做实现，谁想实现就谁去实现这个方法</p>
+</li>
+<li><p>类型断言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	var i interface&#123;&#125; = &quot;hello&quot;</div><div class="line"></div><div class="line">	s := i.(string)</div><div class="line">	fmt.Println(s)</div><div class="line"></div><div class="line">	s, ok := i.(string)</div><div class="line">	fmt.Println(s, ok)</div><div class="line"></div><div class="line">	f, ok := i.(float64)</div><div class="line">	fmt.Println(f, ok)</div><div class="line"></div><div class="line">	f = i.(float64) // panic</div><div class="line">	fmt.Println(f)</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -407,6 +426,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/20/go/effective go/" rel="prev" title="effective go">
+                effective go <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -474,7 +497,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">201</span>
+              <span class="site-state-item-count">209</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -482,7 +505,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -491,7 +514,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">141</span>
+                <span class="site-state-item-count">144</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

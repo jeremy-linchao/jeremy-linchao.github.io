@@ -243,6 +243,1042 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/04/utility/mac下nginx问题汇总/" itemprop="url">
+                  mac下nginx问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-04T13:40:47+08:00" content="2017-03-04">
+              2017-03-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start nginx</div></pre></td></tr></table></figure>
+<p>这条命令的作用是在开机启动时启动nginx，而并非nginx本身的开关</p>
+</li>
+<li><p>启动   nginx; 关闭 nginx -s stop;  重启 nginx -s reload;</p>
+</li>
+<li><p>403错误可能是nginx的父目录没有执行权限（没有遇到）</p>
+</li>
+<li><p>mac上使用brew 卸载nginx并不会删除/usr/local/etc/nginx下的配置文件，需要手动删除下，403错误重新卸载生效</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/28/es6/你不知道的promise/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T17:48:21+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">doSomething().then(function () &#123;</div><div class="line">  return doSomethingElse();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">doSomething().then(function () &#123;</div><div class="line">  doSomethingElse();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这两个函数有什么区别</p>
+</li>
+<li><p>这是个陷阱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// I want to remove() all docs</div><div class="line">db.allDocs(&#123;include_docs: true&#125;).then(function (result) &#123;</div><div class="line">  result.rows.forEach(function (row) &#123;</div><div class="line">    db.remove(row.doc);  </div><div class="line">  &#125;);</div><div class="line">&#125;).then(function () &#123;</div><div class="line">  // I naively believe all docs have been removed() now!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>promise是什么？<br>A Promise represents a value which may be available now, or in the future, or never</p>
+<p>Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的</p>
+</li>
+<li><p>Promise有以下几种状态:</p>
+<p>​    pending: 初始状态, 既不是 fulfilled 也不是 rejected.</p>
+<p>​    fulfilled: 表示异步代码成功执行（没有错误抛出），且返回值已填充（fulfilled）</p>
+<p>​    rejected: <strong>表示executor执行失败</strong>，Promise被拒绝</p>
+</li>
+<li><p>对于三方库如果是promise-based，即返回的是一个promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">promise.then(function(result) &#123;</div><div class="line">  console.log(result); // &quot;Stuff worked!&quot;</div><div class="line">&#125;, function(err) &#123;</div><div class="line">  console.log(err); // Error: &quot;It broke&quot;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>.then()   添加肯定和否定回调到当前 promise, 返回一个新的 promise, <strong>将以回调的返回值 来resolve</strong></p>
+</li>
+<li><p>如果函数里面不返回，一下的userAccount将会是undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">getUserByName(&apos;nolan&apos;).then(function (user) &#123;</div><div class="line">  return getUserAccountById(user.id);</div><div class="line">&#125;).then(function (userAccount) &#123;</div><div class="line">  // I got a user account!</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>建议: 在then函数里面显示指定返回值</p>
+</li>
+<li><p>promise可以catch回调里面的err，这个需要实践下</p>
+</li>
+<li><p>.catch(rejectHandler)和.then(resolveHandler, rejectHandler) 这两个有什么区别呢？看下面一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;).catch(function (err) &#123;</div><div class="line">  // I caught your error! :)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">somePromise().then(function () &#123;</div><div class="line">  throw new Error(&apos;oh noes&apos;);</div><div class="line">&#125;, function (err) &#123;</div><div class="line">  // I didn&apos;t catch your error! :(</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>最开始使用promise是这样的 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fetch(reqPostUrl,&#123;</div><div class="line">	method: &apos;POST&apos;,</div><div class="line">    headers: &#123;</div><div class="line">        &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">    &#125;,</div><div class="line">    body: submitFormUrled</div><div class="line">&#125;.then((response)=&gt;&#123;</div><div class="line">  	if(response.status===201)&#123;</div><div class="line">      fetch(reqGetUrl,&#123;</div><div class="line">        method: &apos;GET&apos;</div><div class="line">      &#125;).then((response)=&gt;&#123;</div><div class="line">      	if(response.status===200)&#123;</div><div class="line">          response.json().then((data)=&gt;&#123;</div><div class="line">            doSomethingWith(data);</div><div class="line">          &#125;)</div><div class="line">      	&#125; </div><div class="line">      &#125;);</div><div class="line">  	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">fetch(reqUrl, &#123;</div><div class="line">                method: &apos;POST&apos;,</div><div class="line">                headers: &#123;</div><div class="line">                    &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</div><div class="line">                &#125;,</div><div class="line">                body: submitFormUrled</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 201) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125;</div><div class="line">            &#125;).catch((err)=&gt;&#123;</div><div class="line">                console.log(err);</div><div class="line">            &#125;).then((data) =&gt; &#123;</div><div class="line">                let reqUrlProjectDetail = `$&#123;url&#125;project/$&#123;data.id&#125;/`;</div><div class="line">                return fetch(reqUrlProjectDetail);</div><div class="line">            &#125;).then((response) =&gt; &#123;</div><div class="line">                if (response.status === 200) &#123;</div><div class="line">                    return response.json();</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&quot;创建项目失败，请检查客户邮箱是否正确&quot;);</div><div class="line">                &#125;</div><div class="line">            &#125;).then((obj) =&gt; &#123;</div><div class="line">                let map_serivce_provider = &#123;</div><div class="line">                    1: &apos;UCloud&apos;,</div><div class="line">                    2: &apos;三方&apos;,</div><div class="line">                    3: &apos;UCloud与三方&apos;</div><div class="line">                &#125;;</div><div class="line">                const &#123;data, total&#125; = obj;</div><div class="line">                if (total &gt; 0) &#123;</div><div class="line">                    let &#123;service_provider, third_product_name = &quot;无&quot;, engineer_name = &quot;无&quot;&#125; = data[0];</div><div class="line">                    service_provider = map_serivce_provider[service_provider];</div><div class="line">                    let newProjectData = [...that.state.projectData, &#123;</div><div class="line">                        ...data[0],</div><div class="line">                        service_provider,</div><div class="line">                        third_product_name,</div><div class="line">                        engineer_name</div><div class="line">                    &#125;];</div><div class="line">                    form.resetFields();</div><div class="line">                    that.setState(&#123;</div><div class="line">                        visible: false,</div><div class="line">                        projectData: newProjectData</div><div class="line">                    &#125;);</div><div class="line">                &#125; else &#123;</div><div class="line">                    message.info(&apos;创建项目失败&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<p>​    11. callback没有回调，没有return</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">const columns = [</div><div class="line">        &#123;title: &apos;扣费单号&apos;, dataIndex: &apos;item_no&apos;, key: &apos;item_no&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费时间&apos;, dataIndex: &apos;item_time&apos;, key: &apos;item_time&apos;&#125;,</div><div class="line">        &#123;title: &apos;扣费金额&apos;, dataIndex: &apos;item_money&apos;, key: &apos;item_money&apos;&#125;,</div><div class="line">        &#123;title: &apos;是否成功&apos;, dataIndex: &apos;item_result&apos;, key: &apos;item_result&apos;&#125;,</div><div class="line">    ];</div><div class="line">    let data = [];</div><div class="line">    let reqUrl = `$&#123;url&#125;project/$&#123;record.project_id&#125;/order/$&#123;record.id&#125;`;</div><div class="line">    console.log(`the order detail id is $&#123;reqUrl&#125;`);</div><div class="line">    fetch(reqUrl,&#123;method:&quot;GET&quot;&#125;).then((response)=&gt;&#123;</div><div class="line">        if(response.status===200)&#123;</div><div class="line">           return response.json();</div><div class="line">        &#125;</div><div class="line">    &#125;).then((d)=&gt;&#123;</div><div class="line">        console.log(&apos;order opened!&apos;);</div><div class="line">        if (d.items.length &gt; 0) &#123;</div><div class="line">            console.log(&apos;item &gt;0&apos;);</div><div class="line">            data = d.items.map((obj) =&gt; &#123;</div><div class="line">                let &#123;item_no, item_time, item_result, item_money=`$&#123;record.money&#125;`&#125; = obj;</div><div class="line">                item_time = new Date(item_time * 1000).toLocaleDateString();</div><div class="line">                item_result = item_result === 1 ? &apos;失败&apos; : &apos;成功&apos;;</div><div class="line"></div><div class="line">                return &#123;item_no, item_time, item_result, item_money&#125;;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return (</div><div class="line">        &lt;Table</div><div class="line">            columns=&#123;columns&#125;</div><div class="line">            dataSource=&#123;data&#125;</div><div class="line">            pagination=&#123;true&#125;</div><div class="line">            rowkey=&quot;item_time&quot;</div><div class="line">        /&gt;</div><div class="line">    );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/26/es6/airbnb的javascript编程规范/" itemprop="url">
+                  airbnb的javascript编程规范
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T16:25:15+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>对于所有引用类型使用const，这样可以避免对类型变量重新赋值，注意const类型也是块级作用域的</p>
+</li>
+<li><p>创建对象尽量使用字面值常量语法</p>
+</li>
+<li><p>对象的属性和方法使用简写方法</p>
+</li>
+<li><p>定义对象属性值尽量不加引号，除非有-这种字符</p>
+</li>
+<li><p>使用扩展运算符来copy对象，如果忽略对象时使用剩余运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const original = &#123; a: 1, b: 2 &#125;;</div><div class="line">const copy = &#123; ...original, c: 3 &#125;; // copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</div><div class="line"></div><div class="line">const &#123; a, ...noA &#125; = copy; // noA =&gt; &#123; b: 2, c: 3 &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用push方法来向数组添加元素，使用扩展运算符来copy数组</p>
+</li>
+<li><p>使用对象解构来访问对象的多个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const firstName = user.firstName;</div><div class="line">  const lastName = user.lastName;</div><div class="line"></div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const &#123; firstName, lastName &#125; = user;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// best</div><div class="line">function getFullName(&#123; firstName, lastName &#125;) &#123;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>常量字符串使用单引号而不是双引号</p>
+</li>
+<li><p>如果要通过编程来构建字符串，使用模板字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return &apos;How are you, &apos; + name + &apos;?&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return [&apos;How are you, &apos;, name, &apos;?&apos;].join();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123; name &#125;?`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123;name&#125;?`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要判断函数参数</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/25/es6/关于promise的理解/" itemprop="url">
+                  关于promise的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-25T18:41:48+08:00" content="2017-02-25">
+              2017-02-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>promise的定义，这个是创建promise的语法，resolve和reject都是函数, 当被调用时, 分别”清理”和”拒绝”promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new Promise(function(resolve, reject)&#123;...&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>遇到更多的是使用promise，这就需要用到then方法了，then方法接收两个参数，分别为 Promise 在成功和失败情况下的回调函数，并且then方法本身返回的是promise对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.then(onFulfilled, onRejected)</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/23/react/对于react-router的理解/" itemprop="url">
+                  对于react-router的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-23T14:21:01+08:00" content="2017-02-23">
+              2017-02-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>什么是nesting?</p>
+<p>路由可以嵌套，父组件是其他子组件所共有的，因此父组件里要留个位置给this.props.children， 一般父组件就是个导航栏</p>
+</li>
+<li><p>path属性</p>
+<p>path属性会给所有子路由加路由前缀</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/git/Git开发流程/" itemprop="url">
+                  Git开发流程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-22T14:47:31+08:00" content="2017-02-22">
+              2017-02-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这个是针对于每次开发新功能</p>
+<ol>
+<li><p>新建分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 获取主干最新代码</div><div class="line">$ git checkout master</div><div class="line">$ git pull</div><div class="line"></div><div class="line"># 新建一个开发分支myfeature</div><div class="line">$ git checkout -b myfeature</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交commit并撰写信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line">$ git status</div><div class="line">$ git commit --verbose</div></pre></td></tr></table></figure>
+</li>
+<li><p>与主分支同步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git fetch origin</div><div class="line">$ git rebase origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p>合并commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p>推送</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --force origin myfeature</div></pre></td></tr></table></figure>
+</li>
+<li><p>pull request</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/es6/ES6的解构赋值及用途/" itemprop="url">
+                  ES6的解构赋值及用途
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-22T14:05:55+08:00" content="2017-02-22">
+              2017-02-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="什么是解构赋值"><a href="#什么是解构赋值" class="headerlink" title="什么是解构赋值"></a>什么是解构赋值</h4><p>按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let [a, b, c] = [1, 2, 3];</div></pre></td></tr></table></figure>
+<p>上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。</p>
+<p>本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。</p>
+<h4 id="解构赋值的默认值"><a href="#解构赋值的默认值" class="headerlink" title="解构赋值的默认值"></a>解构赋值的默认值</h4><p>解构赋值允许指定默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let [foo = true] = [];</div><div class="line">foo // true</div><div class="line"></div><div class="line">let [x, y = &apos;b&apos;] = [&apos;a&apos;]; // x=&apos;a&apos;, y=&apos;b&apos;</div><div class="line">let [x, y = &apos;b&apos;] = [&apos;a&apos;, undefined]; // x=&apos;a&apos;, y=&apos;b&apos;</div></pre></td></tr></table></figure>
+<p>ES6 内部使用严格相等运算符（<code>===</code>），判断一个位置是否有值。所以，如果一个数组成员不严格等于<code>undefined</code>，默认值是不会生效的</p>
+<h4 id="解构赋值的应用场景"><a href="#解构赋值的应用场景" class="headerlink" title="解构赋值的应用场景"></a>解构赋值的应用场景</h4><ol>
+<li><p>交换变量的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let x = 1;</div><div class="line">let y = 2;</div><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数通过数组或对象返回多个值时取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function example() &#123;</div><div class="line">  return [1, 2, 3];</div><div class="line">&#125;</div><div class="line">let [a, b, c] = example();</div><div class="line"></div><div class="line">function example() &#123;</div><div class="line">  return &#123;</div><div class="line">    foo: 1,</div><div class="line">    bar: 2</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">let &#123; foo, bar &#125; = example();</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数参数的默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">jQuery.ajax = function (url, &#123;</div><div class="line">  async = true,</div><div class="line">  beforeSend = function () &#123;&#125;,</div><div class="line">  cache = true,</div><div class="line">  complete = function () &#123;&#125;,</div><div class="line">  crossDomain = false,</div><div class="line">  global = true,</div><div class="line">  // ... more config</div><div class="line">&#125;) &#123;</div><div class="line">  // ... do stuff</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>遍历Map结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var map = new Map();</div><div class="line">map.set(&apos;first&apos;, &apos;hello&apos;);</div><div class="line">map.set(&apos;second&apos;, &apos;world&apos;);</div><div class="line"></div><div class="line">for (let [key, value] of map) &#123;</div><div class="line">  console.log(key + &quot; is &quot; + value);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/git/git撤销操作/" itemprop="url">
+                  git撤销操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-22T13:56:20+08:00" content="2017-02-22">
+              2017-02-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>提交完了才发现漏掉了几个文件没有添加(当用git commit时只会提交上次git add时的文件，所以每次修改之后都需要git add下)，或者提交信息写错了，可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
+</li>
+<li><p>取消暂存文件</p>
+<p>如果一下子把许多文件加入到了暂存区，想要取消掉几个，可以用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD CONTRIBUTING.md</div></pre></td></tr></table></figure>
+</li>
+<li><p>撤销对文件的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- CONTRIBUTING.md</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/22/git/git删除远程仓库的一些多余文件/" itemprop="url">
                   git删除远程仓库的一些多余文件
                 </a>
@@ -458,1042 +1494,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/21/es6/ES6的模块机制/" itemprop="url">
-                  ES6的模块机制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-21T14:20:52+08:00" content="2017-02-21">
-              2017-02-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>javascript之所以之前被称为“玩具”语言，它确实缺乏一些编写大型程序必要的东西，比如说”模块“。试下一个稍大型的项目如果都写在一个文件里会是怎么样一种情形。好在社区定了一套规范，CommonJS 和 AMD/CMD，前者是服务器端的规范，主要给node使用，后者是浏览器端的规范。但在ES出来之后，这两套规范其实就不需要了，前后端可以使用语言本身的功能来达到这个要求。</p>
-<p>ES6的模块是在编译时就确定了模块的依赖关系，以及输入和输出变量。而CommonJS和AMD/CMD都只能在运行时确定这些</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// CommonJS模块</div><div class="line">let &#123; stat, exists, readFile &#125; = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">// 等同于</div><div class="line">let _fs = require(&apos;fs&apos;);</div><div class="line">let stat = _fs.stat;</div><div class="line">let exists = _fs.exists;</div><div class="line">let readfile = _fs.readfile;</div></pre></td></tr></table></figure>
-<p>​    上面代码的实质是整体加载 fs 模块（即加载 fs 的所有方法），生成一个对象（_fs），然后再从这个对象上                面读取3个方法。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”</p>
-<p>ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// ES6模块</div><div class="line">import &#123; stat, exists, readFile &#125; from &apos;fs&apos;;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用 export 关键字输出该变量。下面是一个 JS 文件，里面使用 export 命令输出变量，export必须加上{}，如果需要别名可以用as语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 写法一</div><div class="line">export var m = 1;</div><div class="line"></div><div class="line">// 写法二</div><div class="line">var m = 1;</div><div class="line">export &#123;m&#125;;</div><div class="line"></div><div class="line">// 写法三</div><div class="line">var n = 1;</div><div class="line">export &#123;n as m&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>import 命令后面需要跟一对大括号，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &#123;firstName, lastName, year&#125; from &apos;./profile&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>import</code>后面的<code>from</code>指定模块文件的位置，可以是相对路径，也可以是绝对路径，<code>.js</code>路径可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置</p>
-</li>
-<li><p><code>import</code>语句会执行所加载的模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;lodash&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>整体加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import * as circle from &apos;./circle&apos;;</div><div class="line"></div><div class="line">console.log(&apos;圆面积：&apos; + circle.area(4));</div><div class="line">console.log(&apos;圆周长：&apos; + circle.circumference(14));</div></pre></td></tr></table></figure>
-</li>
-<li><p>export default命令： 使用<code>import</code>命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。但是，用户肯定希望快速上手，未必愿意阅读文档，去了解模块有哪些属性和方法。为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到<code>export default</code>命令，为模块指定默认输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export default function () &#123;</div><div class="line">  console.log(&apos;foo&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其他模块加载该模块时，<code>import</code>命令可以为该匿名函数指定任意名字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// import-default.js</div><div class="line">import customName from &apos;./export-default&apos;;</div><div class="line">customName(); // &apos;foo&apos;</div></pre></td></tr></table></figure>
-<p><strong>注意这时候import后面不加大括号</strong>，<strong>并且可以用任意名称指向<code>export-default.js</code>输出的方法，</strong><code>export default</code>命令也可以用在非匿名函数前，只不过该函数在模块外部是无效的，加载的时候，视同匿名函数加载</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
-                  javascript的遍历
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>数组的遍历</p>
-<p>1) 原始的for循环： 写法比较麻烦</p>
-<p>2) 数组本身的forEach方法： 无法跳出循环</p>
-<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
-<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
-</li>
-<li><p>对象的遍历 :</p>
-<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
-<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
-                  使用vim提高编码效率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilties/" itemprop="url" rel="index">
-                    <span itemprop="name">utilties</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>选中行或列   shift+v,   ctrl+v</p>
-</li>
-<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
-</li>
-<li><p>向下移动10行， 10j</p>
-</li>
-<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
-</li>
-<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
-</li>
-<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
-</li>
-<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
-</li>
-<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
-</li>
-<li><p>替换 :%s/foo/bar/g</p>
-<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
-                  API设计时遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
-              2017-02-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/api/" itemprop="url" rel="index">
-                    <span itemprop="name">api</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
-                  使用react的几个注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
-              2017-02-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>如何指定props？ 有几种方法</p>
-<p>1）javascript表达式:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
-<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
-<p>​    2）字符串字面值常量</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
-<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
-<p>2）javascript表达式也能作为props.children</p>
-</li>
-<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
-</li>
-<li><p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/react/ES6语法在react中的运用/" itemprop="url">
-                  ES6语法在react中的运用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T09:35:24+08:00" content="2017-02-17">
-              2017-02-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>扩展运算符(…) :   作为props传递，这个props如果是个基础容器，比如包含位置等基本属性，这个是值得用的，但在其他情况下要慎用，因为它来许多其他的不相关的props</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function App1() &#123;</div><div class="line">  return &lt;Greeting firstName=&quot;Ben&quot; lastName=&quot;Hector&quot; /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function App2() &#123;</div><div class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</div><div class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>扩展运算符还可以用在setState里，因为react有个算是要求吧，主要为了性能考虑，在setState里不要直接更改里面内容的值，比如下面这个state里面的words，words本身是个数组，更新的时候不要改words的内容，而是copy一份得到一个新的数组，如果words是个对象也是先copy一份(对象的扩展运算符号在2017是个提案)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: prevState.words.concat([&apos;marklar&apos;])</div><div class="line">  &#125;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在ES6中可以用扩展运算符来实现copy这个操作，非常方便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: [...prevState.words, &apos;marklar&apos;],</div><div class="line">  &#125;));</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/database/SQL学习/" itemprop="url">
-                  SQL学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-16T14:35:55+08:00" content="2017-02-16">
-              2017-02-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>为数据库表增加一列，新加的这一列的值默认为NULL</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE celebs ADD COLUMN twitter_handle TEXT;</div></pre></td></tr></table></figure>
-</li>
-<li><p>删除指定行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM celebs WHERE twitter_handle IS NULL;</div></pre></td></tr></table></figure>
-</li>
-<li><p>选出一列中的唯一值，即过滤掉重复的条目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT DISTINCT genre FROM movies;</div></pre></td></tr></table></figure>
-</li>
-<li><p>模糊查询LIKE的用法，’_’ 代表任意单个字符， ‘%’代表0个或多个字符, LIKE对大小写不敏感</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name LIKE &apos;Se_en&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;A%&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;%man%&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>过滤出name是以’A’开头，但不包含’J’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name BETWEEN &apos;A&apos; AND &apos;J&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>排序， 以某一列为基准排序，DESC 降序列， ASC 升序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC;</div></pre></td></tr></table></figure>
-</li>
-<li><p>指定输出的最大行数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;</div></pre></td></tr></table></figure>
-</li>
-<li><p>aggregate函数</p>
-<p>1） COUNT()： 计算指定列的行数</p>
-<p>2） GROUP BY:  把相同的数据放到group里去</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT price, COUNT(*) FROM fake_apps GROUP BY price;</div></pre></td></tr></table></figure>
-</li>
-<li><p>inner join： 连接多张表查询，需要join条件为true;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
-<p>outer join:    连接多张表查询，不需要join条件满足，第一张表的所有行都会返回，如果条件不满足，将会使用NULL值来填充</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>reac调试事件</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/alogrithm/实际工作中遇到的需要小算法场景/" itemprop="url">
-                  实际工作中遇到的需要小算法场景
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T11:23:49+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>api的数据返回的是category，name这种单条记录，但展现的时候是以二级目录展现的，因此需要统计相同的category有几个，计算出每个categroy下的name</p>
-<p>解决思路： 用一个临时数组存储每个category及其索引，然后遍历api返回，将同一个category下的name添加进去</p>
-</li>
-<li><p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1539,7 +1539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">201</span>
+              <span class="site-state-item-count">209</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1547,7 +1547,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1556,7 +1556,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">141</span>
+                <span class="site-state-item-count">144</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
