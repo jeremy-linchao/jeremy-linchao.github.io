@@ -87,13 +87,13 @@
 <meta name="description" content="javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习学习再学习">
+<meta property="og:title" content="你不知道的javascript">
 <meta property="og:url" content="http://yoursite.com/2017/08/31/javascript/你不知道的javascript/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖">
-<meta property="og:updated_time" content="2017-09-04T15:08:30.000Z">
+<meta property="og:updated_time" content="2017-10-10T09:05:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习学习再学习">
+<meta name="twitter:title" content="你不知道的javascript">
 <meta name="twitter:description" content="javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖">
 
 
@@ -112,7 +112,7 @@
   };
 </script>
 
-  <title>  | 学习学习再学习 </title>
+  <title> 你不知道的javascript | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
             
             
               
-                
+                你不知道的javascript
               
             
           </h1>
@@ -369,25 +369,25 @@
 <li><p>​  经常看到console.log打印对象会打出诸如”[object Object]”这样的东西，这是因为如果没有实现对象的toString()方法，默认打出的是[[class]]属性</p>
 </li>
 <li><p>JSON.stringify()会自动忽略掉 undefined, null 和 symbol，如果这些值是在数组中，会用null来代替，如果是在一个对象中，则这个属性会被排除掉</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line"></div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
-</li>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line">           </div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
+</code></pre></li>
 <li><p>JSON.stringify是有两个可选参数的，一个叫replacer，可以是数组或是函数，用来指定对象中哪些需要保留在最终的json字符串中，哪些需要剔除，而第三个参数是为了美观用的，指明每一行的分隔符</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line"></div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
-<p>var a = {</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line">           </div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line">           </div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
+</code></pre><p>var a = {</p>
 <pre><code>b: 42,
 c: &quot;42&quot;,
 d: [1,2,3]
 </code></pre><p>};</p>
 <p>JSON.stringify( a, null, 3 );<br>// “{<br>//    “b”: 42,<br>//    “c”: “42”,<br>//    “d”: [<br>//       1,<br>//       2,<br>//       3<br>//    ]<br>// }”</p>
 <p>JSON.stringify( a, null, “—–” );<br>// “{<br>// —–”b”: 42,<br>// —–”c”: “42”,<br>// —–”d”: [<br>// ———-1,<br>// ———-2,<br>// ———-3<br>// —–]<br>// }”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20. falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21. 显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20.  falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21.  显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
 <p>var a = 42;<br>var b = String( a );</p>
 <p>var c = “3.14”;<br>var d = Number( c );</p>
 <p>b; // “42”<br>d; // 3.14</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22. 单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22.  单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
 <p>var d = new Date();</p>
 <p>+d; // 1408369986000</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23. ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23.  ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
 <p>~42;    // -(42+1) ==&gt; -43</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对于 -1 ， ~-1 是返回0，其余都是非0， 这个特性可以用在indexOf的返回值上</div></pre></td></tr></table></figure>
 <p>var a = “Hello World”;</p>
