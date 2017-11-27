@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
-                  typescript的字面量类型
+                <a class="post-title-link" href="/2017/09/30/docker/nginx Docker/" itemprop="url">
+                  nginx Docker
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
-              2017-08-06
+            <time itemprop="dateCreated" datetime="2017-09-30T10:17:30+08:00" content="2017-09-30">
+              2017-09-30
             </time>
           </span>
 
@@ -271,362 +271,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescipt/" itemprop="url" rel="index">
-                    <span itemprop="name">typescipt</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
-<p>这时候如果你把foo赋值成“World”就会报错，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
-<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
-<p>先定义type 的枚举类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>接着定义acton类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>最后创建联合类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
-<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/04/design/Material UI TextField的类型问题/" itemprop="url">
-                  Material UI TextField的类型问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-04T16:06:21+08:00" content="2017-08-04">
-              2017-08-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用material的textfiled组件时，为了表示是个数字输入，我将type设为number，但改变这个值的时候发现这个值的类型仍然是string，导致在于数字比较的时候总是不相等， 这里需要注意下</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/31/react/material ui的select问题/" itemprop="url">
-                  material ui的select问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T14:38:49+08:00" content="2017-07-31">
-              2017-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个material ui的selecfield的选中问题， 具体现象为一开始选中了一个menu item，但是当重新获取所有的数据时，选中的那个menu item消失了。</p>
-<p>最后排查原因发现： selectedField的value选的是一个对象， 当重新获取新的数组的时候，之前的那个对象不在这个新数组之中了</p>
-<p>另外如果存了换一个数组之后，没必要再存一个选中的对象，只需要存一下那个索引即可，否则不仅重复存了，还容易引起更多的bug</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
-                  react声明周期函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-21T08:40:49+08:00" content="2017-07-21">
-              2017-07-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -661,16 +307,151 @@
         
           
             <ol>
-<li>render():    render函数是组件的必需函数，并且需要为纯函数</li>
-<li>constructor(): 在构造器里需要先调用super(props)，否则构造器里的this.props将为空，如果不需要初始化state状态，也不需要bind， 那可以不用构造器</li>
-<li>如果componet里使用了state，而state又想是通过props来作初始化，这里可能就会有潜在的bug，因为如果只在constructor里做初始化，props变了之后并不能改变state，那样还需要自己去实现<a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps(nextProps)</code></a> 这个函数，不如lifting state up</li>
-<li>componentWillMount() 这个函数是在render函数之前执行，在这里同步地执行setState时不会导致重新渲染的，不要在这里还引入side-effects</li>
-<li>componentDidMount() 在这里发起ajax，并且在这个函数去setState()会发生重新渲染</li>
-<li>componentWillReceiveProps(nextProps)：当收到新的props就会调用这个函数，react本身也会调用这个函数，即使props没有变化，因此在这个函数里一定要写个if判断props是否变化了。在初始挂载的时候不会调用这个函数，调用setState()是不会触发这个函数的</li>
-<li>shouldComponentUpdate(nextProps, nextState)： 现在的话如果这个函数return false， componentWillMount， render和componetDidMount都不会被调用了</li>
-<li>componentWillUpdate(nextProps, nextState) ：这也是个在渲染之前做准备工作的函数，它和componentWillReceiveProps很想，但是在这个函数里不能调用setState， 初始挂载也不会调用这个函数</li>
-<li>componentDidUpdate(prevProps, prevState)：这里也是好地方做ajax，并且可以比较props和state，并且这个函数在初挂载时也不会被调用</li>
-<li>setState():由于setState()可能会被延迟执行，因此在setState()之后立马通过this.state去读取可能会有问题</li>
+<li>制作docker file如下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">FROM nginx</div><div class="line"></div><div class="line"># Create nginx data directory</div><div class="line">RUN mkdir -p /data/__ucloud_stack_console</div><div class="line">WORKDIR /data/__ucloud_stack_console</div><div class="line"></div><div class="line"># Copy nginx configuration </div><div class="line"># COPY ./nginx.conf /etc/nginx/nginx.conf</div><div class="line"></div><div class="line"># Copy console product</div><div class="line">COPY build newconsole</div><div class="line"></div><div class="line"># Copy starter build</div><div class="line">COPY starter/build starter/build</div><div class="line"></div><div class="line"># Copy locale</div><div class="line">COPY starter/locale_data locale_data</div><div class="line"></div><div class="line"># Copy conf</div><div class="line">COPY conf conf</div><div class="line"></div><div class="line"># 启动nginx</div><div class="line">EXPOSE 80</div><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure>
+<p>这里要注意的是copy文件和目录的语法，可以查看docker 官方的文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">SRC_PATH specifies a file</div><div class="line">	DEST_PATH does not exist</div><div class="line">		the file is saved to a file created at DEST_PATH</div><div class="line">	DEST_PATH does not exist and ends with /</div><div class="line">		Error condition: the destination directory must exist.</div><div class="line">	DEST_PATH exists and is a file</div><div class="line">		the destination is overwritten with the source file’s contents</div><div class="line">	DEST_PATH exists and is a directory</div><div class="line">		the file is copied into this directory using the basename from SRC_PATH</div><div class="line">SRC_PATH specifies a directory</div><div class="line">	DEST_PATH does not exist</div><div class="line">		DEST_PATH is created as a directory and the contents of the source directory are copied 		into this directory</div><div class="line">	DEST_PATH exists and is a file</div><div class="line">		Error condition: cannot copy a directory to a file</div><div class="line">	DEST_PATH exists and is a directory</div><div class="line">		SRC_PATH does not end with /. (that is: slash followed by dot) the source directory is 			copied into this directory</div><div class="line">	SRC_PATH does end with /. (that is: slash followed by dot)</div><div class="line">		the content of the source directory is copied into this directory</div></pre></td></tr></table></figure>
+<ol>
+<li>制作镜像</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t nginx_console .</div></pre></td></tr></table></figure>
+<ol>
+<li>运行容器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run --name nginx_console_container -v /tmp/nginx:/var/log/nginx -idt -p 80:80 nginx_console</div></pre></td></tr></table></figure>
+<ol>
+<li>进入容器看下nginx的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it nginx_console_container bash</div></pre></td></tr></table></figure>
+<ol>
+<li>nginx配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">user nginx;</div><div class="line">worker_processes auto;</div><div class="line">#error_log /var/log/nginx/error.log;</div><div class="line">#pid /run/nginx.pid;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections 1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line"></div><div class="line">    #access_log  /var/log/nginx/access.log  main;</div><div class="line">    gzip	 	on;</div><div class="line">    gzip_types	 	image/jpeg image/png application/octet-stream;</div><div class="line"></div><div class="line">    sendfile            on;</div><div class="line">    tcp_nopush          on;</div><div class="line">    tcp_nodelay         on;</div><div class="line">    keepalive_timeout   65;</div><div class="line">    types_hash_max_size 2048;</div><div class="line"></div><div class="line">    #include             /etc/nginx/mime.types;</div><div class="line">    default_type        application/octet-stream;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">		server_name                         console.ucloud.cn</div><div class="line">        keepalive_timeout                   75;</div><div class="line">        listen                              80;</div><div class="line"></div><div class="line">        add_header &apos;Access-Control-Allow-Origin&apos; &quot;$http_origin&quot;;</div><div class="line">        add_header &apos;Access-Control-Allow-Credentials&apos; true;</div><div class="line">        add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos;;</div><div class="line">        add_header &apos;Access-Control-Max-Age&apos;       3628800;</div><div class="line">        add_header &apos;Access-Control-Allow-Headers&apos; &apos;Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,*&apos;;</div><div class="line"></div><div class="line">        location ~*  ^/ufiles/(.+)$ &#123;</div><div class="line">            proxy_set_header Host $http_bucket.ufile.ucloud.cn;</div><div class="line">            #access_log                  /var/log/nginx/ucloud_stack_console_ufiles.log;</div><div class="line">            rewrite ^/ufiles/(.+)$  /$1  break;</div><div class="line">            proxy_pass  http://www.ufile.ucloud.cn;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location ~* ^/uvideoUploads/(.+)$ &#123;</div><div class="line">            #access_log                  /var/log/nginx/ucloud_stack_console_uvideo.log;</div><div class="line">            proxy_set_header            Host $http_bucket.ufile.ucloud.cn;</div><div class="line">            rewrite                     ^/uvideoUploads/(.+)$  /$1?uploads  break;</div><div class="line">            proxy_pass                  http://$http_bucket.ufile.ucloud.cn;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置启动器的root目录</div><div class="line">        root              /data/__ucloud_stack_console/starter;</div><div class="line"></div><div class="line">        #设置日志</div><div class="line">        #access_log        /var/log/nginx/ucloud_stack_starter.log;</div><div class="line">        #error_log        /var/log/nginx/ucloud_stack_console_error.log;</div><div class="line"></div><div class="line">        #匹配所有静态资源</div><div class="line">        location ~* \.(js|gif|png|map|jpg|css|jpegcss|swf|ico|txt|html|ttf|less|jar|tpl|tgz|woff|tff|json)$ &#123;</div><div class="line">            root         /data/__ucloud_stack_console/newconsole;</div><div class="line">            #access_log      /var/log/nginx/ucloud_stack_console.log;</div><div class="line">            proxy_redirect off;</div><div class="line">            proxy_set_header Host $host;</div><div class="line">            proxy_cache_valid 200 302 1h;</div><div class="line">            proxy_cache_valid 301 1d;</div><div class="line">            proxy_cache_valid any 1m;</div><div class="line">            expires 30d;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置启动器js文件目录</div><div class="line">        location ^~ /starter/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/starter/;</div><div class="line">            proxy_redirect off;</div><div class="line">            proxy_set_header Host $host;</div><div class="line">            proxy_cache_valid 200 302 1h;</div><div class="line">            proxy_cache_valid 301 1d;</div><div class="line">            proxy_cache_valid any 1m;</div><div class="line">            expires 30d;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置语言系统文件目录</div><div class="line">        location ^~ /locale_data/ &#123;</div><div class="line">            alias /data/__ucloud_stack_console/locale_data/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置语言文件目录</div><div class="line">        location ^~ /locale/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/locale/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置新样式文件目录</div><div class="line">        location ^~ /new-styles/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/new-styles/;</div><div class="line">        &#125;</div><div class="line">        #设置样式文件目录</div><div class="line">        location ^~ /styles/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/styles/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置配置文件目录</div><div class="line">        location ^~ /conf/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/conf/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #匹配所有请求到启动器的index.html文件</div><div class="line">        location / &#123;</div><div class="line">        #禁用cache html`</div><div class="line">            add_header Cache-Control &quot;private&quot;;</div><div class="line">            add_header Cache-Control &quot;no-cache&quot; </div><div class="line">            add_header Pragma no-cache;</div><div class="line">            add_header Cache-Control &apos;no-store&apos;;</div><div class="line">            rewrite ^ /index.html break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>排错方法</p>
+<p>经常会遇到nginx容器起不来的情况，绝大多是因为nginx的配置问题，可以通过如下命令来查看容器日志</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker logs &lt;container_id&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/28/docker/kubernets理解/" itemprop="url">
+                  kubernets理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-28T16:25:13+08:00" content="2017-09-28">
+              2017-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernets/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernets</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>几个重要概念</p>
+<ol>
+<li>node： 跑容器的节点，可以理解为虚机或物理机</li>
+<li>pod: 一组容器，但这些容器会共享一些东西，比如他们共享存储，比如他们使用相同的镜像，pod我理解应该还是在一个node上</li>
+<li>service：pod虽然有独立ip，但还是不能对外提供访问，并且由于它只在一个节点上，不能做高可用，这时候需要service，service可以把pod组合起来，services用lables和selectors来区分</li>
+<li>​</li>
 </ol>
 
           
@@ -721,8 +502,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
-                  redux实践的问题
+                <a class="post-title-link" href="/2017/09/26/http/the go programing language/" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -735,8 +516,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-20T16:58:35+08:00" content="2017-07-20">
-              2017-07-20
+            <time itemprop="dateCreated" datetime="2017-09-26T11:59:53+08:00" content="2017-09-26">
+              2017-09-26
             </time>
           </span>
 
@@ -749,8 +530,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
                   </a>
                 </span>
 
@@ -785,14 +566,294 @@
         
           
             <ol>
-<li><p>UI的状态，比如一个dialog是否open的状态是否也还要放到redux store里去？</p>
-<p>如果这个状态只有那么一个组件用，没必要放到store里去，如果某个数据是要跨全局使用的，那放到store里</p>
-<p>看一下redux作者的回答</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Use React for ephemeral state that doesn&apos;t matter to the app globally and doesn&apos;t mutate in complex ways. For example, a toggle in some UI element, a form input state. Use Redux for state that matters globally or is mutated in complex ways. For example, cached users, or a post draft.</div><div class="line"></div><div class="line">Sometimes you&apos;ll want to move from Redux state to React state (when storing something in Redux gets awkward) or the other way around (when more components need to have access to some state that used to be local).</div><div class="line"></div><div class="line">The rule of thumb is: do whatever is less awkward.</div></pre></td></tr></table></figure>
+<li><p>Go语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响Go代码的正确解析，比如行末是标识符、整数、浮点数、虚数、字符或字符串文字、关键字<code>break</code>、<code>continue</code>、<code>fallthrough</code>或<code>return</code>中的一个、运算符和分隔符<code>++</code>、<code>--</code>、<code>)</code>、<code>]</code>或<code>}</code>中的一个，那就会将相应换行符转成分号</p>
 </li>
-<li><p>一些ajax调用但不太会影响state的状态，比如实际遇到的一个恢复的api，返回值只有成功或失败，这个需要写action吗？</p>
-<p>redux的建议是把任何有副作用的函数都放到action creator里去，因为这样可以做到重用。但如果这个api调用只有可能在那个组件里使用呢？</p>
-<p>放在component的问题是，错误信息变成local的state了，store里看不到错误信息</p>
+<li><p>变量会在声明时直接初始化。如果变量没有显式初始化，则被隐式地赋予其类型的<em>零值</em>（zero value），数值类型是0，字符串类型是空字符串””</p>
+</li>
+<li><p>命名方式: <strong>驼峰式</strong> 命名，当名字有几个单词组成的时优先使用大小写分隔，而不是优先用下划线分隔。因此，在标准库有QuoteRuneToASCII和parseRequestLine这样的函数命名，但是一般不会用quote_rune_to_ASCII和parse_request_line这样的命名。而像ASCII和HTML这样的缩略词则避免使用大小写混合的写法，它们可能被称为htmlEscape、HTMLEscape或escapeHTML，但不会是<strong>escapeHtml</strong>。</p>
+</li>
+<li><p>包一级声明语句声明的名字可在整个包对应的每个源文件中访问，而不是仅仅在其声明语句所在的源文件中访问</p>
+</li>
+<li><p>简短变量声明左边的变量可能并不是全部都是刚刚声明的。<strong>如果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">in, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">out, err := os.Create(outfile)</div></pre></td></tr></table></figure>
+</li>
+<li><p>简短变量声明语句中必须至少要声明一个新的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">f, err := os.Create(outfile) // compile error: no new variables</div></pre></td></tr></table></figure>
+</li>
+<li><p>变量的生命周期:  从每个包级的变量和每个当前运行函数的每一个局部变量开始，通过指针或引用的访问路径遍历，是否可以找到该变量。如果不存在这样的访问路径，那么说明该变量是不可达的，也就是说它是否存在并不会影响程序后续的计算结果，<strong>一个变量的有效周期只取决于是否可达，因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域</strong></p>
+</li>
+<li><p>new函数： 表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code></p>
+</li>
+<li><p>元组赋值： 元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。在赋值之前，赋值语句右边的所有表达式将会先进行求值，然后再统一更新左边对应变量的值</p>
+</li>
+<li><p>类型声明语句 type: 为什么要有着个东西？ 在任何程序中都会存在一些变量有着相同的内部结构，但是却表示完全不同的概念。例如，一个int类型的变量可以用来表示一个循环的迭代索引、或者一个时间戳、或者一个文件描述符、或者一个月份；一个float64类型的变量可以用来表示每秒移动几米的速度、或者是不同温度单位下的温度；一个字符串可以用来表示一个密码或者一个颜色的名称。<strong>一个类型声明语句创建了一个新的类型名称，和现有类型具有相同的底层结构。新命名的类型提供了一个方法，用来分隔不同概念的类型，这样即使它们底层类型相同也是不兼容的。</strong></p>
+</li>
+<li><p>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型（译注：如果T是指针类型，可能会需要用小括弧包装T，比如<code>(*int)(0)</code>）。只有当<strong>两个类型的底层基础类型相同时，才允许这种转型操作</strong>，或者是两者都是指向相同底层结构的指针类型，<strong>这些转换只改变类型而不会影响值本身</strong></p>
+</li>
+<li><p>短声明会覆盖包级别的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var cwd string</div><div class="line"></div><div class="line">func init() &#123;</div><div class="line">    cwd, err := os.Getwd() // compile error: unused: cwd</div><div class="line">    if err != nil &#123;</div><div class="line">        log.Fatalf(&quot;os.Getwd failed: %v&quot;, err)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组初始化，可以直接通过{}来做，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">q := [3]int&#123;1, 2, 3&#125;</div></pre></td></tr></table></figure>
+<p>也可以通过索引来做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">type Currency int</div><div class="line"></div><div class="line">const (</div><div class="line">    USD Currency = iota // 美元</div><div class="line">    EUR                 // 欧元</div><div class="line">    GBP                 // 英镑</div><div class="line">    RMB                 // 人民币</div><div class="line">)</div><div class="line"></div><div class="line">symbol := [...]string&#123;USD: &quot;$&quot;, EUR: &quot;€&quot;, GBP: &quot;￡&quot;, RMB: &quot;￥&quot;&#125;</div><div class="line"></div><div class="line">fmt.Println(RMB, symbol[RMB]) // &quot;3 ￥&quot;</div></pre></td></tr></table></figure>
+<p>数组字面值中，如果在数组的长度位置出现的是“…”省略号，则表示数组的长度是根据初始化值的个数来计算</p>
+<p>理解下面这个定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">r := [...]int&#123;99: -1&#125;</div></pre></td></tr></table></figure>
+<p>首先数组长度是根据初始化值来定义的，它把第100个元素初始化成了-1，前99个为0</p>
+</li>
+<li><p>go的数组是可以比较的，只要： 1.数组里的类型是一样的 2.数组的长度一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a := [2]int&#123;1, 2&#125;</div><div class="line">b := [...]int&#123;1, 2&#125;</div><div class="line">c := [2]int&#123;1, 3&#125;</div><div class="line">fmt.Println(a == b, a == c, b == c) // &quot;true false false&quot;</div><div class="line">d := [3]int&#123;1, 2&#125;</div><div class="line">fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组在函数调用时作为参数，go是直接copy一份数组，而不像其他语言传的是引用，因此会相对低效点</p>
+</li>
+<li><p><strong>一个slice由三个部分构成：指针、长度和容量。指针指向第一个slice元素对应的底层数组元素的地址，要注意的是slice的第一个元素并不一定就是数组的第一个元素。长度对应slice中元素的数目；长度不能超过容量，容量一般是从slice的开始位置到底层数据的结尾位置。内置的len和cap函数分别返回slice的长度和容量</strong></p>
+</li>
+<li><p>字符串的切片操作和[]byte字节类型切片的切片操作是类似的。它们都写作x[m:n]，并且都是返回一个原始字节系列的子序列，底层都是共享之前的底层数组，因此切片操作对应常量时间复杂度<strong>。x[m:n]切片操作对于字符串则生成一个新字符串，如果x是[]byte的话则生成一个新的[]byte</strong></p>
+</li>
+<li><p>slice不能比较， 不能使用==操作符来判断两个slice是否含有全部相等元素</p>
+</li>
+<li><p>如果切片操作超出cap(s)的上限将导致一个panic异常，但是超出len(s)则是意味着扩展了slice，因为新slice的长度会变大：</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/25/http/session和cookie的区别/" itemprop="url">
+                  session和cookie的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-25T11:24:56+08:00" content="2017-09-25">
+              2017-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>session和cookie有什么区别呢？首先他们都是解决web无状态的方案，用来标识每个用户，可以在每次ajax请求中附带上这个数据。这里面容易搞混的一点是session的机制也依赖cookie，他们的区别在于cookie存储的是跟服务端有关的信息，比如用户登陆，服务端返回用户id，cookie记一个用户id；但session返回的是一个服务端生成的key，跟应用数据没有一点关系，会更安全</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/22/utility/mac修改mysql密码/" itemprop="url">
+                  mac修改mysql密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-22T18:30:20+08:00" content="2017-09-22">
+              2017-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>从控制面板停止mysql</p>
+</li>
+<li><p>sudo /usr/local/mysql/bin/mysqld_safe  –skip-grant-tables  这个命令会启动mysql，但是可以不需要密码来登陆root</p>
+</li>
+<li><p>新起一个terminal登陆mysql</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">use mysql;</div><div class="line">desc user;</div><div class="line">UPDATE user SET Password=PASSWORD(‘123456’) where User=’root’; //将root用户密码改成 123456</div></pre></td></tr></table></figure>
+<p>我这里装的是5.6， 密码的字段是Password，可以查看user表，有些可能是authentication_string</p>
+</li>
+<li><p>flush privileges;</p>
+</li>
+<li><p>在控制面板关闭并重新开启mac即可</p>
 <p>​</p>
 </li>
 </ol>
@@ -845,8 +906,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/18/javascript/javascript函数/" itemprop="url">
-                  javascript函数
+                <a class="post-title-link" href="/2017/09/21/go/vscode go环境配置/" itemprop="url">
+                  vscode go环境配置
                 </a>
               
             
@@ -859,8 +920,581 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-18T08:02:42+08:00" content="2017-07-18">
-              2017-07-18
+            <time itemprop="dateCreated" datetime="2017-09-21T16:46:20+08:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>vscode的go环境配置其实只要看官网的说明就行，<a href="https://github.com/Microsoft/vscode-go，但这里有几点得注意下" target="_blank" rel="external">https://github.com/Microsoft/vscode-go，但这里有几点得注意下</a></p>
+<ol>
+<li>打开go的文件确实在右下角确实会出现missing tools 的提示，但如果你直接点击那个按钮会提示安装不上（众所周知的原因），所以需要你自行解决下</li>
+<li>关于buildOnSave： 这个作者有提到 Since <code>go build</code> ignores test files, we use <code>go test -i -c -o</code> instead on the current package. This will compile the whole package. 所以作者用build，因此即使是package main而没有二进制文件生成</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/20/go/effective go/" itemprop="url">
+                  effective go
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-20T18:09:27+08:00" content="2017-09-20">
+              2017-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/19/go/go学习/" itemprop="url">
+                  go学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-19T11:32:28+08:00" content="2017-09-19">
+              2017-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码</p>
+</li>
+<li><p>go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件</p>
+</li>
+<li><p>GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，go的安装目录默认在/usr/local, 因此在~/.zshrc下面要设置下GOPATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/work/go</div></pre></td></tr></table></figure>
+<p>另外正如前面所说，所有编译好的目录都在go的workspace下，因此也可以把GOPATH下的bin加到PATH环境变量下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:$(go env GOPATH)/bin&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Go的package都是静态链接的，因此运行时是不需要库存在的</p>
+</li>
+<li><p>go的第一行必须是package name，可执行的命令必须用package main</p>
+</li>
+<li><p>用go get获取远程仓库的package</p>
+<hr>
+</li>
+</ol>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ol>
+<li><p>大写字母开头的成员才会被导出</p>
+</li>
+<li><p>类型是写在变量后面，函数可以返回任意数量的结果</p>
+</li>
+<li><p>返回值也能被命名，尽量不要用naked return（返回值的名字是写在函数定义行里）</p>
+</li>
+<li><p>在函数内部可以用 := 来声明变量，这里可以省去var关键字以及类型，当然这个只适用于函数内部</p>
+<ol>
+<li>go的基础类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">bool</div><div class="line"></div><div class="line">string</div><div class="line"></div><div class="line">int  int8  int16  int32  int64</div><div class="line">uint uint8 uint16 uint32 uint64 uintptr</div><div class="line"></div><div class="line">byte // alias for uint8</div><div class="line"></div><div class="line">rune // alias for int32</div><div class="line">     // represents a Unicode code point</div><div class="line"></div><div class="line">float32 float64</div><div class="line"></div><div class="line">complex64 complex128</div></pre></td></tr></table></figure>
+<p>这里的int， unit， uintptr的位数是根据目标机器是架构来的，如果是32位机器就是32， 64位机器则为64</p>
+</li>
+<li><p>变量在定义时如果没有初始化则会给一个0值， 具体是值</p>
+<p>如果是数值类型，默认是0， 如果是bool类型，默认是false，如果是字符串类型，默认为”“</p>
+</li>
+<li><p>强制转化的语法是T(v) ,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var i int = 42</div><div class="line">var f float64 = float64(i)</div><div class="line">var u uint = uint(f)</div></pre></td></tr></table></figure>
+<p>go里没有隐式转换</p>
+</li>
+<li><p>常量用const关键字，并且常量名首字母大写</p>
+</li>
+<li><p>只有for循环，for虚幻的初始化，判断条件不需要括号，执行体的花括号还是需要的</p>
+</li>
+<li><p>if也不需要括号  </p>
+</li>
+<li><p>go的switch只要命中case就中止，不会继续往下走，因此就不需要break了</p>
+</li>
+<li><p>没有条件的switch可以用来代替长if else</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line">	t := time.Now()</div><div class="line">	switch &#123;</div><div class="line">	case t.Hour() &lt; 12:</div><div class="line">		fmt.Println(&quot;Good morning!&quot;)</div><div class="line">	case t.Hour() &lt; 17:</div><div class="line">		fmt.Println(&quot;Good afternoon.&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;Good evening.&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>defer语句：A defer statement defers the execution of a function until the surrounding function returns.</p>
+</li>
+<li><p>数组： 数组的长度在编译时就是固定的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a [10]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice：is a dynamically-sized, flexible view into the elements of an array， slice像是对底层数组的引用，改变slice的值会改变底层数组的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	primes := [6]int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line"></div><div class="line">	var s []int = primes[1:4]</div><div class="line">	fmt.Println(s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[]bool&#123;true, true, false&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Slice length and capacity   这块不太懂</p>
+</li>
+<li><p>map,  使用make来生成map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>len() 和 cap():</p>
+<p>The length of a slice is the number of elements it contains.</p>
+<p>The capacity of a slice is the number of elements in the underlying array, <strong>counting from the first element in the slice</strong>.  </p>
+<ol>
+<li>cap的话只要slice不移动数组的头，那这个slice的cap是不会变的</li>
+<li>slice里再取slice，如果第二个slice的范围小，则是在前一个slice里取，如果第二个slice的返回大，则是相当于 re-slicing了，根据是底层的数组以及这个slice的capcity</li>
+</ol>
+<p>下面这个例子能说出来这个也就理解了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	s := []int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Slice the slice to give it zero length.</div><div class="line">	//s = s[:0]</div><div class="line">	//printSlice(s)</div><div class="line"></div><div class="line">	// Extend its length.</div><div class="line">	s = s[:4]</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Drop its first two values.</div><div class="line">	s = s[2:]</div><div class="line">	printSlice(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func printSlice(s []int) &#123;</div><div class="line">	fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>answer：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">len=6 cap=6 [2 3 5 7 11 13]</div><div class="line">len=4 cap=6 [2 3 5 7]</div><div class="line">len=2 cap=4 [5 7]</div></pre></td></tr></table></figure>
+</li>
+<li><p>map类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>method： 一个特殊的函数，带有一个receiver参数，这个receiver表示的是这个函数是用在哪个类型上，如果是指针类型的recevier，可以修改receiver的值</p>
+</li>
+<li><p>接口： 我觉得有点像JS里的this的绑定，就是说一个方法不是现实声明在某个对象下面，我可以先声明这个方法的接口，然后通过methods里面的receive的不同类型来做实现，谁想实现就谁去实现这个方法</p>
+</li>
+<li><p>类型断言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	var i interface&#123;&#125; = &quot;hello&quot;</div><div class="line"></div><div class="line">	s := i.(string)</div><div class="line">	fmt.Println(s)</div><div class="line"></div><div class="line">	s, ok := i.(string)</div><div class="line">	fmt.Println(s, ok)</div><div class="line"></div><div class="line">	f, ok := i.(float64)</div><div class="line">	fmt.Println(f, ok)</div><div class="line"></div><div class="line">	f = i.(float64) // panic</div><div class="line">	fmt.Println(f)</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/13/es6/关于generator的理解/" itemprop="url">
+                  关于generator的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T09:38:58+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/generaotr/" itemprop="url" rel="index">
+                    <span itemprop="name">generaotr</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>generator函数和普通函数有什么本质上区别呢？我们知道普通函数是一种“run-to-completion“的机制，即函数会一直运行到结束，中间不会有什么暂停之类的，看看下面这段代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&quot;Hello World&quot;);</div><div class="line">&#125;,1);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    // NOTE: don&apos;t ever do crazy long-running loops like this</div><div class="line">    for (var i=0; i&lt;=1E10; i++) &#123;</div><div class="line">        console.log(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">// 0..1E10</div><div class="line">// &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p>虽然我们设置了个定时器，但是由于foo的循环需要超过1ms的时间运行，定时器无法打断这个函数的执行，只能等到函数执行完了才可以。</p>
+</li>
+<li><p>语法： 在语法上，generator和普通函数区别不大，主要有两点，一个是在函数定义上，需要在函数名前面加个*，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    // ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一个就是yield表达式，当重启或者继续generator时，外部会传一个值进来，这个值就会作为yield表达式的计算值，当函数内部遇到yield表达式时，也会将yield后面的表达式的值传出去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    var x = 1 + (yield &quot;foo&quot;);</div><div class="line">    console.log(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如上面这段代码，当代码执行遇到yield “foo”时，函数会暂停并将“foo“传出去，过一会儿也可能是很久，外面重新启动了这个yield函数，会将某个值传进来，作为这个表达式的返回值</p>
+</li>
+<li><p>generator iterator: 调用generator只会生成一个iterator，这个iterator是我们在外面控制generator的方式，举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先我们要创建一个generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var it = foo();</div></pre></td></tr></table></figure>
+<p>接下来我们要开始迭代我们的iterator，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message = it.next();</div></pre></td></tr></table></figure>
+<p>在generator内部会执行到第一个yield表达式结束，并返回那个yield表达式的值，让我们看一下message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(message); // &#123; value:1, done:false &#125;</div></pre></td></tr></table></figure>
+<p>这里看到返回值不仅是value，还有一个表示状态的done，因为generator还没结束，这里为false， 让我们继续iterate，这里需要注意的是即使运行到了yield 5，done仍然是false，从技术上来说，generator这时候还没结束，只有再调用一次next才可以，而且如果我们要在这次next调用时传值，那这个值必须是5，才能保证结束    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log( it.next() ); // &#123; value:2, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:3, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:4, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:5, done:false &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>理解下generator的数据交换用下面这个例子就够了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function *foo(x) &#123;</div><div class="line">    var y = 2 * (yield (x + 1));</div><div class="line">    var z = yield (y / 3);</div><div class="line">    return (x + y + z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo( 5 );</div><div class="line"></div><div class="line">// note: not sending anything into `next()` here</div><div class="line">console.log( it.next() );       // &#123; value:6, done:false &#125;</div><div class="line">console.log( it.next( 12 ) );   // &#123; value:8, done:false &#125;</div><div class="line">console.log( it.next( 13 ) );   // &#123; value:42, done:true &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>generator还能被for … of 循环捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">    return 6;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var v of foo()) &#123;</div><div class="line">    console.log( v );</div><div class="line">&#125;</div><div class="line">// 1 2 3 4 5</div><div class="line"></div><div class="line">console.log( v ); // still `5`, not `6` :(</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T22:35:59+08:00" content="2017-09-05">
+              2017-09-05
             </time>
           </span>
 
@@ -909,490 +1543,25 @@
         
           
             <ol>
-<li>关于javascript最重要的一点我觉得需要记住的是： javascript函数是一个对象，函数名是指向这个对象的指针</li>
-<li>既然函数名是指针，那就能理解为什么javascript函数没有重载了(重载只不过是改变了指针的指向)</li>
-<li>函数声明（function开头) 与函数表达式的区别仅在于函数声明有个叫函数声明提升的过程，因此即使函数是写在最底部，解释器在执行的时候也是会将它提到前面来解析</li>
-<li>函数内部有两个特殊对象arguments和this， 其中arguments是一个类数组对象，包含着传入的所有参数，这个数组对象有一个叫callee的属性，指向函数本身。 this对象则是引用函数据以执行的环境对象。javascript的this和java是有很大区别的，在于说js的this只有在运行时才能确定，而java的this在开发时就能定下来</li>
-<li>函数对象还有一个caller的属性，指向调用当前函数，严格模式下访问caller和arguments.callee都会报错</li>
-<li>函数还有两个属性 length和prototype，前者表示函数希望接收的命名参数的数量，prototype专门再研究</li>
-<li>函数对象还有两个非继承而来的方法，apply()和call(), 这两个方法都是在特定的作用域中<strong>调用函数</strong>，实际上等于设置函数体内this的值， 他们都接收两个参数，区别在于接收函数的参数方式不同，call必须每一个都列出来，而apply则是可以通过数组或arguments参数传进去，call和applay的意义在于解耦了对象和方法，对象和方法不需要有耦合关系，这点也是js相对于java一个很重要的区别</li>
-<li>函数的bind方法，这个方法和apply和call容易混淆，他们都是改变了对象的this值，所不同的是bind方法是返回一个新函数，而不是立即调用，返回的这个新函数的this值被修改了</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
-                  vscode不好用排查记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-13T11:22:09+08:00" content="2017-07-13">
-              2017-07-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工具的好坏真的很影响效率，这几天一直被vscode搞得很烦，而现在又已经感觉离不开vscode了，特别是在写ts的情况下。简单说下这几天的一个问题，在写componet的props，写着写着就卡死，提示加载中，查看下active monitor发现code helper把cpu吃满了，搜了一圈看到说用下面命令排查</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ps -eo pcpu,user,pid,command | grep Code</div><div class="line">  0.0 root             19842 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper</div><div class="line">  0.0 Jeremy           58063 /Applications/Visual Studio Code.app/Contents/MacOS/Electron</div><div class="line">  0.0 Jeremy           58064 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=gpu-process --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=0,1,10,23,25,35,38,45,51,59,61,62,63,64,66,70,71,73,81,82,83,86,88,89 --gpu-vendor-id=0x8086 --gpu-device-id=0x0a2e --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --gpu-active-vendor-id=0x8086 --gpu-active-device-id=0x0a2e --service-request-channel-token=F64EF82C1B4AE380AE7BB33F7D6350D9</div><div class="line">  0.0 Jeremy           58066 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=E0605B7E030E5A8FA29ECC035BA659D5 --lang=zh-CN --node-integration=true --background-color=#1e1e1e --disable-blink-features=Auxclick --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=E0605B7E030E5A8FA29ECC035BA659D5 --renderer-client-id=4</div><div class="line">  0.0 Jeremy           58068 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=517025C0E30485EB8424196A08BA8C56 --lang=zh-CN --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=517025C0E30485EB8424196A08BA8C56 --renderer-client-id=6</div><div class="line">  0.0 Jeremy           58296 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=terminal</div><div class="line">100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=extensionHost</div><div class="line">  0.0 Jeremy           58298 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=watcherService</div><div class="line">  0.0 Jeremy           58300 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Resources/crashpad_handler --database=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --metrics-dir=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --url=https://rink.hockeyapp.net/api/2/apps/21a48a66799e47fea4f52c0ff81e803d/crashes/upload --handshake-fd=58</div><div class="line">  0.0 Jeremy           58533 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/node_modules/vscode-languageclient/lib/utils/electronForkStart /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/server/server.js --node-ipc</div><div class="line">  0.0 Jeremy           58534 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript/out/utils/electronForkStart /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/tsserver.js --useSingleInferredProject --enableTelemetry --cancellationPipeName /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tscancellation-b7c49ca6478648eabc66.sock* --logVerbosity verbose --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/tsserver.log</div><div class="line">  0.0 Jeremy           58536 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=searchService</div><div class="line">  0.0 Jeremy           58553 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /Users/Jeremy/Library/Caches/typescript/2.4 --enableTelemetry --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/ti-58534.log</div><div class="line">  0.0 Jeremy           58567 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/node_modules/vscode-languageclient/lib/utils/electronForkStart /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/server/out/jsonServerMain.js --node-ipc</div><div class="line">  0.0 Jeremy           58853 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn Code</div></pre></td></tr></table></figure>
-<p>可以看到</p>
-<p>100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap –type=extensionHost</p>
-<p>是这个extensionHost把code helper吃满的， </p>
-<p>extension表示是插件影响的，但至于是哪个插件还不知道，只能一个一个排查，最后发现时auto rename这个插件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/11/react/react ref/" itemprop="url">
-                  react ref
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-11T12:04:55+08:00" content="2017-07-11">
-              2017-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>react中ref本身是一个函数，它可以用在Component，也可以用在html元素之上，如果用在html元素之上，这个函数接收一个参数，参数代表下面的html元素的值，如果用在组件之上，那这个ref的参数代表的是下面的那个组件</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/11/react/react受控组件/" itemprop="url">
-                  react受控组件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-11T11:45:39+08:00" content="2017-07-11">
-              2017-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的例子受控组件是html的基本element，实际中碰到更多的是一个组件控制另外一个组件的值，也就是父组件控制子组件，这时候子组件不需要自己存一个state了，它的值是由props传进来的，这个很好理解，但子组件的值变了之后怎么通知父组件呢，这就需要父组件还要相应的传一个回调函数</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/04/utility/vscode小技巧/" itemprop="url">
-                  vscode小技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-04T10:59:56+08:00" content="2017-07-04">
-              2017-07-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</p>
+<li><p>parseInt和类型转换是有区别的，parseInt只作用域字符串，但这个字符串里可以有非数字的字符，一旦遇到非数字字符就停止解析，返回之前解析的数值，而类型转换是不能容忍字符的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = &quot;42px&quot;;</div><div class="line"></div><div class="line">Number( a );	// 42</div><div class="line">parseInt( a );	// 42</div><div class="line"></div><div class="line">Number( b );	// NaN</div><div class="line">parseInt( b );	// 42</div></pre></td></tr></table></figure>
 </li>
-<li><p>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</p>
+<li><p>parseInt默认是当作10机制来解析，如果是0x开头则当作16进制来解析，0开头的不会当八进制解析，这有效的防止了分钟和小时那种前面带0的字符串被错误的解析成了8进制的数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parseInt( 0.000008 );		// 0   (&quot;0&quot; from &quot;0.000008&quot;)</div><div class="line">parseInt( 0.0000008 );		// 8   (&quot;8&quot; from &quot;8e-7&quot;)</div><div class="line">parseInt( false, 16 );		// 250 (&quot;fa&quot; from &quot;false&quot;)</div><div class="line">parseInt( parseInt, 16 );	// 15  (&quot;f&quot; from &quot;function..&quot;)</div><div class="line"></div><div class="line">parseInt( &quot;0x10&quot; );			// 16</div><div class="line">parseInt( &quot;103&quot;, 2 );		// 2</div></pre></td></tr></table></figure>
+<p>这里很多的结果可能跟你想的不一致，原因在于parseInt在收到一个非字符串的时候，都会先转化成string，所以只要记住一点，parseInt的参数一定要是个字符串</p>
 </li>
-<li><p>f12是跳转到定义，但是mac默认把f12作为功能键，</p>
-<p>首先</p>
-<ol>
-<li>从苹果菜单中，选取“系统偏好设置”。</li>
-<li>点按“键盘”。</li>
-<li>如果未处于高亮显示状态，请点按“键盘”标签。</li>
-<li>选择“将 F1、F2 等键用作标准功能键”</li>
-</ol>
+<li><p>！可以用来将一个非boolean的值强制转化成boolean， 所以能看到下面这种代码，因为！还会将布尔值反转，第二个！就是把它转回来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = &quot;0&quot;;</div><div class="line">var b = [];</div><div class="line">var c = &#123;&#125;;</div><div class="line"></div><div class="line">var d = &quot;&quot;;</div><div class="line">var e = 0;</div><div class="line">var f = null;</div><div class="line">var g;</div><div class="line"></div><div class="line">!!a;	// true</div><div class="line">!!b;	// true</div><div class="line">!!c;	// true</div><div class="line"></div><div class="line">!!d;	// false</div><div class="line">!!e;	// false</div><div class="line">!!f;	// false</div><div class="line">!!g;	// false</div></pre></td></tr></table></figure>
 </li>
+<li><p>如何判断+是数值相加还是字符串连接呢？ 很简单，只要有一个操作符是字符串（或者可以转变成字符串）， 就是字符串连接，否则就是数值相加</p>
+</li>
+<li><p>== 和 === 区别： ==允许做一个隐式的类型转换， === 不允许</p>
+</li>
+<li><p>字符串和数值的隐式比较，都是利用toNumber()方法将字符串先转成数值再比较</p>
+</li>
+<li><p>​和boolean值的==比较， 规则如下，会先将boolean值toNumber（）转化成数值，变成了之前讲的数字和字符串比较，规则也是先将字符串转化成数值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = true;</div><div class="line">var y = &quot;42&quot;;</div><div class="line"></div><div class="line">x == y; // false</div></pre></td></tr></table></figure></li>
 </ol>
-<p>​        但是这还不够，mac默认将f12改为显示dashboard的功能键，所以在键盘的快捷键设置中可以勾选掉mission control前的control</p>
 
           
         
@@ -1425,7 +1594,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1466,7 +1635,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1474,7 +1643,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1483,7 +1652,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

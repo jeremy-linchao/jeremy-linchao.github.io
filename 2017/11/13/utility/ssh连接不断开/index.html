@@ -1,0 +1,631 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ssh 连接不断开," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，http://bluebiu.com/blog/linux-ssh-session-alive.html   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置 123Host *    ServerAliveInterval 60    ServerAliveCount">
+<meta name="keywords" content="ssh 连接不断开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh连接不断开">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/utility/ssh连接不断开/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，http://bluebiu.com/blog/linux-ssh-session-alive.html   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置 123Host *    ServerAliveInterval 60    ServerAliveCount">
+<meta property="og:updated_time" content="2017-11-14T13:55:29.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ssh连接不断开">
+<meta name="twitter:description" content="在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，http://bluebiu.com/blog/linux-ssh-session-alive.html   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置 123Host *    ServerAliveInterval 60    ServerAliveCount">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ssh连接不断开 | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ssh连接不断开
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-13T15:32:24+08:00" content="2017-11-13">
+              2017-11-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p>在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，<a href="http://bluebiu.com/blog/linux-ssh-session-alive.html" target="_blank" rel="external">http://bluebiu.com/blog/linux-ssh-session-alive.html</a>   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host *</div><div class="line">    ServerAliveInterval 60</div><div class="line">    ServerAliveCountMax 3</div></pre></td></tr></table></figure>
+</li>
+<li><p>更好的方案： tmux</p>
+<p>1）如果用的是zsh，需要记得修改下/usr/local/etc/tmux.conf这个文件，改下默认的shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g default-shell /bin/zsh</div></pre></td></tr></table></figure>
+<p>2)   ssh一次再复用的真正含义是“<strong>*在本机上ssh到远程服务器，并且在远程服务器上安装好了tmux，这个时候执行tmux才是打开多个终端*</strong>”。简言之：</p>
+<p>　　　a. tmux必须在远程服务器端装好</p>
+<p>　　　b. 本地只需要ssh到远程服务器一次，ssh的复用是tmux在服务器端的后台完成的</p>
+<p>3)   这个博客不错<a href="http://www.cnblogs.com/xbf9xbf/p/4876969.html" target="_blank" rel="external">http://www.cnblogs.com/xbf9xbf/p/4876969.html</a></p>
+<p>4)   在远程服务器上tmux然后vim会发现颜色丢失，正确的做法是在.vimrc加入下面的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if exists(&apos;$TMUX&apos;)</div><div class="line">  set term=screen-256color</div><div class="line">endif</div></pre></td></tr></table></figure>
+<p>5） cmd+k清屏不好用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Preferences -&gt; Keys -&gt; + (add new global shortcut)</div><div class="line"></div><div class="line">Keyboard shortcut: ⌘+k</div><div class="line">Action: Send text</div><div class="line">value:</div><div class="line">clear\n</div></pre></td></tr></table></figure>
+<p>6) 使用: <a href="https://www.youtube.com/watch?v=BHhA_ZKjyxo" target="_blank" rel="external">https://www.youtube.com/watch?v=BHhA_ZKjyxo</a>   使用这个链接</p>
+<p>tmux ls (or tmux list-sessions)<br>tmux new -s session-name<br>Ctrl-b d Detach from session<br>tmux attach -t [session name]<br>tmux kill-session -t session-name</p>
+<p>Ctrl-b c Create new window<br>Ctrl-b d Detach current client<br>Ctrl-b l Move to previously selected window<br>Ctrl-b n Move to the next window<br>Ctrl-b p Move to the previous window<br>Ctrl-b &amp; Kill the current window<br>Ctrl-b , Rename the current window<br>Ctrl-b q Show pane numbers (used to switch between panes)<br>Ctrl-b o Switch to the next pane<br>Ctrl-b ? List all keybindings</p>
+<h5 id="moving-between-windows"><a href="#moving-between-windows" class="headerlink" title="moving between windows"></a>moving between windows</h5><p>Ctrl-b n (Move to the next window)<br>Ctrl-b p (Move to the previous window)<br>Ctrl-b l (Move to the previously selected window)<br>Ctrl-b w (List all windows / window numbers)<br>Ctrl-b window number (Move to the specified window number, the<br>default bindings are from 0 – 9)</p>
+<h6 id="Tiling-commands"><a href="#Tiling-commands" class="headerlink" title="Tiling commands"></a>Tiling commands</h6><p>Ctrl-b % (Split the window vertically)<br>CTRL-b “ (Split window horizontally)<br>Ctrl-b o (Goto next pane)<br>Ctrl-b q (Show pane numbers, when the numbers show up type the key to go to that pane)<br>Ctrl-b { (Move the current pane left)<br>Ctrl-b } (Move the current pane right)</p>
+<h5 id="Make-a-pane-its-own-window"><a href="#Make-a-pane-its-own-window" class="headerlink" title="Make a pane its own window"></a>Make a pane its own window</h5><p>Ctrl-b : “break-pane”</p>
+<h5 id="add-to-tmux-conf"><a href="#add-to-tmux-conf" class="headerlink" title="add to ~/.tmux.conf"></a>add to ~/.tmux.conf</h5><p>bind | split-window -h<br>bind - split-window -v</p>
+<p>6) 默认更改窗口的快捷键不好用，要使用命令： rename-window <window-name></window-name></p>
+<p>同时，默认窗口名会随着路径改变，在.tmux.conf里加入下面这一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g allow-rename off</div></pre></td></tr></table></figure>
+<p>7) 滚轮与鼠标：这样就可以时候用鼠标来调整pane的大小，并且也可以滚动了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setw -g mode-mouse on</div><div class="line">set -g mouse-select-pane on</div><div class="line">set -g mouse-resize-pane on</div><div class="line">set -g mouse-select-window on</div></pre></td></tr></table></figure>
+<p>8) 复制：</p>
+<ol>
+<li><p>需要iterm2的选中即复制： 按住alt</p>
+</li>
+<li><p>如果在一个pane里复制多行会跨域pane，这时候得用vim的模式复制 </p>
+<p>ctrl + w  ESC   v,   y ,   ctrl + w   p</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ssh-连接不断开/" rel="tag">#ssh 连接不断开</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/utility/chrome failed to load response data/" rel="next" title="chrome failed to load response data">
+                <i class="fa fa-chevron-left"></i> chrome failed to load response data
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/14/utility/zsh在大目录下操作很卡/" rel="prev" title="zsh在大目录下操作很卡">
+                zsh在大目录下操作很卡 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#moving-between-windows"><span class="nav-number">1.</span> <span class="nav-text">moving between windows</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Tiling-commands"><span class="nav-number">1.1.</span> <span class="nav-text">Tiling commands</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Make-a-pane-its-own-window"><span class="nav-number">2.</span> <span class="nav-text">Make a pane its own window</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#add-to-tmux-conf"><span class="nav-number">3.</span> <span class="nav-text">add to ~/.tmux.conf</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

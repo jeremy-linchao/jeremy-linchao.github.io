@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2017/11/03/utility/curl post/" itemprop="url">
+                  curl post
                 </a>
               
             
@@ -257,463 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-05T22:35:59+08:00" content="2017-09-05">
-              2017-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>parseInt和类型转换是有区别的，parseInt只作用域字符串，但这个字符串里可以有非数字的字符，一旦遇到非数字字符就停止解析，返回之前解析的数值，而类型转换是不能容忍字符的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = &quot;42px&quot;;</div><div class="line"></div><div class="line">Number( a );	// 42</div><div class="line">parseInt( a );	// 42</div><div class="line"></div><div class="line">Number( b );	// NaN</div><div class="line">parseInt( b );	// 42</div></pre></td></tr></table></figure>
-</li>
-<li><p>parseInt默认是当作10机制来解析，如果是0x开头则当作16进制来解析，0开头的不会当八进制解析，这有效的防止了分钟和小时那种前面带0的字符串被错误的解析成了8进制的数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parseInt( 0.000008 );		// 0   (&quot;0&quot; from &quot;0.000008&quot;)</div><div class="line">parseInt( 0.0000008 );		// 8   (&quot;8&quot; from &quot;8e-7&quot;)</div><div class="line">parseInt( false, 16 );		// 250 (&quot;fa&quot; from &quot;false&quot;)</div><div class="line">parseInt( parseInt, 16 );	// 15  (&quot;f&quot; from &quot;function..&quot;)</div><div class="line"></div><div class="line">parseInt( &quot;0x10&quot; );			// 16</div><div class="line">parseInt( &quot;103&quot;, 2 );		// 2</div></pre></td></tr></table></figure>
-<p>这里很多的结果可能跟你想的不一致，原因在于parseInt在收到一个非字符串的时候，都会先转化成string，所以只要记住一点，parseInt的参数一定要是个字符串</p>
-</li>
-<li><p>！可以用来将一个非boolean的值强制转化成boolean， 所以能看到下面这种代码，因为！还会将布尔值反转，第二个！就是把它转回来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = &quot;0&quot;;</div><div class="line">var b = [];</div><div class="line">var c = &#123;&#125;;</div><div class="line"></div><div class="line">var d = &quot;&quot;;</div><div class="line">var e = 0;</div><div class="line">var f = null;</div><div class="line">var g;</div><div class="line"></div><div class="line">!!a;	// true</div><div class="line">!!b;	// true</div><div class="line">!!c;	// true</div><div class="line"></div><div class="line">!!d;	// false</div><div class="line">!!e;	// false</div><div class="line">!!f;	// false</div><div class="line">!!g;	// false</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何判断+是数值相加还是字符串连接呢？ 很简单，只要有一个操作符是字符串（或者可以转变成字符串）， 就是字符串连接，否则就是数值相加</p>
-</li>
-<li><p>== 和 === 区别： ==允许做一个隐式的类型转换， === 不允许</p>
-</li>
-<li><p>字符串和数值的隐式比较，都是利用toNumber()方法将字符串先转成数值再比较</p>
-</li>
-<li><p>​和boolean值的==比较， 规则如下，会先将boolean值toNumber（）转化成数值，变成了之前讲的数字和字符串比较，规则也是先将字符串转化成数值类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = true;</div><div class="line">var y = &quot;42&quot;;</div><div class="line"></div><div class="line">x == y; // false</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/05/typescript/typescript寻找声明文件/" itemprop="url">
-                  typescript寻找声明文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-05T11:14:09+08:00" content="2017-09-05">
-              2017-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Typescript默认会先去node_modules下的@types去找，如果找不到，会去项目目录下的types目录继续寻找.d.ts文件（这一步官方文档貌似没有明确说明），但实践了下确实可以， 当然可以用///显示声明依赖，只是如果types文件可以统一管理，会好很多</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/31/javascript/你不知道的javascript/" itemprop="url">
-                  你不知道的javascript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-31T22:22:52+08:00" content="2017-08-31">
-              2017-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖这个bug了</p>
-</li>
-<li><p>javascript的变量是没有类型的，真正有类型的是值，具体来说，JS的变量可以在一个赋值语句中被赋值为number,可以在接下来一个赋值语句中赋值成string。 因此如果你在JS用typeof， 它的意思是在问这个变量的值是什么类型，而不是变量本身</p>
-</li>
-<li><p>undefined并不是undeclared</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined is a value that a declared variable can hold. &quot;Undeclared&quot; means a variable has never been declared</div></pre></td></tr></table></figure>
-<p>对一个未声明过的变量typeof， 返回的是undefined</p>
-</li>
-<li><p>JS的数据不要求里面的元素都是一个类型，因此声明成下面这个也不要感到奇怪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, &quot;2&quot;, [3] ];</div></pre></td></tr></table></figure>
-<p>JS的数组是可以用字符串来做索引的，原因在于数组其实也是个object， 但是用字符串索引的是不会被记到length里去的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[&quot;foobar&quot;] = 2;</div><div class="line"></div><div class="line">a.length;		// 1</div><div class="line">a[&quot;foobar&quot;];	// 2</div><div class="line">a.foobar;		// 2</div></pre></td></tr></table></figure>
-<p>一般来说也建议不要用数组的字符串索引</p>
-</li>
-<li><p>将array-like的元素，比如dom元素转化为真正的数组(这样就可以调用诸如indexOf, forEach等方法了) ，有两种实现方式，一种是用Array.prototype.slice.call(arguments)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var arr = Array.prototype.slice.call( arguments );</div><div class="line">	arr.push( &quot;bam&quot; );</div><div class="line">	console.log( arr );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( &quot;bar&quot;, &quot;baz&quot; ); // [&quot;bar&quot;,&quot;baz&quot;,&quot;bam&quot;]</div></pre></td></tr></table></figure>
-<p>另一种是ES6的Array.from</p>
-</li>
-<li><p>JS的string和字符数组一样吗？表面看上去他们有点一样，比如都有indexOf方法，都有concat方法，都有length属性，但实际上他们很不一样。一个最大的区别在于说string是不可以改变的，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = &quot;foo&quot;;</div><div class="line">var b = [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;];</div><div class="line">a[1] = &quot;O&quot;;</div><div class="line">b[1] = &quot;O&quot;;</div><div class="line">a; // &quot;foo&quot;</div><div class="line">b; // [&quot;f&quot;,&quot;O&quot;,&quot;o&quot;]</div></pre></td></tr></table></figure>
-<p>另外string本身也没有join，reverse方法，因此一个常见的面试提： 给你一个字符串，让你去反转，这个该如何操作呢？可以先把字符串转化成字符数组，然后调用相应方法，最后再join</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var c = a</div><div class="line">	// split `a` into an array of characters</div><div class="line">	.split( &quot;&quot; )</div><div class="line">	// reverse the array of characters</div><div class="line">	.reverse()</div><div class="line">	// join the array of characters back to a string</div><div class="line">	.join( &quot;&quot; );</div><div class="line"></div><div class="line">c; // &quot;oof&quot;</div></pre></td></tr></table></figure>
-<p>注： 书上说对于multibype characters无效，我测试中文是可以的</p>
-<p>This approach <strong>doesn’t work</strong> for <code>string</code>s with complex (unicode) characters in them (astral symbols, multibyte characters, etc.).</p>
-</li>
-<li><p>JS的number类型是直接可以调用Number的方法的，比如保留小数点位数的toFixed()方法   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">a.toFixed( 0 ); // &quot;43&quot;</div><div class="line">a.toFixed( 1 ); // &quot;42.6&quot;</div><div class="line">a.toFixed( 2 ); // &quot;42.59&quot;</div><div class="line">a.toFixed( 3 ); // &quot;42.590&quot;</div><div class="line">a.toFixed( 4 ); // &quot;42.5900&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3 是返回的false！！！</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS的整形最大值是2的53次方-1，这个数还是要记住的，因为在某些情况下会有用，比如定义数据库的ID时，不能用64位的整数，只能用string来存，使用Number.MAX_SAFE_INTEGER这个来定义，最小值是-9007199254740991，使用Number.MIN_SAFE_INTEGER这个来定义，</p>
-<p>浮点型的最大值是1.798e+308，使用Number.MAX_VALUE这个来定义，最小值是5e-324，使用Number.MIN_VALUE这个来定义</p>
-</li>
-<li><p>32为有符号整数： 为什么需要32位整数呢？ 有些操作只能用于32位整数，比如位操作。把一个number类型的数变为32位有符号数的方式是 | 0</p>
-</li>
-<li><p>void 操作符，确保某个表达式的返回值是undefined，他不会修改已有的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 42;</div><div class="line">console.log( void a, a ); // undefined 42</div></pre></td></tr></table></figure>
-</li>
-<li><p>NaN最好理解成 invalid number，而不是字面意义上的not a number，解释看下面一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof NaN // number</div></pre></td></tr></table></figure>
-<p>NaN与自身比较是返回false的, 这也是javascrpt里面唯一一个自己与自己比较不相等是返回true的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NaN !== NaN  // true</div><div class="line">null !== null // false</div><div class="line">undefined !== null // false</div></pre></td></tr></table></figure>
-<p>所以比较一个数是不是NaN要用ES6的Number.isNaN方法，这里不能用ES5的window.isNaN，因为对于其他非数组类型，window.isNaN也会返回true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN(b);  // false;</div><div class="line">window.isNaN(b);  // true</div></pre></td></tr></table></figure>
-<p>有两种实现Number.isNaN方法，都值得学习下，第一种是加了一个typeof判断，因为NaN其实也是个number</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">	Number.isNaN = function(n) &#123;</div><div class="line">		return (</div><div class="line">			typeof n === &quot;number&quot; &amp;&amp;</div><div class="line">			window.isNaN( n )</div><div class="line">		);</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第二种方法是巧妙地利用了NaN是唯一一个自身与自身比较不相等是返回true的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNan)&#123;</div><div class="line">  Number.isNaN = function(n) &#123;</div><div class="line">    return n !== n;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS有 +0 和 -0之分，主要是为了用在某些场合需要方向的情况下，但+0 和 -0不能简单的用===来比较，那样他们是相等的，ES6有个Object.is方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = -3 * 0;</div><div class="line"></div><div class="line">Object.is( a, NaN );	// true</div><div class="line">Object.is( b, -0 );		// true</div><div class="line"></div><div class="line">Object.is( b, 0 );		// false</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS中有值传递与引用传递， 但这个是根据变量本身的类型来的，我们没有控制权利</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Simple values are always assigned/passed by value-copy: null, undefined, string, number, boolean, and ES6&apos;s symbol.</div><div class="line"></div><div class="line">Compound values -- objects (including arrays, and all boxed object wrappers -- see Chapter 3) and functions -- always create a copy of the reference on assignment or passing.</div></pre></td></tr></table></figure>
-<p>经典例子如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">	x.push( 4 );</div><div class="line">	x; // [1,2,3,4]</div><div class="line"></div><div class="line">	// later</div><div class="line">	x = [4,5,6];</div><div class="line">	x.push( 7 );</div><div class="line">	x; // [4,5,6,7]</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">foo( a );</div><div class="line"></div><div class="line">a; // [1,2,3,4]  not  [4,5,6,7]</div></pre></td></tr></table></figure>
-<p>这里面的第二次复制 x = [4, 5, 6] 只是将x指向了一个新的数组，不能让原来的a改变指向</p>
-</li>
-<li><p>natives，比如String(),  Number(), 这些有点像其他语言的构造函数，  为什么要这些natives，因为基本类型没有属性方法，比如一个string，没有.length属性，没有toUpperCase()方法， number没有.toFixed()方法， JS默认会自动会基本类型加上包装</p>
-<p>比如你顶一个string，是可以直接调用toUpperCase()方法</p>
-</li>
-<li><p>Date()和Error()是两个比较有用的natives，因为没有对应的基本类型，获取当前时间戳的两种方式</p>
-<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(new Date()).getTime()</div><div class="line">Date.now()</div><div class="line">​</div></pre></td></tr></table></figure></p>
-</li>
-<li><p>​  经常看到console.log打印对象会打出诸如”[object Object]”这样的东西，这是因为如果没有实现对象的toString()方法，默认打出的是[[class]]属性</p>
-</li>
-<li><p>JSON.stringify()会自动忽略掉 undefined, null 和 symbol，如果这些值是在数组中，会用null来代替，如果是在一个对象中，则这个属性会被排除掉</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line">           </div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
-</code></pre></li>
-<li><p>JSON.stringify是有两个可选参数的，一个叫replacer，可以是数组或是函数，用来指定对象中哪些需要保留在最终的json字符串中，哪些需要剔除，而第三个参数是为了美观用的，指明每一行的分隔符</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line">           </div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line">           </div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
-</code></pre><p>var a = {</p>
-<pre><code>b: 42,
-c: &quot;42&quot;,
-d: [1,2,3]
-</code></pre><p>};</p>
-<p>JSON.stringify( a, null, 3 );<br>// “{<br>//    “b”: 42,<br>//    “c”: “42”,<br>//    “d”: [<br>//       1,<br>//       2,<br>//       3<br>//    ]<br>// }”</p>
-<p>JSON.stringify( a, null, “—–” );<br>// “{<br>// —–”b”: 42,<br>// —–”c”: “42”,<br>// —–”d”: [<br>// ———-1,<br>// ———-2,<br>// ———-3<br>// —–]<br>// }”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20.  falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21.  显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
-<p>var a = 42;<br>var b = String( a );</p>
-<p>var c = “3.14”;<br>var d = Number( c );</p>
-<p>b; // “42”<br>d; // 3.14</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22.  单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
-<p>var d = new Date();</p>
-<p>+d; // 1408369986000</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23.  ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
-<p>~42;    // -(42+1) ==&gt; -43</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对于 -1 ， ~-1 是返回0，其余都是非0， 这个特性可以用在indexOf的返回值上</div></pre></td></tr></table></figure>
-<p>var a = “Hello World”;</p>
-<p>~a.indexOf( “lo” );            // -4   &lt;– truthy!</p>
-<p>if (~a.indexOf( “lo” )) {    // true<br> // found it!<br>}</p>
-<p>~a.indexOf( “ol” );            // 0    &lt;– falsy!<br>!~a.indexOf( “ol” );        // true</p>
-<p>if (!~a.indexOf( “ol” )) {    // true<br> // not found!<br>}<br>```</p>
-<p>~~有点像floor取整，但他们不一样！ </p>
-<p>~~的原理是先转换成一个Int32，然后取反，第二个~再取反，所以小数部分会被结掉，但这个有试用范围，首先只适用于32位的整数，其次只适用于正数</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/31/utility/使用rsync指定非默认ssh端口/" itemprop="url">
-                  使用rsync指定非默认ssh端口
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-31T14:29:50+08:00" content="2017-08-31">
-              2017-08-31
+            <time itemprop="dateCreated" datetime="2017-11-03T10:22:21+08:00" content="2017-11-03">
+              2017-11-03
             </time>
           </span>
 
@@ -761,7 +306,13 @@ d: [1,2,3]
       
         
           
-            <p>rsync -avz -e “ssh -p 11111”  src  dst</p>
+            <ol>
+<li><p>application/x-www-form-urlencoded   这个content-type是默认的，不用指定-H</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -d &quot;param1=value1&amp;param2=value2&quot; -X POST http://localhost:3000/data</div></pre></td></tr></table></figure>
+</li>
+<li><p>application/json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -d &apos;&#123;&quot;key1&quot;:&quot;value1&quot;, &quot;key2&quot;:&quot;value2&quot;&#125;&apos; -H &quot;Content-Type: application/json&quot; -X POST http://localhost:3000/data</div></pre></td></tr></table></figure></li>
+</ol>
 
           
         
@@ -811,8 +362,8 @@ d: [1,2,3]
             
               
                 
-                <a class="post-title-link" href="/2017/08/23/javascript/Ajax里用window.open被拦截问题/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2017/11/02/k8s/k8s化遇到的问题/" itemprop="url">
+                  docker化遇到的问题
                 </a>
               
             
@@ -825,8 +376,8 @@ d: [1,2,3]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-23T11:22:49+08:00" content="2017-08-23">
-              2017-08-23
+            <time itemprop="dateCreated" datetime="2017-11-02T17:54:16+08:00" content="2017-11-02">
+              2017-11-02
             </time>
           </span>
 
@@ -839,122 +390,8 @@ d: [1,2,3]
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>浏览器安全机制中，页面弹窗，必须是在用户触发的，才算合法弹窗；由ajax或定时执行的弹窗均为非用户触发。会被浏览器或相关安全软件理解为广告被拦截掉；</p>
-<p>因此window.open需要写在ajax之前</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/22/typescript/typescript d.ts管理/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-22T10:06:54+08:00" content="2017-08-22">
-              2017-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
+                  <a href="/categories/k8s/" itemprop="url" rel="index">
+                    <span itemprop="name">k8s</span>
                   </a>
                 </span>
 
@@ -989,17 +426,13 @@ d: [1,2,3]
         
           
             <ol>
-<li>After installing any npm package as a dependency or dev dependency, immediately try to install the <code>.d.ts</code> file via <code>@types</code>.</li>
-<li>If the library has a <code>.d.ts</code> file on DefinitelyTyped, the install will succeed and you are done. If the install fails because the package doesn’t exist, continue to step 3.</li>
-<li>Make sure you project is <a href="https://github.com/Microsoft/TypeScript-Node-Starter#setting-up-typescript-to-look-for-dts-files-in-another-folder" target="_blank" rel="external">configured for supplying your own <code>d.ts</code> files</a></li>
-<li>Try to <a href="https://github.com/Microsoft/TypeScript-Node-Starter#using-dts-gen" target="_blank" rel="external">generate a <code>.d.ts</code> file with dts-gen</a>. If it succeeds, you are done. If not, continue to step 5.</li>
-<li>Create a file called <code>.d.ts</code> in your <code>types</code> folder.</li>
-<li>Add the following code:</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">declare module &quot;&lt;some-library&gt;&quot;;</div></pre></td></tr></table></figure>
-<ol>
-<li>At this point everything should compile with no errors and you can either improve the types in the <code>.d.ts</code> file by following this <a href="http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html" target="_blank" rel="external">guide on authoring <code>.d.ts</code> files</a> or continue with no types.</li>
-<li>If you are still having issues, let me know by sending me an email or pinging me on twitter, I will help you.</li>
+<li><p>go build出来的东西md5sum之后总是一样的结果</p>
+<p>原因： 在代码里面的import实际上会通过GOPATH去import进来，所以要改GOPATH下面的src</p>
+</li>
+<li><p>npm node-common总是报这个错 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">npm WARN package.json api-gateway@0.0.1 No repository field.</div><div class="line">npm WARN package.json api-gateway@0.0.1 No license field.</div><div class="line"></div><div class="line">&gt; node-protobuf@1.1.5 install /data/app/node_modules/node-protobuf</div><div class="line">&gt; node-gyp rebuild</div><div class="line"></div><div class="line">gyp ERR! clean error</div><div class="line">gyp ERR! stack Error: ENOTEMPTY, rmdir &apos;build/Release/obj.target&apos;</div><div class="line">gyp ERR! System Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">gyp ERR! command &quot;node&quot; &quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&quot; &quot;rebuild&quot;</div><div class="line">gyp ERR! cwd /data/app/node_modules/node-protobuf</div><div class="line">gyp ERR! node -v v0.10.46</div><div class="line">gyp ERR! node-gyp -v v3.3.1</div><div class="line">gyp ERR! not ok</div><div class="line"></div><div class="line">npm ERR! Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">npm ERR! argv &quot;/usr/bin/node&quot; &quot;/usr/bin/npm&quot; &quot;--registry=http://npm.service.ucloud.cn&quot; &quot;install&quot;</div><div class="line">npm ERR! node v0.10.46</div><div class="line">npm ERR! npm  v2.15.1</div><div class="line">npm ERR! code ELIFECYCLE</div><div class="line">npm ERR! node-protobuf@1.1.5 install: `node-gyp rebuild`</div><div class="line">npm ERR! Exit status 1</div><div class="line">npm ERR!</div><div class="line">npm ERR! Failed at the node-protobuf@1.1.5 install script &apos;node-gyp rebuild&apos;.</div><div class="line">npm ERR! This is most likely a problem with the node-protobuf package,</div><div class="line">npm ERR! not with npm itself.</div><div class="line">npm ERR! Tell the author that this fails on your system:</div><div class="line">npm ERR!     node-gyp rebuild</div><div class="line">npm ERR! You can get information on how to open an issue for this project with:</div><div class="line">npm ERR!     npm bugs node-protobuf</div><div class="line">npm ERR! Or if that isn&apos;t available, you can get their info via:</div><div class="line">npm ERR!</div><div class="line">npm ERR!     npm owner ls node-protobuf</div><div class="line">npm ERR! There is likely additional logging output above.</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /data/app/npm-debug.log</div></pre></td></tr></table></figure>
+<p>原因： 检查下是不是把node_modules也copy到docker里面去了，那样的应用的包会是你拷贝进去的包</p>
+</li>
 </ol>
 
           
@@ -1050,8 +483,8 @@ d: [1,2,3]
             
               
                 
-                <a class="post-title-link" href="/2017/08/16/typescript/typescript recap/" itemprop="url">
-                  typescript recap
+                <a class="post-title-link" href="/2017/10/30/k8s/kubernetes集群搭建/" itemprop="url">
+                  kubernetes集群搭建
                 </a>
               
             
@@ -1064,8 +497,8 @@ d: [1,2,3]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-16T21:51:56+08:00" content="2017-08-16">
-              2017-08-16
+            <time itemprop="dateCreated" datetime="2017-10-30T16:53:03+08:00" content="2017-10-30">
+              2017-10-30
             </time>
           </span>
 
@@ -1078,8 +511,8 @@ d: [1,2,3]
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
                   </a>
                 </span>
 
@@ -1113,93 +546,55 @@ d: [1,2,3]
       
         
           
-            <h4 id="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><a href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点" class="headerlink" title="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"></a>Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</h4><h4 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型:"></a>1.基础类型:</h4><ol>
-<li><p>增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如果用枚举值可以更方便地管理； API的返回值很多可以用枚举值了</p>
-<p>另外需要注意的是对于枚举值是数值的枚举类型，是可以从值来返回枚举名字本身的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red = 1, Green, Blue&#125;</div><div class="line">let colorName: string = Color[2];</div><div class="line"></div><div class="line">alert(colorName);</div></pre></td></tr></table></figure>
-</li>
-<li><p>类型断言：当我们比编译器知道更多关于一个变量的类型的时候可以用类型断言，有点像其他语言里的强制类型转换，但它实际上不会对数据做任何操作，仅供编译器用，有两种写法，一种是&lt;&gt;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (&lt;string&gt;someValue).length;</div></pre></td></tr></table></figure>
-<p>另一种是as</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="2-声明"><a href="#2-声明" class="headerlink" title="2.声明"></a>2.声明</h4><ol>
-<li><p>var是函数作用域， let是块级作用域，还是再看下这个经典的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    // capture the current state of &apos;i&apos;</div><div class="line">    // by invoking a function with its current value</div><div class="line">    (function(i) &#123;</div><div class="line">        setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里是用了变量捕获，即 each time a scope is run, it creates an “environment” of variables. That environment and its captured variables can exist even after everything within its scope has finished executing</p>
-<p>而在循环中声明的let就是类似的作用， 每次循环都会创建一个新的scope，然后会捕获那个i</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h4><ol>
-<li><p>对象的readonly属性，即这个属性只在对象初始化时改变，之后就不能再被修改了，就像使用const一样尽可能使用readonly</p>
-</li>
-<li><p>ReadonlyArray<t>, 不可变数组</t></p>
-</li>
-<li><p>对象字面量在赋值给其他变量或函数参数时会被加强检查的，说的是如果对象字面量里有任何属性目标对象里没有时就会报错，这里的函数参数是用对象字面量，但color拼错了，在js这没有问题，但ts这里会报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createSquare(config: SquareConfig): &#123; color: string; area: number &#125; &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySquare = createSquare(&#123; colour: &quot;red&quot;, width: 100 &#125;);</div></pre></td></tr></table></figure>
-<p>解决办法有几个，1个是强制转换，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let mySquare = createSquare(&#123; width: 100, opacity: 0.5 &#125; as SquareConfig);</div></pre></td></tr></table></figure>
-<p>或者可以在声明文件里加索引签名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">    [propName: string]: any;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>或者先赋值给一个变量，再传参</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let squareOptions = &#123; colour: &quot;red&quot;, width: 100 &#125;;</div><div class="line">let mySquare = createSquare(squareOptions);</div></pre></td></tr></table></figure>
-</li>
-<li><p>可索引类型</p>
-<h4 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h4></li>
-<li><p>TS对函数做了增强，表现在TS中的函数每一个参数都是必须要传的，除非显示指定为可选参数或者默认参数，这和JS有很大不同，JS中所有参数参数都是可选的，如果你不传，表示你传的是undefined</p>
-</li>
-<li><p>默认参数是ES6就有的</p>
-</li>
-<li><p>剩余参数也是ES6有的，即多余的函数参数不在放到arguments里，而是用…一个剩余参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildName(firstName: string, ...restOfName: string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let employeeName = buildName(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>箭头函数显示绑定this,  Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked</p>
-</li>
-<li><p>TS支持函数重载：对同一个函数作多个声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4><ol>
-<li>坦率说我现在也不知道怎么来定义什么是泛型，我的理解是泛型是一种通用的写法，可以是一个函数，可以是一个类型，不用把变量和属性的参数类型固定死而同时又能加上类型限制的方式，可以通过&lt;&gt;这种形式来捕获输入的变量类型，然后可以通过这个类型来限制其他的类型，比如输出的类型，输入的其他变量类型，最简单的是官方的echo函数的例子，</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: number): number &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    如果这样写的话参数只能是数值类型，但我如果要一个字符串类型的echo函数呢？又或者数组呢？不可能每个都写一遍吧，一个方法是写成any</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: any): any &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    但any有个问题，输入和输出的关系丢失了，我输入是个number，输出也可以是个string，所以这时候泛型就可以派上用长了，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    这样写的话T可以捕获输入的类型，同时限制了输出的类型，这是一个最简单的例子</p>
+            <p>follow的文档主要是这个</p>
+<p><a href="https://k8s-install.opsnull.com/" target="_blank" rel="external">https://k8s-install.opsnull.com/</a></p>
+<p>有几个问题要注意</p>
 <ol>
-<li><p>泛型限制</p>
-<p>如果我们想限制T的范围呢</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function loggingIdentity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Error: T doesn&apos;t have .length</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行</p>
+</li>
+<li><p>dashboard:  文档给的service部署yaml没有问题，但是nodePort没有指定，所以是段内一个随机的，如果要提供外网访问，一般起一个nginx反代，所以最好也指定nodePort,  dashboard-service.yaml如下</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  apiVersion: v1</div><div class="line">  kind: Service</div><div class="line">  metadata:</div><div class="line">    name: kubernetes-dashboard</div><div class="line">    namespace: kube-system</div><div class="line">    labels:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">      kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">      addonmanager.kubernetes.io/mode: Reconcile</div><div class="line">  spec:</div><div class="line">    type: NodePort</div><div class="line">    selector:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">    ports:</div><div class="line">- port: 80</div><div class="line">  targetPort: 9090</div><div class="line">  nodePort: 8900</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nginx的配置如下</div></pre></td></tr></table></figure>
+<p>http {<br>  log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘</p>
+<pre><code>&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+</code></pre><p>  access_log  /var/log/nginx/access.log  main;</p>
+<p>  sendfile            on;<br>  tcp_nopush          on;<br>  tcp_nodelay         on;<br>  keepalive_timeout   65;<br>  types_hash_max_size 2048;</p>
+<p>  include             /etc/nginx/mime.types;<br>  default_type        application/octet-stream;</p>
+<h1 id="Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><a href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory" class="headerlink" title="Load modular configuration files from the /etc/nginx/conf.d directory."></a>Load modular configuration files from the /etc/nginx/conf.d directory.</h1><h1 id="See-http-nginx-org-en-docs-ngx-core-module-html-include"><a href="#See-http-nginx-org-en-docs-ngx-core-module-html-include" class="headerlink" title="See http://nginx.org/en/docs/ngx_core_module.html#include"></a>See <a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="external">http://nginx.org/en/docs/ngx_core_module.html#include</a></h1><h1 id="for-more-information"><a href="#for-more-information" class="headerlink" title="for more information."></a>for more information.</h1><p>  include /etc/nginx/conf.d/*.conf;</p>
+<p>  upstream dashboard {</p>
+<pre><code>server 10.146.0.2:8900 weight=1;
+ server 10.146.0.3:8900 weight=1;
+ server 10.146.0.4:8900 weight=1;
+</code></pre><p>  }</p>
+<p>  server {</p>
+<pre><code>listen       80 default_server;
+listen       [::]:80 default_server;
+server_name  YOUR_SERVER;
+
+# Load configuration files for the default server block.
+include /etc/nginx/default.d/*.conf;
+
+location / {
+    proxy_pass  http://dashboard;
+}
+
+error_page 404 /404.html;
+    location = /40x.html {
+}
+
+error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+}
+</code></pre><p>  }</p>
 </li>
 </ol>
-<p>上面我想调T的length，但是不是所有T都有length这个属性，因此可以对T做下限制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">interface Lengthwise &#123;</div><div class="line">    length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Now we know it has a .length property, so no more error</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下面这个例子也是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K) &#123;</div><div class="line">    return obj[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="6-类型推断"><a href="#6-类型推断" class="headerlink" title="6. 类型推断"></a>6. 类型推断</h4><ol>
-<li><p>类型推断发生在什么时候？变量初始化时，设置参数默认值时，决定函数返回值时，上下文类型，前三个比较好理解，这里要重点学习下上下类型推导，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.onmousedown = function(mouseEvent) &#123;</div><div class="line">    console.log(mouseEvent.buton);  //&lt;- Error</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这里如果这个onmousedown之前定义过，那么mouseEvent的类型就能被推导出来</p>
-<h4 id="7-高级类型"><a href="#7-高级类型" class="headerlink" title="7. 高级类型"></a>7. 高级类型</h4></li>
-<li><p>交叉类型  &amp;：  多种类型的加和</p>
-</li>
-<li><p>联合类型 ！：  多种类型中的一种</p>
-</li>
-<li><p>自定义类型保护：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isFish(pet: Fish | Bird): pet is Fish &#123;</div><div class="line">    return (&lt;Fish&gt;pet).swim !== undefined;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>typeof 类型保护</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function padLeft(value: string, padding: string | number) &#123;</div><div class="line">    if (typeof padding === &quot;number&quot;) &#123;</div><div class="line">        return Array(padding + 1).join(&quot; &quot;) + value;</div><div class="line">    &#125;</div><div class="line">    if (typeof padding === &quot;string&quot;) &#123;</div><div class="line">        return padding + value;</div><div class="line">    &#125;</div><div class="line">    throw new Error(`Expected string or number, got &apos;$&#123;padding&#125;&apos;.`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="8-模块"><a href="#8-模块" class="headerlink" title="8. 模块"></a>8. 模块</h4><p>模块在其自身的作用域里执行，而不是在全局作用域里，这意味着定义在一个模块里的变量，函数，类等等在模块外部是不可见的，除非你明确地使用export导出它们</p>
-<p>1、 具有副作用的导入模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &quot;./my-module.js&quot;;</div></pre></td></tr></table></figure>
-<p>在导入CSS文件里可以看到这种写法，这会导入整个模块，并且是全局的</p>
+<p>另外在centos 7上，如果访问还能看到这个nginx有这个错误：Permission denied) while connecting to upstream, 原因是开了SELinux，需要关闭它</p>
+<h3 id="1-临时关闭（不用重启机器）："><a href="#1-临时关闭（不用重启机器）：" class="headerlink" title="1.临时关闭（不用重启机器）："></a>1.临时关闭（不用重启机器）：</h3><p>   setenforce 0                  ##设置SELinux 成为permissive模式</p>
+<p>   ##setenforce 1 设置SELinux 成为enforcing模式</p>
+<h3 id="2-修改配置文件需要重启机器："><a href="#2-修改配置文件需要重启机器：" class="headerlink" title="2.修改配置文件需要重启机器："></a>2.修改配置文件需要重启机器：</h3><p>   修改/etc/selinux/config 文件</p>
+<p>   将SELINUX=enforcing改为SELINUX=disabled</p>
+<p>   重启机器即可</p>
 
           
         
@@ -1249,8 +644,8 @@ d: [1,2,3]
             
               
                 
-                <a class="post-title-link" href="/2017/08/12/javascript/javascript对象的扩展运算符/" itemprop="url">
-                  javascript对象的扩展运算符
+                <a class="post-title-link" href="/2017/10/27/k8s/kubenetes问题/" itemprop="url">
+                  kubenetes问题排查
                 </a>
               
             
@@ -1263,8 +658,8 @@ d: [1,2,3]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T12:57:53+08:00" content="2017-08-12">
-              2017-08-12
+            <time itemprop="dateCreated" datetime="2017-10-27T10:35:43+08:00" content="2017-10-27">
+              2017-10-27
             </time>
           </span>
 
@@ -1277,8 +672,8 @@ d: [1,2,3]
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
+                  <a href="/categories/kubenetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubenetes</span>
                   </a>
                 </span>
 
@@ -1312,11 +707,21 @@ d: [1,2,3]
       
         
           
-            <p>扩展运算符（<code>...</code>）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let z = &#123; a: 3, b: 4 &#125;;</div><div class="line">let n = &#123; ...z &#125;;</div><div class="line">n // &#123; a: 3, b: 4 &#125;</div></pre></td></tr></table></figure>
-<p>这等同于使用<code>Object.assign</code>方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let aClone = &#123; ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aClone = Object.assign(&#123;&#125;, a);</div></pre></td></tr></table></figure>
-<p>但是要注意的是…只是一个浅拷贝，上面的对象z有两个属性a和b，如果a和b都是个对象，那做一个剩余操作符，只是改了最外面一个对象名，其他值还是原来的</p>
+            <ol>
+<li>日志里报redis连不上，但写的是</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Failed To Connect Redis_Token, Host:redis-svc.default.svc.cluster.local, Port:6379, Error:host is unreachable,</div></pre></td></tr></table></figure>
+<p>这里报的不是不能解析，而是说主机unreachable，开始我以为是redis挂了，但检查了下redis没有问题，然后我又觉得是不是kube-dns的问题，kube-dns在官网是有trouble shooting的文档</p>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips" target="_blank" rel="external">https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips</a></p>
+<p>这里一开始执行下面命令确实会解析不到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec -ti busybox -- nslookup kubernetes.default</div></pre></td></tr></table></figure>
+<p>但根据官网在busybox的yaml文件中加了下面两条是可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hostNetwork: true</div><div class="line">dnsPolicy: ClusterFirstWithHostNet</div></pre></td></tr></table></figure>
+<p>dns的服务没有问题</p>
+<p>再通过镜像nslokup下发现 这个null的问题，我的镜像是基于alpine, 于是再去看下官网，上面有knowing issue</p>
+<p><a href="https://github.com/kubernetes/kubernetes/issues/30215" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/issues/30215</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kubectl exec -it public-api-gateway-deploy-2955150880-w5nt8 -- nslookup redis-svc.default.svc.cluster.local</div><div class="line"></div><div class="line">nslookup: can&apos;t resolve &apos;(null)&apos;: Name does not resolve</div><div class="line"></div><div class="line">Name:      redis-svc.default.svc.cluster.local</div><div class="line">Address 1: 10.254.66.131 redis-svc.default.svc.cluster.local</div></pre></td></tr></table></figure>
+<p>这里又突然发现一个问题，node节点上的cbr0丢失了，与container不通</p>
 
           
         
@@ -1366,7 +771,243 @@ d: [1,2,3]
             
               
                 
-                <a class="post-title-link" href="/2017/08/12/javascript/javascript filter问题/" itemprop="url">
+                <a class="post-title-link" href="/2017/10/25/utility/linux常用命令/" itemprop="url">
+                  linux常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-25T16:57:23+08:00" content="2017-10-25">
+              2017-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>find： find是用来在目录下搜寻特定文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path...] [expression]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -name &quot;mysql.cnf&quot;	   找寻mysql.cnf</div><div class="line">find / -type d -size +2G  找寻超过2G的目录</div><div class="line">find / -type f -user root -exec chown weber &#123;&#125; \;  将当前目录下的所有权变更为weber:</div></pre></td></tr></table></figure>
+</li>
+<li><p>grep: print lines matching a pattern</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grep [OPTIONS] PATTERN [FILE...]</div><div class="line">grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -rl &quot;abc&quot; .    r:递归  l:只显示文件命名</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Ctl-U   删除光标到行首的所有字符,在某些设置下,删除全行</div><div class="line">Ctl-W   删除当前光标到前边的最近一个空格之间的字符</div><div class="line">Ctl-H   backspace,删除光标前边的字符</div><div class="line">Ctl-R   匹配最相近的一个文件，然后输出</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/24/docker/Docker 常用命令/" itemprop="url">
+                  Docker 常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-24T22:03:47+08:00" content="2017-10-24">
+              2017-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/23/utility/openssl自签名证书categories: openssltags: openssl/" itemprop="url">
                   未命名
                 </a>
               
@@ -1380,30 +1021,11 @@ d: [1,2,3]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T12:23:33+08:00" content="2017-08-12">
-              2017-08-12
+            <time itemprop="dateCreated" datetime="2017-10-23T16:28:06+08:00" content="2017-10-23">
+              2017-10-23
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -1429,10 +1051,12 @@ d: [1,2,3]
       
         
           
-            <p>今天在使用filter的时候踩了一个新手很常见的问题，但因为使用方式的隐蔽，一开始没看出来，具体的问题是这样的:</p>
-<p>我又一个对象是叫availableHosts,然后这个对象有两个属性，一个是byId，这个是一个对象，另一个属性叫allIds,是个字符串数组，我的需求是过滤下allIds这个数组，删除掉指定的字符串，然后我写下了如下一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">availableHosts.allIds.filter((hostId: string) =&gt; &#123;</div><div class="line">   if (hostId === someone) &#123;</div><div class="line">     return false;</div><div class="line">   &#125; else &#123;</div><div class="line">     return true;</div><div class="line">   &#125;   </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>然后console.log打印availableHosts，发现无论你怎么过滤，allId这个字符串数组都没有变，甚至你直接return false都没用，然后我突然想到filter这个是返回一个新数组，我这里没有对属性赋值，引用的还是老数组，所以当然没变了。这个问题之所以查了很久，原因在于之前用filter是在一个数组上用的，然后直接赋值，但这次是在一个对象的属性上，这就很容易忘记赋值这个操作，需要吸取教训。</p>
+            <p>title: openssl自签名证书<br>categories: openssl<br>tags: openssl</p>
+<ol>
+<li>openssl genrsa -out server.key 1024</li>
+<li>openssl req -new -key server.key -out server.csr</li>
+<li>openssl x509 -req -in server.csr -out server.crt -signkey server.key -days 3650</li>
+</ol>
 
           
         
@@ -1482,8 +1106,8 @@ d: [1,2,3]
             
               
                 
-                <a class="post-title-link" href="/2017/08/12/ops/mysql崩溃自动重启/" itemprop="url">
-                  mysql崩溃自动重启
+                <a class="post-title-link" href="/2017/10/17/k8s/openresty跑在k8s集群遇到的问题/" itemprop="url">
+                  openresty跑在k8s集群遇到的问题
                 </a>
               
             
@@ -1496,8 +1120,8 @@ d: [1,2,3]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T08:40:11+08:00" content="2017-08-12">
-              2017-08-12
+            <time itemprop="dateCreated" datetime="2017-10-17T18:17:31+08:00" content="2017-10-17">
+              2017-10-17
             </time>
           </span>
 
@@ -1510,8 +1134,8 @@ d: [1,2,3]
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ops/" itemprop="url" rel="index">
-                    <span itemprop="name">ops</span>
+                  <a href="/categories/kubernets/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernets</span>
                   </a>
                 </span>
 
@@ -1545,33 +1169,261 @@ d: [1,2,3]
       
         
           
-            <p>有个mysql服务总是会崩溃，一时也找不出原因，索性使用crontab来检测</p>
-<ol>
-<li><p>配置crontab运行脚本  vim listen.sh (注意下启动的命令不能用service mysqld start)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">pidof mysqld &gt;/dev/null</div><div class="line">if [ $? -eq 0 ]</div><div class="line">then</div><div class="line">echo &quot;It is running.&quot;</div><div class="line">else</div><div class="line">echo &quot;At `date` MySQL Server was stopped&quot;&gt;&gt; /home/mysql_log</div><div class="line">/etc/init.d/mysqld start</div><div class="line">fi</div></pre></td></tr></table></figure>
+            <ol>
+<li><p>今天遇到了一个很常见的问题，就是在openresty里配的后端服务比如redis之类的需要通过域名，然后这里我只是简单的写了一个短域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-svc</div></pre></td></tr></table></figure>
+<p>然后日志报错不能解析，这个经过搜索发现是openrestry需要指定nameserver，否则无法解析域名，于是乎我在nginx.conf的http模块下再加上如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resovler 10.0.0.1</div></pre></td></tr></table></figure>
+<p>但openresty的日志还是报无法解析，最后还是同事的一句话提醒了我，在lua配置里写的是短域名，kube-dns认这个短域名吗？</p>
+<p>我之前一直认为kube-dns是认的，比如通过busybox执行如下一个命令完全是可以查到ip的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec busybox -- nslookup redis-svc</div></pre></td></tr></table></figure>
+<p>但openresty为啥不行呢，我去查看下了下节点上的/etc/resolver.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameserver 10.0.0.1</div><div class="line">search default.svc.cluster.local svc.cluster.local cluster.local</div><div class="line">options ndots:5</div></pre></td></tr></table></figure>
+<p>这里有个serach之前一直不理解，以为这个回去远端dns搜索，实际上它的真正作用就是补全短域名</p>
+<p>所以前面的redis-svc就会被补全到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-svc.default.svc.cluster.local</div><div class="line">redis-svc.svc.cluster.local</div><div class="line">redis-svc.cluster.local</div></pre></td></tr></table></figure>
+<p>上面几个，然后再发给kube-dns，所以他们能被查到</p>
 </li>
-<li><p>修改脚本的权限 chmod 777 ./listen.sh</p>
-</li>
-<li><p>安装crontab</p>
-<p>3.1 确认crontab是否安装：</p>
-<p>执行 crontab 命令如果报 command not found，就表明没有安装</p>
-<p>3.2  安装 crontab</p>
-<p>执行 yum install -y vixie-cron</p>
-<p>3.3 确认是否安装成功:</p>
-<p>执行 crontab -l</p>
-<p>3.4 看是否设置了开机自动启动</p>
-<p>chkconfig –list crond 或者chkconfig crond on</p>
-<p>3.5 启动crontab</p>
-<p>service crond start</p>
-<p>3.6 添加计划任务</p>
-<p>crontab -e</p>
-<p>crontab -l</p>
-<p>3.7 脚本sh设置777权限</p>
-</li>
-<li><p>配置crontab监控</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * sh /etc/mysqld/listen.sh</div></pre></td></tr></table></figure></li>
 </ol>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/12/utility/vim基本配置/" itemprop="url">
+                  vim基本配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-12T12:08:28+08:00" content="2017-10-12">
+              2017-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>VS code用的很爽，但无奈team需要在服务端开发，只好重新拾起vim</p>
+<ol>
+<li><p>通过 <a href="https://github.com/amix/vimrc" target="_blank" rel="external">https://github.com/amix/vimrc</a> 这个来做基本的vim</p>
+</li>
+<li><p>安装nerdtree tab， 这个插件主要是为了在打开多个tab时候能够使用同一个nerd tree</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.vim_runtime</div><div class="line">git clone https://github.com/jistr/vim-nerdtree-tabs.git sources_non_forked/vim-nerdtree-tabs</div></pre></td></tr></table></figure>
+</li>
+<li><p>配一下nerd tree和nerd tree tab的vimrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autocmd vimenter * NERDTree</div><div class="line">autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;&amp; exists(&quot;b:NERDTree&quot;) &amp;&amp; b:NERDTree.isTabTree()) | q | endif</div><div class="line">map &lt;F2&gt; :NERDTreeToggle&lt;CR&gt;</div><div class="line">let g:NERDTreeWinPos = &quot;left&quot;</div><div class="line">let g:nerdtree_tabs_open_on_console_startup=1</div><div class="line">let NERDTreeShowLineNumbers=1</div><div class="line">autocmd BufEnter nerd* set rnu</div></pre></td></tr></table></figure>
+</li>
+<li><p>快捷键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ctrl + w + h    光标 focus 左侧树形目录</div><div class="line">ctrl + w + l    光标 focus 右侧文件显示窗口</div><div class="line">ctrl + w + w    光标自动在左右侧窗口切换 #！！！</div><div class="line">ctrl + w + r    移动当前窗口的布局位置</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">o       在已有窗口中打开文件、目录或书签，并跳到该窗口</div><div class="line">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口</div><div class="line">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab</div><div class="line">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab</div><div class="line">i       split 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gi      split 一个新窗口打开选中文件，但不跳到该窗口</div><div class="line">s       vsplit 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口</div><div class="line">!       执行当前文件</div><div class="line">O       递归打开选中 结点下的所有目录</div><div class="line">x       合拢选中结点的父目录</div><div class="line">X       递归 合拢选中结点下的所有目录</div><div class="line">e       Edit the current dif</div><div class="line"></div><div class="line">双击    相当于 NERDTree-o</div><div class="line">中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e</div><div class="line"></div><div class="line">D       删除当前书签</div><div class="line"></div><div class="line">P       跳到根结点</div><div class="line">p       跳到父结点</div><div class="line">K       跳到当前目录下同级的第一个结点</div><div class="line">J       跳到当前目录下同级的最后一个结点</div><div class="line">k       跳到当前目录下同级的前一个结点</div><div class="line">j       跳到当前目录下同级的后一个结点</div><div class="line"></div><div class="line">C       将选中目录或选中文件的父目录设为根结点</div><div class="line">u       将当前根结点的父目录设为根目录，并变成合拢原根结点</div><div class="line">U       将当前根结点的父目录设为根目录，但保持展开原根结点</div><div class="line">r       递归刷新选中目录</div><div class="line">R       递归刷新根结点</div><div class="line">m       显示文件系统菜单 #！！！然后根据提示进行文件的操作如新建，重命名等</div><div class="line">cd      将 CWD 设为选中目录</div><div class="line"></div><div class="line">I       切换是否显示隐藏文件</div><div class="line">f       切换是否使用文件过滤器</div><div class="line">F       切换是否显示文件</div><div class="line">B       切换是否显示书签</div><div class="line"></div><div class="line">q       关闭 NerdTree 窗口</div><div class="line">?       切换是否显示 Quick Help</div><div class="line">:tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab</div><div class="line">:tabc   关闭当前的 tab</div><div class="line">:tabo   关闭所有其他的 tab</div><div class="line">:tabs   查看所有打开的 tab</div><div class="line">:tabp   前一个 tab</div><div class="line">:tabn   后一个 tab</div><div class="line"></div><div class="line">标准模式下：</div><div class="line">gT      前一个 tab</div><div class="line">gt      后一个 tab</div><div class="line"></div><div class="line">MacVim 还可以借助快捷键来完成 tab 的关闭、切换</div><div class="line">cmd+w   关闭当前的 tab</div><div class="line">cmd+&#123;   前一个 tab</div><div class="line">cmd+&#125;   后一个 tab</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/10/node/npm 加速/" itemprop="url">
+                  npm 加速
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-10T16:56:19+08:00" content="2017-10-10">
+              2017-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config set registry=http://registry.npm.taobao.org</div></pre></td></tr></table></figure>
           
         
       
@@ -1603,7 +1455,7 @@ d: [1,2,3]
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1644,7 +1496,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1652,7 +1504,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1661,7 +1513,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,0 +1,643 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="kubernetes," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="follow的文档主要是这个 https://k8s-install.opsnull.com/ 有几个问题要注意  flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行  dashboard:  文档给的service部署yaml没有问题，但是n">
+<meta name="keywords" content="kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes集群搭建">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/k8s/kubernetes集群搭建/index.html">
+<meta property="og:site_name" content="学习学习再学习">
+<meta property="og:description" content="follow的文档主要是这个 https://k8s-install.opsnull.com/ 有几个问题要注意  flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行  dashboard:  文档给的service部署yaml没有问题，但是n">
+<meta property="og:updated_time" content="2017-10-31T02:57:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kubernetes集群搭建">
+<meta name="twitter:description" content="follow的文档主要是这个 https://k8s-install.opsnull.com/ 有几个问题要注意  flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行  dashboard:  文档给的service部署yaml没有问题，但是n">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> kubernetes集群搭建 | 学习学习再学习 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">学习学习再学习</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">jeremy-lin的blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                kubernetes集群搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-30T16:53:03+08:00" content="2017-10-30">
+              2017-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>follow的文档主要是这个</p>
+<p><a href="https://k8s-install.opsnull.com/" target="_blank" rel="external">https://k8s-install.opsnull.com/</a></p>
+<p>有几个问题要注意</p>
+<ol>
+<li><p>flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行</p>
+</li>
+<li><p>dashboard:  文档给的service部署yaml没有问题，但是nodePort没有指定，所以是段内一个随机的，如果要提供外网访问，一般起一个nginx反代，所以最好也指定nodePort,  dashboard-service.yaml如下</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  apiVersion: v1</div><div class="line">  kind: Service</div><div class="line">  metadata:</div><div class="line">    name: kubernetes-dashboard</div><div class="line">    namespace: kube-system</div><div class="line">    labels:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">      kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">      addonmanager.kubernetes.io/mode: Reconcile</div><div class="line">  spec:</div><div class="line">    type: NodePort</div><div class="line">    selector:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">    ports:</div><div class="line">- port: 80</div><div class="line">  targetPort: 9090</div><div class="line">  nodePort: 8900</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nginx的配置如下</div></pre></td></tr></table></figure>
+<p>http {<br>  log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘</p>
+<pre><code>&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+</code></pre><p>  access_log  /var/log/nginx/access.log  main;</p>
+<p>  sendfile            on;<br>  tcp_nopush          on;<br>  tcp_nodelay         on;<br>  keepalive_timeout   65;<br>  types_hash_max_size 2048;</p>
+<p>  include             /etc/nginx/mime.types;<br>  default_type        application/octet-stream;</p>
+<h1 id="Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><a href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory" class="headerlink" title="Load modular configuration files from the /etc/nginx/conf.d directory."></a>Load modular configuration files from the /etc/nginx/conf.d directory.</h1><h1 id="See-http-nginx-org-en-docs-ngx-core-module-html-include"><a href="#See-http-nginx-org-en-docs-ngx-core-module-html-include" class="headerlink" title="See http://nginx.org/en/docs/ngx_core_module.html#include"></a>See <a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="external">http://nginx.org/en/docs/ngx_core_module.html#include</a></h1><h1 id="for-more-information"><a href="#for-more-information" class="headerlink" title="for more information."></a>for more information.</h1><p>  include /etc/nginx/conf.d/*.conf;</p>
+<p>  upstream dashboard {</p>
+<pre><code>server 10.146.0.2:8900 weight=1;
+ server 10.146.0.3:8900 weight=1;
+ server 10.146.0.4:8900 weight=1;
+</code></pre><p>  }</p>
+<p>  server {</p>
+<pre><code>listen       80 default_server;
+listen       [::]:80 default_server;
+server_name  YOUR_SERVER;
+
+# Load configuration files for the default server block.
+include /etc/nginx/default.d/*.conf;
+
+location / {
+    proxy_pass  http://dashboard;
+}
+
+error_page 404 /404.html;
+    location = /40x.html {
+}
+
+error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+}
+</code></pre><p>  }</p>
+</li>
+</ol>
+<p>另外在centos 7上，如果访问还能看到这个nginx有这个错误：Permission denied) while connecting to upstream, 原因是开了SELinux，需要关闭它</p>
+<h3 id="1-临时关闭（不用重启机器）："><a href="#1-临时关闭（不用重启机器）：" class="headerlink" title="1.临时关闭（不用重启机器）："></a>1.临时关闭（不用重启机器）：</h3><p>   setenforce 0                  ##设置SELinux 成为permissive模式</p>
+<p>   ##setenforce 1 设置SELinux 成为enforcing模式</p>
+<h3 id="2-修改配置文件需要重启机器："><a href="#2-修改配置文件需要重启机器：" class="headerlink" title="2.修改配置文件需要重启机器："></a>2.修改配置文件需要重启机器：</h3><p>   修改/etc/selinux/config 文件</p>
+<p>   将SELINUX=enforcing改为SELINUX=disabled</p>
+<p>   重启机器即可</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kubernetes/" rel="tag">#kubernetes</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/k8s/kubenetes问题/" rel="next" title="kubenetes问题排查">
+                <i class="fa fa-chevron-left"></i> kubenetes问题排查
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/02/k8s/k8s化遇到的问题/" rel="prev" title="docker化遇到的问题">
+                docker化遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="jeremy-lin" />
+          <p class="site-author-name" itemprop="name">jeremy-lin</p>
+          <p class="site-description motion-element" itemprop="description">不想当开发的售前不是好网工</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><span class="nav-number">1.</span> <span class="nav-text">Load modular configuration files from the /etc/nginx/conf.d directory.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#See-http-nginx-org-en-docs-ngx-core-module-html-include"><span class="nav-number">2.</span> <span class="nav-text">See http://nginx.org/en/docs/ngx_core_module.html#include</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-more-information"><span class="nav-number">3.</span> <span class="nav-text">for more information.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-临时关闭（不用重启机器）："><span class="nav-number">3.0.1.</span> <span class="nav-text">1.临时关闭（不用重启机器）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-修改配置文件需要重启机器："><span class="nav-number">3.0.2.</span> <span class="nav-text">2.修改配置文件需要重启机器：</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jeremy-lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

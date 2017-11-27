@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/21/es6/ES6的模块机制/" itemprop="url">
-                  ES6的模块机制
+                <a class="post-title-link" href="/2017/03/10/react/react native 初探/" itemprop="url">
+                  react native 初探
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-21T14:20:52+08:00" content="2017-02-21">
-              2017-02-21
+            <time itemprop="dateCreated" datetime="2017-03-10T16:30:10+08:00" content="2017-03-10">
+              2017-03-10
             </time>
           </span>
 
@@ -271,8 +271,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -307,34 +307,14 @@
         
           
             <ol>
-<li><p>javascript之所以之前被称为“玩具”语言，它确实缺乏一些编写大型程序必要的东西，比如说”模块“。试下一个稍大型的项目如果都写在一个文件里会是怎么样一种情形。好在社区定了一套规范，CommonJS 和 AMD/CMD，前者是服务器端的规范，主要给node使用，后者是浏览器端的规范。但在ES出来之后，这两套规范其实就不需要了，前后端可以使用语言本身的功能来达到这个要求。</p>
-<p>ES6的模块是在编译时就确定了模块的依赖关系，以及输入和输出变量。而CommonJS和AMD/CMD都只能在运行时确定这些</p>
+<li><p>为什么有react native？</p>
+<p>既需要原生良好的用户体验，又需要较好的开发体验</p>
 </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// CommonJS模块</div><div class="line">let &#123; stat, exists, readFile &#125; = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">// 等同于</div><div class="line">let _fs = require(&apos;fs&apos;);</div><div class="line">let stat = _fs.stat;</div><div class="line">let exists = _fs.exists;</div><div class="line">let readfile = _fs.readfile;</div></pre></td></tr></table></figure>
-<p>​    上面代码的实质是整体加载 fs 模块（即加载 fs 的所有方法），生成一个对象（_fs），然后再从这个对象上                面读取3个方法。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”</p>
-<p>ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// ES6模块</div><div class="line">import &#123; stat, exists, readFile &#125; from &apos;fs&apos;;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用 export 关键字输出该变量。下面是一个 JS 文件，里面使用 export 命令输出变量，export必须加上{}，如果需要别名可以用as语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 写法一</div><div class="line">export var m = 1;</div><div class="line"></div><div class="line">// 写法二</div><div class="line">var m = 1;</div><div class="line">export &#123;m&#125;;</div><div class="line"></div><div class="line">// 写法三</div><div class="line">var n = 1;</div><div class="line">export &#123;n as m&#125;;</div></pre></td></tr></table></figure>
+<li><p>react native的底层的运行环境是什么？</p>
+<p>也就是说是什么来解释js，不是node，对于iOS来说，是使用内置的javascript core，Android是使用jsc.so</p>
 </li>
-<li><p>import 命令后面需要跟一对大括号，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &#123;firstName, lastName, year&#125; from &apos;./profile&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>import</code>后面的<code>from</code>指定模块文件的位置，可以是相对路径，也可以是绝对路径，<code>.js</code>路径可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置</p>
-</li>
-<li><p><code>import</code>语句会执行所加载的模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;lodash&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>整体加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import * as circle from &apos;./circle&apos;;</div><div class="line"></div><div class="line">console.log(&apos;圆面积：&apos; + circle.area(4));</div><div class="line">console.log(&apos;圆周长：&apos; + circle.circumference(14));</div></pre></td></tr></table></figure>
-</li>
-<li><p>export default命令： 使用<code>import</code>命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。但是，用户肯定希望快速上手，未必愿意阅读文档，去了解模块有哪些属性和方法。为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到<code>export default</code>命令，为模块指定默认输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export default function () &#123;</div><div class="line">  console.log(&apos;foo&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其他模块加载该模块时，<code>import</code>命令可以为该匿名函数指定任意名字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// import-default.js</div><div class="line">import customName from &apos;./export-default&apos;;</div><div class="line">customName(); // &apos;foo&apos;</div></pre></td></tr></table></figure>
-<p><strong>注意这时候import后面不加大括号</strong>，<strong>并且可以用任意名称指向<code>export-default.js</code>输出的方法，</strong><code>export default</code>命令也可以用在非匿名函数前，只不过该函数在模块外部是无效的，加载的时候，视同匿名函数加载</p>
+<li><p>react native 和 ionic的区别</p>
+<p>ionic是使用移动端本身的webview控件包了个网站，而react native调用的是原生的组件，</p>
 </li>
 </ol>
 
@@ -386,8 +366,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
-                  javascript的遍历
+                <a class="post-title-link" href="/2017/03/10/utility/webpack学习/" itemprop="url">
+                  webpack学习
                 </a>
               
             
@@ -400,8 +380,562 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
-              2017-02-18
+            <time itemprop="dateCreated" datetime="2017-03-10T16:14:20+08:00" content="2017-03-10">
+              2017-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="一-webpack可以干什么？"><a href="#一-webpack可以干什么？" class="headerlink" title="一. webpack可以干什么？"></a>一. webpack可以干什么？</h4><ol>
+<li>bundle ES，AMD，COMMONJS的模块</li>
+<li>可以打成多个chunks来异步加载</li>
+<li>在编译时候解决依赖问题，减少运行时消耗</li>
+<li>可以做预处理，将TS转换为JS，images转化成Base64格式</li>
+<li>​</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/09/utility/chrome默认将http转换成https/" itemprop="url">
+                  chrome默认将http转换成https
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-09T17:52:50+08:00" content="2017-03-09">
+              2017-03-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>今天在调试的时候发现chrome会将http的请求转化成https，可以在地址栏输入chrome://net-internals/，然后找到HSTS，删除掉指定域名即可</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/utility/nginx的underscores_in_headers /" itemprop="url">
+                  nginx的underscores_in_headers
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T15:38:53+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>默认情况下nginx会忽略收到的req中headers里面的”_”, 即underscores_in_headers为off，在某些情况下别人丢给nginx的header可能是有下划线的，那就要在server配置里打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3001;</div><div class="line">            proxy_set_header remote_user jeremy.lin;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 3001;</div><div class="line">        underscores_in_headers on;</div><div class="line">        server_name _;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:3000;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>​    这里如果在80端口的server上添加了一个带下划线的header，如果在3001这个server上不加underscores_in_headers, 则在最后的3000这个server上是拿不到这个header的</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/git/git ignore用法/" itemprop="url">
+                  git ignore 文件用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T10:16:15+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>“ #”   号是注释</li>
+<li>！ 表示取反</li>
+<li>结尾的“/”代表匹配那个目录和那个目录下面的文件</li>
+<li>开头的“/“代表匹配当前路径下的文件</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/javascript/现代javacript/" itemprop="url">
+                  现代javacript
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T10:02:16+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>nodejs： nodejs是一个javascript运行时环境，可以类比于java的虚拟机，在后端的作用比较好理解，业务逻辑开发，工具脚本开发等都是它的用武之地，但是在前端开发中也会经常包含node，这点有时候不是太好理解。nodejs在前端的作用主要有如下几个： 前端程序的打包，测试，以及语法规范检查等等</p>
+</li>
+<li><p>npm： node默认的包管理器</p>
+</li>
+<li><p>yarn： 新的node包管理器，速度更快，离线support，并且获取依赖会更快</p>
+</li>
+<li><p>package.json:  项目的描述和配置文件，包括项目名称，版本，贡献者，依赖等等，除了可以用npm init之外，也可以用yarn init来生成</p>
+</li>
+<li><p>babel-node的作用：replace your call to the node binary and execute ES6 files directly on the fly，之前看到这句话不是很理解，node不是对ES6支持的非常好吗，为什么还需要babel呢？回想一下，有一个语法是至少现在的node是不支持的，那就是模块。node的模块化系统用的是COMMONJS标准，而ES6用的是import和export，这里就需要babel-node来做转化了</p>
+</li>
+<li><p>ES-lint:  ESLint is the linter of choice for ES6 code. A linter gives you recommendations about code formatting, which enforces style consistency in your code, and code you share with your team. It’s also a great way to learn about JavaScript by making mistakes that ESLint will catch.</p>
+<p>我的理解：ES-lint就是一种代码格式化的规范，有了他团队协作开发就很方便，之前可能还需要在code_review里做些代码格式的检查，那现在只需要选一种规范，加载到ES-lint去，团队每个成员的代码都能自动遵循某个规范了，这里面可以用airbnb的<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">规范</a></p>
+<p>另外ESlint可以集成到IDE里去，不要用IDE本身的lint，因为那样的话无法达成统一的规范</p>
+</li>
+<li><p>Flow: A static type checker by Facebook. It detects inconsistent types in your code. For instance, it will give you an error if you try to use a string where should be using a number.</p>
+<p>如果说ES-lint是代码格式检查的工具，那Flow就是对javascript不是强类型作规范</p>
+<p>yarn add –dev flow-bin babel-preset-flow babel-eslint eslint-plugin-flowtype</p>
+<p><code>flow-bin</code> is the binary to run Flow in our <code>scripts</code> tasks, <code>babel-preset-flow</code> is the preset for Babel to understand Flow annotations, <code>babel-eslint</code> is a package to enable ESLint <em>to rely on Babel’s parser</em> instead of its own, and <code>eslint-plugin-flowtype</code> is an ESLint plugin to lint Flow annotations</p>
+</li>
+<li><p>Jest: 一个facebook的测试库，可以测试react</p>
+</li>
+<li><p>Husky： git钩子， 可以在git commit和git push之前运行脚本测试代码</p>
+</li>
+<li><p>​</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/07/es6/ 进一步理解箭头函数/" itemprop="url">
+                  进一步理解函数的this
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-07T09:18:52+08:00" content="2017-03-07">
+              2017-03-07
             </time>
           </span>
 
@@ -450,148 +984,21 @@
         
           
             <ol>
-<li><p>数组的遍历</p>
-<p>1) 原始的for循环： 写法比较麻烦</p>
-<p>2) 数组本身的forEach方法： 无法跳出循环</p>
-<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
-<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
+<li><p>箭头函数的写法可以总结以下几个注意点： </p>
+<p>1） 如果没有参数或者多于一个参数，需要在参数列表里加上（）</p>
+<p>2） 一个参数可以不加（）</p>
+<p>3）语句多于一行，需要用大括号括起来，并且使用return语句返回</p>
+<p>4）如果直接返回一个用{ }创建的对象，需要用（）包裹起来</p>
 </li>
-<li><p>对象的遍历 :</p>
-<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
-<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
+<li><p><code>this</code> is not an author-time binding but a runtime binding. It is contextual based on the conditions of the function’s invocation. <code>this</code> binding has nothing to do with where a function is declared, but has instead everything to do with the manner in which the function is called</p>
+<p>this是运行时绑定，绑定的是call-site，也就是某个函数的调用方</p>
 </li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
-                  使用vim提高编码效率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilties/" itemprop="url" rel="index">
-                    <span itemprop="name">utilties</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>选中行或列   shift+v,   ctrl+v</p>
+<li><p>下面这段代码非常迷惑，里面的this值得是啥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = obj.foo; // function reference/alias!</div><div class="line"></div><div class="line">var a = &quot;oops, global&quot;; // `a` also property on global object</div><div class="line"></div><div class="line">bar(); // &quot;oops, global&quot;</div></pre></td></tr></table></figure>
 </li>
-<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
-</li>
-<li><p>向下移动10行， 10j</p>
-</li>
-<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
-</li>
-<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
-</li>
-<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
-</li>
-<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
-</li>
-<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
-</li>
-<li><p>替换 :%s/foo/bar/g</p>
-<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
+<li><p>函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  setTimeout(() =&gt; &#123;</div><div class="line">    console.log(&apos;id:&apos;, this.id);</div><div class="line">  &#125;, 100);</div><div class="line">&#125;</div><div class="line">var id = 21;</div><div class="line">foo.call(&#123; id: 42 &#125;);</div></pre></td></tr></table></figure>
+<p>这个箭头函数里面的this指的是它定义时所在的对象，定义是在foo这个函数里定义的，那this就是foo()这个对象了</p>
 </li>
 </ol>
 
@@ -643,8 +1050,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
-                  API设计时遇到的问题
+                <a class="post-title-link" href="/2017/03/07/utility/理解前端构建-webpack/" itemprop="url">
+                  理解前端构建-webpack
                 </a>
               
             
@@ -657,8 +1064,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
-              2017-02-17
+            <time itemprop="dateCreated" datetime="2017-03-07T09:13:25+08:00" content="2017-03-07">
+              2017-03-07
             </time>
           </span>
 
@@ -671,8 +1078,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/api/" itemprop="url" rel="index">
-                    <span itemprop="name">api</span>
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
                   </a>
                 </span>
 
@@ -706,8 +1113,9 @@
       
         
           
-            <ol>
-<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
+            <h4 id="为什么需要前端构建工具"><a href="#为什么需要前端构建工具" class="headerlink" title="为什么需要前端构建工具"></a>为什么需要前端构建工具</h4><p>现在的理解： 随着前端各种各样的javascript库层出不穷，前端的模块导入成为一个很大的问题，一个模块可能需要依赖另一个模块，如果仅仅靠自己在前端<script></script> 来控制加载顺序，这个难度就台麻烦了，而且这还只是js，还有css，sass等，</p>
+<h4 id="webpack到底是个什么工具"><a href="#webpack到底是个什么工具" class="headerlink" title="webpack到底是个什么工具"></a>webpack到底是个什么工具</h4><ol>
+<li>module bundler  用来打包所有需要的模块</li>
 </ol>
 
           
@@ -758,8 +1166,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
-                  使用react的几个注意点
+                <a class="post-title-link" href="/2017/03/05/react/Cannot set property 'innerText' of null/" itemprop="url">
+                  Cannot set property 'innerText' of null
                 </a>
               
             
@@ -772,8 +1180,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
-              2017-02-17
+            <time itemprop="dateCreated" datetime="2017-03-05T13:53:14+08:00" content="2017-03-05">
+              2017-03-05
             </time>
           </span>
 
@@ -786,8 +1194,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -822,25 +1230,8 @@
         
           
             <ol>
-<li><p>如何指定props？ 有几种方法</p>
-<p>1）javascript表达式:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
-<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
-<p>​    2）字符串字面值常量</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
-<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
-<p>2）javascript表达式也能作为props.children</p>
-</li>
-<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
-</li>
-<li><p>​</p>
+<li><p>遇到这个错误的原因是javascript的脚本放在了head加载，在head里面条用了document.body.innerText，而此时body还是个空值</p>
+<p>解决办法： 把javascipt放到body里面加载</p>
 </li>
 </ol>
 
@@ -892,8 +1283,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/17/react/ES6语法在react中的运用/" itemprop="url">
-                  ES6语法在react中的运用
+                <a class="post-title-link" href="/2017/03/04/utility/mac下nginx问题汇总/" itemprop="url">
+                  mac下nginx问题
                 </a>
               
             
@@ -906,8 +1297,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T09:35:24+08:00" content="2017-02-17">
-              2017-02-17
+            <time itemprop="dateCreated" datetime="2017-03-04T13:40:47+08:00" content="2017-03-04">
+              2017-03-04
             </time>
           </span>
 
@@ -920,8 +1311,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
                   </a>
                 </span>
 
@@ -956,516 +1347,16 @@
         
           
             <ol>
-<li><p>扩展运算符(…) :   作为props传递，这个props如果是个基础容器，比如包含位置等基本属性，这个是值得用的，但在其他情况下要慎用，因为它来许多其他的不相关的props</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function App1() &#123;</div><div class="line">  return &lt;Greeting firstName=&quot;Ben&quot; lastName=&quot;Hector&quot; /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function App2() &#123;</div><div class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</div><div class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>扩展运算符还可以用在setState里，因为react有个算是要求吧，主要为了性能考虑，在setState里不要直接更改里面内容的值，比如下面这个state里面的words，words本身是个数组，更新的时候不要改words的内容，而是copy一份得到一个新的数组，如果words是个对象也是先copy一份(对象的扩展运算符号在2017是个提案)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: prevState.words.concat([&apos;marklar&apos;])</div><div class="line">  &#125;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在ES6中可以用扩展运算符来实现copy这个操作，非常方便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: [...prevState.words, &apos;marklar&apos;],</div><div class="line">  &#125;));</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/database/SQL学习/" itemprop="url">
-                  SQL学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-16T14:35:55+08:00" content="2017-02-16">
-              2017-02-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>为数据库表增加一列，新加的这一列的值默认为NULL</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE celebs ADD COLUMN twitter_handle TEXT;</div></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew services start nginx</div></pre></td></tr></table></figure>
+<p>这条命令的作用是在开机启动时启动nginx，而并非nginx本身的开关</p>
 </li>
-<li><p>删除指定行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM celebs WHERE twitter_handle IS NULL;</div></pre></td></tr></table></figure>
+<li><p>启动   nginx; 关闭 nginx -s stop;  重启 nginx -s reload;</p>
 </li>
-<li><p>选出一列中的唯一值，即过滤掉重复的条目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT DISTINCT genre FROM movies;</div></pre></td></tr></table></figure>
+<li><p>403错误可能是nginx的父目录没有执行权限（没有遇到）</p>
 </li>
-<li><p>模糊查询LIKE的用法，’_’ 代表任意单个字符， ‘%’代表0个或多个字符, LIKE对大小写不敏感</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name LIKE &apos;Se_en&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;A%&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;%man%&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>过滤出name是以’A’开头，但不包含’J’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name BETWEEN &apos;A&apos; AND &apos;J&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>排序， 以某一列为基准排序，DESC 降序列， ASC 升序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC;</div></pre></td></tr></table></figure>
-</li>
-<li><p>指定输出的最大行数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;</div></pre></td></tr></table></figure>
-</li>
-<li><p>aggregate函数</p>
-<p>1） COUNT()： 计算指定列的行数</p>
-<p>2） GROUP BY:  把相同的数据放到group里去</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT price, COUNT(*) FROM fake_apps GROUP BY price;</div></pre></td></tr></table></figure>
-</li>
-<li><p>inner join： 连接多张表查询，需要join条件为true;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
-<p>outer join:    连接多张表查询，不需要join条件满足，第一张表的所有行都会返回，如果条件不满足，将会使用NULL值来填充</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
+<li><p>mac上使用brew 卸载nginx并不会删除/usr/local/etc/nginx下的配置文件，需要手动删除下，403错误重新卸载生效</p>
 <p>​</p>
 </li>
-<li><p>reac调试事件</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/alogrithm/实际工作中遇到的需要小算法场景/" itemprop="url">
-                  实际工作中遇到的需要小算法场景
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T11:23:49+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>api的数据返回的是category，name这种单条记录，但展现的时候是以二级目录展现的，因此需要统计相同的category有几个，计算出每个categroy下的name</p>
-<p>解决思路： 用一个临时数组存储每个category及其索引，然后遍历api返回，将同一个category下的name添加进去</p>
-</li>
-<li><p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/11/database/创建数据库时的注意点/" itemprop="url">
-                  创建数据库时的注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-11T22:18:34+08:00" content="2017-02-11">
-              2017-02-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>数据库的字符集，客户端的字符集，表和row的字符集，这个在前一篇文章有介绍到</li>
-<li>存储id，如果不用表本身的自增id用类似uuid，那么得存成varchar形式，并注意长度</li>
-<li>create_time，update_time等参数，由于node的Date的gettime方法返回的是距离1970年1月1号以来的毫秒数，所以int类型存储不下，需要用bigint</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/10/javascript/前端发ajax请求的方法/" itemprop="url">
-                  前端发ajax请求的方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-10T09:42:50+08:00" content="2017-02-10">
-              2017-02-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ajax/" itemprop="url" rel="index">
-                    <span itemprop="name">ajax</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>因为react本身只是个ui组件库，并不包含ajax请求的方式，所以有几个方法可以选择</p>
-<ol>
-<li>jquery： jquery因为大家都比较熟所以使用简单，但由于jquery比较大，如果单纯只用它这个功能不太合适</li>
-<li>superagent： 使用过几次，支持promise，可以工作在浏览器和node</li>
-<li>axio：没有使用过，promise_based，可以工作在浏览器和node</li>
-<li>request： 使用的最多的，但本身不支持promise</li>
-<li>fetch api: 这是html5的api，不是ecma的，node有node-fetch版本</li>
 </ol>
 
           
@@ -1499,7 +1390,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1540,7 +1431,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1548,7 +1439,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1557,7 +1448,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

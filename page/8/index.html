@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/21/utility/linux禁用密码登录/" itemprop="url">
-                  linux禁用密码登录
+                <a class="post-title-link" href="/2017/06/05/es6/ES6 generator/" itemprop="url">
+                  ES6 generator
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T17:23:22+08:00" content="2017-04-21">
-              2017-04-21
+            <time itemprop="dateCreated" datetime="2017-06-05T16:00:44+08:00" content="2017-06-05">
+              2017-06-05
             </time>
           </span>
 
@@ -271,8 +271,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
                   </a>
                 </span>
 
@@ -307,14 +307,8 @@
         
           
             <ol>
-<li><p>vim /etc/ssh/sshd_config</p>
-</li>
-<li><p>Modify those lines:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PubkeyAuthentication         yes</div><div class="line"></div><div class="line">AuthorizedKeysFile          .ssh/authorized_keys</div><div class="line"></div><div class="line">PasswordAuthentication      no</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建.ssh/authorized_keys文件，加入需要登陆的机器的公钥</p>
-</li>
-<li><p>service sshd restart</p>
+<li><p>生成器是一种可以从中退出并在之后重新进入的函数。生成器的环境（绑定的变量）会在每次执行后被保存，下次进入时可继续使用。</p>
+<p>调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器（iterator）对象。当这个迭代器的next()方法被调用时，生成器函数的主体会被执行直至第一个yield表达式，该表达式定义了迭代器返回的值，或者，被 yield*委派至另一个生成器函数。next()方法返回一个对象，该对象有一个value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值。</p>
 </li>
 </ol>
 
@@ -366,8 +360,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/21/git/git忽略已经被提交的文件/" itemprop="url">
-                  git忽略已经被提交的文件
+                <a class="post-title-link" href="/2017/06/02/redis/redis数据类型/" itemprop="url">
+                  redis数据类型
                 </a>
               
             
@@ -380,8 +374,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T15:27:07+08:00" content="2017-04-21">
-              2017-04-21
+            <time itemprop="dateCreated" datetime="2017-06-02T16:01:58+08:00" content="2017-06-02">
+              2017-06-02
             </time>
           </span>
 
@@ -394,8 +388,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
                   </a>
                 </span>
 
@@ -429,11 +423,299 @@
       
         
           
-            <p>现在项目的根目录放了 <strong>.gitignore</strong> 文件，并且git远程仓库的项目根目录<strong>已经有了</strong> logs文件夹, 但是之后想忽略日志里的内容，光改写.gitignore并不够，正确做法是：</p>
+            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ol>
+<li><p>字符串</p>
+</li>
+<li><p>Lists：collections of string elements sorted according to the order of insertion. They are basically <em>linked lists</em>.   列表，但元素是字符串，实际上是链表</p>
+</li>
+<li><p>Sets:  collections of unique, unsorted string elements,  无序的字符串集合</p>
+</li>
+<li><p>Sorted Sets: 有序集合</p>
+</li>
+<li><p>Hashes: 字典， 键和值都需要为字符串</p>
+</li>
+<li><p>bitarray: 位数组</p>
+</li>
+</ol>
+<h3 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h3><ol>
+<li>keys是二进制安全的，也就是说可以用二级制值比如一个jpeg文件作为key，甚至空的字符串仍然是有效的​</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/01/redis/redis主从/" itemprop="url">
+                  redis主从
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T15:30:58+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
+<li><p>redis使用异步复制机制，从2.8开始，slave会周期性确认收到的数据</p>
+</li>
+<li><p>一个master可以有多个slave</p>
+</li>
+<li><p>redis复制在master端是不blocking的</p>
 <ol>
-<li>git rm –cached logs/xx.log</li>
-<li>然后更新 <code>.gitignore</code> 忽略掉目标文件</li>
-<li>最后git commit -m “We really don’t want Git to track this anymore!”</li>
+<li>redis复制在slave也是不blocking的，当slave做初次同步时，它可以用老版本的数据集，在同步完之后，会短暂blocking进入的连接（如果数据量大的话将会有几秒钟）</li>
+</ol>
+</li>
+<li><p>当使用主从时，强烈建议在master上开启数据持久化，如果无法做到的话，那要避免redis服务自动重启（比如使用pm2之类的进程管理器），原因如下：</p>
+<ol>
+<li>假设A是master， B和C是A的slave，如果A crash了并且A的数据持久化被关闭，这时候进程管理器会重启redis服务，但是数据集为空，这时候B和C将会同步到一个空数据集</li>
+</ol>
+</li>
+<li><p>复制过程： 全量同步，master会在后台起一个saving进程来生成RDB文件，同时会把从这个时候开始收到的新的写入命令缓冲起来，当后台保存进程完毕后，master就会将这个文件发送到slave，slave会将它存在磁盘上，然后倒入到内存，之后master会把所有缓存的命令发送给slave，从2.8开始有不落盘复制</p>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/01/redis/redis哨兵模式/" itemprop="url">
+                  redis哨兵模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T10:05:41+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-Redis哨兵模式功能"><a href="#一-Redis哨兵模式功能" class="headerlink" title="一. Redis哨兵模式功能"></a>一. Redis哨兵模式功能</h3><ol>
+<li><p>监控： 哨兵会不断检查redis的主备实例是否正常运行</p>
+</li>
+<li><p>告警通知： 当受监控的redis实例异常时，哨兵可以通知系统管理员或者以API形式告知其他程序</p>
+</li>
+<li><p>自动故障迁移：当master节点无法工作时，哨兵会将slave节点提升为master</p>
+</li>
+<li><p>服务发现：哨兵为客户端提供服务发现，客户端向哨兵查询当前的master地址</p>
+</li>
+</ol>
+<h3 id="二-Redis哨兵特性"><a href="#二-Redis哨兵特性" class="headerlink" title="二.Redis哨兵特性"></a>二.Redis哨兵特性</h3><p>redis 哨兵本身是一个分布式系统，同时会有多个哨兵进程一起在运行</p>
+<h3 id="三-Redis哨兵部署"><a href="#三-Redis哨兵部署" class="headerlink" title="三.Redis哨兵部署"></a>三.Redis哨兵部署</h3><h4 id="3-1-部署注意点"><a href="#3-1-部署注意点" class="headerlink" title="3.1 部署注意点"></a>3.1 部署注意点</h4><ol>
+<li>至少三个哨兵节点</li>
+<li>多个哨兵节点需要部署在不同节点上</li>
+<li>哨兵模式无法失败时的写入可以被重新获取到，因为redis本身是异步复制，但是这个丢失的窗口可以通过配置被降低</li>
+<li>哨兵模式会和其他nat模式组冲突，比如docker，如有nat需要单独在配置文件中修改</li>
+</ol>
+<h4 id="3-2-配置说明"><a href="#3-2-配置说明" class="headerlink" title="3.2 配置说明"></a>3.2 配置说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1. bind ip1 ip2 ...</div><div class="line">   protected-mode no</div></pre></td></tr></table></figure>
+<p>默认哨兵只能通过localhost访问，可以通过指定绑定的接口ip或者 protected-mode no来允许其他接口通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2. sentinel announce-ip &lt;ip&gt;</div><div class="line">   sentinel announce-port &lt;port&gt;</div></pre></td></tr></table></figure>
+<p>在nat模式下使用，指定hello包里的声明的ip和port</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</div></pre></td></tr></table></figure>
+<p>指定哨兵监控的master</p>
+<p>master-name:  master名字，必须是A-z 0-9, “. - _”中的一个</p>
+<p>quorum：认为master不可达的哨兵数量，只有达到了这个数量，哨兵才有可能做fail-over，但是需要注意，这个数只是用来检测失败，实际上最后决定时候要真正的fail-over是通过一次投票来决定的，举一个例子：</p>
+<p>如果有5个哨兵进程，quorum被配置成2，那么当有2个哨兵进程发现master不可达时，他们中间的一个就会试着来做fail-over，这时会进行一场投票，如果此时有3个（5个中的大多数）哨兵是存活的，就会启动fail-over</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</div></pre></td></tr></table></figure>
+<p>哨兵同主redis，从redis通信时的密码，这个密码必须一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5. sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>过多久认为节点（包括主，从和哨兵本身）不可用，单位毫秒，默认为30s</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;</div></pre></td></tr></table></figure>
+<p>设置在一次failover之后有多少个slave会同时去和新的master同步，这个数设的越小，整个fail-over的时间就越长，但是因同步过程会有个中断，如果slave提供读服务的话 ，可以将这个值设为1来保证fail-over之后同时只有一个slave会断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>failover的超时时间，默认3分钟</p>
+<h4 id="3-3-哨兵查看命令"><a href="#3-3-哨兵查看命令" class="headerlink" title="3.3 哨兵查看命令"></a>3.3 哨兵查看命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1. sentinel master mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问master节点的状态，可以重点关注如下几个参数</p>
+<p>num-other-sentinels： 其他哨兵的数量</p>
+<p>num-slaves：slave数量</p>
+<p>flag: 节点状态，master代表主节点，如果master 宕了，会有s_down或者是o_down状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. sentinel slaves mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问slave节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel sentinels mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问其他哨兵节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel get-master-addr-by-name mymaster</div></pre></td></tr></table></figure>
+<p>查询当前master</p>
+<h3 id="4-部署模式建议"><a href="#4-部署模式建议" class="headerlink" title="4 部署模式建议"></a>4 部署模式建议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">           +----+</div><div class="line">       | M1 |</div><div class="line">       | S1 |</div><div class="line">       +----+</div><div class="line">          |</div><div class="line">+----+    |    +----+</div><div class="line">| R2 |----+----| R3 |</div><div class="line">| S2 |         | S3 |</div><div class="line">+----+         +----+</div><div class="line"></div><div class="line">Configuration: quorum = 2</div></pre></td></tr></table></figure>
+<p>M:  代表master</p>
+<p>R：代表slave</p>
+<p>S：代表哨兵</p>
+<ol>
+<li><h4 id="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"><a href="#哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上" class="headerlink" title="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"></a>哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上</h4></li>
+<li><h4 id="redis建议以一主两备运行"><a href="#redis建议以一主两备运行" class="headerlink" title="redis建议以一主两备运行"></a>redis建议以一主两备运行</h4></li>
+<li><h4 id="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce"><a href="#在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce" class="headerlink" title="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce"></a>在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce</h4></li>
 </ol>
 
           
@@ -484,8 +766,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/21/git/git冲突解决/" itemprop="url">
-                  git冲突解决
+                <a class="post-title-link" href="/2017/05/31/rocketmq/RocketMQ初次使用/" itemprop="url">
+                  RocketMQ初次使用
                 </a>
               
             
@@ -498,8 +780,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T14:39:33+08:00" content="2017-04-21">
-              2017-04-21
+            <time itemprop="dateCreated" datetime="2017-05-31T18:36:05+08:00" content="2017-05-31">
+              2017-05-31
             </time>
           </span>
 
@@ -512,8 +794,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/rocketmq/" itemprop="url" rel="index">
+                    <span itemprop="name">rocketmq</span>
                   </a>
                 </span>
 
@@ -548,10 +830,15 @@
         
           
             <ol>
-<li><p>每次git合并时遇到冲突总会感觉非常崩溃，其实对于冲突一点都不需要过于担心，因为总是可以通过git merge - - abort来撤销合并恢复到之前的状态</p>
-</li>
-<li><p>当两个改动发生在同一个文件的同一些行上，我们就要看看发生冲突的文件的内容了。Git 会非常友好地把文件中那些有问题的区域在 “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD” 和 “&gt;&gt;&gt;&gt;&gt;&gt;&gt; [other/branch/name]” 之间标记出来。</p>
-<p>中间用=======来作分割，  第一个HEAD到======表示本地版本的改动， ======到最后那个分支名表示那个版本，理解了git的这个标记的意思非常重要。</p>
+<li><p>根据官方quick start来做，遇到几个问题</p>
+<p>1）mac运行会报下面这个错误，在centos上用jdk 1.8运行OK，mac上升级到1.8也没有问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project rocketmq-remoting: Execution default-compile of goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile failed: A required class was missing while executing org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile: org/codehaus/plexus/util/cli/CommandLineException</div></pre></td></tr></table></figure>
+<p>2）服务器内存需要大于8G，否则broker起不来</p>
+<p>3) rocketmq的hostname不要修改，否则nameserver起不来，nameserver应该是根据hostname</p>
+<p>的ip来取</p>
+<p>4）bash mqbroker -c ../conf/2m-2s-sync/broker-a.properties -n 192.168.0.2:9876;192.168.0.3:9876</p>
+<p>注意这里官网用的,是错的，应该是;</p>
+<p>​</p>
 </li>
 </ol>
 
@@ -603,8 +890,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/19/test/jest新手错误/" itemprop="url">
-                  jest新手错误
+                <a class="post-title-link" href="/2017/05/31/java/java安装/" itemprop="url">
+                  java安装
                 </a>
               
             
@@ -617,8 +904,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-19T11:34:02+08:00" content="2017-04-19">
-              2017-04-19
+            <time itemprop="dateCreated" datetime="2017-05-31T17:23:10+08:00" content="2017-05-31">
+              2017-05-31
             </time>
           </span>
 
@@ -631,8 +918,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -666,260 +953,37 @@
       
         
           
-            <ol>
-<li><p>在it里面需要忘记return</p>
+            <p>   大学之后就没有碰过java了，基本的环境配置列一下</p>
+<ol>
+<li><p>cd /usr/java &amp;&amp; wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie” <a href="http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz" target="_blank" rel="external">http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</a> （显示问题，这里是两个破折号）</p>
+<p>这里的版本可以根据官网上的来选</p>
 </li>
-<li><p>不需要去catch错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1492574722511 ERROR Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m</div></pre></td></tr></table></figure>
+<li><p>设置环境变量： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/java.sh</div><div class="line"></div><div class="line">#!/bin/bash</div><div class="line">JAVA_HOME=/usr/java/jdk1.8.0_102</div><div class="line">PATH=$JAVA_HOME/bin:$PATH</div><div class="line">export PATH JAVA_HOME</div><div class="line">export CLASSPATH=.</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>catch错误后发现日志里多了下面的内容，很jest本身结果没有报错，原因就在于it里面去catch错误了，导致抛出的错误没有传回jest本身，这个格式看来古怪，应该就是jest的格式</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
-                  查看占用端口的进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T21:22:49+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="lsof-i-3000"><a href="#lsof-i-3000" class="headerlink" title="lsof -i:3000"></a>lsof -i:3000</h4><p>lsof -i TCP:port -n </p>
-<p>lsof -i UDP:port -n</p>
-<p>lsof -i :port -n</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/docker/dokcer遇到的问题/" itemprop="url">
-                  dokcer遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T11:48:44+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到一个docker奇怪的问题，npm start 端口正常起来访问没有问题，但打包到docker环境之后，却发现无法访问，docker本身的日志没有报错，并且docker也是运行的，重点是程序打的日志一点输出也没有。咨询了下同事，了解到这是一个docker很基础的问题： 如果docker没有前台进程，docker是会自动退出的，而我在npm start里面用了pm2，这个用法在没用docker时是ok的，但是如果用了docker，就不需要pm2了，附上一个tsconfig.json 和 package.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;dev&quot;: &quot;NODE_ENV=development &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;start&quot;: &quot;NODE_ENV=production &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;test&quot;: &quot;NODE_ENV=development &amp;&amp; jest&quot;,</div><div class="line">    &quot;stop&quot;: &quot;npm run gulp stop&quot;,</div><div class="line">    &quot;gulp&quot;: &quot;gulp&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/profile.d/java.sh</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile.d/java.sh</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <hr>
-<h4 id="update-4-21"><a href="#update-4-21" class="headerlink" title="update 4.21"></a>update 4.21</h4><ol>
-<li><p>Docker 不是虚拟机，docker就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。<code>CMD</code> 指令就是用于指定默认的容器主进程的启动命令的。</p>
+<p>maven:</p>
+<ol>
+<li><p>cd /usr/maven &amp;&amp; wget <a href="http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz</a></p>
 </li>
-<li><p>在运行时可以指定新的命令来替代镜像设置中的这个默认命令，比如，<code>ubuntu</code> 镜像默认的 <code>CMD</code> 是 <code>/bin/bash</code>，如果我们直接 <code>docker run -it ubuntu</code> 的话，会直接进入 <code>bash</code>。我们也可以在运行时指定运行别的命令，如 <code>docker run -it ubuntu cat /etc/os-release</code>。这就是用 <code>cat /etc/os-release</code> 命令替换了默认的 <code>/bin/bash</code> 命令了，输出了系统版本信息</p>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line"></div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:$PATH</div></pre></td></tr></table></figure>
 </li>
-<li><p>容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念，一些初学者将 <code>CMD</code> 写为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD service nginx start</div></pre></td></tr></table></figure>
-<p>然后发现容器执行后就立即退出了。甚至在容器内去使用 <code>systemctl</code> 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。</p>
-<p>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</p>
-<p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
-<p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/profile.d/maven.sh</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile.d/maven.sh</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<hr>
+<h3 id="mac上的java更新问题"><a href="#mac上的java更新问题" class="headerlink" title="mac上的java更新问题"></a>mac上的java更新问题</h3><p>mac上更新java是可以直接通过控制面板来操作的，但这里有个问题就是oracle的java安装完成之后是放在/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin 目录下的，但是系统的java的path是/usr/bin/java, 这是个软链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lrwxr-xr-x   1 root   wheel        74 Nov  9  2016 java -&gt; /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java</div></pre></td></tr></table></figure>
+<p>这个是系统的java，仍然是1.7，</p>
+<p>解决办法是直接从oracle官网安装jdk 8即可, 注意是jdk不是jre</p>
+<p>运行/usr/libexec/java_home 可以看到是1.8了</p>
 
           
         
@@ -969,8 +1033,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/15/AI/Machine Learning/" itemprop="url">
-                  Machine Learning
+                <a class="post-title-link" href="/2017/05/25/redux/titles: material ui事件无响应/" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -983,8 +1047,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-15T14:37:12+08:00" content="2017-04-15">
-              2017-04-15
+            <time itemprop="dateCreated" datetime="2017-05-25T18:53:20+08:00" content="2017-05-25">
+              2017-05-25
             </time>
           </span>
 
@@ -997,8 +1061,122 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index">
-                    <span itemprop="name">AI</span>
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>material的selectField标签没有弹出，需要安装injectTapEventPlugin</p>
+<p>import * as  injectTapEventPlugin from ‘react-tap-event-plugin’;<br>injectTapEventPlugin()</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/18/css/css问题/" itemprop="url">
+                  css问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-18T15:15:38+08:00" content="2017-05-18">
+              2017-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -1033,16 +1211,7 @@
         
           
             <ol>
-<li><p>Machine Learning can be basiclly classfied with two categories:  supervised learning and unsupervised learning</p>
-<p>1) supervised learning: right answer given, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
-<p>​    regression: predict continuous valued output</p>
-<p>​    classification: discrete valued output</p>
-<p>2) unspervised learning: with little or no idea what our results should look like</p>
-<p>​    clustering:</p>
-</li>
-<li><p>gradient decent algorithm: simutaneous   ​</p>
-<p>​</p>
-</li>
+<li>FlatButton我看是渲染了一个button组件，然后在里面再嵌套了一个div，通过修改className只能修改button的style，有没有什么办法来修改里面那个div的style呢？</li>
 </ol>
 
           
@@ -1093,8 +1262,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/database/mysql安装/" itemprop="url">
-                  mysql 使用
+                <a class="post-title-link" href="/2017/05/17/design/react集成material icon/" itemprop="url">
+                  react集成material icon
                 </a>
               
             
@@ -1107,8 +1276,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T17:47:37+08:00" content="2017-04-12">
-              2017-04-12
+            <time itemprop="dateCreated" datetime="2017-05-17T18:21:11+08:00" content="2017-05-17">
+              2017-05-17
             </time>
           </span>
 
@@ -1121,134 +1290,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h4><ol>
-<li><p>yum install -y mysql-server</p>
-</li>
-<li><p>chkconfig mysqld on</p>
-</li>
-<li><p>vim /etc/my.cn,  加入utf8字符集并修改下datadir，其他高级配置慢慢研究</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line"></div><div class="line"># add utf-8</div><div class="line">character_set_server = utf8</div><div class="line"></div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line"># Settings user and group are ignored when systemd is used (fedora &gt;= 15).</div><div class="line"># If you need to run mysqld under a different user or group,</div><div class="line"># customize your systemd unit file for mysqld according to the</div><div class="line"># instructions in http://fedoraproject.org/wiki/Systemd</div><div class="line">user=mysql</div><div class="line"></div><div class="line"># Semisynchronous Replication</div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/replication-semisync.html</div><div class="line"># uncomment next line on MASTER</div><div class="line">;plugin-load=rpl_semi_sync_master=semisync_master.so</div><div class="line"># uncomment next line on SLAVE</div><div class="line">;plugin-load=rpl_semi_sync_slave=semisync_slave.so</div><div class="line"></div><div class="line"># Others options for Semisynchronous Replication</div><div class="line">;rpl_semi_sync_master_enabled=1</div><div class="line">;rpl_semi_sync_master_timeout=10</div><div class="line">;rpl_semi_sync_slave_enabled=1</div><div class="line"></div><div class="line"># http://dev.mysql.com/doc/refman/5.5/en/performance-schema.html</div><div class="line">;performance_schema</div><div class="line"></div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[mysql]</div><div class="line">no-auto-rehash</div><div class="line">default-character-set=utf8</div></pre></td></tr></table></figure>
-</li>
-<li><p>service mysqld start  启动mysql</p>
-</li>
-<li><p>/usr/bin/mysql_secure_installation 设置root密码等安全特性</p>
-<p>​</p>
-</li>
-</ol>
-<h4 id="新建用户并赋予权限"><a href="#新建用户并赋予权限" class="headerlink" title="新建用户并赋予权限"></a>新建用户并赋予权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE USER &apos;jeremy&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">GRANT ALL ON test.* TO &apos;jeremy&apos;@&apos;%&apos;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/12/utility/使用supertest作单元测试的注意点/" itemprop="url">
-                  使用supertest作单元测试的注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T15:04:05+08:00" content="2017-04-12">
-              2017-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
                   </a>
                 </span>
 
@@ -1283,10 +1326,21 @@
         
           
             <ol>
-<li><p>supertest底层是使用superagent来发http请求的，对于post的类型要特别注意查看官方的文档说明，</p>
-<p><a href="https://visionmedia.github.io/superagent/#post-/-put-requests" target="_blank" rel="external">https://visionmedia.github.io/superagent/#post-/-put-requests</a></p>
-<p>默认post的请求类型是json，如果需要用application/x-www-form-urlencoded，需要显示设置一下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">request.post(&apos;/&apos;)</div><div class="line">   .set(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;)</div></pre></td></tr></table></figure></li>
+<li><p>安装material icon:   npm install material-design-icons</p>
+</li>
+<li><p>app.css 增加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-style: normal;</div><div class="line">  font-weight: 400;</div><div class="line">  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */</div><div class="line">  src: local(&apos;Material Icons&apos;),</div><div class="line">  local(&apos;MaterialIcons-Regular&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format(&apos;woff2&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format(&apos;woff&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format(&apos;truetype&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的url路径以相对路径，根据自己项目来</p>
+</li>
+<li><p>在app.css再添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">.material-icons &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-weight: normal;</div><div class="line">  font-style: normal;</div><div class="line">  font-size: 24px;  /* Preferred icon size */</div><div class="line">  display: inline-block;</div><div class="line">  line-height: 1;</div><div class="line">  text-transform: none;</div><div class="line">  letter-spacing: normal;</div><div class="line">  word-wrap: normal;</div><div class="line">  white-space: nowrap;</div><div class="line">  direction: ltr;</div><div class="line"></div><div class="line">  /* Support for all WebKit browsers. */</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  /* Support for Safari and Chrome. */</div><div class="line">  text-rendering: optimizeLegibility;</div><div class="line"></div><div class="line">  /* Support for Firefox. */</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line"></div><div class="line">  /* Support for IE. */</div><div class="line">  font-feature-settings: &apos;liga&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于webpack的css-loader会对url() 当做import/require() 来引入，需要增加个url-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,</div><div class="line">  loader: &apos;url-loader&apos;,</div><div class="line">  options: &#123;</div><div class="line">    limit: 10000</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>在material-ui中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">    iconClassName=&quot;material-icons&quot;</div><div class="line">    onClick=&#123;() =&gt; fetchUDiskDataSet(common.projectId, common.region, common.zone, &apos;DataDisk&apos;, 0, 30)&#125;</div><div class="line">&gt;</div><div class="line"> autorenew</div><div class="line">&lt;/IconButton&gt;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 
           
@@ -1337,8 +1391,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/node/parseInt 和 escape/" itemprop="url">
-                  parseInt 和 escape
+                <a class="post-title-link" href="/2017/05/17/redux/redux运行慢/" itemprop="url">
+                  redux运行慢
                 </a>
               
             
@@ -1351,8 +1405,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T14:24:30+08:00" content="2017-04-12">
-              2017-04-12
+            <time itemprop="dateCreated" datetime="2017-05-17T10:33:49+08:00" content="2017-05-17">
+              2017-05-17
             </time>
           </span>
 
@@ -1365,8 +1419,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
                   </a>
                 </span>
 
@@ -1401,8 +1455,8 @@
         
           
             <ol>
-<li><p>express处理post提交的数据，如果对接收到的数据做一个escape会强制加上’ ‘， 这样的话如果要取一个整数型变量就会报错，这个该如何处理呢？    </p>
-<p>数据库插入的时候，它并不需要你在程序中转换，mysql会根据你的column的类型来将你传过去的数据做转换，如果无法转换，比如‘15a’ 插入到整型列，就会报列类型错误</p>
+<li><p>遇到一个redux慢的问题，拉取很多数据，对数据做处理，最终渲染图表。这里面要搞清楚到底是哪里慢，是reducer慢，还是react渲染慢，或者是api请求慢，网络的问题可以通过console的timeline看出来，reducer的问题只要在reducer的处理函数里统计时间，react渲染在ReactDOM.render这里面统计，最终能看出来究竟是哪里慢</p>
+<p>结论： 用reactjs渲染图表的时候很慢，特别是数据点特变多的时候，渲染8638个点需要3.69s，之后换一个库试试</p>
 </li>
 </ol>
 
@@ -1437,7 +1491,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1478,7 +1532,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1486,7 +1540,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1495,7 +1549,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

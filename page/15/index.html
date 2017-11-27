@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/05/html&css/html&css/" itemprop="url">
-                  css
+                <a class="post-title-link" href="/2017/02/18/javascript/javascript的遍历/" itemprop="url">
+                  javascript的遍历
                 </a>
               
             
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-05T13:02:27+08:00" content="2017-02-05">
-              2017-02-05
+            <time itemprop="dateCreated" datetime="2017-02-18T15:47:06+08:00" content="2017-02-18">
+              2017-02-18
             </time>
           </span>
 
@@ -271,8 +271,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/html-css/" itemprop="url" rel="index">
-                    <span itemprop="name">html/css</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -307,37 +307,15 @@
         
           
             <ol>
-<li><p>css也可以注释，使用/<em>    </em>/</p>
+<li><p>数组的遍历</p>
+<p>1) 原始的for循环： 写法比较麻烦</p>
+<p>2) 数组本身的forEach方法： 无法跳出循环</p>
+<p>3）for…in 循环：数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等，<code>for...in</code>循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</p>
+<p>4）<strong>for…of 循环</strong>：可以中途跳出，不会添加其他键，是推荐遍历数组的方法</p>
 </li>
-<li><p>color代表前景色，background-color代表背景色</p>
-</li>
-<li><p>css中对同一个选择器的多个声明，最后一个生效，这个特点可以用来作浏览器兼容，比如在color上，第一行写一个所有浏览器都兼容的color表示法，下面一行写一个较新的表示法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  color: rgb(22, 34, 88);</div><div class="line">  color: rgba(22, 34, 88, 0.4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>一个html元素可以加上多个css类，但最好限制在4个最多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 class=&quot;book domestic&quot;&gt;The Way of the Deep&lt;/h1&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>盒模型的width和height</p>
-<p> 1) 用像素表示： 表示盒子的精确大小</p>
-<p>2）ems: 相对于盒子里面文字的倍数</p>
-<p>3）百分数：相对于父盒子的比例</p>
-</li>
-<li><p>当margin:auto被用来做居中时，必须同时加上width这个属性用来标明该元素的宽度，否则这个div的宽度就被设置成它父元素的宽度了，也就没有居中的说法了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#banner-content &#123;</div><div class="line">  border: 1px solid rgb(255,0,0);</div><div class="line">  position: relative;</div><div class="line">  top: 20%;</div><div class="line">  width: 60%;</div><div class="line">  padding:30px 10px;</div><div class="line">  margin:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>display属性有如下几个： inline,block,incline-block,none</p>
-</li>
-<li><p>默认盒模型有一个缺点，就是padding和border会增加width，因此无法计算每个元素的实际大小</p>
-</li>
-<li><p>盒模型使用box-sizing这个属性指定的，默认值为content-box，这个模型的width并不是实际渲染的大小，实际元素为加上boder的宽度以及pading，为了解决这个问题可以把box-sizing改为border-box，在这个模型下，width就是实际渲染出来的大小，padding和border会被相应地减掉</p>
-</li>
-<li><p>position用来指定元素的位置，有如下四个取值</p>
-<p>1）static： 默认值</p>
-<p>2）relative：这个将元素设定为相对，因此还需要指定top,left,bottom和right属性，表示相对于四周的像素值</p>
-<p>3）absolute: 这个元素表示该元素就被固定在那边，其他元素会将他视而不见</p>
-<p>4)   fixed: 会固定住这个元素，即使在有滚动条的情况下</p>
-</li>
-<li><p>当一个元素是float时，在同一个父元素下的其他元素会靠着它流动起来，同时float的元素必须指定宽度</p>
+<li><p>对象的遍历 :</p>
+<p>1) for …in: 循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）</p>
+<p>2) <strong>Object.keys(obj)</strong> :返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性),是推荐的方法</p>
 </li>
 </ol>
 
@@ -389,8 +367,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/23/utility/moment计算时间差/" itemprop="url">
-                  moment计算时间差
+                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
+                  使用vim提高编码效率
                 </a>
               
             
@@ -403,8 +381,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-23T17:18:27+08:00" content="2017-01-23">
-              2017-01-23
+            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
+              2017-02-18
             </time>
           </span>
 
@@ -417,8 +395,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
+                  <a href="/categories/utilties/" itemprop="url" rel="index">
+                    <span itemprop="name">utilties</span>
                   </a>
                 </span>
 
@@ -452,7 +430,27 @@
       
         
           
-            <p>有个简单需求计算现在到将来某个固定时间的时间差，搜了下有moment.js这个很强大的库，但在使用的时候需要注意，当用数组形式构建日期是，月份数为所写数加1，原因在于moment也是从0开始计月份数的</p>
+            <ol>
+<li><p>选中行或列   shift+v,   ctrl+v</p>
+</li>
+<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
+</li>
+<li><p>向下移动10行， 10j</p>
+</li>
+<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
+</li>
+<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
+</li>
+<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
+</li>
+<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
+</li>
+<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
+</li>
+<li><p>替换 :%s/foo/bar/g</p>
+<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
+</li>
+</ol>
 
           
         
@@ -502,8 +500,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/22/react/React Native和ss的全局模式冲突/" itemprop="url">
-                  React Native和ss的全局模式冲突
+                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
+                  API设计时遇到的问题
                 </a>
               
             
@@ -516,8 +514,123 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-22T17:08:34+08:00" content="2017-01-22">
-              2017-01-22
+            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/api/" itemprop="url" rel="index">
+                    <span itemprop="name">api</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/react/使用react的几个注意点/" itemprop="url">
+                  使用react的几个注意点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T09:42:18+08:00" content="2017-02-17">
+              2017-02-17
             </time>
           </span>
 
@@ -565,390 +678,24 @@
       
         
           
-            <p>react和ss的全局模式冲突，先记录下来</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/22/utility/关于CLion 调试时报Configuration is not specified/" itemprop="url">
-                  关于CLion 调试时报Configuration is not specified
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-22T15:54:08+08:00" content="2017-01-22">
-              2017-01-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一般是没有cmake配置，导入项目时选择import而不是open，这样会生成cmake配置</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/22/alogrithm/排序并保留原数组索引/" itemprop="url">
-                  排序并保留原数组索引
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-22T14:40:32+08:00" content="2017-01-22">
-              2017-01-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>排序算法不考虑，主要是需要保留原数组索引，这个需求应该还是会很常见</p>
-<p>看到别人的一个思路，构造一个结构体，这个结构体包含原来数组的每个数据以及相应的索引号，通过系统自带排序函数，需要制定下具体排序的函数（通过比较结构体的数据）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/17/react/react学习/" itemprop="url">
-                  react学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-17T09:14:29+08:00" content="2017-01-17">
-              2017-01-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>正如研究任何一种框架一样，研究react也要搞清楚作者开发他的动机，其实说白了就是前段组件化，这样的好处是可以复用很多代码，不仅仅是自己写的组件，别人的组件也可以，这是不是很酷呢？</p>
-<p>既然是组件，那组件势必要把view显示和逻辑封装在一起，这个就和很多之前的前端MVC开发方式有很多不同，是需要适应的，但我觉得组件这个东西并不新颖，在UI开发的历史上早就存在</p>
-<p>既然是组件，有几个概念很重要，compenent不用多说，那如何把数据传到component中呢，比如我有一个表格需要显示数据，怎么把数据传进来呢？组件是怎么来处理css的呢，毕竟组件需要提供很多不同显示样式？这些都是需要带着的问题去看react的</p>
+            <ol>
+<li><p>如何指定props？ 有几种方法</p>
+<p>1）javascript表达式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;1 + 2 + 3 + 4&#125; /&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为if和for不是javascript表达式，所以如果要做条件渲染之类的，可以用如下的方法</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function NumberDescriber(props) &#123;</div><div class="line">       let description;</div><div class="line">       if (props.number % 2 == 0) &#123;</div><div class="line">         description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">       &#125; else &#123;</div><div class="line">         description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">       &#125;</div><div class="line">       return &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>在这个函数里，{description} 是一个javascript表达式，而description本身通过if-else来作赋值</p>
+<p>​    2）字符串字面值常量</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=&quot;hello world&quot; /&gt;</div></pre></td></tr></table></figure>
 <ol>
-<li><p>prop和state的区别，他们是用来干嘛的?  这里有句话：State is similar to props, but it is private and fully controlled by the component.  显然他的意思是说state是组件自有的属性，完全私有。那么它用来做什么呢？举个例子，有个时钟的组件，时钟每秒钟都得更新下，如果用props是不可以的，因为props传进来是不能改变的，而state是可变的，同时对于时钟来说，时间这个属性本来就是完全它自己的，不需要外面传数据进来。</p>
+<li><p>JSX children: 如果JSX表达式包含一个开标记和一个闭标记，那这两个标记间的内容就是props.children</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div></pre></td></tr></table></figure>
+<p>这里MyComponent 里面如果传入props.children，props.children就是“Hello World”, 并且字符串也没有被转义，</p>
+<p>2）javascript表达式也能作为props.children</p>
 </li>
-<li><p>react的数据是单向绑定，state只能用setState函数来修改(除了构造函数)，state的更新可能是异步的</p>
-</li>
-<li><p>react的事件命名是驼峰的，事件处理器本身是一个JSX表达式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Toggle extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;isToggleOn: true&#125;;</div><div class="line"></div><div class="line">    // This binding is necessary to make `this` work in the callback</div><div class="line">    this.handleClick = this.handleClick.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    this.setState(prevState =&gt; (&#123;</div><div class="line">      isToggleOn: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/" target="_blank" rel="external">https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/</a></p>
-<p>js类里的成员函数默认是不绑定的，这篇文章解释的比较清楚</p>
-</blockquote>
-</li>
-<li><p>react-router如何与ant-design的组件结合?</p>
-<p>有一个问题一直想不通，就是像ant-design的menu组件不是都有超链接了嘛，router这个link又是用来干嘛呢？这里一定要搞清楚一个问题，在menu组件里的连接可以认为就是带了<a>标签的跳转，但是跳转到哪儿去是有react-router里的各条route来决定的，他们之间并不冲突</a></p>
-</li>
-<li><p>Components must return a single root element，所以return的element必须加一个包裹</p>
-</li>
-<li><p>All React components must act like pure functions with respect to their props</p>
-</li>
-<li><p>当把函数式组件改为class组件时，有两点需要注意，1）多加了个render函数，里面定义个return函数，这其实是个闭包 2）不需要写函数参数props，反而是在函数需要用到props的时候写this.props.date</p>
-</li>
-<li><p>While <code>this.props</code> is set up by React itself and <code>this.state</code> has a special meaning, you are free to add additional fields to the class manually if you need to store something that is not used for the visual output.</p>
-<p>If you don’t use something in <code>render()</code>, it shouldn’t be in the state.</p>
-</li>
-<li><p>关于setState的三个注意点： 1）所有修改state数据只能用this.setState方法，换句话说除了在构造函数能访通过this.state=的形式来设置state，其余地方都只能用函数，<strong>但是访问是没有问题的</strong> 2）states的更新可能是异步的，React may batch multiple setState() calls into a single update for performance. 要更新的话需要用setState的第二种用法，参数传一个回调函数 3）states的更新是合并在一起的，但不同的setState不会影响各自</p>
-</li>
-<li><p>事件处理一般是类的成员函数，但是需要在构造函数里绑定this或者成员函数写成=的形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>渲染多个组件可以使用map()函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li&gt;&#123;number&#125;&lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
-</li>
-<li><p>Keys should be given to the elements inside the array to give the elements a stable identity:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li key=&#123;number.toString()&#125;&gt;</div><div class="line">    &#123;number&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
-</li>
-<li><p>受控组件： 比如一个最基本的文本输入框，正常文本框的显示是html自身组件控制的，但是如果你加上了state状态，这个文本值的显示是完全受控的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>lifting state的例子还没有完全搞懂</p>
-</li>
-<li><p>composition是什么意思？这点没搞明白</p>
+<li><p>A React component can’t return multiple React elements, but a single JSX expression can have multiple children, so if you want a component to render multiple things you can wrap it in a <code>div</code> like this. 这句话还不是很理解</p>
 </li>
 <li><p>​</p>
 </li>
@@ -1002,8 +749,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/12/utility/mac上的shadowsocks/" itemprop="url">
-                  mac上的shadowsocks
+                <a class="post-title-link" href="/2017/02/17/react/ES6语法在react中的运用/" itemprop="url">
+                  ES6语法在react中的运用
                 </a>
               
             
@@ -1016,8 +763,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-12T16:09:44+08:00" content="2017-01-12">
-              2017-01-12
+            <time itemprop="dateCreated" datetime="2017-02-17T09:35:24+08:00" content="2017-02-17">
+              2017-02-17
             </time>
           </span>
 
@@ -1030,8 +777,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -1066,21 +813,13 @@
         
           
             <ol>
-<li><p>首先提一下，mac上的shadowsocks会比windows上的用起来简单一些，mac的不用配代理，原因在于mac下的chrome代理是跟着系统走的，firefox需要手动配置下代理类型，当然也可以跟系统走，但是国内的版本不行</p>
-</li>
-<li><p>全局模式和自动代理模式区别，开启全局模式下会把系统设置为socks代理，开启代理模式会把系统设置为pac代理，shadowsocks的pac代理服务器起在8090端口</p>
-</li>
-<li><p>pac和switchyproxy区别： pac是一个js文件，从shadowsocks起的8090端口的服务器获得，告诉浏览器该怎么找到代理服务器，而switchyproxy则是一个浏览器插件，运行在浏览器端</p>
-</li>
-<li><p>关于dns是否是远程解析的验证方式,开一个wireshark，设定过滤dns，结论</p>
-<ol>
-<li>chrome不管是pac还是socks5都是要remote dns 解析 </li>
-<li>safari也是远程解析</li>
+<li><p>扩展运算符(…) :   作为props传递，这个props如果是个基础容器，比如包含位置等基本属性，这个是值得用的，但在其他情况下要慎用，因为它来许多其他的不相关的props</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function App1() &#123;</div><div class="line">  return &lt;Greeting firstName=&quot;Ben&quot; lastName=&quot;Hector&quot; /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function App2() &#123;</div><div class="line">  const props = &#123;firstName: &apos;Ben&apos;, lastName: &apos;Hector&apos;&#125;;</div><div class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>扩展运算符还可以用在setState里，因为react有个算是要求吧，主要为了性能考虑，在setState里不要直接更改里面内容的值，比如下面这个state里面的words，words本身是个数组，更新的时候不要改words的内容，而是copy一份得到一个新的数组，如果words是个对象也是先copy一份(对象的扩展运算符号在2017是个提案)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: prevState.words.concat([&apos;marklar&apos;])</div><div class="line">  &#125;));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ES6中可以用扩展运算符来实现copy这个操作，非常方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">handleClick() &#123;</div><div class="line">  this.setState(prevState =&gt; (&#123;</div><div class="line">    words: [...prevState.words, &apos;marklar&apos;],</div><div class="line">  &#125;));</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
 </ol>
-</li>
-<li>safari也是走的系统默认代理，理论上都能翻，但实际上facebook和twitter大多可以，google基本上不去，怀疑是浏览器问题，不过50.1.0版的firfox 真是垃圾，国际版也是，无论哪种模式都翻不出去</li>
-</ol>
-<p>   ​</p>
 
           
         
@@ -1130,8 +869,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/12/alogrithm/皮萨诺周期/" itemprop="url">
-                  皮萨诺周期
+                <a class="post-title-link" href="/2017/02/16/database/SQL学习/" itemprop="url">
+                  SQL学习
                 </a>
               
             
@@ -1144,8 +883,156 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-12T15:04:59+08:00" content="2017-01-12">
-              2017-01-12
+            <time itemprop="dateCreated" datetime="2017-02-16T14:35:55+08:00" content="2017-02-16">
+              2017-02-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>为数据库表增加一列，新加的这一列的值默认为NULL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE celebs ADD COLUMN twitter_handle TEXT;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除指定行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM celebs WHERE twitter_handle IS NULL;</div></pre></td></tr></table></figure>
+</li>
+<li><p>选出一列中的唯一值，即过滤掉重复的条目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT DISTINCT genre FROM movies;</div></pre></td></tr></table></figure>
+</li>
+<li><p>模糊查询LIKE的用法，’_’ 代表任意单个字符， ‘%’代表0个或多个字符, LIKE对大小写不敏感</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name LIKE &apos;Se_en&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;A%&apos;;</div><div class="line"></div><div class="line">SELECT * FROM movies WHERE name LIKE &apos;%man%&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>过滤出name是以’A’开头，但不包含’J’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies WHERE name BETWEEN &apos;A&apos; AND &apos;J&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>排序， 以某一列为基准排序，DESC 降序列， ASC 升序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC;</div></pre></td></tr></table></figure>
+</li>
+<li><p>指定输出的最大行数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;</div></pre></td></tr></table></figure>
+</li>
+<li><p>aggregate函数</p>
+<p>1） COUNT()： 计算指定列的行数</p>
+<p>2） GROUP BY:  把相同的数据放到group里去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT price, COUNT(*) FROM fake_apps GROUP BY price;</div></pre></td></tr></table></figure>
+</li>
+<li><p>inner join： 连接多张表查询，需要join条件为true;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
+<p>outer join:    连接多张表查询，不需要join条件满足，第一张表的所有行都会返回，如果条件不满足，将会使用NULL值来填充</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>reac调试事件</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/13/alogrithm/实际工作中遇到的需要小算法场景/" itemprop="url">
+                  实际工作中遇到的需要小算法场景
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-13T11:23:49+08:00" content="2017-02-13">
+              2017-02-13
             </time>
           </span>
 
@@ -1193,131 +1080,11 @@
       
         
           
-            <h3 id="皮萨诺周期"><a href="#皮萨诺周期" class="headerlink" title="皮萨诺周期"></a>皮萨诺周期</h3><p>先解释下皮萨诺周期是什么，我们知道斐波那契数列的通项公式是  F(n) = F(n-1) + F(n-2)，其中F(0) = 0, F(1) = 1,F(n) 对于m求模得到的序列是个周期序列，但周期本身目前还没有计算公式可以得出。现在有个问题要求大斐波那契数列对于m的求余值，为题具体描述如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given two integers 𝑛 and 𝑚, output 𝐹𝑛 mod 𝑚 (that is, the remainder of 𝐹𝑛 when divided by 𝑚).</div><div class="line">Input Format. The input consists of two integers 𝑛 and 𝑚 given on the same line (separated by a space). Constraints. 1≤𝑛≤10 **18（10的18次方）,2≤𝑚≤10 **5. Output Format. Output 𝐹𝑛 mod 𝑚.</div></pre></td></tr></table></figure>
-<p>由于n太大，计算Fn显然不现实，一来循环的次数很多，更重要的是没有方法来存这个数值，要解决这个问题有几个关键点</p>
-<p>1）设定P(n)是F(n) % m，P(n)是个周期序列，且每个P(n)的周期都是以数字0 1开头</p>
-<p>2）(a+b)%m = (a%m + b%m)%m</p>
-<p>3)  周期的最大值为6*m</p>
-<p>有了这两点基本知识，大体思路就出来了，首先用循环去计算周期，凡是循环到0 1就认为一个周期结束，因为m的最大值只有10的5次方，所以循环最多的次数也就只需要6<em> （10 *</em> 5），这个在1s内是可以完成的，第二个就是计算余数的周期序列，这就要利用性质2了，附一份c++的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">using std::vector;</div><div class="line"></div><div class="line">long long get_fibonacci_huge_fast(long long n, long long  m) &#123;</div><div class="line">    if (n&lt;=1) return 1;</div><div class="line">    vector&lt;long long&gt; p(6 * m);</div><div class="line">    long long count = 1;</div><div class="line">    p[0] = 0;</div><div class="line">    p[1] = 1;</div><div class="line">    for (long long  i=2; i&lt;=6 * m; i++)&#123;</div><div class="line">        p[i] = (p[i-1] + p[i-2]) % m;</div><div class="line">        if(p[i-1] == 0 &amp;&amp; p[i] == 1)&#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    long long k = n % count;</div><div class="line">    return p[k];</div><div class="line">&#125;</div><div class="line">int main() &#123;</div><div class="line">    long long n, m;</div><div class="line">    std::cin &gt;&gt; n &gt;&gt; m;</div><div class="line">    std::cout &lt;&lt; get_fibonacci_huge_fast(n, m) &lt;&lt; &apos;\n&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/04/c++/c++ const/" itemprop="url">
-                  c++ const
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-04T10:56:22+08:00" content="2017-01-04">
-              2017-01-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
             <ol>
-<li><p>默认状态下，const对象仅在文件内有效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const int bufSize = 512;</div></pre></td></tr></table></figure>
-<p>编译器在编译过程会找到所有用到bufSize的地方替换成相应的值。如果程序包含多个文件，则每个用了const对象的文件都必须能访问到它的初始值，所以在每一个用到变量的文件中都要有对它的定义。为了支持这个用法，默认情况下const对象被设定为仅在文件内有效，<strong>当多个文件中出现了同名const变量，其实等同于在不同文件中分别定义了独立的变量</strong></p>
+<li><p>api的数据返回的是category，name这种单条记录，但展现的时候是以二级目录展现的，因此需要统计相同的category有几个，计算出每个categroy下的name</p>
+<p>解决思路： 用一个临时数组存储每个category及其索引，然后遍历api返回，将同一个category下的name添加进去</p>
 </li>
-<li><p>如果想在多个文件之间共享const对象，必须在变量的定义之前添加<strong>extern</strong>关键字</p>
+<li><p>​</p>
 </li>
 </ol>
 
@@ -1369,8 +1136,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/03/c++/c++引用类型和指针/" itemprop="url">
-                  c++引用类型和指针
+                <a class="post-title-link" href="/2017/02/11/database/创建数据库时的注意点/" itemprop="url">
+                  创建数据库时的注意点
                 </a>
               
             
@@ -1383,8 +1150,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T22:10:19+08:00" content="2017-01-03">
-              2017-01-03
+            <time itemprop="dateCreated" datetime="2017-02-11T22:18:34+08:00" content="2017-02-11">
+              2017-02-11
             </time>
           </span>
 
@@ -1397,8 +1164,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
                   </a>
                 </span>
 
@@ -1433,23 +1200,227 @@
         
           
             <ol>
-<li><p>c++中引用类型，引用类型就是一个对象的别名，通过&amp;来声明，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 1024;</div><div class="line">int &amp;refVal = ival;</div></pre></td></tr></table></figure>
-<p>定义了引用之后，所有与之相关的操作都是在与之绑定的对象上进行的，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">refVal = 2;  //把2赋值给了ival</div><div class="line">int ii = refVal;  把ival赋值给ii</div></pre></td></tr></table></figure>
-<p>引用必须初始化，一旦初始化完成，引用将和它的初始值对象一直绑定在一起</p>
-</li>
-<li><p>指针本身就是个对象，允许对指针赋值和拷贝，而且在指针的生命周期内它可以先后指向几个不同的对象；</p>
-<p>指针无须在定义时赋初值；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *ip1, *ip2;</div></pre></td></tr></table></figure>
-<p>可以用取地址符&amp;来获取对象地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div></pre></td></tr></table></figure>
-<p>通过解引用符*来获取指针所指的对象；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div><div class="line">cout &lt;&lt; *p;</div></pre></td></tr></table></figure>
-</li>
-<li><p>指向指针的引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int i = 42;</div><div class="line">int *p;</div><div class="line">int *&amp;r = p;  //r是一个对指针p的引用</div></pre></td></tr></table></figure></li>
+<li>数据库的字符集，客户端的字符集，表和row的字符集，这个在前一篇文章有介绍到</li>
+<li>存储id，如果不用表本身的自增id用类似uuid，那么得存成varchar形式，并注意长度</li>
+<li>create_time，update_time等参数，由于node的Date的gettime方法返回的是距离1970年1月1号以来的毫秒数，所以int类型存储不下，需要用bigint</li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/10/javascript/前端发ajax请求的方法/" itemprop="url">
+                  前端发ajax请求的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-10T09:42:50+08:00" content="2017-02-10">
+              2017-02-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ajax/" itemprop="url" rel="index">
+                    <span itemprop="name">ajax</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为react本身只是个ui组件库，并不包含ajax请求的方式，所以有几个方法可以选择</p>
+<ol>
+<li>jquery： jquery因为大家都比较熟所以使用简单，但由于jquery比较大，如果单纯只用它这个功能不太合适</li>
+<li>superagent： 使用过几次，支持promise，可以工作在浏览器和node</li>
+<li>axio：没有使用过，promise_based，可以工作在浏览器和node</li>
+<li>request： 使用的最多的，但本身不支持promise</li>
+<li>fetch api: 这是html5的api，不是ecma的，node有node-fetch版本</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/09/javascript/javascript关于this的坑/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T20:08:28+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title:  javascript关于this的坑</p>
+<p>categories: javascript</p>
+<p>title: this</p>
+<p>javascript中this的坑今天算是踩中了，每次调用有this的函数时都问下自己，这个this指向哪里！</p>
 
           
         
@@ -1482,7 +1453,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1523,7 +1494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1531,7 +1502,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1540,7 +1511,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

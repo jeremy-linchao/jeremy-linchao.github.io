@@ -243,8 +243,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/17/redux/redux运行慢/" itemprop="url">
-                  redux运行慢
+                <a class="post-title-link" href="/2017/06/13/javascript/import的一个注意点/" itemprop="url">
+                  import的一个注意点
                 </a>
               
             
@@ -257,8 +257,101 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-17T10:33:49+08:00" content="2017-05-17">
-              2017-05-17
+            <time itemprop="dateCreated" datetime="2017-06-13T17:41:41+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行"><a href="#平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行" class="headerlink" title="平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行"></a>平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/13/es6/async:awati循环并发/" itemprop="url">
+                  async/awati循环并发
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T11:30:54+08:00" content="2017-06-13">
+              2017-06-13
             </time>
           </span>
 
@@ -271,8 +364,129 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
+                  <a href="/categories/async-await/" itemprop="url" rel="index">
+                    <span itemprop="name">async/await</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天写了这么一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后babel编译时候一直报错‘await is a reserved word’ ,其他地方用async/await都没有问题，那么这里问题出在哪儿了呢？</p>
+<p>await只能用在async函数里，虽然我在最外面的函数里写了async，但是离这个await最近的是map函数里面的匿名函数，而这个函数却不是async的，</p>
+<p>那么如果我们在这个匿名函数前面加async呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(async function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这样的结果就是map函数会立即返回，这样的话你就无法知道这么多promise什么时候结束，因此无法拿到最后的结果</p>
+<h4 id="解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值"><a href="#解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值" class="headerlink" title="解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值"></a>解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line"></div><div class="line">return Promise.all(docs.map(function (doc) &#123;</div><div class="line">  return db.post(doc);</div><div class="line">&#125;)).then(function (results) &#123;</div><div class="line">  console.log(results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line">let promises = docs.map((doc) =&gt; db.post(doc));</div><div class="line"></div><div class="line">let results = [];</div><div class="line">for (let promise of promises) &#123;</div><div class="line">  results.push(await promise);</div><div class="line">&#125;</div><div class="line">console.log(results);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/12/design/flex学习/" itemprop="url">
+                  flex学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-12T18:13:26+08:00" content="2017-06-12">
+              2017-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/flex/" itemprop="url" rel="index">
+                    <span itemprop="name">flex</span>
                   </a>
                 </span>
 
@@ -307,9 +521,14 @@
         
           
             <ol>
-<li><p>遇到一个redux慢的问题，拉取很多数据，对数据做处理，最终渲染图表。这里面要搞清楚到底是哪里慢，是reducer慢，还是react渲染慢，或者是api请求慢，网络的问题可以通过console的timeline看出来，reducer的问题只要在reducer的处理函数里统计时间，react渲染在ReactDOM.render这里面统计，最终能看出来究竟是哪里慢</p>
-<p>结论： 用reactjs渲染图表的时候很慢，特别是数据点特变多的时候，渲染8638个点需要3.69s，之后换一个库试试</p>
-</li>
+<li>flex默认的方向是row， 即flow-direction: row</li>
+<li>通过order来控制显示的顺序</li>
+<li>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</li>
+<li>align-items: 副轴方向的排列</li>
+<li>flex-grow：This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up. If all items have <code>flex-grow</code>set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).  <strong>default 0</strong></li>
+<li>flex-shrink: This defines the ability for a flex item to shrink if necessary.  <strong>default 1</strong></li>
+<li>flex-basis: This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.  <strong>default auto</strong></li>
+<li>flex: This is the shorthand for <code>flex-grow,</code> <code>flex-shrink</code>and <code>flex-basis</code>combined. The second and third parameters (<code>flex-shrink</code> and <code>flex-basis</code>) are optional. <strong>Default is 0 1 auto</strong></li>
 </ol>
 
           
@@ -360,8 +579,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/15/redux/redux理解/" itemprop="url">
-                  redux理解
+                <a class="post-title-link" href="/2017/06/12/design/导航的简单实现/" itemprop="url">
+                  导航的简单实现
                 </a>
               
             
@@ -374,8 +593,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-15T11:21:22+08:00" content="2017-05-15">
-              2017-05-15
+            <time itemprop="dateCreated" datetime="2017-06-12T18:06:46+08:00" content="2017-06-12">
+              2017-06-12
             </time>
           </span>
 
@@ -388,8 +607,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
                   </a>
                 </span>
 
@@ -423,33 +642,10 @@
       
         
           
-            <ol>
-<li><p>redux很大的一个特点就是引入了action这个概念，说白了就是一个可序列化的对象，有了这个之后，任何的数据的改变都被记录下来，因此可以做到追述</p>
-</li>
-<li><p>redux的action名字类型需要为字符串，而不要用Symbol类型，因为字符串是可以被序列化，但是action最好定义成常量，并且把所有的action放在一个地方，这样当别人增加action的时候可以看下是否已经有了, 避免重复</p>
-</li>
-<li><p>关于action-creator的理解： 为什么需要action creator而不是简单的action，因为有了action之后，当你需要在dispatch一个action之前做一些判断的时候，通过redux-thunk可以做一个简单的判断，而不要在每个dispatch之前判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function addTodoWithoutCheck(text) &#123;</div><div class="line">  return &#123;</div><div class="line">    type: &apos;ADD_TODO&apos;,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export function addTodo(text) &#123;</div><div class="line">  // This form is allowed by Redux Thunk middleware</div><div class="line">  // described below in “Async Action Creators” section.</div><div class="line">  return function (dispatch, getState) &#123;</div><div class="line">    if (getState().todos.length === 3) &#123;</div><div class="line">      // Exit early</div><div class="line">      return</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    dispatch(addTodoWithoutCheck(text))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>middleware是干嘛的？middleware可以在每次dispatch一个action之前增加客户逻辑，举个例子，我先要通过ajax去拉一些api数据，然后根据拉取的数据去dispatch action（永远记住action只是能改变数据）</p>
-</li>
-<li><p>什么是thunk函数: A <a href="https://en.wikipedia.org/wiki/Thunk" target="_blank" rel="external">thunk</a> is a function that wraps an expression to delay its evaluation.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// calculation of 1 + 2 is immediate</div><div class="line">// x === 3</div><div class="line">let x = 1 + 2;</div><div class="line"></div><div class="line">// calculation of 1 + 2 is delayed</div><div class="line">// foo can be called later to perform the calculation</div><div class="line">// foo is a thunk!</div><div class="line">let foo = () =&gt; 1 + 2;</div></pre></td></tr></table></figure>
-</li>
-<li><p>把UI的action和网络请求的action分开</p>
-</li>
-<li><p>state会存很多数据，内存是否有问题？如下是redux作者的回答，这一部分我会做一个实验看看</p>
-<p>Don’t worry about all these items being in memory: unless you’re dealing with tens of thousands of items, and your user rarely closes the tab, you won’t need any sort of cleanup</p>
-</li>
-<li><p>redux中间件: It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer</p>
-</li>
-<li><figure class="highlight plain"><figcaption><span>logger = store =&gt; next =&gt; action =&gt; &#123;  console.log(&#39;dispatching&#39;, action)  let result = next(action)  console.log(&#39;next state&#39;, store.getState())  return result&#125;const crashReporter = store =&gt; next =&gt; action =&gt; &#123;  try &#123;    return next(action)  &#125; catch (err) &#123;    console.error(&#39;Caught an exception!&#39;, err)    Raven.captureException(err, &#123;      extra: &#123;        action,        state: store.getState()      &#125;    &#125;)    throw err  &#125;&#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const logger = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  console.log(&apos;dispatching&apos;, action)</div><div class="line">  let result = next(action)</div><div class="line">  console.log(&apos;next state&apos;, store.getState())</div><div class="line">  return result</div><div class="line">&#125;</div><div class="line"></div><div class="line">const crashReporter = store =&gt; next =&gt; action =&gt; &#123;</div><div class="line">  try &#123;</div><div class="line">    return next(action)</div><div class="line">  &#125; catch (err) &#123;</div><div class="line">    console.error(&apos;Caught an exception!&apos;, err)</div><div class="line">    Raven.captureException(err, &#123;</div><div class="line">      extra: &#123;</div><div class="line">        action,</div><div class="line">        state: store.getState()</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    throw err</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function logger(store) &#123;</div><div class="line">  return function wrapDispatchToAddLogging(next) &#123;</div><div class="line">    return function dispatchAndLog(action) &#123;</div><div class="line">      console.log(&apos;dispatching&apos;, action)</div><div class="line">      let result = next(action)</div><div class="line">      console.log(&apos;next state&apos;, store.getState())</div><div class="line">      return result</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function applyMiddleware(store, middlewares) &#123;</div><div class="line">  middlewares = middlewares.slice()</div><div class="line">  middlewares.reverse()</div><div class="line"></div><div class="line">  let dispatch = store.dispatch</div><div class="line">  middlewares.forEach(middleware =&gt;</div><div class="line">    dispatch = middleware(store)(dispatch)</div><div class="line">  )</div><div class="line"></div><div class="line">  return Object.assign(&#123;&#125;, store, &#123; dispatch &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-
+            <p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;title&gt;Flex&lt;/title&gt;</div><div class="line">  &lt;link href=&apos;./main.css&apos; rel=&quot;stylesheet&quot; /&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;nav class=&quot;main-nav&quot;&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;work&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;life&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;dream&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;game&lt;/a&gt;&lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">&lt;/nav&gt;  </div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.main-nav ul &#123;</div><div class="line">  list-style: none;</div><div class="line">  display: inline-flex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav li &#123;</div><div class="line">  width: 100px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main-nav a &#123;</div><div class="line">  text-decoration: none;</div><div class="line">  color: black;</div><div class="line">  font-size: 21px;</div><div class="line">  font-weight: 600;</div><div class="line">  color: #00a9d9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -498,8 +694,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/09/redux/redux问题/" itemprop="url">
-                  redux问题
+                <a class="post-title-link" href="/2017/06/08/utility/ELK学习/" itemprop="url">
+                  ELK学习
                 </a>
               
             
@@ -512,8 +708,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-09T08:37:14+08:00" content="2017-05-09">
-              2017-05-09
+            <time itemprop="dateCreated" datetime="2017-06-08T10:46:51+08:00" content="2017-06-08">
+              2017-06-08
             </time>
           </span>
 
@@ -526,8 +722,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
+                  <a href="/categories/ELK/" itemprop="url" rel="index">
+                    <span itemprop="name">ELK</span>
                   </a>
                 </span>
 
@@ -561,676 +757,10 @@
       
         
           
-            <p>1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题</p>
-<ol>
-<li><p>ant-design的select不满足多选的需求</p>
-</li>
-<li><p>select组件的option渲染时可能没有初始化，因此可能会有TypeError: Cannot read property ‘type’ of null这个错误，需要用一个三元运算符来初始化一个</p>
-</li>
-<li><p>select 渲染option条目时，由于需要的是一个表达式，因此无法在里面写if… else，但如果用三元运算符，又会涉及到大量的判断，比较好的解决方法是在表达式里写一个函数，这个函数来返回需要的react组件，函数里面可以使用if… else了</p>
-</li>
-<li><p>components如何拿到全局的state</p>
-</li>
-<li><p>component did mount这个函数里如何拿到dispatch</p>
-</li>
-<li><p>在component did mount里拉了下的数据，想更新到state里面，但是这时候props的数据不是最新的</p>
-</li>
-<li><p>如果redux不同组件会加载不同component的state，但是如果组件之间数据有依赖就很麻烦，在一个组件下刷新可能会拿不到其他组件的数据</p>
-</li>
-<li><p>There are frameworks claiming to be similar to Flux, but without a concept of action objects. In terms of being predictable, this is a step backwards from Flux or Redux. If there are no serializable plain object actions, it is impossible to record and replay user sessions, or to implement <a href="https://www.youtube.com/watch?v=xsSnOQynTHs" target="_blank" rel="external">hot reloading with time travel</a>. If you’d rather modify data directly, you don’t need Redux.</p>
-</li>
-<li><p>Without any middleware, <a href="http://redux.js.org/docs/api/Store.html#dispatch" target="_blank" rel="external"><code>dispatch</code></a> only accepts a plain object, so we have to perform AJAX calls inside our components， However, this quickly gets repetitive because different components request data from the same API endpoints. Moreover, we want to reuse some of this logic (e.g., early exit when there is cached data available) from many components.</p>
-<p>异步的操作如果写在组件里没法重用</p>
-</li>
-<li><p>为什么react需要immutate.js: 因为react的渲染是根据state来的，state只要一变，组件就会重新渲染一个大型项目中，state必然是非常复杂的，那么如果需要用递归的方式来比较state是否改变会对性能产生极大的影响，所以当你每次要改变state的时候，请重新new一个state</p>
-</li>
-<li><p><strong>define your state shape in terms of your domain data and app state, not your UI component tree</strong>. </p>
-</li>
-<li><p>funnctional decomposition好处：1. 重用  2. 便于测试</p>
-</li>
-<li><h4 id="Extracting-Case-Reducers"><a href="#Extracting-Case-Reducers" class="headerlink" title="Extracting Case Reducers"></a>Extracting Case Reducers</h4></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function appReducer(state = initialState, action) &#123;</div><div class="line">    switch(action.type) &#123;</div><div class="line">        case &apos;SET_VISIBILITY_FILTER&apos; : return setVisibilityFilter(state, action);</div><div class="line">        case &apos;ADD_TODO&apos; : return addTodo(state, action);</div><div class="line">        case &apos;TOGGLE_TODO&apos; : return toggleTodo(state, action);</div><div class="line">        case &apos;EDIT_TODO&apos; : return editTodo(state, action);</div><div class="line">        default : return state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>mapStateToProps这个函数使用shallow reference equality checks来检查是否需要更新</p>
-</li>
-<li><p>Most applications deal with multiple types of data, which can be broadly divided into three categories:</p>
+            <h3 id="ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合"><a href="#ELK是-Elasticsearch，logstash，-kibana这三个组件的首字母缩写组合" class="headerlink" title="ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合"></a>ELK是 Elasticsearch，logstash， kibana这三个组件的首字母缩写组合</h3><h4 id="1-Elasticsearch"><a href="#1-Elasticsearch" class="headerlink" title="1. Elasticsearch:"></a>1. Elasticsearch:</h4><p>Elasticsearch是一个基于<a href="https://lucene.apache.org/core/" target="_blank" rel="external">Apache Lucene(TM)</a>的开源搜索引擎, 但它提供restful的API来隐藏Lucene的复杂性，从而让全文搜索变得简单</p>
 <ul>
-<li><em>Domain data</em>: data that the application needs to show, use, or modify (such as “all of the Todos retrieved from the server”)</li>
-<li><em>App state</em>: data that is specific to the application’s behavior (such as “Todo #5 is currently selected”, or “there is a request in progress to fetch Todos”)</li>
-<li><em>UI state</em>: data that represents how the UI is currently displayed (such as “The EditTodo modal dialog is currently open”)</li>
-</ul>
-</li>
-<li><p>Since a Redux reducer is <em>just</em> a function, the same concept applies. You can split some of your reducer logic out into another function, and call that new function from the parent function.</p>
-<p>These new functions would typically fall into one of three categories:</p>
-<ol>
-<li>Small utility functions containing some reusable chunk of logic that is needed in multiple places (which may or may not be actually related to the specific business logic)</li>
-<li>Functions for handling a specific update case, which often need parameters other than the typical <code>(state, action)</code> pair</li>
-<li>Functions which handle <em>all</em> updates for a given slice of state. These functions do generally have the typical <code>(state, action)</code> parameter signature</li>
-</ol>
-</li>
-<li><p>One frequently asked question is whether Redux “calls all reducers” when dispatching an action. Since there really is only one root reducer function, the default answer is “no, it does not”. However, <code>combineReducers</code> has specific behavior that <em>does</em> work that way. In order to assemble the new state tree, <code>combineReducers</code> will call each slice reducer with its current slice of state and the current action, giving the slice reducer a chance to respond and update its slice of state if needed. So, in that sense, using <code>combineReducers</code> <em>does</em> “call all reducers”, or at least all of the slice reducers it is wrapping.</p>
-</li>
-</ol>
-<ol>
-<li><p>Since immutable data updates require all ancestors in the state tree to be copied and updated as well, and new object references will cause connected UI components to re-render, an update to a deeply nested data object could force totally unrelated UI components to re-render even if the data they’re displaying hasn’t actually changed.</p>
-<p>state的设计非常重要，如果嵌套过多，单单叶子节点的一个更新都需要导致整个state渲染，性能影响很大</p>
-<p>因此： the recommended approach to managing relational or nested data in a Redux store is to treat a portion of your store as if it were a database, and keep that data in a <em>normalized</em> form.</p>
-<p>​</p>
-<p>The basic concepts of normalizing data are:</p>
-<ul>
-<li>Each type of data gets its own “table” in the state.</li>
-<li>Each “data table” should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values.</li>
-<li>Any references to individual items should be done by storing the item’s ID.</li>
-<li>Arrays of IDs should be used to indicate ordering.</li>
-</ul>
-</li>
-<li><p>There is no “right” answer for this. Some users prefer to keep every single piece of data in Redux, to maintain a fully serializable and controlled version of their application at all times. Others prefer to keep non-critical or UI state, such as “is this dropdown currently open”, inside a component’s internal state.</p>
-<p><strong>Using local component state is fine</strong>. As a developer, it is <em>your</em> job to determine what kinds of state make up your application, and where each piece of state should live. Find a balance that works for you, and go with </p>
-</li>
-<li><p>redux代码组织问题：</p>
-<p>1） 官方给的例子是components, actions，reducers分别建立目录，这个结构的问题是如果要对state增加一个特性，需要在各个文件分别修改</p>
-<p>2） 社区很多人建议按功能把components，actions，reducer放在一起</p>
-</li>
-<li><p>fat action creater or thin?</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/utility/axios问题/" itemprop="url">
-                  axios问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-03T11:18:33+08:00" content="2017-05-03">
-              2017-05-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</p>
-<hr>
-<p>补充： json.stringify()这个函数也是有可能会报错的（无法string化）</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
-                  jest使用axios遇到的bug
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/jest/" itemprop="url" rel="index">
-                    <span itemprop="name">jest</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
-<p>代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
-<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
-<p>环境版本如下</p>
-<p>node:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
-<p>jest:</p>
-<p>19.0.2</p>
-<p>axios</p>
-<p>0.16.1</p>
-<hr>
-<p>update 5.11</p>
-<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/javascript/Array.prototype.push()/" itemprop="url">
-                  Array.prototype.push()
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T11:33:40+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Array.prototype.push(): adds one or more elements to the end of an array and returns the new length of the array</p>
-<p>例子： 合并两个数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var vegetables = [&apos;parsnip&apos;, &apos;potato&apos;];</div><div class="line">var moreVegs = [&apos;celery&apos;, &apos;beetroot&apos;];</div><div class="line"></div><div class="line">// Merge the second array into the first one</div><div class="line">// Equivalent to vegetables.push(&apos;celery&apos;, &apos;beetroot&apos;);</div><div class="line">Array.prototype.push.apply(vegetables, moreVegs);</div><div class="line"></div><div class="line">console.log(vegetables); // [&apos;parsnip&apos;, &apos;potato&apos;, &apos;celery&apos;, &apos;beetroot&apos;]</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/git/git推送分支设置upstream/" itemprop="url">
-                  git推送分支设置upstream
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T10:09:31+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本地和远程都没有master分支，本地切换到master，想推到远端，同时设置upstream</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/25/redux/redux 注意点/" itemprop="url">
-                  redux 注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-25T11:55:51+08:00" content="2017-04-25">
-              2017-04-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Reducer is a pure funciton </li>
-</ol>
-<p>Things you should <strong>never</strong> do inside a reducer:</p>
-<ul>
-<li>Mutate its arguments;</li>
-<li>Perform side effects like API calls and routing transitions;</li>
-<li>Call non-pure functions, e.g. <code>Date.now()</code> or <code>Math.random()</code>.</li>
+<li>分布式的实时文件存储，每个字段都被索引并可被搜索</li>
+<li>分布式的实时分析搜索引擎</li>
 </ul>
 
           
@@ -1281,8 +811,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/25/redux/redux三个核心方法的实现/" itemprop="url">
-                  redux三个核心方法的实现
+                <a class="post-title-link" href="/2017/06/08/css/css学习/" itemprop="url">
+                  css学习
                 </a>
               
             
@@ -1295,8 +825,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-25T11:50:37+08:00" content="2017-04-25">
-              2017-04-25
+            <time itemprop="dateCreated" datetime="2017-06-08T10:00:25+08:00" content="2017-06-08">
+              2017-06-08
             </time>
           </span>
 
@@ -1309,8 +839,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -1344,7 +874,34 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const createStore = (reducer) =&gt; &#123;</div><div class="line">  let state;</div><div class="line">  let listeners = [];</div><div class="line"></div><div class="line">  const getState = () =&gt; state;</div><div class="line"></div><div class="line">  const dispatch = (action) =&gt; &#123;</div><div class="line">    state = reducer(state, action);</div><div class="line">    listeners.forEach(listener =&gt; listener());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  const subscribe = (listener) =&gt; &#123;</div><div class="line">    listeners.push(listener);</div><div class="line">    return () =&gt; &#123;</div><div class="line">      listeners = listeners.filter(l =&gt; l ！== listener);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  dispatch(&#123;&#125;);</div><div class="line"> </div><div class="line">  return &#123; getState, dispatch, subscribe &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <h3 id="层叠和继承"><a href="#层叠和继承" class="headerlink" title="层叠和继承"></a>层叠和继承</h3><p>样式有三种来源</p>
+<ul>
+<li>浏览器对HTML定义的默认样式。</li>
+<li>用户定义的样式。</li>
+<li>开发者定义的样式，可以有三种形式：<ol>
+<li>定义在外部文件（外链样式）：</li>
+<li>在页面的头部定义（内联样式）：通过这种形式定义的样式只在本页面内生效。</li>
+<li>定义在特定的元素身上（行内样式）：这种形式多用于测试，可维护性较差</li>
+</ol>
+</li>
+</ul>
+<p>其中优先级从高到低顺序为：网页开发者定义的样式、网页阅读者定义的样式、浏览器的默认样式</p>
+<p>对继承的元素来说，子元素自身的样式优先级高于从父级继承来的样式</p>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><ol>
+<li><p>类选择器（Class selectors）</p>
+</li>
+<li><p>ID选择器（ID selectors）</p>
+</li>
+<li><p>伪类选择器（Pseudo-classes selectors）</p>
+<p>CSS伪类（<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Pseudo-classes" target="_blank" rel="external">pseudo-class</a>）是加在选择器后面的用来指定元素状态的关键字。比如，<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover" target="_blank" rel="external"><code>:hover</code></a> 会在鼠标悬停在选中元素上时应用相应的样式。伪类和伪元素（pseudo-elements）不仅可以让你为符合某种文档树结构的元素指定样式，还可以为符合某些外部条件的元素指定样式：浏览历史(比如是否访问过 (<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:visited" target="_blank" rel="external"><code>:visited</code></a>)， 内容状态(如 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:checked" target="_blank" rel="external"><code>:checked</code></a> ), 鼠标位置 (如<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover" target="_blank" rel="external"><code>:hover</code></a>). </p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">selector:pseudo-class &#123;</div><div class="line">  property: value;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>基于关系的选择器</p>
+<p>| <strong>选择器</strong>         | <strong>选择的元素</strong>                             |<br>| ————— | ————————————- |<br>| <code>A E</code>           | 元素A的任一后代元素E (后代节点指A的子节点，子节点的子节点，以此类推) |<br>| <code>A &gt; E</code>         | 元素A的任一子元素E(也就是直系后代)                   |<br>| <code>E:first-child</code> | 任一是其父母结点的第一个子节点的元素E                   |<br>| <code>B + E</code>         | 元素B的任一下一个兄弟元素E                        |<br>| <code>B ~ E</code>         | B元素后面的拥有共同父元素的兄弟元素E                   |</p>
+</li>
+</ol>
 
           
         
@@ -1394,8 +951,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/23/node/nodejs技巧/" itemprop="url">
-                  nodejs技巧
+                <a class="post-title-link" href="/2017/06/07/react/fabric-react问题/" itemprop="url">
+                  fabric-react问题
                 </a>
               
             
@@ -1408,8 +965,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-23T18:52:24+08:00" content="2017-04-23">
-              2017-04-23
+            <time itemprop="dateCreated" datetime="2017-06-07T11:33:53+08:00" content="2017-06-07">
+              2017-06-07
             </time>
           </span>
 
@@ -1422,8 +979,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -1457,11 +1014,411 @@
       
         
           
-            <ol>
-<li><p>可以nodejs的项目里创建一个.npmrc，里面写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">save=true</div><div class="line">save-exact=true</div></pre></td></tr></table></figure>
-<p>这样的话在npm install的时候不用- -save，同时版本也是精确的</p>
+            <h4 id="1-fabric-react使用ts的时候报了如下错误"><a href="#1-fabric-react使用ts的时候报了如下错误" class="headerlink" title="1. fabric-react使用ts的时候报了如下错误"></a>1. fabric-react使用ts的时候报了如下错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@uifabric/utilities/lib/Customizer.d.ts</div><div class="line">(2,28): error TS7016: Could not find a declaration file for module &apos;prop-types&apos;. &apos;/Users/Jeremy/work/udisk-console/node_modules/prop-typ</div><div class="line">es/index.js&apos; implicitly has an &apos;any&apos; type.</div></pre></td></tr></table></figure>
+<h4 id="2-安装prop-types的类型后仍然报错"><a href="#2-安装prop-types的类型后仍然报错" class="headerlink" title="2. 安装prop-types的类型后仍然报错"></a>2. 安装prop-types的类型后仍然报错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ERROR in /Users/Jeremy/work/udisk-console/node_modules/@types/prop-types/index.d.ts</div><div class="line">(9,41): error TS2312: An interface may only extend a class or another interface.</div></pre></td></tr></table></figure>
+<p>最后升级了下typesctipt到2.2.1解决，原先是2.1.5</p>
+<h4 id="3-如何改变一个icon-button的icon大小？"><a href="#3-如何改变一个icon-button的icon大小？" class="headerlink" title="3. 如何改变一个icon button的icon大小？"></a>3. 如何改变一个icon button的icon大小？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">            iconProps=&#123;&#123; iconName: &apos;AddTo&apos;, width:100, height: 100, style: &#123;fontSize: 50&#125; &#125;&#125; </div><div class="line">            onClick=&#123;this.showDialog.bind(this)&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<h4 id="4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"><a href="#4-fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？" class="headerlink" title="4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？"></a>4. fabric-react没有表单？这样的话在一个用户提交信息的页面如何取到每个组件的值？需要每个组件触发事件？</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/06/linux/nohup 与 &/" itemprop="url">
+                  nohup 与 &
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-06T16:45:35+08:00" content="2017-06-06">
+              2017-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="经常会看到一个命令在开始的时候加上nohup，然后在结尾的时候加上-amp-，这个到底是什么意思呢？"><a href="#经常会看到一个命令在开始的时候加上nohup，然后在结尾的时候加上-amp-，这个到底是什么意思呢？" class="headerlink" title="经常会看到一个命令在开始的时候加上nohup，然后在结尾的时候加上&amp;，这个到底是什么意思呢？"></a>经常会看到一个命令在开始的时候加上nohup，然后在结尾的时候加上&amp;，这个到底是什么意思呢？</h4><p>先说简单的, &amp; 表示让这个服务在后台执行，但是为什么要加nohup呢，当我们登陆到shell时起一个服务时，linux有个规定，所有新起的服务都是当前这个shell的子进程，当用户注销（logout）或者网络断开时，终端会收到 HUP（hangup）信号从而关闭其所有子进程，要么让进程忽略 HUP 信号，要么让进程运行在新的会话里从而成为不属于此终端的子进程，nohup就是前者。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/06/linux/linux path恢复/" itemprop="url">
+                  linux path恢复
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-06T10:39:11+08:00" content="2017-06-06">
+              2017-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在装maven的时候设置了如下的profile, 可以看到PATH前面少了个$, 结果就是几乎所有的bash命令都无法使用（echo，source仍然可以使用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:PATH</div></pre></td></tr></table></figure>
+<p>遇到这种问题该怎么解决呢： 首先需要找到是profile.d下的那个shell改错了，这个可以通过echo $PATH来找到，然后直接通过 /usr/bin/vim 相应文件来修改，最后退出重新登录下即可</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/05/rocketmq/RocketMQ高可用/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-05T18:43:41+08:00" content="2017-06-05">
+              2017-06-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-RocketMQ部署考虑点"><a href="#一-RocketMQ部署考虑点" class="headerlink" title="一. RocketMQ部署考虑点"></a>一. RocketMQ部署考虑点</h3><ol>
+<li><p>Name Server: RocketMQ的寻址服务。用于把Broker的路由信息做聚合。客户端依靠Name Server决定去获取对应topic的路由信息，从而决定对哪些Broker做连接，因此为了保证系统的高可用，<strong>建议部署两台Name server</strong></p>
 </li>
+<li><p>Broker Server:  Broker是处理消息存储，转发等处理的服务器， <strong>建议部署两个group，每个group部署一主一从</strong></p>
+</li>
+<li><p>主从复制模式：</p>
+<p>采用同步双写方式，主备都写成功，向应用返回成功, 这样的话数据与服务都无单点，Master宕机情况下，消息无延迟，服务可用性与数据可用性都非常高</p>
+</li>
+</ol>
+<h3 id="二-部署建议"><a href="#二-部署建议" class="headerlink" title="二. 部署建议"></a>二. 部署建议</h3><h4 id="1-部署实例分布（在ucloud使用云主机测试）"><a href="#1-部署实例分布（在ucloud使用云主机测试）" class="headerlink" title="1. 部署实例分布（在ucloud使用云主机测试）"></a>1. 部署实例分布（在ucloud使用云主机测试）</h4><h5 id="Name-Server"><a href="#Name-Server" class="headerlink" title="Name Server"></a>Name Server</h5><table>
+<thead>
+<tr>
+<th>NameServer集群</th>
+<th>IP地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NameServer-1</td>
+<td>10.9.145.211</td>
+</tr>
+<tr>
+<td>NameServer-2</td>
+<td>10.9.88.201</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h5><table>
+<thead>
+<tr>
+<th>brokerName</th>
+<th>brokerId</th>
+<th>brokerRole</th>
+<th>IP地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>broker-a</td>
+<td>0</td>
+<td>SYNC_MASTER</td>
+<td>10.9.145.211</td>
+</tr>
+<tr>
+<td>broker-a</td>
+<td>1</td>
+<td>SLAVE</td>
+<td>10.9.88.201</td>
+</tr>
+<tr>
+<td>broker-b</td>
+<td>0</td>
+<td>SYNC_MASTER</td>
+<td>10.9.145.241</td>
+</tr>
+<tr>
+<td>broker-b</td>
+<td>1</td>
+<td>SLAVE</td>
+<td>10.9.164.107</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-Broker配置"><a href="#2-Broker配置" class="headerlink" title="2. Broker配置"></a>2. Broker配置</h4><p>修改conf/2m-2s-sync下的四个配置</p>
+<h5 id="broker-a-master"><a href="#broker-a-master" class="headerlink" title="broker-a, master"></a>broker-a, master</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-a</div><div class="line"># broker名字</div><div class="line">brokerId=0</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/</div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024</div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04	</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SYNC_MASTER</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH </div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-a-slave"><a href="#broker-a-slave" class="headerlink" title="broker-a, slave"></a>broker-a, slave</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-a</div><div class="line"># broker名字</div><div class="line">brokerId=1</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/ </div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024</div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SLAVE</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH</div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-b-master"><a href="#broker-b-master" class="headerlink" title="broker-b, master"></a>broker-b, master</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911 </div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-b</div><div class="line"># broker名字</div><div class="line">brokerId=0</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/</div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/</div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024 </div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SYNC_MASTER</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH</div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h5 id="broker-b-slave"><a href="#broker-b-slave" class="headerlink" title="broker-b,slave"></a>broker-b,slave</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listenPort=10911</div><div class="line"># broker监听端口，默认10911</div><div class="line">brokerClusterName=DefaultCluster</div><div class="line"># broker集群名字</div><div class="line">namesrvAddr=10.9.145.211:9876;10.9.88.201:9876</div><div class="line"># nameserver地址</div><div class="line">brokerName=broker-b	</div><div class="line"># broker名字</div><div class="line">brokerId=1</div><div class="line"># 0代表master， &gt;0代表slave</div><div class="line">storePathCommitLog=$HOME/store/commitlog/ </div><div class="line"># commit日志的存储路径，可根据实际日志存放路径修改</div><div class="line">storePathConsumerQueue=$HOME/store/consumequeue/ </div><div class="line"># 消费队列存储路径</div><div class="line">mapedFileSizeCommitLog= 1024 * 1024 * 1024 </div><div class="line"># commitLog每个文件的大小默认1G</div><div class="line">deleteWhen=04</div><div class="line"># 删除文件时间点，默认凌晨 4点</div><div class="line">fileReservedTime=48	</div><div class="line"># 文件保留时间，默认 48 小时</div><div class="line">brokerRole=SLAVE</div><div class="line"># 主从间采取同步复制</div><div class="line">flushDiskType=ASYNC_FLUSH </div><div class="line"># 刷盘方式为异步</div></pre></td></tr></table></figure>
+<h4 id="3-启动"><a href="#3-启动" class="headerlink" title="3. 启动"></a>3. 启动</h4><ol>
+<li><p>在10.9.145.211和10.9.88.201上启动nameserver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup sh bin/mqnamesrv &amp;</div></pre></td></tr></table></figure>
+</li>
+<li><p>分别启动四个broker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.145.211:   nohup bin/mqbroker -c conf/2m-2s-sync/broker-a.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.88.201:    nohup bin/mqbroker -c conf/2m-2s-sync/broker-a-s.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.145.241：  nohup bin/mqbroker -c conf/2m-2s-sync/broker-b.properties &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10.9.164.107:   nohup bin/mqbroker -c conf/2m-2s-sync/broker-b-s.properties &amp;</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询集群状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/mqadmin clusterList -n 10.9.145.211:9876</div></pre></td></tr></table></figure></li>
 </ol>
 
           
@@ -1495,7 +1452,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1536,7 +1493,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">209</span>
+              <span class="site-state-item-count">228</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1544,7 +1501,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1553,7 +1510,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
