@@ -243,6 +243,1195 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/21/utility/使用sysbench测试mysq性能/" itemprop="url">
+                  使用sysbench测试mysq性能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-21T18:06:55+08:00" content="2017-11-21">
+              2017-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
+<li>centos 6.5</li>
+<li>sysbench 0.5</li>
+<li>mysql 5.1</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>一. sysbench</p>
+<ol>
+<li><p>github 地址    <a href="https://github.com/akopytov/sysbench" target="_blank" rel="external">https://github.com/akopytov/sysbench</a></p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/akopytov/sysbench.git</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 0.5</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install make automake libtool pkgconfig libaio-devel vim-common mysql-devel</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>二.  mysql</p>
+<ol>
+<li><p>yum install mysql mysql-server -y</p>
+</li>
+<li><p>service mysqld start</p>
+</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试:"></a>测试:</h3><h3 id="https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6"><a href="#https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6" class="headerlink" title="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6"></a><a href="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6" target="_blank" rel="external">https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6</a></h3><ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">## Create Database </div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line">mysql 5.6 :  mysql -u root -pCClovecc22@@ -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">## Create User</div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql 5.6:   mysql -u root -pCClovecc22@@ -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;CClovecc22@@&apos;;&quot;</div><div class="line"></div><div class="line">## Grant Access </div><div class="line">mysql5.1 : mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql5.6:  mysql -u root -pCClovecc22@@ -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;CClovecc22@@&apos;;&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>prepare</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --mysql-host=192.168.151.244 prepare</div><div class="line"></div><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ prepare</div></pre></td></tr></table></figure>
+</li>
+<li><p>read-only oltp test</p>
+<p>在client对两台mysql进行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --	mysql-host=192.168.151.236 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --oltp-read-only=on --max-requests=0 --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+</li>
+<li><p>mixed read and write oltp test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 1 4 8 16 32 64; do sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --num-threads=$each run; done</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>Centos7  mysql5.7</p>
+<ol>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></li>
+</ol>
+<p>FAQ：</p>
+<ol>
+<li><p>远程插入不了数据？</p>
+<p>1）检查是否可以用sysbench远程登陆, 如果不可以</p>
+<p>mysql -u root -pucloud.cn -e “GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;”</p>
+<p>2)  </p>
+</li>
+</ol>
+<p>修复用户</p>
+<p>以root登陆 mysql -uroot -p</p>
+<p>删除用户</p>
+<ol>
+<li><p>drop user ‘sysbench’@’%’;</p>
+</li>
+<li><p>flush privileges;</p>
+</li>
+</ol>
+<p>创建用户</p>
+<ol>
+<li>​ CREATE USER ‘sysbench’@’%’  IDENTIFIED BY ‘ucloud.cn’;</li>
+<li>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/20/utility/Centos安装mysql 5.6/" itemprop="url">
+                  Centos安装mysql 5.6（转载）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-20T14:01:42+08:00" content="2017-11-20">
+              2017-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-检查"><a href="#1-检查" class="headerlink" title="1. 检查"></a>1. 检查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum list installed | grep mysql</div><div class="line">[root@snails ~]# ps -ef|grep mysql</div><div class="line">[root@snails ~]# service mysqld stop </div><div class="line">[root@snails ~]# rpm -e mysql-libs --nodeps</div><div class="line">[root@snails ~]# yum -y remove mysql mysql-*</div></pre></td></tr></table></figure>
+<h3 id="2-设置安装源"><a href="#2-设置安装源" class="headerlink" title="2. 设置安装源"></a>2. 设置安装源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# wget http://repo.mysql.com/mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# rpm -ivh mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# ls -1 /etc/yum.repos.d/mysql-community*</div><div class="line">[root@snails ~]# yum repolist all | grep mysql</div><div class="line">[root@snails ~]# vi /etc/yum.repos.d/mysql-community.repo</div><div class="line">### 将[mysql56-community]的enabled设置为１,[mysql57-community]的enabled设置为0 ### </div><div class="line">[root@snails ~]# yum repolist enabled | grep mysql</div><div class="line">mysql-connectors-community MySQL Connectors Community                         21</div><div class="line">mysql-tools-community      MySQL Tools Community                              37</div><div class="line">mysql56-community          MySQL 5.6 Community Server                        265</div></pre></td></tr></table></figure>
+<h3 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3. 安装mysql"></a>3. 安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum -y install mysql-server mysql</div></pre></td></tr></table></figure>
+<h3 id="4-修改默认配置"><a href="#4-修改默认配置" class="headerlink" title="4. 修改默认配置"></a>4. 修改默认配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mkdir /data/mysql</div><div class="line">[root@snails ~]# vi /etc/my.cnf</div><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/tmp/mysql.sock</div><div class="line">symbolic-links=0</div><div class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[client] </div><div class="line">socket=/tmp/mysql.sock</div></pre></td></tr></table></figure>
+<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# service mysqld start</div></pre></td></tr></table></figure>
+<h3 id="6-修改root密码"><a href="#6-修改root密码" class="headerlink" title="6. 修改root密码"></a>6. 修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mysql -u root</div><div class="line">mysql&gt; use mysql;</div><div class="line">mysql&gt; update user set password=PASSWORD(&quot;GIVE-NEW-ROOT-PASSWORD&quot;) where User=&apos;root&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; quit</div></pre></td></tr></table></figure>
+<h3 id="7-配置文件"><a href="#7-配置文件" class="headerlink" title="7. 配置文件"></a>7. 配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">[client]  </div><div class="line"> port=3306 </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line">  　　</div><div class="line"> [mysql] </div><div class="line"> default-character-set=utf8 </div><div class="line">  　　</div><div class="line"> [mysqld] </div><div class="line"> user=mysql </div><div class="line"> character-set-server=utf8 </div><div class="line"> explicit_defaults_for_timestamp=true </div><div class="line"></div><div class="line"> #索引和数据缓冲区大小，一般设置物理内存的60%-70%   　　</div><div class="line"> innodb_buffer_pool_size = 1G </div><div class="line"> #缓冲池实例个数，推荐设置4个或8个 </div><div class="line"> innodb_buffer_pool_instances = 4 </div><div class="line"> #关键参数，0代表大约每秒写入到日志并同步到磁盘，数据库故障会丢失1秒左右事务数据。1为每执行一条SQL后写入到日志并同步到磁盘，I/                                                             O开销大，执行完SQL要等待日志读写，效率低。2代表只把日志写入到系统缓存区，再每秒同步到磁盘，效率很高，如果服务器故障，才会丢失事务数据。对数据安全性要求不是很高的推荐设置2，性能高，修改后效果明显。</div><div class="line"> innodb_flush_log_at_trx_commit = 2   </div><div class="line"> #默认是共享表空间，共享表空间idbdata文件不断增大，影响一定的I/O性能。推荐开启独立表空间模式，每个表的索引和数据都存在自己独立的表空间中，可以实现单表在不同数据库中移动。 </div><div class="line"> innodb_file_per_table = ON </div><div class="line"> #日志缓冲区大小，由于日志最长每秒钟刷新一次，所以一般不用超过16M </div><div class="line"> innodb_log_buffer_size = 8M    </div><div class="line"></div><div class="line"> datadir=/data/mysql </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line"></div><div class="line"> # 禁止MySQL对外部 连接进行DNS解析</div><div class="line"> skip-name-resolve    </div><div class="line"> # Disabling symbolic-links is recommended to prevent assorted security risks </div><div class="line"> symbolic-links=0 </div><div class="line"></div><div class="line"> # Recommended in standard MySQL setup </div><div class="line"> sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  </div><div class="line"></div><div class="line"> [mysqld_safe] </div><div class="line"> log-error=/var/log/mysqld.log </div><div class="line"> pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure>
+<p>作者：技术学习<br>链接：<a href="http://www.jianshu.com/p/5a2e4e0b6eda" target="_blank" rel="external">http://www.jianshu.com/p/5a2e4e0b6eda</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/14/utility/git的进一步理解/" itemprop="url">
+                  git的进一步理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-14T10:30:29+08:00" content="2017-11-14">
+              2017-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>git add： 这个命令目标文件的状态不同会用不同作用 1）已经跟踪的文件: 把目标文件加到暂存区 2）没有跟踪过的文件: 标记为需要跟踪并加到暂存区   3）合并时有冲突： 标记为已解决</p>
+</li>
+<li><p>.gitignore:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 忽略所有 .a 结尾的文件</div><div class="line">*.a</div><div class="line"># 但 lib.a 除外</div><div class="line">!lib.a</div><div class="line"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</div><div class="line">/TODO</div><div class="line"># 忽略 build/ 目录下的所有文件</div><div class="line">build/</div><div class="line"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</div><div class="line">doc/*.txt</div><div class="line"># ignore all .txt files in the doc/ directory</div><div class="line">doc/**/*.txt</div></pre></td></tr></table></figure>
+<p>比如写node_modules/只会忽略当前node_modules下的所有文件，但不会忽略子目录下的node_modules，所以如果对于有多个子项目，最好在每个子项目下分别写gitignore</p>
+</li>
+<li><p>git diff 比较的是什么？  是工作目录中当前文件和暂存区域快照之间的区别</p>
+</li>
+<li><p>git diff - - staged或git diff - - cached 比较的是什么？已经暂存起来的文件和上次提交时的快照之间的区别</p>
+</li>
+<li><p>git rm：  git rm 跟git add是同级别的命令，意味这个git rm之后也可以直接git commit，它的作用与 git add正好相反，它是从暂存区移除掉某个文件，不加入到版本管理</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/14/utility/zsh在大目录下操作很卡/" itemprop="url">
+                  zsh在大目录下操作很卡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-14T10:18:31+08:00" content="2017-11-14">
+              2017-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>zsh在大目录下操作bash命令如ls会有一个很明显的延迟感，然而其他目录却没有这个问题，后来查到这原来是一个git目录，每次进入目录都会调用git status检查状态，解决方案是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 1</div></pre></td></tr></table></figure>
+<p>这样的话任何git信息都没有了，包括分支以及是否修改信息都没了，如果想要撤销，改成0就可以了，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 0</div></pre></td></tr></table></figure>
+<p>当然可以保留分支信息, 这样会更直观一点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-dirty 1</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/13/utility/ssh连接不断开/" itemprop="url">
+                  ssh连接不断开
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-13T15:32:24+08:00" content="2017-11-13">
+              2017-11-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，<a href="http://bluebiu.com/blog/linux-ssh-session-alive.html" target="_blank" rel="external">http://bluebiu.com/blog/linux-ssh-session-alive.html</a>   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host *</div><div class="line">    ServerAliveInterval 60</div><div class="line">    ServerAliveCountMax 3</div></pre></td></tr></table></figure>
+</li>
+<li><p>更好的方案： tmux</p>
+<p>1）如果用的是zsh，需要记得修改下/usr/local/etc/tmux.conf这个文件，改下默认的shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g default-shell /bin/zsh</div></pre></td></tr></table></figure>
+<p>2)   ssh一次再复用的真正含义是“<strong>*在本机上ssh到远程服务器，并且在远程服务器上安装好了tmux，这个时候执行tmux才是打开多个终端*</strong>”。简言之：</p>
+<p>　　　a. tmux必须在远程服务器端装好</p>
+<p>　　　b. 本地只需要ssh到远程服务器一次，ssh的复用是tmux在服务器端的后台完成的</p>
+<p>3)   这个博客不错<a href="http://www.cnblogs.com/xbf9xbf/p/4876969.html" target="_blank" rel="external">http://www.cnblogs.com/xbf9xbf/p/4876969.html</a></p>
+<p>4)   在远程服务器上tmux然后vim会发现颜色丢失，正确的做法是在.vimrc加入下面的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if exists(&apos;$TMUX&apos;)</div><div class="line">  set term=screen-256color</div><div class="line">endif</div></pre></td></tr></table></figure>
+<p>5） cmd+k清屏不好用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Preferences -&gt; Keys -&gt; + (add new global shortcut)</div><div class="line"></div><div class="line">Keyboard shortcut: ⌘+k</div><div class="line">Action: Send text</div><div class="line">value:</div><div class="line">clear\n</div></pre></td></tr></table></figure>
+<p>6) 使用: <a href="https://www.youtube.com/watch?v=BHhA_ZKjyxo" target="_blank" rel="external">https://www.youtube.com/watch?v=BHhA_ZKjyxo</a>   使用这个链接</p>
+<p>tmux ls (or tmux list-sessions)<br>tmux new -s session-name<br>Ctrl-b d Detach from session<br>tmux attach -t [session name]<br>tmux kill-session -t session-name</p>
+<p>Ctrl-b c Create new window<br>Ctrl-b d Detach current client<br>Ctrl-b l Move to previously selected window<br>Ctrl-b n Move to the next window<br>Ctrl-b p Move to the previous window<br>Ctrl-b &amp; Kill the current window<br>Ctrl-b , Rename the current window<br>Ctrl-b q Show pane numbers (used to switch between panes)<br>Ctrl-b o Switch to the next pane<br>Ctrl-b ? List all keybindings</p>
+<h5 id="moving-between-windows"><a href="#moving-between-windows" class="headerlink" title="moving between windows"></a>moving between windows</h5><p>Ctrl-b n (Move to the next window)<br>Ctrl-b p (Move to the previous window)<br>Ctrl-b l (Move to the previously selected window)<br>Ctrl-b w (List all windows / window numbers)<br>Ctrl-b window number (Move to the specified window number, the<br>default bindings are from 0 – 9)</p>
+<h6 id="Tiling-commands"><a href="#Tiling-commands" class="headerlink" title="Tiling commands"></a>Tiling commands</h6><p>Ctrl-b % (Split the window vertically)<br>CTRL-b “ (Split window horizontally)<br>Ctrl-b o (Goto next pane)<br>Ctrl-b q (Show pane numbers, when the numbers show up type the key to go to that pane)<br>Ctrl-b { (Move the current pane left)<br>Ctrl-b } (Move the current pane right)</p>
+<h5 id="Make-a-pane-its-own-window"><a href="#Make-a-pane-its-own-window" class="headerlink" title="Make a pane its own window"></a>Make a pane its own window</h5><p>Ctrl-b : “break-pane”</p>
+<h5 id="add-to-tmux-conf"><a href="#add-to-tmux-conf" class="headerlink" title="add to ~/.tmux.conf"></a>add to ~/.tmux.conf</h5><p>bind | split-window -h<br>bind - split-window -v</p>
+<p>6) 默认更改窗口的快捷键不好用，要使用命令： rename-window <window-name></window-name></p>
+<p>同时，默认窗口名会随着路径改变，在.tmux.conf里加入下面这一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g allow-rename off</div></pre></td></tr></table></figure>
+<p>7) 滚轮与鼠标：这样就可以时候用鼠标来调整pane的大小，并且也可以滚动了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setw -g mode-mouse on</div><div class="line">set -g mouse-select-pane on</div><div class="line">set -g mouse-resize-pane on</div><div class="line">set -g mouse-select-window on</div></pre></td></tr></table></figure>
+<p>8) 复制：</p>
+<ol>
+<li><p>需要iterm2的选中即复制： 按住alt</p>
+</li>
+<li><p>如果在一个pane里复制多行会跨域pane，这时候得用vim的模式复制 </p>
+<p>ctrl + w  ESC   v,   y ,   ctrl + w   p</p>
+</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/08/utility/chrome failed to load response data/" itemprop="url">
+                  chrome failed to load response data
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-08T15:03:13+08:00" content="2017-11-08">
+              2017-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>chrome的xhr请求在response里出现failed to load response</p>
+<p>原因: 选中了preserve log，然后之前的那个页面跳转了，所以出现这个问题</p>
+<p>解决方案：在快要跳转的时候在浏览器里的刷新按钮把跳转终止掉</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/07/utility/centos 7终端科学上网/" itemprop="url">
+                  centos 7终端科学上网
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-07T11:24:12+08:00" content="2017-11-07">
+              2017-11-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在开发机上安装go的一些二进制工具</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p>yum install -y python-pip</p>
+</li>
+<li><p>pip install shadowsock</p>
+</li>
+<li><p>编辑ss client的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;x.x.x.x&quot;,             #你的 ss 服务器 ip</div><div class="line">  &quot;server_port&quot;:0,                #你的 ss 服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;127.0.0.1&quot;,   #本地ip</div><div class="line">  &quot;local_port&quot;:0,                 #本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,          #连接 ss 密码</div><div class="line">  &quot;timeout&quot;:300,                  #等待超时</div><div class="line">  &quot;method&quot;:&quot;aes-256-cfb&quot;,         #加密方式</div><div class="line">  &quot;workers&quot;: 1                    #工作线程数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>vim /etc/systemd/system/shadowsocks.json, 写入如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks Server</div><div class="line">After=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart=/bin/ssserver -c /etc/shadowsocks.son</div><div class="line">Restart=on-abort</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
+</li>
+<li><p>systemctl enable shadowsocks.service</p>
+<p>systemctl start shadowsocks.service</p>
+</li>
+<li><p>yum install -y privoxy</p>
+</li>
+<li><p>修改/etc/privoxy/config的配置，只需要修改下面这一项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forward-socks5t / 127.0.0.1:1080 .</div></pre></td></tr></table></figure>
+</li>
+<li><p>systemctl enable privoxy</p>
+<p>systemctl start provoxy</p>
+</li>
+<li><p>终端设置代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:8118</div><div class="line">export https_proxy=https://127.0.0.1:8118</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/05/utility/xargs和管道操作符的区别/" itemprop="url">
+                  xargs和管道操作符的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-05T18:04:29+08:00" content="2017-11-05">
+              2017-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>管道： 将前面的标准输出作为后面的标准输入</p>
+<p>xargs： “将标准输入作为命令的参数“</p>
+<p>​</p>
+<p>因为很多命令不会去读标准输入的参数，（他们只读命令行里面的内容，比如sed）,因此需要通过xargs来将这些管道过来的标准输入转化为命令的参数</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/03/utility/vim升级/" itemprop="url">
+                  升级vim8.0
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-03T12:09:20+08:00" content="2017-11-03">
+              2017-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>为了go的开发使用了vim-go这个插件，无奈这个插件需要高版本vim，因此升级安装了下vim</p>
+<h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ol>
+<li>git clone <a href="https://github.com/vim/vim.git" target="_blank" rel="external">https://github.com/vim/vim.git</a></li>
+<li>./configure</li>
+<li>make </li>
+<li>make install</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/03/utility/curl post/" itemprop="url">
                   curl post
                 </a>
@@ -308,7 +1497,7 @@
           
             <ol>
 <li><p>application/x-www-form-urlencoded   这个content-type是默认的，不用指定-H</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -d &quot;param1=value1&amp;param2=value2&quot; -X POST http://localhost:3000/data</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -d &quot;param1=value1&amp;param2=value2&quot; http://localhost:3000/data</div></pre></td></tr></table></figure>
 </li>
 <li><p>application/json</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -d &apos;&#123;&quot;key1&quot;:&quot;value1&quot;, &quot;key2&quot;:&quot;value2&quot;&#125;&apos; -H &quot;Content-Type: application/json&quot; -X POST http://localhost:3000/data</div></pre></td></tr></table></figure></li>
@@ -341,1121 +1530,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/02/k8s/k8s化遇到的问题/" itemprop="url">
-                  docker化遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-02T17:54:16+08:00" content="2017-11-02">
-              2017-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>go build出来的东西md5sum之后总是一样的结果</p>
-<p>原因： 在代码里面的import实际上会通过GOPATH去import进来，所以要改GOPATH下面的src</p>
-</li>
-<li><p>npm node-common总是报这个错 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">npm WARN package.json api-gateway@0.0.1 No repository field.</div><div class="line">npm WARN package.json api-gateway@0.0.1 No license field.</div><div class="line"></div><div class="line">&gt; node-protobuf@1.1.5 install /data/app/node_modules/node-protobuf</div><div class="line">&gt; node-gyp rebuild</div><div class="line"></div><div class="line">gyp ERR! clean error</div><div class="line">gyp ERR! stack Error: ENOTEMPTY, rmdir &apos;build/Release/obj.target&apos;</div><div class="line">gyp ERR! System Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">gyp ERR! command &quot;node&quot; &quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&quot; &quot;rebuild&quot;</div><div class="line">gyp ERR! cwd /data/app/node_modules/node-protobuf</div><div class="line">gyp ERR! node -v v0.10.46</div><div class="line">gyp ERR! node-gyp -v v3.3.1</div><div class="line">gyp ERR! not ok</div><div class="line"></div><div class="line">npm ERR! Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">npm ERR! argv &quot;/usr/bin/node&quot; &quot;/usr/bin/npm&quot; &quot;--registry=http://npm.service.ucloud.cn&quot; &quot;install&quot;</div><div class="line">npm ERR! node v0.10.46</div><div class="line">npm ERR! npm  v2.15.1</div><div class="line">npm ERR! code ELIFECYCLE</div><div class="line">npm ERR! node-protobuf@1.1.5 install: `node-gyp rebuild`</div><div class="line">npm ERR! Exit status 1</div><div class="line">npm ERR!</div><div class="line">npm ERR! Failed at the node-protobuf@1.1.5 install script &apos;node-gyp rebuild&apos;.</div><div class="line">npm ERR! This is most likely a problem with the node-protobuf package,</div><div class="line">npm ERR! not with npm itself.</div><div class="line">npm ERR! Tell the author that this fails on your system:</div><div class="line">npm ERR!     node-gyp rebuild</div><div class="line">npm ERR! You can get information on how to open an issue for this project with:</div><div class="line">npm ERR!     npm bugs node-protobuf</div><div class="line">npm ERR! Or if that isn&apos;t available, you can get their info via:</div><div class="line">npm ERR!</div><div class="line">npm ERR!     npm owner ls node-protobuf</div><div class="line">npm ERR! There is likely additional logging output above.</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /data/app/npm-debug.log</div></pre></td></tr></table></figure>
-<p>原因： 检查下是不是把node_modules也copy到docker里面去了，那样的应用的包会是你拷贝进去的包</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/30/k8s/kubernetes集群搭建/" itemprop="url">
-                  kubernetes集群搭建
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-30T16:53:03+08:00" content="2017-10-30">
-              2017-10-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>follow的文档主要是这个</p>
-<p><a href="https://k8s-install.opsnull.com/" target="_blank" rel="external">https://k8s-install.opsnull.com/</a></p>
-<p>有几个问题要注意</p>
-<ol>
-<li><p>flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行</p>
-</li>
-<li><p>dashboard:  文档给的service部署yaml没有问题，但是nodePort没有指定，所以是段内一个随机的，如果要提供外网访问，一般起一个nginx反代，所以最好也指定nodePort,  dashboard-service.yaml如下</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  apiVersion: v1</div><div class="line">  kind: Service</div><div class="line">  metadata:</div><div class="line">    name: kubernetes-dashboard</div><div class="line">    namespace: kube-system</div><div class="line">    labels:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">      kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">      addonmanager.kubernetes.io/mode: Reconcile</div><div class="line">  spec:</div><div class="line">    type: NodePort</div><div class="line">    selector:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">    ports:</div><div class="line">- port: 80</div><div class="line">  targetPort: 9090</div><div class="line">  nodePort: 8900</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nginx的配置如下</div></pre></td></tr></table></figure>
-<p>http {<br>  log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘</p>
-<pre><code>&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
-&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
-</code></pre><p>  access_log  /var/log/nginx/access.log  main;</p>
-<p>  sendfile            on;<br>  tcp_nopush          on;<br>  tcp_nodelay         on;<br>  keepalive_timeout   65;<br>  types_hash_max_size 2048;</p>
-<p>  include             /etc/nginx/mime.types;<br>  default_type        application/octet-stream;</p>
-<h1 id="Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><a href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory" class="headerlink" title="Load modular configuration files from the /etc/nginx/conf.d directory."></a>Load modular configuration files from the /etc/nginx/conf.d directory.</h1><h1 id="See-http-nginx-org-en-docs-ngx-core-module-html-include"><a href="#See-http-nginx-org-en-docs-ngx-core-module-html-include" class="headerlink" title="See http://nginx.org/en/docs/ngx_core_module.html#include"></a>See <a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="external">http://nginx.org/en/docs/ngx_core_module.html#include</a></h1><h1 id="for-more-information"><a href="#for-more-information" class="headerlink" title="for more information."></a>for more information.</h1><p>  include /etc/nginx/conf.d/*.conf;</p>
-<p>  upstream dashboard {</p>
-<pre><code>server 10.146.0.2:8900 weight=1;
- server 10.146.0.3:8900 weight=1;
- server 10.146.0.4:8900 weight=1;
-</code></pre><p>  }</p>
-<p>  server {</p>
-<pre><code>listen       80 default_server;
-listen       [::]:80 default_server;
-server_name  YOUR_SERVER;
-
-# Load configuration files for the default server block.
-include /etc/nginx/default.d/*.conf;
-
-location / {
-    proxy_pass  http://dashboard;
-}
-
-error_page 404 /404.html;
-    location = /40x.html {
-}
-
-error_page 500 502 503 504 /50x.html;
-    location = /50x.html {
-}
-</code></pre><p>  }</p>
-</li>
-</ol>
-<p>另外在centos 7上，如果访问还能看到这个nginx有这个错误：Permission denied) while connecting to upstream, 原因是开了SELinux，需要关闭它</p>
-<h3 id="1-临时关闭（不用重启机器）："><a href="#1-临时关闭（不用重启机器）：" class="headerlink" title="1.临时关闭（不用重启机器）："></a>1.临时关闭（不用重启机器）：</h3><p>   setenforce 0                  ##设置SELinux 成为permissive模式</p>
-<p>   ##setenforce 1 设置SELinux 成为enforcing模式</p>
-<h3 id="2-修改配置文件需要重启机器："><a href="#2-修改配置文件需要重启机器：" class="headerlink" title="2.修改配置文件需要重启机器："></a>2.修改配置文件需要重启机器：</h3><p>   修改/etc/selinux/config 文件</p>
-<p>   将SELINUX=enforcing改为SELINUX=disabled</p>
-<p>   重启机器即可</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/27/k8s/kubenetes问题/" itemprop="url">
-                  kubenetes问题排查
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-27T10:35:43+08:00" content="2017-10-27">
-              2017-10-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubenetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubenetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>日志里报redis连不上，但写的是</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Failed To Connect Redis_Token, Host:redis-svc.default.svc.cluster.local, Port:6379, Error:host is unreachable,</div></pre></td></tr></table></figure>
-<p>这里报的不是不能解析，而是说主机unreachable，开始我以为是redis挂了，但检查了下redis没有问题，然后我又觉得是不是kube-dns的问题，kube-dns在官网是有trouble shooting的文档</p>
-<p><a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips" target="_blank" rel="external">https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips</a></p>
-<p>这里一开始执行下面命令确实会解析不到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec -ti busybox -- nslookup kubernetes.default</div></pre></td></tr></table></figure>
-<p>但根据官网在busybox的yaml文件中加了下面两条是可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hostNetwork: true</div><div class="line">dnsPolicy: ClusterFirstWithHostNet</div></pre></td></tr></table></figure>
-<p>dns的服务没有问题</p>
-<p>再通过镜像nslokup下发现 这个null的问题，我的镜像是基于alpine, 于是再去看下官网，上面有knowing issue</p>
-<p><a href="https://github.com/kubernetes/kubernetes/issues/30215" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/issues/30215</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kubectl exec -it public-api-gateway-deploy-2955150880-w5nt8 -- nslookup redis-svc.default.svc.cluster.local</div><div class="line"></div><div class="line">nslookup: can&apos;t resolve &apos;(null)&apos;: Name does not resolve</div><div class="line"></div><div class="line">Name:      redis-svc.default.svc.cluster.local</div><div class="line">Address 1: 10.254.66.131 redis-svc.default.svc.cluster.local</div></pre></td></tr></table></figure>
-<p>这里又突然发现一个问题，node节点上的cbr0丢失了，与container不通</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/25/utility/linux常用命令/" itemprop="url">
-                  linux常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-25T16:57:23+08:00" content="2017-10-25">
-              2017-10-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>find： find是用来在目录下搜寻特定文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path...] [expression]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -name &quot;mysql.cnf&quot;	   找寻mysql.cnf</div><div class="line">find / -type d -size +2G  找寻超过2G的目录</div><div class="line">find / -type f -user root -exec chown weber &#123;&#125; \;  将当前目录下的所有权变更为weber:</div></pre></td></tr></table></figure>
-</li>
-<li><p>grep: print lines matching a pattern</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grep [OPTIONS] PATTERN [FILE...]</div><div class="line">grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -rl &quot;abc&quot; .    r:递归  l:只显示文件命名</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Ctl-U   删除光标到行首的所有字符,在某些设置下,删除全行</div><div class="line">Ctl-W   删除当前光标到前边的最近一个空格之间的字符</div><div class="line">Ctl-H   backspace,删除光标前边的字符</div><div class="line">Ctl-R   匹配最相近的一个文件，然后输出</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/24/docker/Docker 常用命令/" itemprop="url">
-                  Docker 常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-24T22:03:47+08:00" content="2017-10-24">
-              2017-10-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/23/utility/openssl自签名证书categories: openssltags: openssl/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-23T16:28:06+08:00" content="2017-10-23">
-              2017-10-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: openssl自签名证书<br>categories: openssl<br>tags: openssl</p>
-<ol>
-<li>openssl genrsa -out server.key 1024</li>
-<li>openssl req -new -key server.key -out server.csr</li>
-<li>openssl x509 -req -in server.csr -out server.crt -signkey server.key -days 3650</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/17/k8s/openresty跑在k8s集群遇到的问题/" itemprop="url">
-                  openresty跑在k8s集群遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-17T18:17:31+08:00" content="2017-10-17">
-              2017-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernets/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernets</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到了一个很常见的问题，就是在openresty里配的后端服务比如redis之类的需要通过域名，然后这里我只是简单的写了一个短域名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-svc</div></pre></td></tr></table></figure>
-<p>然后日志报错不能解析，这个经过搜索发现是openrestry需要指定nameserver，否则无法解析域名，于是乎我在nginx.conf的http模块下再加上如下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resovler 10.0.0.1</div></pre></td></tr></table></figure>
-<p>但openresty的日志还是报无法解析，最后还是同事的一句话提醒了我，在lua配置里写的是短域名，kube-dns认这个短域名吗？</p>
-<p>我之前一直认为kube-dns是认的，比如通过busybox执行如下一个命令完全是可以查到ip的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec busybox -- nslookup redis-svc</div></pre></td></tr></table></figure>
-<p>但openresty为啥不行呢，我去查看下了下节点上的/etc/resolver.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameserver 10.0.0.1</div><div class="line">search default.svc.cluster.local svc.cluster.local cluster.local</div><div class="line">options ndots:5</div></pre></td></tr></table></figure>
-<p>这里有个serach之前一直不理解，以为这个回去远端dns搜索，实际上它的真正作用就是补全短域名</p>
-<p>所以前面的redis-svc就会被补全到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-svc.default.svc.cluster.local</div><div class="line">redis-svc.svc.cluster.local</div><div class="line">redis-svc.cluster.local</div></pre></td></tr></table></figure>
-<p>上面几个，然后再发给kube-dns，所以他们能被查到</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/12/utility/vim基本配置/" itemprop="url">
-                  vim基本配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-12T12:08:28+08:00" content="2017-10-12">
-              2017-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>VS code用的很爽，但无奈team需要在服务端开发，只好重新拾起vim</p>
-<ol>
-<li><p>通过 <a href="https://github.com/amix/vimrc" target="_blank" rel="external">https://github.com/amix/vimrc</a> 这个来做基本的vim</p>
-</li>
-<li><p>安装nerdtree tab， 这个插件主要是为了在打开多个tab时候能够使用同一个nerd tree</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.vim_runtime</div><div class="line">git clone https://github.com/jistr/vim-nerdtree-tabs.git sources_non_forked/vim-nerdtree-tabs</div></pre></td></tr></table></figure>
-</li>
-<li><p>配一下nerd tree和nerd tree tab的vimrc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autocmd vimenter * NERDTree</div><div class="line">autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;&amp; exists(&quot;b:NERDTree&quot;) &amp;&amp; b:NERDTree.isTabTree()) | q | endif</div><div class="line">map &lt;F2&gt; :NERDTreeToggle&lt;CR&gt;</div><div class="line">let g:NERDTreeWinPos = &quot;left&quot;</div><div class="line">let g:nerdtree_tabs_open_on_console_startup=1</div><div class="line">let NERDTreeShowLineNumbers=1</div><div class="line">autocmd BufEnter nerd* set rnu</div></pre></td></tr></table></figure>
-</li>
-<li><p>快捷键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ctrl + w + h    光标 focus 左侧树形目录</div><div class="line">ctrl + w + l    光标 focus 右侧文件显示窗口</div><div class="line">ctrl + w + w    光标自动在左右侧窗口切换 #！！！</div><div class="line">ctrl + w + r    移动当前窗口的布局位置</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">o       在已有窗口中打开文件、目录或书签，并跳到该窗口</div><div class="line">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口</div><div class="line">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab</div><div class="line">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab</div><div class="line">i       split 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gi      split 一个新窗口打开选中文件，但不跳到该窗口</div><div class="line">s       vsplit 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口</div><div class="line">!       执行当前文件</div><div class="line">O       递归打开选中 结点下的所有目录</div><div class="line">x       合拢选中结点的父目录</div><div class="line">X       递归 合拢选中结点下的所有目录</div><div class="line">e       Edit the current dif</div><div class="line"></div><div class="line">双击    相当于 NERDTree-o</div><div class="line">中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e</div><div class="line"></div><div class="line">D       删除当前书签</div><div class="line"></div><div class="line">P       跳到根结点</div><div class="line">p       跳到父结点</div><div class="line">K       跳到当前目录下同级的第一个结点</div><div class="line">J       跳到当前目录下同级的最后一个结点</div><div class="line">k       跳到当前目录下同级的前一个结点</div><div class="line">j       跳到当前目录下同级的后一个结点</div><div class="line"></div><div class="line">C       将选中目录或选中文件的父目录设为根结点</div><div class="line">u       将当前根结点的父目录设为根目录，并变成合拢原根结点</div><div class="line">U       将当前根结点的父目录设为根目录，但保持展开原根结点</div><div class="line">r       递归刷新选中目录</div><div class="line">R       递归刷新根结点</div><div class="line">m       显示文件系统菜单 #！！！然后根据提示进行文件的操作如新建，重命名等</div><div class="line">cd      将 CWD 设为选中目录</div><div class="line"></div><div class="line">I       切换是否显示隐藏文件</div><div class="line">f       切换是否使用文件过滤器</div><div class="line">F       切换是否显示文件</div><div class="line">B       切换是否显示书签</div><div class="line"></div><div class="line">q       关闭 NerdTree 窗口</div><div class="line">?       切换是否显示 Quick Help</div><div class="line">:tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab</div><div class="line">:tabc   关闭当前的 tab</div><div class="line">:tabo   关闭所有其他的 tab</div><div class="line">:tabs   查看所有打开的 tab</div><div class="line">:tabp   前一个 tab</div><div class="line">:tabn   后一个 tab</div><div class="line"></div><div class="line">标准模式下：</div><div class="line">gT      前一个 tab</div><div class="line">gt      后一个 tab</div><div class="line"></div><div class="line">MacVim 还可以借助快捷键来完成 tab 的关闭、切换</div><div class="line">cmd+w   关闭当前的 tab</div><div class="line">cmd+&#123;   前一个 tab</div><div class="line">cmd+&#125;   后一个 tab</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/10/node/npm 加速/" itemprop="url">
-                  npm 加速
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-10T16:56:19+08:00" content="2017-10-10">
-              2017-10-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config set registry=http://registry.npm.taobao.org</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1496,7 +1575,7 @@ error_page 500 502 503 504 /50x.html;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-count">237</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1504,7 +1583,7 @@ error_page 500 502 503 504 /50x.html;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1513,7 +1592,7 @@ error_page 500 502 503 504 /50x.html;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1550,7 +1629,7 @@ error_page 500 502 503 504 /50x.html;
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

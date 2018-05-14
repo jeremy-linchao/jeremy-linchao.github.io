@@ -91,7 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/21/utility/使用sysbench测试mysq性能/index.html">
 <meta property="og:site_name" content="学习学习再学习">
 <meta property="og:description" content="环境 centos 6.5 sysbench 0.5 mysql 5.1  安装一. sysbench  github 地址    https://github.com/akopytov/sysbench  1git clone https://github.com/akopytov/sysbench.git  1git checkout 0.5  1yum -y install make aut">
-<meta property="og:updated_time" content="2017-11-26T05:12:00.333Z">
+<meta property="og:updated_time" content="2017-12-28T07:48:42.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用sysbench测试mysq性能">
 <meta name="twitter:description" content="环境 centos 6.5 sysbench 0.5 mysql 5.1  安装一. sysbench  github 地址    https://github.com/akopytov/sysbench  1git clone https://github.com/akopytov/sysbench.git  1git checkout 0.5  1yum -y install make aut">
@@ -327,18 +327,49 @@
 </li>
 </ol>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试:"></a>测试:</h3><h3 id="https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6"><a href="#https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6" class="headerlink" title="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6"></a><a href="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6" target="_blank" rel="external">https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6</a></h3><ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">##Create Database </div><div class="line">mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">##Create User</div><div class="line">mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line"></div><div class="line">##Grant Access </div><div class="line">mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">## Create Database </div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line">mysql 5.6 :  mysql -u root -pCClovecc22@@ -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">## Create User</div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql 5.6:   mysql -u root -pCClovecc22@@ -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;CClovecc22@@&apos;;&quot;</div><div class="line"></div><div class="line">## Grant Access </div><div class="line">mysql5.1 : mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql5.6:  mysql -u root -pCClovecc22@@ -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;CClovecc22@@&apos;;&quot;</div></pre></td></tr></table></figure>
 </li>
 <li><p>prepare</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn prepare</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --mysql-host=192.168.151.244 prepare</div><div class="line"></div><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ prepare</div></pre></td></tr></table></figure>
 </li>
 <li><p>read-only oltp test</p>
 <p>在client对两台mysql进行测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.244 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --	mysql-host=192.168.151.236 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --oltp-read-only=on --max-requests=0 --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
 </li>
 <li><p>mixed read and write oltp test</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 1 4 8 16 32 64; do sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --num-threads=$each run; done</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>Centos7  mysql5.7</p>
+<ol>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></li>
+</ol>
+<p>FAQ：</p>
+<ol>
+<li><p>远程插入不了数据？</p>
+<p>1）检查是否可以用sysbench远程登陆, 如果不可以</p>
+<p>mysql -u root -pucloud.cn -e “GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;”</p>
+<p>2)  </p>
+</li>
+</ol>
+<p>修复用户</p>
+<p>以root登陆 mysql -uroot -p</p>
+<p>删除用户</p>
+<ol>
+<li><p>drop user ‘sysbench’@’%’;</p>
+</li>
+<li><p>flush privileges;</p>
+</li>
+</ol>
+<p>创建用户</p>
+<ol>
+<li>​ CREATE USER ‘sysbench’@’%’  IDENTIFIED BY ‘ucloud.cn’;</li>
+<li>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;</li>
 </ol>
 
       
@@ -448,7 +479,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-count">237</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -456,7 +487,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -465,7 +496,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -513,7 +544,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

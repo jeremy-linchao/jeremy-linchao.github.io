@@ -243,6 +243,1154 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/02/redis/redis数据类型/" itemprop="url">
+                  redis数据类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-02T16:01:58+08:00" content="2017-06-02">
+              2017-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ol>
+<li><p>字符串</p>
+</li>
+<li><p>Lists：collections of string elements sorted according to the order of insertion. They are basically <em>linked lists</em>.   列表，但元素是字符串，实际上是链表</p>
+</li>
+<li><p>Sets:  collections of unique, unsorted string elements,  无序的字符串集合</p>
+</li>
+<li><p>Sorted Sets: 有序集合</p>
+</li>
+<li><p>Hashes: 字典， 键和值都需要为字符串</p>
+</li>
+<li><p>bitarray: 位数组</p>
+</li>
+</ol>
+<h3 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h3><ol>
+<li>keys是二进制安全的，也就是说可以用二级制值比如一个jpeg文件作为key，甚至空的字符串仍然是有效的​</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/01/redis/redis主从/" itemprop="url">
+                  redis主从
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T15:30:58+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
+<li><p>redis使用异步复制机制，从2.8开始，slave会周期性确认收到的数据</p>
+</li>
+<li><p>一个master可以有多个slave</p>
+</li>
+<li><p>redis复制在master端是不blocking的</p>
+<ol>
+<li>redis复制在slave也是不blocking的，当slave做初次同步时，它可以用老版本的数据集，在同步完之后，会短暂blocking进入的连接（如果数据量大的话将会有几秒钟）</li>
+</ol>
+</li>
+<li><p>当使用主从时，强烈建议在master上开启数据持久化，如果无法做到的话，那要避免redis服务自动重启（比如使用pm2之类的进程管理器），原因如下：</p>
+<ol>
+<li>假设A是master， B和C是A的slave，如果A crash了并且A的数据持久化被关闭，这时候进程管理器会重启redis服务，但是数据集为空，这时候B和C将会同步到一个空数据集</li>
+</ol>
+</li>
+<li><p>复制过程： 全量同步，master会在后台起一个saving进程来生成RDB文件，同时会把从这个时候开始收到的新的写入命令缓冲起来，当后台保存进程完毕后，master就会将这个文件发送到slave，slave会将它存在磁盘上，然后倒入到内存，之后master会把所有缓存的命令发送给slave，从2.8开始有不落盘复制</p>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/01/redis/redis哨兵模式/" itemprop="url">
+                  redis哨兵模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T10:05:41+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一-Redis哨兵模式功能"><a href="#一-Redis哨兵模式功能" class="headerlink" title="一. Redis哨兵模式功能"></a>一. Redis哨兵模式功能</h3><ol>
+<li><p>监控： 哨兵会不断检查redis的主备实例是否正常运行</p>
+</li>
+<li><p>告警通知： 当受监控的redis实例异常时，哨兵可以通知系统管理员或者以API形式告知其他程序</p>
+</li>
+<li><p>自动故障迁移：当master节点无法工作时，哨兵会将slave节点提升为master</p>
+</li>
+<li><p>服务发现：哨兵为客户端提供服务发现，客户端向哨兵查询当前的master地址</p>
+</li>
+</ol>
+<h3 id="二-Redis哨兵特性"><a href="#二-Redis哨兵特性" class="headerlink" title="二.Redis哨兵特性"></a>二.Redis哨兵特性</h3><p>redis 哨兵本身是一个分布式系统，同时会有多个哨兵进程一起在运行</p>
+<h3 id="三-Redis哨兵部署"><a href="#三-Redis哨兵部署" class="headerlink" title="三.Redis哨兵部署"></a>三.Redis哨兵部署</h3><h4 id="3-1-部署注意点"><a href="#3-1-部署注意点" class="headerlink" title="3.1 部署注意点"></a>3.1 部署注意点</h4><ol>
+<li>至少三个哨兵节点</li>
+<li>多个哨兵节点需要部署在不同节点上</li>
+<li>哨兵模式无法失败时的写入可以被重新获取到，因为redis本身是异步复制，但是这个丢失的窗口可以通过配置被降低</li>
+<li>哨兵模式会和其他nat模式组冲突，比如docker，如有nat需要单独在配置文件中修改</li>
+</ol>
+<h4 id="3-2-配置说明"><a href="#3-2-配置说明" class="headerlink" title="3.2 配置说明"></a>3.2 配置说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1. bind ip1 ip2 ...</div><div class="line">   protected-mode no</div></pre></td></tr></table></figure>
+<p>默认哨兵只能通过localhost访问，可以通过指定绑定的接口ip或者 protected-mode no来允许其他接口通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2. sentinel announce-ip &lt;ip&gt;</div><div class="line">   sentinel announce-port &lt;port&gt;</div></pre></td></tr></table></figure>
+<p>在nat模式下使用，指定hello包里的声明的ip和port</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</div></pre></td></tr></table></figure>
+<p>指定哨兵监控的master</p>
+<p>master-name:  master名字，必须是A-z 0-9, “. - _”中的一个</p>
+<p>quorum：认为master不可达的哨兵数量，只有达到了这个数量，哨兵才有可能做fail-over，但是需要注意，这个数只是用来检测失败，实际上最后决定时候要真正的fail-over是通过一次投票来决定的，举一个例子：</p>
+<p>如果有5个哨兵进程，quorum被配置成2，那么当有2个哨兵进程发现master不可达时，他们中间的一个就会试着来做fail-over，这时会进行一场投票，如果此时有3个（5个中的大多数）哨兵是存活的，就会启动fail-over</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</div></pre></td></tr></table></figure>
+<p>哨兵同主redis，从redis通信时的密码，这个密码必须一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5. sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>过多久认为节点（包括主，从和哨兵本身）不可用，单位毫秒，默认为30s</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;</div></pre></td></tr></table></figure>
+<p>设置在一次failover之后有多少个slave会同时去和新的master同步，这个数设的越小，整个fail-over的时间就越长，但是因同步过程会有个中断，如果slave提供读服务的话 ，可以将这个值设为1来保证fail-over之后同时只有一个slave会断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7. sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</div></pre></td></tr></table></figure>
+<p>failover的超时时间，默认3分钟</p>
+<h4 id="3-3-哨兵查看命令"><a href="#3-3-哨兵查看命令" class="headerlink" title="3.3 哨兵查看命令"></a>3.3 哨兵查看命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1. sentinel master mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问master节点的状态，可以重点关注如下几个参数</p>
+<p>num-other-sentinels： 其他哨兵的数量</p>
+<p>num-slaves：slave数量</p>
+<p>flag: 节点状态，master代表主节点，如果master 宕了，会有s_down或者是o_down状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. sentinel slaves mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问slave节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3. sentinel sentinels mymaster</div></pre></td></tr></table></figure>
+<p>向哨兵询问其他哨兵节点状态，参数形式同上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. sentinel get-master-addr-by-name mymaster</div></pre></td></tr></table></figure>
+<p>查询当前master</p>
+<h3 id="4-部署模式建议"><a href="#4-部署模式建议" class="headerlink" title="4 部署模式建议"></a>4 部署模式建议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">           +----+</div><div class="line">       | M1 |</div><div class="line">       | S1 |</div><div class="line">       +----+</div><div class="line">          |</div><div class="line">+----+    |    +----+</div><div class="line">| R2 |----+----| R3 |</div><div class="line">| S2 |         | S3 |</div><div class="line">+----+         +----+</div><div class="line"></div><div class="line">Configuration: quorum = 2</div></pre></td></tr></table></figure>
+<p>M:  代表master</p>
+<p>R：代表slave</p>
+<p>S：代表哨兵</p>
+<ol>
+<li><h4 id="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"><a href="#哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上" class="headerlink" title="哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上"></a>哨兵是一个非常重要的节点，它不仅负责故障转移，还负责向客户端提供新master节点的地址，因此哨兵本身需要做多节点部署，为了防止选举脑裂，哨兵节点建议部署3个，并且在不同的节点上</h4></li>
+<li><h4 id="redis建议以一主两备运行"><a href="#redis建议以一主两备运行" class="headerlink" title="redis建议以一主两备运行"></a>redis建议以一主两备运行</h4></li>
+<li><h4 id="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce"><a href="#在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master-客户端推荐使用jedis或lettuce" class="headerlink" title="在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce"></a>在使用了哨兵模式之后，程序里的客户端不能再通过ip来指定master了，因为一旦master发生切换程序将无法连接到新的master。正确的做法是客户端通过查询哨兵里来连接到最新的master, 客户端推荐使用jedis或lettuce</h4></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/31/rocketmq/RocketMQ初次使用/" itemprop="url">
+                  RocketMQ初次使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-31T18:36:05+08:00" content="2017-05-31">
+              2017-05-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/rocketmq/" itemprop="url" rel="index">
+                    <span itemprop="name">rocketmq</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>根据官方quick start来做，遇到几个问题</p>
+<p>1）mac运行会报下面这个错误，在centos上用jdk 1.8运行OK，mac上升级到1.8也没有问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project rocketmq-remoting: Execution default-compile of goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile failed: A required class was missing while executing org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile: org/codehaus/plexus/util/cli/CommandLineException</div></pre></td></tr></table></figure>
+<p>2）服务器内存需要大于8G，否则broker起不来</p>
+<p>3) rocketmq的hostname不要修改，否则nameserver起不来，nameserver应该是根据hostname</p>
+<p>的ip来取</p>
+<p>4）bash mqbroker -c ../conf/2m-2s-sync/broker-a.properties -n 192.168.0.2:9876;192.168.0.3:9876</p>
+<p>注意这里官网用的,是错的，应该是;</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/31/java/java安装/" itemprop="url">
+                  java安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-31T17:23:10+08:00" content="2017-05-31">
+              2017-05-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>   大学之后就没有碰过java了，基本的环境配置列一下</p>
+<ol>
+<li><p>cd /usr/java &amp;&amp; wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie” <a href="http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz" target="_blank" rel="external">http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</a> （显示问题，这里是两个破折号）</p>
+<p>这里的版本可以根据官网上的来选</p>
+</li>
+<li><p>设置环境变量： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/java.sh</div><div class="line"></div><div class="line">#!/bin/bash</div><div class="line">JAVA_HOME=/usr/java/jdk1.8.0_102</div><div class="line">PATH=$JAVA_HOME/bin:$PATH</div><div class="line">export PATH JAVA_HOME</div><div class="line">export CLASSPATH=.</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/profile.d/java.sh</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile.d/java.sh</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>maven:</p>
+<ol>
+<li><p>cd /usr/maven &amp;&amp; wget <a href="http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz</a></p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line"></div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:$PATH</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/profile.d/maven.sh</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile.d/maven.sh</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="mac上的java更新问题"><a href="#mac上的java更新问题" class="headerlink" title="mac上的java更新问题"></a>mac上的java更新问题</h3><p>mac上更新java是可以直接通过控制面板来操作的，但这里有个问题就是oracle的java安装完成之后是放在/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin 目录下的，但是系统的java的path是/usr/bin/java, 这是个软链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lrwxr-xr-x   1 root   wheel        74 Nov  9  2016 java -&gt; /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java</div></pre></td></tr></table></figure>
+<p>这个是系统的java，仍然是1.7，</p>
+<p>解决办法是直接从oracle官网安装jdk 8即可, 注意是jdk不是jre</p>
+<p>运行/usr/libexec/java_home 可以看到是1.8了</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/25/redux/titles: material ui事件无响应/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-25T18:53:20+08:00" content="2017-05-25">
+              2017-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>material的selectField标签没有弹出，需要安装injectTapEventPlugin</p>
+<p>import * as  injectTapEventPlugin from ‘react-tap-event-plugin’;<br>injectTapEventPlugin()</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/18/css/css问题/" itemprop="url">
+                  css问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-18T15:15:38+08:00" content="2017-05-18">
+              2017-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>FlatButton我看是渲染了一个button组件，然后在里面再嵌套了一个div，通过修改className只能修改button的style，有没有什么办法来修改里面那个div的style呢？</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/design/react集成material icon/" itemprop="url">
+                  react集成material icon
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T18:21:11+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>安装material icon:   npm install material-design-icons</p>
+</li>
+<li><p>app.css 增加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-style: normal;</div><div class="line">  font-weight: 400;</div><div class="line">  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */</div><div class="line">  src: local(&apos;Material Icons&apos;),</div><div class="line">  local(&apos;MaterialIcons-Regular&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format(&apos;woff2&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format(&apos;woff&apos;),</div><div class="line">  url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format(&apos;truetype&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的url路径以相对路径，根据自己项目来</p>
+</li>
+<li><p>在app.css再添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">.material-icons &#123;</div><div class="line">  font-family: &apos;Material Icons&apos;;</div><div class="line">  font-weight: normal;</div><div class="line">  font-style: normal;</div><div class="line">  font-size: 24px;  /* Preferred icon size */</div><div class="line">  display: inline-block;</div><div class="line">  line-height: 1;</div><div class="line">  text-transform: none;</div><div class="line">  letter-spacing: normal;</div><div class="line">  word-wrap: normal;</div><div class="line">  white-space: nowrap;</div><div class="line">  direction: ltr;</div><div class="line"></div><div class="line">  /* Support for all WebKit browsers. */</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  /* Support for Safari and Chrome. */</div><div class="line">  text-rendering: optimizeLegibility;</div><div class="line"></div><div class="line">  /* Support for Firefox. */</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line"></div><div class="line">  /* Support for IE. */</div><div class="line">  font-feature-settings: &apos;liga&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于webpack的css-loader会对url() 当做import/require() 来引入，需要增加个url-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,</div><div class="line">  loader: &apos;url-loader&apos;,</div><div class="line">  options: &#123;</div><div class="line">    limit: 10000</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>在material-ui中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;IconButton</div><div class="line">    iconClassName=&quot;material-icons&quot;</div><div class="line">    onClick=&#123;() =&gt; fetchUDiskDataSet(common.projectId, common.region, common.zone, &apos;DataDisk&apos;, 0, 30)&#125;</div><div class="line">&gt;</div><div class="line"> autorenew</div><div class="line">&lt;/IconButton&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/redux/redux运行慢/" itemprop="url">
+                  redux运行慢
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T10:33:49+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>遇到一个redux慢的问题，拉取很多数据，对数据做处理，最终渲染图表。这里面要搞清楚到底是哪里慢，是reducer慢，还是react渲染慢，或者是api请求慢，网络的问题可以通过console的timeline看出来，reducer的问题只要在reducer的处理函数里统计时间，react渲染在ReactDOM.render这里面统计，最终能看出来究竟是哪里慢</p>
+<p>结论： 用reactjs渲染图表的时候很慢，特别是数据点特变多的时候，渲染8638个点需要3.69s，之后换一个库试试</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/15/redux/redux理解/" itemprop="url">
                   redux理解
                 </a>
@@ -360,1148 +1508,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/09/redux/redux问题/" itemprop="url">
-                  redux问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-09T08:37:14+08:00" content="2017-05-09">
-              2017-05-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.当只使用redux而不是react-redux的时候，遇到一个比较棘手的问题就是异步api或数据库操作的处理。这个请求你觉得放在哪里比较好呢？reducer因为是纯函数肯定是不能放，但如果放在dispatch里有点奇怪，我想这是第一个react-redux解决的问题</p>
-<ol>
-<li><p>ant-design的select不满足多选的需求</p>
-</li>
-<li><p>select组件的option渲染时可能没有初始化，因此可能会有TypeError: Cannot read property ‘type’ of null这个错误，需要用一个三元运算符来初始化一个</p>
-</li>
-<li><p>select 渲染option条目时，由于需要的是一个表达式，因此无法在里面写if… else，但如果用三元运算符，又会涉及到大量的判断，比较好的解决方法是在表达式里写一个函数，这个函数来返回需要的react组件，函数里面可以使用if… else了</p>
-</li>
-<li><p>components如何拿到全局的state</p>
-</li>
-<li><p>component did mount这个函数里如何拿到dispatch</p>
-</li>
-<li><p>在component did mount里拉了下的数据，想更新到state里面，但是这时候props的数据不是最新的</p>
-</li>
-<li><p>如果redux不同组件会加载不同component的state，但是如果组件之间数据有依赖就很麻烦，在一个组件下刷新可能会拿不到其他组件的数据</p>
-</li>
-<li><p>There are frameworks claiming to be similar to Flux, but without a concept of action objects. In terms of being predictable, this is a step backwards from Flux or Redux. If there are no serializable plain object actions, it is impossible to record and replay user sessions, or to implement <a href="https://www.youtube.com/watch?v=xsSnOQynTHs" target="_blank" rel="external">hot reloading with time travel</a>. If you’d rather modify data directly, you don’t need Redux.</p>
-</li>
-<li><p>Without any middleware, <a href="http://redux.js.org/docs/api/Store.html#dispatch" target="_blank" rel="external"><code>dispatch</code></a> only accepts a plain object, so we have to perform AJAX calls inside our components， However, this quickly gets repetitive because different components request data from the same API endpoints. Moreover, we want to reuse some of this logic (e.g., early exit when there is cached data available) from many components.</p>
-<p>异步的操作如果写在组件里没法重用</p>
-</li>
-<li><p>为什么react需要immutate.js: 因为react的渲染是根据state来的，state只要一变，组件就会重新渲染一个大型项目中，state必然是非常复杂的，那么如果需要用递归的方式来比较state是否改变会对性能产生极大的影响，所以当你每次要改变state的时候，请重新new一个state</p>
-</li>
-<li><p><strong>define your state shape in terms of your domain data and app state, not your UI component tree</strong>. </p>
-</li>
-<li><p>funnctional decomposition好处：1. 重用  2. 便于测试</p>
-</li>
-<li><h4 id="Extracting-Case-Reducers"><a href="#Extracting-Case-Reducers" class="headerlink" title="Extracting Case Reducers"></a>Extracting Case Reducers</h4></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function appReducer(state = initialState, action) &#123;</div><div class="line">    switch(action.type) &#123;</div><div class="line">        case &apos;SET_VISIBILITY_FILTER&apos; : return setVisibilityFilter(state, action);</div><div class="line">        case &apos;ADD_TODO&apos; : return addTodo(state, action);</div><div class="line">        case &apos;TOGGLE_TODO&apos; : return toggleTodo(state, action);</div><div class="line">        case &apos;EDIT_TODO&apos; : return editTodo(state, action);</div><div class="line">        default : return state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>mapStateToProps这个函数使用shallow reference equality checks来检查是否需要更新</p>
-</li>
-<li><p>Most applications deal with multiple types of data, which can be broadly divided into three categories:</p>
-<ul>
-<li><em>Domain data</em>: data that the application needs to show, use, or modify (such as “all of the Todos retrieved from the server”)</li>
-<li><em>App state</em>: data that is specific to the application’s behavior (such as “Todo #5 is currently selected”, or “there is a request in progress to fetch Todos”)</li>
-<li><em>UI state</em>: data that represents how the UI is currently displayed (such as “The EditTodo modal dialog is currently open”)</li>
-</ul>
-</li>
-<li><p>Since a Redux reducer is <em>just</em> a function, the same concept applies. You can split some of your reducer logic out into another function, and call that new function from the parent function.</p>
-<p>These new functions would typically fall into one of three categories:</p>
-<ol>
-<li>Small utility functions containing some reusable chunk of logic that is needed in multiple places (which may or may not be actually related to the specific business logic)</li>
-<li>Functions for handling a specific update case, which often need parameters other than the typical <code>(state, action)</code> pair</li>
-<li>Functions which handle <em>all</em> updates for a given slice of state. These functions do generally have the typical <code>(state, action)</code> parameter signature</li>
-</ol>
-</li>
-<li><p>One frequently asked question is whether Redux “calls all reducers” when dispatching an action. Since there really is only one root reducer function, the default answer is “no, it does not”. However, <code>combineReducers</code> has specific behavior that <em>does</em> work that way. In order to assemble the new state tree, <code>combineReducers</code> will call each slice reducer with its current slice of state and the current action, giving the slice reducer a chance to respond and update its slice of state if needed. So, in that sense, using <code>combineReducers</code> <em>does</em> “call all reducers”, or at least all of the slice reducers it is wrapping.</p>
-</li>
-</ol>
-<ol>
-<li><p>Since immutable data updates require all ancestors in the state tree to be copied and updated as well, and new object references will cause connected UI components to re-render, an update to a deeply nested data object could force totally unrelated UI components to re-render even if the data they’re displaying hasn’t actually changed.</p>
-<p>state的设计非常重要，如果嵌套过多，单单叶子节点的一个更新都需要导致整个state渲染，性能影响很大</p>
-<p>因此： the recommended approach to managing relational or nested data in a Redux store is to treat a portion of your store as if it were a database, and keep that data in a <em>normalized</em> form.</p>
-<p>​</p>
-<p>The basic concepts of normalizing data are:</p>
-<ul>
-<li>Each type of data gets its own “table” in the state.</li>
-<li>Each “data table” should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values.</li>
-<li>Any references to individual items should be done by storing the item’s ID.</li>
-<li>Arrays of IDs should be used to indicate ordering.</li>
-</ul>
-</li>
-<li><p>There is no “right” answer for this. Some users prefer to keep every single piece of data in Redux, to maintain a fully serializable and controlled version of their application at all times. Others prefer to keep non-critical or UI state, such as “is this dropdown currently open”, inside a component’s internal state.</p>
-<p><strong>Using local component state is fine</strong>. As a developer, it is <em>your</em> job to determine what kinds of state make up your application, and where each piece of state should live. Find a balance that works for you, and go with </p>
-</li>
-<li><p>redux代码组织问题：</p>
-<p>1） 官方给的例子是components, actions，reducers分别建立目录，这个结构的问题是如果要对state增加一个特性，需要在各个文件分别修改</p>
-<p>2） 社区很多人建议按功能把components，actions，reducer放在一起</p>
-</li>
-<li><p>fat action creater or thin?</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/03/utility/axios问题/" itemprop="url">
-                  axios问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-03T11:18:33+08:00" content="2017-05-03">
-              2017-05-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>使用axios的时候，当用await取返回值的时候，不能直接JSON.stringify(resonse)，这样JSON.string无法识别这个类型，会报错，并在报错日志中打出一个{}，要打印需要打印JSON.stringify(response.data)</p>
-<hr>
-<p>补充： json.stringify()这个函数也是有可能会报错的（无法string化）</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
-                  jest使用axios遇到的bug
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/jest/" itemprop="url" rel="index">
-                    <span itemprop="name">jest</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
-<p>代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
-<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
-<p>环境版本如下</p>
-<p>node:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
-<p>jest:</p>
-<p>19.0.2</p>
-<p>axios</p>
-<p>0.16.1</p>
-<hr>
-<p>update 5.11</p>
-<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/javascript/Array.prototype.push()/" itemprop="url">
-                  Array.prototype.push()
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T11:33:40+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Array.prototype.push(): adds one or more elements to the end of an array and returns the new length of the array</p>
-<p>例子： 合并两个数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var vegetables = [&apos;parsnip&apos;, &apos;potato&apos;];</div><div class="line">var moreVegs = [&apos;celery&apos;, &apos;beetroot&apos;];</div><div class="line"></div><div class="line">// Merge the second array into the first one</div><div class="line">// Equivalent to vegetables.push(&apos;celery&apos;, &apos;beetroot&apos;);</div><div class="line">Array.prototype.push.apply(vegetables, moreVegs);</div><div class="line"></div><div class="line">console.log(vegetables); // [&apos;parsnip&apos;, &apos;potato&apos;, &apos;celery&apos;, &apos;beetroot&apos;]</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/git/git推送分支设置upstream/" itemprop="url">
-                  git推送分支设置upstream
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-26T10:09:31+08:00" content="2017-04-26">
-              2017-04-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本地和远程都没有master分支，本地切换到master，想推到远端，同时设置upstream</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/25/redux/redux 注意点/" itemprop="url">
-                  redux 注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-25T11:55:51+08:00" content="2017-04-25">
-              2017-04-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Reducer is a pure funciton </li>
-</ol>
-<p>Things you should <strong>never</strong> do inside a reducer:</p>
-<ul>
-<li>Mutate its arguments;</li>
-<li>Perform side effects like API calls and routing transitions;</li>
-<li>Call non-pure functions, e.g. <code>Date.now()</code> or <code>Math.random()</code>.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/25/redux/redux三个核心方法的实现/" itemprop="url">
-                  redux三个核心方法的实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-25T11:50:37+08:00" content="2017-04-25">
-              2017-04-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const createStore = (reducer) =&gt; &#123;</div><div class="line">  let state;</div><div class="line">  let listeners = [];</div><div class="line"></div><div class="line">  const getState = () =&gt; state;</div><div class="line"></div><div class="line">  const dispatch = (action) =&gt; &#123;</div><div class="line">    state = reducer(state, action);</div><div class="line">    listeners.forEach(listener =&gt; listener());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  const subscribe = (listener) =&gt; &#123;</div><div class="line">    listeners.push(listener);</div><div class="line">    return () =&gt; &#123;</div><div class="line">      listeners = listeners.filter(l =&gt; l ！== listener);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  dispatch(&#123;&#125;);</div><div class="line"> </div><div class="line">  return &#123; getState, dispatch, subscribe &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/23/node/nodejs技巧/" itemprop="url">
-                  nodejs技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-23T18:52:24+08:00" content="2017-04-23">
-              2017-04-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>可以nodejs的项目里创建一个.npmrc，里面写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">save=true</div><div class="line">save-exact=true</div></pre></td></tr></table></figure>
-<p>这样的话在npm install的时候不用- -save，同时版本也是精确的</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/21/utility/linux禁用密码登录/" itemprop="url">
-                  linux禁用密码登录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T17:23:22+08:00" content="2017-04-21">
-              2017-04-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>vim /etc/ssh/sshd_config</p>
-</li>
-<li><p>Modify those lines:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PubkeyAuthentication         yes</div><div class="line"></div><div class="line">AuthorizedKeysFile          .ssh/authorized_keys</div><div class="line"></div><div class="line">PasswordAuthentication      no</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建.ssh/authorized_keys文件，加入需要登陆的机器的公钥</p>
-</li>
-<li><p>service sshd restart</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1542,7 +1553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-count">237</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1550,7 +1561,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1559,7 +1570,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1596,7 +1607,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

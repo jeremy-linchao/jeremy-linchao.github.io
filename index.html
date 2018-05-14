@@ -243,6 +243,1079 @@
             
               
                 
+                <a class="post-title-link" href="/2018/05/14/redux/redux感悟/" itemprop="url">
+                  redux感悟
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-14T22:19:14+08:00" content="2018-05-14">
+              2018-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好久没有写博客了，今天更新一篇，也来总结下最近使用react+redux+typescipt+redux-observable的体会</p>
+<p>先说说redux，对redux的container有了进一步的理解，一个是它的mapStateToProps，这里的数据来源于两部分，一部分是component对应的reducer（我喜欢以业务来分目录，一个业务包含一整套action，container，component，reducer），这里会有所有这个component产生和需要的数据，比如ui的数据，ajax获取的数据，这些数据是要存到redux，因此要map回来，另一部分的数据可能不是这个ui产生的，但却是ui需要的数据，可能是别的业务的一部分数据，需要共享过来，这里也是可以通过container  map回来，在用ts的时候，我会区分下类型定义如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 这个是reducer的state类型</div><div class="line">interface BusinessReducerState &#123;</div><div class="line">&#125;</div><div class="line">interface BusinessStateProps extends businessReducerState &#123;</div><div class="line">  // 这里可以map一些共享的数据</div><div class="line">&#125;</div><div class="line">interface BusinessDistpatchProps &#123;</div><div class="line">  // dispatch的方法</div><div class="line">&#125;</div><div class="line">// 这个是最后丢给component的props的类型</div><div class="line">const BusinessProps = BusinessStateProps &amp; BusinessDistpatchProps</div></pre></td></tr></table></figure>
+<p>container的另外一个理解就是container可以嵌container，这个本来应该是一个很正常的问题，但是这个问题很容易和另外一个问题搞混，那就是之前讲的component嵌component，componet嵌component有个问题是props是一级一级下传的，因此下面一层的component拿不到上一层component之外的数据，但container嵌套container则不是，因为container是从整个store拿的数据，因此下一层的container的数据跟上一层的组件是可以完全不一样的！因此redux怎么来做业务组件的重用？ 用的不是component而是container，一个很明显的例子是弹窗，我们的弹窗不是一个简单确认，里面是有很多业务数据的，而这个弹窗又是要做成重用的，可能要在不同地方去弹，这时候就应该把弹窗用container来做封装</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/01/01/database/sql连接理解/" itemprop="url">
+                  关于sql连接的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-01T13:31:12+08:00" content="2018-01-01">
+              2018-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>内连接： 内连接就是关系代数里面的θ-连接，所谓θ连接就是先做笛卡尔乘积，然后在结果上做一个选择操作，条件就是θ指定的条件，比如某两列大小比较</li>
+<li>等值连接：等值连接就是特殊的内连接，特殊在θ条件变为两列相等，但等值连接最后的列数还是和笛卡尔乘积的列数一样</li>
+<li>自然连接：自然理解是再进一步特殊的等值连接，自然连接有个前提条件是连接的两张表必须要有相同的列名，然后再做一次等值连接，区别说自然连接会去除掉重复的列</li>
+<li>外连接：为什么要有外连接呢？因为在做等值连接的时候可能会丢失掉某些行的信息，比如第一个表的东西，比如顾客表和订单表的例子，要查询所有顾客的所有订单，自然连接是不够的，因为可能有些顾客没下过订单，因此外链接就出来了，它在连接的时候如果发现订单表没有顾客数据，就填充0。至于左外连接和右外连接还是全外连接，则取决于你是要哪边的数据保留完整</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/28/go/why I love go/" itemprop="url">
+                  why I love go
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-28T22:08:50+08:00" content="2017-12-28">
+              2017-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了</p>
+</li>
+<li><p>循环只有for: 本来for就够了，一个for能遍历数组，map, string</p>
+</li>
+<li><p>if中可以写语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if err := file.Chmod(0664); err != nil &#123;</div><div class="line">    log.Print(err)</div><div class="line">    return err</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/12/grpc/protocol buffer安装/" itemprop="url">
+                  protocol buffer安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-12T14:53:29+08:00" content="2017-12-12">
+              2017-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/protocol-buffer/" itemprop="url" rel="index">
+                    <span itemprop="name">protocol buffer</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>protocol buffer安装分为两部分：一个是protocol编译器的安装，编译器主要是将proto文件编译成相应语言可用的代码，当然这个也需要相应语言插件支持，编译器是去到<a href="https://github.com/google/protobuf/releases" target="_blank" rel="external">https://github.com/google/protobuf/releases</a>  下载一个对应平台的zip包； 二是protocol buffer 运行时环境安装，运行时是什么呢，就是语言来调用protocol, 比如go要序列化，调用相应函数，而这个函数就是运行时环境来提供的，对于go来说就是protoc-gen-go这个软件，这个软件提供protocol的编译器插件以及运行时环境</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/12/go/gopl/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-12T09:41:01+08:00" content="2017-12-12">
+              2017-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>type关键字的作用： 定义某一种类型的别名，为什么需要这个呢？不是已经有类型了吗？</p>
+<p>类型定义了某个变量在内存存储的时候有多少个bit，有什么方法，在内部是怎么表达的，他是一个底层的概念，但是有很多场景下会有同一个类型会表示不同的概念，比如一个整型int可能表示一个循环的索引，或是一个时间戳或是一个月份等等，所以这时候可以用type</p>
+<p><strong>type语句创建了一个新的类型名称，和现有类型具有相同的底层结构。新命名的类型提供了一个方法，用来分隔不同概念的类型，这样即使它们底层类型相同也是不兼容的。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type 类型名字 底层类型</div></pre></td></tr></table></figure>
+</li>
+<li><p>package main是什么意思？</p>
+<p>main包比较特殊，它定义了一个独立可执行的程序，而不是一个库</p>
+</li>
+<li><p>数组字面值语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var q [3]int = [3]int&#123;1, 2, 3&#125;</div><div class="line">var r [3]int = [3]int&#123;1, 2&#125;</div><div class="line">fmt.Println(r[2]) // &quot;0&quot;</div></pre></td></tr></table></figure>
+<p> 如果在数组的长度位置出现的是“…”省略号，则表示数组的长度是根据初始化值的个数来计算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">q := [...]int&#123;1, 2, 3&#125;</div><div class="line">fmt.Printf(&quot;%T\n&quot;, q) // &quot;[3]int&quot;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/11/grpc/protocol buffer and grpc/" itemprop="url">
+                  protocol buffer and grpc
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-11T10:43:28+08:00" content="2017-12-11">
+              2017-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/grpc/" itemprop="url" rel="index">
+                    <span itemprop="name">grpc</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>what:  protocol buffer是什么?</p>
+<p>protocol buffer是一种序列化结构型数据机制，就像xml，json, 但protocol buffer不仅仅只是消息交换机制，它还是IDL，定义了接口</p>
+</li>
+<li><p>how:  protocol buffer怎么工作?</p>
+<p>1) 定义protocol文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">message Person &#123;</div><div class="line">  required string name = 1;</div><div class="line">  required int32 id = 2;</div><div class="line">  optional string email = 3;</div><div class="line"></div><div class="line">  enum PhoneType &#123;</div><div class="line">    MOBILE = 0;</div><div class="line">    HOME = 1;</div><div class="line">    WORK = 2;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  message PhoneNumber &#123;</div><div class="line">    required string number = 1;</div><div class="line">    optional PhoneType type = 2 [default = HOME];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  repeated PhoneNumber phone = 4;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2） 使用特定语言的protocol buffer编译器来编译.proto文件，这样会生成特定的类以及访问和特定语言文件，比如上面那个例子，如果用的是c++，就会生成一个.cc的proto文件，里面会很有class和get/set方法，你就可以使用下面的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person person;</div><div class="line">person.set_name(&quot;John Doe&quot;);</div><div class="line">person.set_id(1234);</div><div class="line">person.set_email(&quot;jdoe@example.com&quot;);</div><div class="line">fstream output(&quot;myfile&quot;, ios::out | ios::binary);</div><div class="line">person.SerializeToOstream(&amp;output);</div></pre></td></tr></table></figure>
+<p>3） why: 为什么用protocol而不是xml或json</p>
+<p>​    1) protocol 序列化的数据更小  2）解析更快 ，快20到100倍 3）可以生成数据访问类代码</p>
+<p>​    当然xml也有优势，比如xml是可读可编辑并且在某种程度上可以自我描述的</p>
+</li>
+<li><p>what: 什么是gRPC</p>
+<p>gRPC是一个rpc框架，client可以调server的方法就像本地调用一样，远端的server与client可以用完全不同的语言来实现。这里面涉及到几个问题： 1）怎么实现远程调用？因为你本地函数调用使用的是内存的数据，即怎么做序列化/反序列化，用什么数据格式？现有的数据格式是xml或json，而gRPC默认使用的是protocol buffer，优点前面也说了，报文更小，解析更快。 2） 第二个问题是既然涉及到了多语言，那么必然需要有涉及到的多语言的解析库和序列化库，这个库我更愿意理解为一种sdk，像json，xml许多语言都提供序列化库了，比如js中的JSON.stringify和JSON.parse，3）rpc需要让客户端知道有哪些方法可以调吧，就像浏览器和服务端通信用http/json一般是给出api文档，表示方法是什么，入参是什么，返回值是什么，在gRPC或者rpc框架中一般是用service来定义，这个是rpc的概念</p>
+</li>
+<li><p>gRPC类型：</p>
+<p>1）Unary RPC  2）Server streaming RPC  3) Client streaming RPCs  4)Bidirectional streaming RPCs</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/04/utility/nginx跨域/" itemprop="url">
+                  nginx跨域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-04T16:20:08+08:00" content="2017-12-04">
+              2017-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>反代配置proxy_set_header: 默认情况下ngnix不会转发原始请求中的Host头部，后端如果需要这个头部，就需要在反代的nginx上加上下面这个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxy_set_header Host       $host</div></pre></td></tr></table></figure>
+<p>另外反代的nginx一般还会加上下面这条语句，来传递客户端真实ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proxy_set_header   X-Real-IP        $remote_addr;</div><div class="line">proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx 跨域设置，设置在server 下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add_header    &apos;Access-Control-Allow-Origin&apos; &quot;$http_origin&quot;;</div><div class="line">add_header    &apos;Access-Control-Allow-Credentials&apos; true;</div><div class="line">add_header    &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos;;</div><div class="line">add_header    &apos;Access-Control-Allow-Headers&apos; &apos;Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,*&apos;;</div></pre></td></tr></table></figure>
+<p>另外我在实际过程中遇到的问题是，跨域的设置和Cache-Contro的设置会冲突，比如，如果你设置了上面的跨域，然后在location下面设置如下， 跨域的设置会被覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_header Cache-Control &quot;private&quot;;</div><div class="line">add_header Cache-Control &quot;no-cache&quot;;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/01/docker/docker login失败/" itemprop="url">
+                  docker login失败
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-01T14:30:21+08:00" content="2017-12-01">
+              2017-12-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>vim /etc/docker/daemon.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> &quot;insecure-registries&quot; : [&quot;registry.ucloudstack.com&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo systemctl daemon-reload</div><div class="line">sudo systemctl restart docker</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意： 这是在linux上的配置，如果在mac上需要在图形化界面上insecure-registry里加上ip而不是域名</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/29/utility/rpm查询/" itemprop="url">
+                  rpm
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-29T16:23:12+08:00" content="2017-11-29">
+              2017-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">查询已安装软件的信息：</div><div class="line">-q  ：仅查询，后面接的软件名称是否有安装；</div><div class="line">-qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称；</div><div class="line">-qi ：列出该软件的详细信息 （information），包含开发商、版本与说明等；</div><div class="line">-ql ：列出该软件所有的文件与目录所在完整文件名 （list）；</div><div class="line">-qc ：列出该软件的所有配置文件 （找出在 /etc/ 下面的文件名而已）</div><div class="line">-qd ：列出该软件的所有说明文档 （找出与 man 有关的文件而已）</div><div class="line">-qR ：列出与该软件有关的相依软件所含的文件 （Required 的意思）</div><div class="line">-qf ：由后面接的文件名称，找出该文件属于哪一个已安装的软件；</div><div class="line">-q --scripts：列出是否含有安装后需要执行的脚本档，可用以 debug 喔！</div><div class="line">查询某个 RPM 文件内含有的信息：</div><div class="line">-qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在于找出</div><div class="line">        某个 RPM 文件内的信息，而非已安装的软件信息！注意！</div></pre></td></tr></table></figure>
+<ol>
+<li>查询主要分为两部分， 一个是查已安装到系统上面的的软件信息，这部份的信息都是由 /var/lib/rpm/ 所提供 ，使用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q</div></pre></td></tr></table></figure>
+<p>另一个则是查某个 rpm 文件内容，使用rpm -qp， 至于选项还是follow上面的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/23/k8s/k8s deployments 和 statefulset 区别/" itemprop="url">
                   deployments 和 statefulset 区别
                 </a>
@@ -340,1169 +1413,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/21/utility/使用sysbench测试mysq性能/" itemprop="url">
-                  使用sysbench测试mysq性能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-21T18:06:55+08:00" content="2017-11-21">
-              2017-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
-<li>centos 6.5</li>
-<li>sysbench 0.5</li>
-<li>mysql 5.1</li>
-</ol>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>一. sysbench</p>
-<ol>
-<li><p>github 地址    <a href="https://github.com/akopytov/sysbench" target="_blank" rel="external">https://github.com/akopytov/sysbench</a></p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/akopytov/sysbench.git</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 0.5</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install make automake libtool pkgconfig libaio-devel vim-common mysql-devel</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>二.  mysql</p>
-<ol>
-<li><p>yum install mysql mysql-server -y</p>
-</li>
-<li><p>service mysqld start</p>
-</li>
-</ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试:"></a>测试:</h3><h3 id="https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6"><a href="#https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6" class="headerlink" title="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6"></a><a href="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6" target="_blank" rel="external">https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6</a></h3><ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">##Create Database </div><div class="line">mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">##Create User</div><div class="line">mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line"></div><div class="line">##Grant Access </div><div class="line">mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>prepare</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn prepare</div></pre></td></tr></table></figure>
-</li>
-<li><p>read-only oltp test</p>
-<p>在client对两台mysql进行测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.244 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-</li>
-<li><p>mixed read and write oltp test</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/20/utility/Centos安装mysql 5.6/" itemprop="url">
-                  Centos安装mysql 5.6（转载）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-20T14:01:42+08:00" content="2017-11-20">
-              2017-11-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-检查"><a href="#1-检查" class="headerlink" title="1. 检查"></a>1. 检查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum list installed | grep mysql</div><div class="line">[root@snails ~]# ps -ef|grep mysql</div><div class="line">[root@snails ~]# service mysqld stop </div><div class="line">[root@snails ~]# rpm -e mysql-libs --nodeps</div><div class="line">[root@snails ~]# yum -y remove mysql mysql-*</div></pre></td></tr></table></figure>
-<h3 id="2-设置安装源"><a href="#2-设置安装源" class="headerlink" title="2. 设置安装源"></a>2. 设置安装源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# wget http://repo.mysql.com/mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# rpm -ivh mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# ls -1 /etc/yum.repos.d/mysql-community*</div><div class="line">[root@snails ~]# yum repolist all | grep mysql</div><div class="line">[root@snails ~]# vi /etc/yum.repos.d/mysql-community.repo</div><div class="line">### 将[mysql56-community]的enabled设置为１,[mysql57-community]的enabled设置为0 ### </div><div class="line">[root@snails ~]# yum repolist enabled | grep mysql</div><div class="line">mysql-connectors-community MySQL Connectors Community                         21</div><div class="line">mysql-tools-community      MySQL Tools Community                              37</div><div class="line">mysql56-community          MySQL 5.6 Community Server                        265</div></pre></td></tr></table></figure>
-<h3 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3. 安装mysql"></a>3. 安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum -y install mysql-server mysql</div></pre></td></tr></table></figure>
-<h3 id="4-修改默认配置"><a href="#4-修改默认配置" class="headerlink" title="4. 修改默认配置"></a>4. 修改默认配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mkdir /data/mysql</div><div class="line">[root@snails ~]# vi /etc/my.cnf</div><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/tmp/mysql.sock</div><div class="line">symbolic-links=0</div><div class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[client] </div><div class="line">socket=/tmp/mysql.sock</div></pre></td></tr></table></figure>
-<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# service mysqld start</div></pre></td></tr></table></figure>
-<h3 id="6-修改root密码"><a href="#6-修改root密码" class="headerlink" title="6. 修改root密码"></a>6. 修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mysql -u root</div><div class="line">mysql&gt; use mysql;</div><div class="line">mysql&gt; update user set password=PASSWORD(&quot;GIVE-NEW-ROOT-PASSWORD&quot;) where User=&apos;root&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; quit</div></pre></td></tr></table></figure>
-<h3 id="7-配置文件"><a href="#7-配置文件" class="headerlink" title="7. 配置文件"></a>7. 配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">[client]  </div><div class="line"> port=3306 </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line">  　　</div><div class="line"> [mysql] </div><div class="line"> default-character-set=utf8 </div><div class="line">  　　</div><div class="line"> [mysqld] </div><div class="line"> user=mysql </div><div class="line"> character-set-server=utf8 </div><div class="line"> explicit_defaults_for_timestamp=true </div><div class="line"></div><div class="line"> #索引和数据缓冲区大小，一般设置物理内存的60%-70%   　　</div><div class="line"> innodb_buffer_pool_size = 1G </div><div class="line"> #缓冲池实例个数，推荐设置4个或8个 </div><div class="line"> innodb_buffer_pool_instances = 4 </div><div class="line"> #关键参数，0代表大约每秒写入到日志并同步到磁盘，数据库故障会丢失1秒左右事务数据。1为每执行一条SQL后写入到日志并同步到磁盘，I/                                                             O开销大，执行完SQL要等待日志读写，效率低。2代表只把日志写入到系统缓存区，再每秒同步到磁盘，效率很高，如果服务器故障，才会丢失事务数据。对数据安全性要求不是很高的推荐设置2，性能高，修改后效果明显。</div><div class="line"> innodb_flush_log_at_trx_commit = 2   </div><div class="line"> #默认是共享表空间，共享表空间idbdata文件不断增大，影响一定的I/O性能。推荐开启独立表空间模式，每个表的索引和数据都存在自己独立的表空间中，可以实现单表在不同数据库中移动。 </div><div class="line"> innodb_file_per_table = ON </div><div class="line"> #日志缓冲区大小，由于日志最长每秒钟刷新一次，所以一般不用超过16M </div><div class="line"> innodb_log_buffer_size = 8M    </div><div class="line"></div><div class="line"> datadir=/data/mysql </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line"></div><div class="line"> # 禁止MySQL对外部 连接进行DNS解析</div><div class="line"> skip-name-resolve    </div><div class="line"> # Disabling symbolic-links is recommended to prevent assorted security risks </div><div class="line"> symbolic-links=0 </div><div class="line"></div><div class="line"> # Recommended in standard MySQL setup </div><div class="line"> sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  </div><div class="line"></div><div class="line"> [mysqld_safe] </div><div class="line"> log-error=/var/log/mysqld.log </div><div class="line"> pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure>
-<p>作者：技术学习<br>链接：<a href="http://www.jianshu.com/p/5a2e4e0b6eda" target="_blank" rel="external">http://www.jianshu.com/p/5a2e4e0b6eda</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/14/utility/git的进一步理解/" itemprop="url">
-                  git的进一步理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-14T10:30:29+08:00" content="2017-11-14">
-              2017-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>git add： 这个命令目标文件的状态不同会用不同作用 1）已经跟踪的文件: 把目标文件加到暂存区 2）没有跟踪过的文件: 标记为需要跟踪并加到暂存区   3）合并时有冲突： 标记为已解决</p>
-</li>
-<li><p>.gitignore:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 忽略所有 .a 结尾的文件</div><div class="line">*.a</div><div class="line"># 但 lib.a 除外</div><div class="line">!lib.a</div><div class="line"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</div><div class="line">/TODO</div><div class="line"># 忽略 build/ 目录下的所有文件</div><div class="line">build/</div><div class="line"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</div><div class="line">doc/*.txt</div><div class="line"># ignore all .txt files in the doc/ directory</div><div class="line">doc/**/*.txt</div></pre></td></tr></table></figure>
-<p>比如写node_modules/只会忽略当前node_modules下的所有文件，但不会忽略子目录下的node_modules，所以如果对于有多个子项目，最好在每个子项目下分别写gitignore</p>
-</li>
-<li><p>git diff 比较的是什么？  是工作目录中当前文件和暂存区域快照之间的区别</p>
-</li>
-<li><p>git diff - - staged或git diff - - cached 比较的是什么？已经暂存起来的文件和上次提交时的快照之间的区别</p>
-</li>
-<li><p>git rm：  git rm 跟git add是同级别的命令，意味这个git rm之后也可以直接git commit，它的作用与 git add正好相反，它是从暂存区移除掉某个文件，不加入到版本管理</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/14/utility/zsh在大目录下操作很卡/" itemprop="url">
-                  zsh在大目录下操作很卡
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-14T10:18:31+08:00" content="2017-11-14">
-              2017-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>zsh在大目录下操作bash命令如ls会有一个很明显的延迟感，然而其他目录却没有这个问题，后来查到这原来是一个git目录，每次进入目录都会调用git status检查状态，解决方案是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 1</div></pre></td></tr></table></figure>
-<p>这样的话任何git信息都没有了，包括分支以及是否修改信息都没了，如果想要撤销，改成0就可以了，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 0</div></pre></td></tr></table></figure>
-<p>当然可以保留分支信息, 这样会更直观一点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-dirty 1</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/13/utility/ssh连接不断开/" itemprop="url">
-                  ssh连接不断开
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-13T15:32:24+08:00" content="2017-11-13">
-              2017-11-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，<a href="http://bluebiu.com/blog/linux-ssh-session-alive.html" target="_blank" rel="external">http://bluebiu.com/blog/linux-ssh-session-alive.html</a>   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host *</div><div class="line">    ServerAliveInterval 60</div><div class="line">    ServerAliveCountMax 3</div></pre></td></tr></table></figure>
-</li>
-<li><p>更好的方案： tmux</p>
-<p>1）如果用的是zsh，需要记得修改下/usr/local/etc/tmux.conf这个文件，改下默认的shell</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g default-shell /bin/zsh</div></pre></td></tr></table></figure>
-<p>2)   ssh一次再复用的真正含义是“<strong>*在本机上ssh到远程服务器，并且在远程服务器上安装好了tmux，这个时候执行tmux才是打开多个终端*</strong>”。简言之：</p>
-<p>　　　a. tmux必须在远程服务器端装好</p>
-<p>　　　b. 本地只需要ssh到远程服务器一次，ssh的复用是tmux在服务器端的后台完成的</p>
-<p>3)   这个博客不错<a href="http://www.cnblogs.com/xbf9xbf/p/4876969.html" target="_blank" rel="external">http://www.cnblogs.com/xbf9xbf/p/4876969.html</a></p>
-<p>4)   在远程服务器上tmux然后vim会发现颜色丢失，正确的做法是在.vimrc加入下面的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if exists(&apos;$TMUX&apos;)</div><div class="line">  set term=screen-256color</div><div class="line">endif</div></pre></td></tr></table></figure>
-<p>5） cmd+k清屏不好用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Preferences -&gt; Keys -&gt; + (add new global shortcut)</div><div class="line"></div><div class="line">Keyboard shortcut: ⌘+k</div><div class="line">Action: Send text</div><div class="line">value:</div><div class="line">clear\n</div></pre></td></tr></table></figure>
-<p>6) 使用: <a href="https://www.youtube.com/watch?v=BHhA_ZKjyxo" target="_blank" rel="external">https://www.youtube.com/watch?v=BHhA_ZKjyxo</a>   使用这个链接</p>
-<p>tmux ls (or tmux list-sessions)<br>tmux new -s session-name<br>Ctrl-b d Detach from session<br>tmux attach -t [session name]<br>tmux kill-session -t session-name</p>
-<p>Ctrl-b c Create new window<br>Ctrl-b d Detach current client<br>Ctrl-b l Move to previously selected window<br>Ctrl-b n Move to the next window<br>Ctrl-b p Move to the previous window<br>Ctrl-b &amp; Kill the current window<br>Ctrl-b , Rename the current window<br>Ctrl-b q Show pane numbers (used to switch between panes)<br>Ctrl-b o Switch to the next pane<br>Ctrl-b ? List all keybindings</p>
-<h5 id="moving-between-windows"><a href="#moving-between-windows" class="headerlink" title="moving between windows"></a>moving between windows</h5><p>Ctrl-b n (Move to the next window)<br>Ctrl-b p (Move to the previous window)<br>Ctrl-b l (Move to the previously selected window)<br>Ctrl-b w (List all windows / window numbers)<br>Ctrl-b window number (Move to the specified window number, the<br>default bindings are from 0 – 9)</p>
-<h6 id="Tiling-commands"><a href="#Tiling-commands" class="headerlink" title="Tiling commands"></a>Tiling commands</h6><p>Ctrl-b % (Split the window vertically)<br>CTRL-b “ (Split window horizontally)<br>Ctrl-b o (Goto next pane)<br>Ctrl-b q (Show pane numbers, when the numbers show up type the key to go to that pane)<br>Ctrl-b { (Move the current pane left)<br>Ctrl-b } (Move the current pane right)</p>
-<h5 id="Make-a-pane-its-own-window"><a href="#Make-a-pane-its-own-window" class="headerlink" title="Make a pane its own window"></a>Make a pane its own window</h5><p>Ctrl-b : “break-pane”</p>
-<h5 id="add-to-tmux-conf"><a href="#add-to-tmux-conf" class="headerlink" title="add to ~/.tmux.conf"></a>add to ~/.tmux.conf</h5><p>bind | split-window -h<br>bind - split-window -v</p>
-<p>6) 默认更改窗口的快捷键不好用，要使用命令： rename-window <window-name></window-name></p>
-<p>同时，默认窗口名会随着路径改变，在.tmux.conf里加入下面这一行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g allow-rename off</div></pre></td></tr></table></figure>
-<p>7) 滚轮与鼠标：这样就可以时候用鼠标来调整pane的大小，并且也可以滚动了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setw -g mode-mouse on</div><div class="line">set -g mouse-select-pane on</div><div class="line">set -g mouse-resize-pane on</div><div class="line">set -g mouse-select-window on</div></pre></td></tr></table></figure>
-<p>8) 复制：</p>
-<ol>
-<li><p>需要iterm2的选中即复制： 按住alt</p>
-</li>
-<li><p>如果在一个pane里复制多行会跨域pane，这时候得用vim的模式复制 </p>
-<p>ctrl + w  ESC   v,   y ,   ctrl + w   p</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/08/utility/chrome failed to load response data/" itemprop="url">
-                  chrome failed to load response data
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-08T15:03:13+08:00" content="2017-11-08">
-              2017-11-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>chrome的xhr请求在response里出现failed to load response</p>
-<p>原因: 选中了preserve log，然后之前的那个页面跳转了，所以出现这个问题</p>
-<p>解决方案：在快要跳转的时候在浏览器里的刷新按钮把跳转终止掉</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/07/utility/centos 7终端科学上网/" itemprop="url">
-                  centos 7终端科学上网
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-07T11:24:12+08:00" content="2017-11-07">
-              2017-11-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/科学上网/" itemprop="url" rel="index">
-                    <span itemprop="name">科学上网</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在开发机上安装go的一些二进制工具</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li><p>yum install -y python-pip</p>
-</li>
-<li><p>pip install shadowsock</p>
-</li>
-<li><p>编辑ss client的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;x.x.x.x&quot;,             #你的 ss 服务器 ip</div><div class="line">  &quot;server_port&quot;:0,                #你的 ss 服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;127.0.0.1&quot;,   #本地ip</div><div class="line">  &quot;local_port&quot;:0,                 #本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,          #连接 ss 密码</div><div class="line">  &quot;timeout&quot;:300,                  #等待超时</div><div class="line">  &quot;method&quot;:&quot;aes-256-cfb&quot;,         #加密方式</div><div class="line">  &quot;workers&quot;: 1                    #工作线程数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>vim /etc/systemd/system/shadowsocks.json, 写入如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks Server</div><div class="line">After=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart=/bin/ssserver -c /etc/shadowsocks.son</div><div class="line">Restart=on-abort</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable shadowsocks.service</p>
-<p>systemctl start shadowsocks.service</p>
-</li>
-<li><p>yum install -y privoxy</p>
-</li>
-<li><p>修改/etc/privoxy/config的配置，只需要修改下面这一项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forward-socks5t / 127.0.0.1:1080 .</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable privoxy</p>
-<p>systemctl start provoxy</p>
-</li>
-<li><p>终端设置代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:8118</div><div class="line">export https_proxy=https://127.0.0.1:8118</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/05/utility/xargs和管道操作符的区别/" itemprop="url">
-                  xargs和管道操作符的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-05T18:04:29+08:00" content="2017-11-05">
-              2017-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>管道： 将前面的标准输出作为后面的标准输入</p>
-<p>xargs： “将标准输入作为命令的参数“</p>
-<p>​</p>
-<p>因为很多命令不会去读标准输入的参数，（他们只读命令行里面的内容，比如sed）,因此需要通过xargs来将这些管道过来的标准输入转化为命令的参数</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/03/utility/vim升级/" itemprop="url">
-                  升级vim8.0
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-03T12:09:20+08:00" content="2017-11-03">
-              2017-11-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>为了go的开发使用了vim-go这个插件，无奈这个插件需要高版本vim，因此升级安装了下vim</p>
-<h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ol>
-<li>git clone <a href="https://github.com/vim/vim.git" target="_blank" rel="external">https://github.com/vim/vim.git</a></li>
-<li>./configure</li>
-<li>make </li>
-<li>make install</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1543,7 +1458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-count">237</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1551,7 +1466,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1560,7 +1475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1597,7 +1512,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
