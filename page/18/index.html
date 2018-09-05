@@ -243,6 +243,504 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/06/utility/nginx root和alias的区别/" itemprop="url">
+                  nginx location中root和alias的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-06T14:49:27+08:00" content="2017-02-06">
+              2017-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#alias" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_core_module.html#alias</a></p>
+<p>root命令会把location字段后面的路径拼接进整体的url，而alias命令不会，只会使用alias后面的路径</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/06/utility/使用swagger遇到的问题/" itemprop="url">
+                  使用swagger遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-06T14:46:53+08:00" content="2017-02-06">
+              2017-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>遇到jquery报错 net::ERR_INSECURE_RESPONSE，这个问题是因为请求用的是https，而服务端只是起了http</p>
+</li>
+<li><p>XMLHttpRequest cannot load <a href="http://localhost/v1/products?latitude=30&amp;longitude=120" target="_blank" rel="external">http://localhost/v1/products?latitude=30&amp;longitude=120</a>. No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘<a href="http://localhost:8000" target="_blank" rel="external">http://localhost:8000</a>‘ is therefore not allowed access.</p>
+<p>我的配置是swagger是部署在nginx的localhost：8000， 而api服务端是通过node起在localhost的80端口，这里面要注意的是同源指的是协议类型，域名以及端口都得一样，有一个不一样即为跨域，所以解决方法是通过nginx代理api服务到node上，修改后的nginx配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">       listen       80;</div><div class="line">       server_name  localhost;</div><div class="line">       root /Users/Jeremy/Github/swagger-editor;</div><div class="line">       location = / &#123;</div><div class="line">           index /index.html;</div><div class="line">       &#125;</div><div class="line">       location /api &#123;</div><div class="line">           proxy_pass http://localhost:8080;</div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/05/html&css/html&css/" itemprop="url">
+                  css
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-05T13:02:27+08:00" content="2017-02-05">
+              2017-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/html-css/" itemprop="url" rel="index">
+                    <span itemprop="name">html/css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>css也可以注释，使用/<em>    </em>/</p>
+</li>
+<li><p>color代表前景色，background-color代表背景色</p>
+</li>
+<li><p>css中对同一个选择器的多个声明，最后一个生效，这个特点可以用来作浏览器兼容，比如在color上，第一行写一个所有浏览器都兼容的color表示法，下面一行写一个较新的表示法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  color: rgb(22, 34, 88);</div><div class="line">  color: rgba(22, 34, 88, 0.4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个html元素可以加上多个css类，但最好限制在4个最多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 class=&quot;book domestic&quot;&gt;The Way of the Deep&lt;/h1&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>盒模型的width和height</p>
+<p> 1) 用像素表示： 表示盒子的精确大小</p>
+<p>2）ems: 相对于盒子里面文字的倍数</p>
+<p>3）百分数：相对于父盒子的比例</p>
+</li>
+<li><p>当margin:auto被用来做居中时，必须同时加上width这个属性用来标明该元素的宽度，否则这个div的宽度就被设置成它父元素的宽度了，也就没有居中的说法了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#banner-content &#123;</div><div class="line">  border: 1px solid rgb(255,0,0);</div><div class="line">  position: relative;</div><div class="line">  top: 20%;</div><div class="line">  width: 60%;</div><div class="line">  padding:30px 10px;</div><div class="line">  margin:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>display属性有如下几个： inline,block,incline-block,none</p>
+</li>
+<li><p>默认盒模型有一个缺点，就是padding和border会增加width，因此无法计算每个元素的实际大小</p>
+</li>
+<li><p>盒模型使用box-sizing这个属性指定的，默认值为content-box，这个模型的width并不是实际渲染的大小，实际元素为加上boder的宽度以及pading，为了解决这个问题可以把box-sizing改为border-box，在这个模型下，width就是实际渲染出来的大小，padding和border会被相应地减掉</p>
+</li>
+<li><p>position用来指定元素的位置，有如下四个取值</p>
+<p>1）static： 默认值</p>
+<p>2）relative：这个将元素设定为相对，因此还需要指定top,left,bottom和right属性，表示相对于四周的像素值</p>
+<p>3）absolute: 这个元素表示该元素就被固定在那边，其他元素会将他视而不见</p>
+<p>4)   fixed: 会固定住这个元素，即使在有滚动条的情况下</p>
+</li>
+<li><p>当一个元素是float时，在同一个父元素下的其他元素会靠着它流动起来，同时float的元素必须指定宽度</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/23/utility/moment计算时间差/" itemprop="url">
+                  moment计算时间差
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-23T17:18:27+08:00" content="2017-01-23">
+              2017-01-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utilities/" itemprop="url" rel="index">
+                    <span itemprop="name">utilities</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有个简单需求计算现在到将来某个固定时间的时间差，搜了下有moment.js这个很强大的库，但在使用的时候需要注意，当用数组形式构建日期是，月份数为所写数加1，原因在于moment也是从0开始计月份数的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/22/react/React Native和ss的全局模式冲突/" itemprop="url">
                   React Native和ss的全局模式冲突
                 </a>
@@ -969,504 +1467,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/04/c++/c++ const/" itemprop="url">
-                  c++ const
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-04T10:56:22+08:00" content="2017-01-04">
-              2017-01-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>默认状态下，const对象仅在文件内有效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const int bufSize = 512;</div></pre></td></tr></table></figure>
-<p>编译器在编译过程会找到所有用到bufSize的地方替换成相应的值。如果程序包含多个文件，则每个用了const对象的文件都必须能访问到它的初始值，所以在每一个用到变量的文件中都要有对它的定义。为了支持这个用法，默认情况下const对象被设定为仅在文件内有效，<strong>当多个文件中出现了同名const变量，其实等同于在不同文件中分别定义了独立的变量</strong></p>
-</li>
-<li><p>如果想在多个文件之间共享const对象，必须在变量的定义之前添加<strong>extern</strong>关键字</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/c++/c++引用类型和指针/" itemprop="url">
-                  c++引用类型和指针
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T22:10:19+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>c++中引用类型，引用类型就是一个对象的别名，通过&amp;来声明，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 1024;</div><div class="line">int &amp;refVal = ival;</div></pre></td></tr></table></figure>
-<p>定义了引用之后，所有与之相关的操作都是在与之绑定的对象上进行的，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">refVal = 2;  //把2赋值给了ival</div><div class="line">int ii = refVal;  把ival赋值给ii</div></pre></td></tr></table></figure>
-<p>引用必须初始化，一旦初始化完成，引用将和它的初始值对象一直绑定在一起</p>
-</li>
-<li><p>指针本身就是个对象，允许对指针赋值和拷贝，而且在指针的生命周期内它可以先后指向几个不同的对象；</p>
-<p>指针无须在定义时赋初值；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *ip1, *ip2;</div></pre></td></tr></table></figure>
-<p>可以用取地址符&amp;来获取对象地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div></pre></td></tr></table></figure>
-<p>通过解引用符*来获取指针所指的对象；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int ival = 42;</div><div class="line">int *p = &amp;ival;</div><div class="line">cout &lt;&lt; *p;</div></pre></td></tr></table></figure>
-</li>
-<li><p>指向指针的引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int i = 42;</div><div class="line">int *p;</div><div class="line">int *&amp;r = p;  //r是一个对指针p的引用</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/c++/c++输入输出/" itemprop="url">
-                  c++输入输出
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T13:43:32+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>c++不像c语言那样提供输入输出语句，而是使用标准库来提供IO机制，有两个运算符</p>
-<ol>
-<li><p>“&lt;&lt;” 输出运算符，左侧必须是一个osteam对象，右侧是要打印的对象，返回的结果是左侧的对象，在输出介绍时需要加上std::endl 来将缓冲区的内容刷新到设备中去</p>
-</li>
-<li><p>“&gt;&gt;” 输入运算符，左侧必须是一个isteam对象，右侧是一个变量存储对象，返回的结果是左侧的对象</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/math/一元高阶方程求数值解/" itemprop="url">
-                  一元高阶方程求数值解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T11:55:27+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/math/" itemprop="url" rel="index">
-                    <span itemprop="name">math</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天同事给我一个求增长率的问题，比如年底时候月消费额是a，老板定了个指标一季度的消费额要到b，求每月的增长率是多少，抽象成数学问题就是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a*(1+x) + a*(1+x)*(1+x) + a*(1+x)*(1+x)*(1+x) = b</div></pre></td></tr></table></figure>
-<p>搜了很多，解决方案是通过python的sympy库</p>
-<p>from sympy.solvers import solve</p>
-<p>from sympy import Symbol</p>
-<p>x = Symbol(‘x’)</p>
-<p>solve(x<strong> 3+x</strong> 2+ x -4.054, x)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1507,7 +1512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">237</span>
+              <span class="site-state-item-count">241</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1515,7 +1520,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1524,7 +1529,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

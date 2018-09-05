@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了  循环只有for: 本来for就够了，一个for能遍历数组，map, string  if中可以写语句 1234if err := file.Chmod(0664); err != nil &amp;#123;    log.Print(err)    return err&amp;#125; ​">
+<meta name="description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了 defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷 一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string 变量短声明：类">
 <meta name="keywords" content="go">
 <meta property="og:type" content="article">
 <meta property="og:title" content="why I love go">
 <meta property="og:url" content="http://yoursite.com/2017/12/28/go/why I love go/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了  循环只有for: 本来for就够了，一个for能遍历数组，map, string  if中可以写语句 1234if err := file.Chmod(0664); err != nil &amp;#123;    log.Print(err)    return err&amp;#125; ​">
-<meta property="og:updated_time" content="2017-12-28T14:21:56.920Z">
+<meta property="og:description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了 defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷 一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string 变量短声明：类">
+<meta property="og:updated_time" content="2018-09-05T07:43:38.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="why I love go">
-<meta name="twitter:description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了  循环只有for: 本来for就够了，一个for能遍历数组，map, string  if中可以写语句 1234if err := file.Chmod(0664); err != nil &amp;#123;    log.Print(err)    return err&amp;#125; ​">
+<meta name="twitter:description" content="gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了 defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷 一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string 变量短声明：类">
 
 
 
@@ -302,14 +302,12 @@
 
       
         <ol>
-<li><p>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了</p>
-</li>
-<li><p>循环只有for: 本来for就够了，一个for能遍历数组，map, string</p>
-</li>
-<li><p>if中可以写语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if err := file.Chmod(0664); err != nil &#123;</div><div class="line">    log.Print(err)</div><div class="line">    return err</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
+<li>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了</li>
+<li>defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷</li>
+<li>一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string</li>
+<li>变量短声明：类似于c++的auto，让这门静态语言有了类似动态语言的变量定义语法</li>
+<li>goroutine：一开始对于goroutine的channel玩法不是很理解，什么buffer的，unbuffered channel会感到很陌生，但是当使用多了之后发现并发编程在go里真的很简单</li>
+<li>匿名函数与闭包：对于函数式编程能做到一部分支持</li>
 </ol>
 
       
@@ -419,7 +417,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">237</span>
+              <span class="site-state-item-count">241</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -427,7 +425,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -436,7 +434,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

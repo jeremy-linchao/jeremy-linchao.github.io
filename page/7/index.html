@@ -243,6 +243,482 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/11/react/react受控组件/" itemprop="url">
+                  react受控组件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T11:45:39+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"><a href="#react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。-什么是受控组件呢？-对于像input-select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理-比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了" class="headerlink" title="react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了"></a>react中有一个概念会被经常提到，在官方文档也常会看到，就是受控组件。 什么是受控组件呢？ 对于像input, select这种html元素，原本他们是自己来维护自己的值与状态的，也就是说你在一个输入框里面输入，输入框也能展示输入的值，结合了react之后，这些输入的值就可以用react的state来管理, 比如下面这段代码，input的value是通过state来管理，同时加了一个onChange事件监听函数，这样这个input标签就被state控制了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子受控组件是html的基本element，实际中碰到更多的是一个组件控制另外一个组件的值，也就是父组件控制子组件，这时候子组件不需要自己存一个state了，它的值是由props传进来的，这个很好理解，但子组件的值变了之后怎么通知父组件呢，这就需要父组件还要相应的传一个回调函数</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/04/utility/vscode小技巧/" itemprop="url">
+                  vscode小技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-04T10:59:56+08:00" content="2017-07-04">
+              2017-07-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index">
+                    <span itemprop="name">vscode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>用键盘来查看鼠标悬停时的报错信息： 先 cmd + k 然后 cmd + i</p>
+</li>
+<li><p>保存时自动格式化， 先 cmd + ，搜索format，找到editor.formatOnSave， 把这个改为true并复制黏贴到自己的配置上去</p>
+</li>
+<li><p>f12是跳转到定义，但是mac默认把f12作为功能键，</p>
+<p>首先</p>
+<ol>
+<li>从苹果菜单中，选取“系统偏好设置”。</li>
+<li>点按“键盘”。</li>
+<li>如果未处于高亮显示状态，请点按“键盘”标签。</li>
+<li>选择“将 F1、F2 等键用作标准功能键”</li>
+</ol>
+</li>
+</ol>
+<p>​        但是这还不够，mac默认将f12改为显示dashboard的功能键，所以在键盘的快捷键设置中可以勾选掉mission control前的control</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/redux/记录一个redux问题/" itemprop="url">
+                  记录一个redux问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T16:43:13+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在写一个component的时报了换一个某某某 is not a function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123; display: &apos;flex&apos;, flex: &apos;0 1 70%&apos; &#125;&#125;&gt;</div><div class="line">                &lt;RaisedButton label=&quot;北京&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onClick=&#123;(event: object) =&gt; &#123;</div><div class="line">                  console.log(&apos;bj&apos;);</div><div class="line">                  selectRegion(&apos;cn-bj2&apos;, &apos;cn-bj2-02&apos;);</div><div class="line">                &#125;&#125; backgroundColor=&#123; selectedRegion === &apos;cn-bj2&apos; ? &apos;grey&apos;: &apos;white&apos;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;上海&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-sh2&apos;, &apos;cn-sh2-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;广州&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-gd&apos;, &apos;cn-gd-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>我检查了下这个props是在render函数时定义的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
+<p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
+<p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/react/react-router学习/" itemprop="url">
+                  react-router
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T10:51:16+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####1. route parameter的作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=/(:message) component=&#123;Home&#125; &gt;</div><div class="line">&lt;/Route&gt;</div><div class="line"></div><div class="line">这里的message是url里面/后面的路径，这个路径会作为props传到Home这个组件里去，Home组件的用法如下</div></pre></td></tr></table></figure></p>
+<p>const Home = (props) =&gt; {<br>  <div>{props.param.message}</div><br>}</p>
+<p>可以看到这里Home组件是可以通过props.param.message这个参数来读到<br>这个有什么作用呢，如果Home下面的组件结构都一致，只需要通过一个参数来改变形态，那就可以使用这种做法，一般用于消息列表等等</p>
+<p>####2. query parameter的用法<br>即在url中？组成的query string是可以被componet读到的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/23/utility/xargs/" itemprop="url">
                   find与xargs联动
                 </a>
@@ -944,471 +1420,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/20/git/git初始化项目操作/" itemprop="url">
-                  git初始化项目操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-20T09:44:35+08:00" content="2017-06-20">
-              2017-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>创建项目目录</li>
-<li>github上创建repo</li>
-<li>git init</li>
-<li>git remote add origin (github repo地址)</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/14/css/css占据整个页面/" itemprop="url">
-                  css占据整个页面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-14T18:37:19+08:00" content="2017-06-14">
-              2017-06-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.nav &#123;</div><div class="line">  height: calc(100vh - 64px)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在左侧导航条的div设置这个css，可以保证顶部不变</p>
-<p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
-<p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
-<ul>
-<li><strong>vw</strong>——代表视窗(Viewport)的宽度为<code>1%</code>，在我们的例子里<code>50vw = 500px</code>。</li>
-<li><strong>vh</strong>——窗口高度的百分比 <code>50vh = 400px</code>。</li>
-<li><strong>vmin</strong>——vmin的值是当前<code>vw</code>和<code>vh</code>中较小的值。在我们的例子里因为是横向模式，所以<code>50vim = 400px</code>。</li>
-<li><strong>vmax</strong>——大尺寸的百分比。<code>50vmax = 500px</code>。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/14/utility/elasticsearch学习/" itemprop="url">
-                  elasticsearch学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-14T17:16:10+08:00" content="2017-06-14">
-              2017-06-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utiltity/" itemprop="url" rel="index">
-                    <span itemprop="name">utiltity</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="ElasticSearch是什么？"><a href="#ElasticSearch是什么？" class="headerlink" title="ElasticSearch是什么？"></a>ElasticSearch是什么？</h4><p><em>Elasticsearch</em> 是一个实时的分布式搜索分析引擎</p>
-<h4 id="ElasticSearch能干什么？"><a href="#ElasticSearch能干什么？" class="headerlink" title="ElasticSearch能干什么？"></a>ElasticSearch能干什么？</h4><p>除了搜索之外，ES还提供了数据的存储，Elastcisearch 是分布式的 <em>文档</em> 存储。它能存储和检索复杂的数据结构–序列化成为JSON文档–以 <em>实时</em> 的方式。</p>
-<h4 id="什么是文档"><a href="#什么是文档" class="headerlink" title="什么是文档"></a>什么是文档</h4><p>最顶层或者根对象, 这个根对象被序列化成 JSON 并存储到 Elasticsearch 中，指定了唯一 ID</p>
-<h4 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h4><p>一个文档不仅仅包含它的数据 ，也包含 <em>元数据</em> —— <em>有关</em> 文档的信息。 三个必须的元数据元素如下：</p>
-<ul>
-<li><p><code>_index</code></p>
-<p>文档在哪存放</p>
-</li>
-<li><p><code>_type</code></p>
-<p>文档表示的对象类别</p>
-</li>
-<li><p><code>_id</code></p>
-<p>文档唯一标识</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/13/javascript/import的一个注意点/" itemprop="url">
-                  import的一个注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-13T17:41:41+08:00" content="2017-06-13">
-              2017-06-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行"><a href="#平常在用import-export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b-js导入a-js的一个函数，但在a-js中如果有执行的函数会发生什么呢？-答案是a-js的执行函数会被执行" class="headerlink" title="平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行"></a>平常在用import/export的时候一般只是导出导入，不会在那个文件中有一些执行的语句，但如果b.js导入a.js的一个函数，但在a.js中如果有执行的函数会发生什么呢？ 答案是a.js的执行函数会被执行</h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1449,7 +1465,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">237</span>
+              <span class="site-state-item-count">241</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1457,7 +1473,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1466,7 +1482,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

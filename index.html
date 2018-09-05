@@ -243,6 +243,493 @@
             
               
                 
+                <a class="post-title-link" href="/2018/09/04/go/ticker第一次跳过/" itemprop="url">
+                  ticker第一次跳过
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-09-04T10:35:02+08:00" content="2018-09-04">
+              2018-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/21/go/go基础/" itemprop="url">
+                  go基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-21T10:02:19+08:00" content="2018-06-21">
+              2018-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go不像别的语言有多个workspace（每个workspace单独git管理），而是只设一个workspace，这个workspace下会有src，pkg，bin三个目录，src下面会存放项目各自的repo，pkg存放的是包被编译后的文件，为的是可以节省编译时间，bin放的是可执行文件，项目下编译出来的二进制文件都会放到bin下</p>
+</li>
+<li><p>几个重要的go tool命令及解释:</p>
+<p>go build: 编译包及里面的相关依赖，但不会去安装到bin或pkg下</p>
+<p>go install:  go build 加上安装到bin或pkg</p>
+<p>go get: 下载包及相关依赖，然后安装这些包</p>
+<p>这里有一个问题： 如果go get安装了某个包依赖a，然后这个包a又依赖了b，go get能下载到b的源码吗？</p>
+</li>
+<li><p>channel</p>
+<p>首先要明白发和收的写法，&lt;-c，c如果是channel，这个是收，c&lt;- 0， 这个是发送，再然后就是对于buffered和unbuffered channel的区别</p>
+<p>如果是buffered，发送在接收之前； 如果是unbuffered，接收在发送之前</p>
+</li>
+</ol>
+<p>   A send on a buffered channel happens before the corresponding receive from that channel completes.   </p>
+<p>   The <em>k</em>th receive on a channel with capacity <em>C</em> happens before the <em>k</em>+<em>C</em>th send from that channel completes.</p>
+<p>   A receive from an unbuffered channel happens before the send on that channel completes.</p>
+<p>   ​</p>
+<p>   ​</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/07/k8s/kubectl/" itemprop="url">
+                  kubectl
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-07T08:47:19+08:00" content="2018-06-07">
+              2018-06-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/k8s-source-code/" itemprop="url" rel="index">
+                    <span itemprop="name">k8s source code</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>当你敲下了kubectl get pods 时，代码时怎么运行的？</li>
+</ol>
+<p>kubectl的入口是在cmd文件目录下的kubectl，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">import (</div><div class="line">	goflag &quot;flag&quot;</div><div class="line">	&quot;fmt&quot;</div><div class="line">	&quot;math/rand&quot;</div><div class="line">	&quot;os&quot;</div><div class="line">	&quot;time&quot;</div><div class="line"></div><div class="line">	&quot;github.com/spf13/pflag&quot;</div><div class="line"></div><div class="line">	utilflag &quot;k8s.io/apiserver/pkg/util/flag&quot;</div><div class="line">	&quot;k8s.io/kubernetes/pkg/kubectl/cmd&quot;</div><div class="line">	&quot;k8s.io/kubernetes/pkg/kubectl/util/logs&quot;</div><div class="line"></div><div class="line">	// Import to initialize client auth plugins.</div><div class="line">	_ &quot;k8s.io/client-go/plugin/pkg/client/auth&quot;</div><div class="line">)</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	rand.Seed(time.Now().UTC().UnixNano())</div><div class="line"></div><div class="line">	command := cmd.NewDefaultKubectlCommand()</div><div class="line"></div><div class="line">	// TODO: once we switch everything over to Cobra commands, we can go back to calling</div><div class="line">	// utilflag.InitFlags() (by removing its pflag.Parse() call). For now, we have to set the</div><div class="line">	// normalize func and add the go flag set by hand.</div><div class="line">	pflag.CommandLine.SetNormalizeFunc(utilflag.WordSepNormalizeFunc)</div><div class="line">	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)</div><div class="line">	// utilflag.InitFlags()</div><div class="line">	logs.InitLogs()</div><div class="line">	defer logs.FlushLogs()</div><div class="line"></div><div class="line">	if err := command.Execute(); err != nil &#123;</div><div class="line">		fmt.Fprintf(os.Stderr, &quot;%v\n&quot;, err)</div><div class="line">		os.Exit(1)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>k8s所有命令行都是用了Cobra这个框架，在开头就用了通过cmd.NewDefaultKubectlCommand初始化了command对象，真正的实现是在pkg下的cmd， 在这里有个NewKubectlCommand方法，进到这个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">groups := templates.CommandGroups&#123;</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Basic Commands (Beginner):&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				create.NewCmdCreate(f, ioStreams),</div><div class="line">				NewCmdExposeService(f, ioStreams),</div><div class="line">				NewCmdRun(f, ioStreams),</div><div class="line">				set.NewCmdSet(f, ioStreams),</div><div class="line">				deprecatedAlias(&quot;run-container&quot;, NewCmdRun(f, ioStreams)),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Basic Commands (Intermediate):&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdExplain(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				get.NewCmdGet(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdEdit(f, ioStreams),</div><div class="line">				NewCmdDelete(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Deploy Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				rollout.NewCmdRollout(f, ioStreams),</div><div class="line">				NewCmdRollingUpdate(f, ioStreams),</div><div class="line">				NewCmdScale(f, ioStreams),</div><div class="line">				NewCmdAutoscale(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Cluster Management Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdCertificate(f, ioStreams),</div><div class="line">				NewCmdClusterInfo(f, ioStreams),</div><div class="line">				NewCmdTop(f, ioStreams),</div><div class="line">				NewCmdCordon(f, ioStreams),</div><div class="line">				NewCmdUncordon(f, ioStreams),</div><div class="line">				NewCmdDrain(f, ioStreams),</div><div class="line">				NewCmdTaint(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Troubleshooting and Debugging Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdDescribe(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdLogs(f, ioStreams),</div><div class="line">				NewCmdAttach(f, ioStreams),</div><div class="line">				NewCmdExec(f, ioStreams),</div><div class="line">				NewCmdPortForward(f, ioStreams),</div><div class="line">				NewCmdProxy(f, ioStreams),</div><div class="line">				NewCmdCp(f, ioStreams),</div><div class="line">				auth.NewCmdAuth(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Advanced Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdApply(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdPatch(f, ioStreams),</div><div class="line">				NewCmdReplace(f, ioStreams),</div><div class="line">				wait.NewCmdWait(f, ioStreams),</div><div class="line">				NewCmdConvert(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Settings Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdLabel(f, ioStreams),</div><div class="line">				NewCmdAnnotate(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdCompletion(ioStreams.Out, &quot;&quot;),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>可以看到这里调用了一个get.NewCmdGet(“kubectl”, f, ioStreams), 继续进到这个函数，它进一步调用的是cmdutil.CheckErr(o.Run(f, cmd, args))，那就看下Run函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">r := f.NewBuilder().</div><div class="line">		Unstructured().</div><div class="line">		NamespaceParam(o.Namespace).DefaultNamespace().AllNamespaces(o.AllNamespaces).</div><div class="line">		FilenameParam(o.ExplicitNamespace, &amp;o.FilenameOptions).</div><div class="line">		LabelSelectorParam(o.LabelSelector).</div><div class="line">		FieldSelectorParam(o.FieldSelector).</div><div class="line">		ExportParam(o.Export).</div><div class="line">		RequestChunksOf(o.ChunkSize).</div><div class="line">		IncludeUninitialized(o.IncludeUninitialized).</div><div class="line">		ResourceTypeOrNameArgs(true, args...).</div><div class="line">		ContinueOnError().</div><div class="line">		Latest().</div><div class="line">		Flatten().</div><div class="line">		TransformRequests(func(req *rest.Request) &#123;</div><div class="line">			if o.ServerPrint &amp;&amp; o.IsHumanReadablePrinter &amp;&amp; !o.Sort &#123;</div><div class="line">				group := metav1beta1.GroupName</div><div class="line">				version := metav1beta1.SchemeGroupVersion.Version</div><div class="line"></div><div class="line">				tableParam := fmt.Sprintf(&quot;application/json;as=Table;v=%s;g=%s, application/json&quot;, version, group)</div><div class="line">				req.SetHeader(&quot;Accept&quot;, tableParam)</div><div class="line">			&#125;</div><div class="line">		&#125;).</div><div class="line">		Do()</div></pre></td></tr></table></figure>
+<p>这段代码我先简单理解是做了request的构造并发了api的请求，这里用了一个vistor的模式？  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/05/28/react/title: webpack 编译加速/" itemprop="url">
+                  webpack 编译加速（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-28T20:58:19+08:00" content="2018-05-28">
+              2018-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前端项目的编译一直很慢，已经到了无法忍受的程度，感觉多编译一次就是浪费一点生命，所以下决心来解决这个问题。</p>
+<p>现有环境如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;webpack&quot;: &quot;3.0.0&quot;</div><div class="line">&quot;webpack-dev-server&quot;: &quot;2.5.0&quot;,</div><div class="line">&quot;awesome-typescript-loader&quot;: &quot;4.0.1&quot;,</div></pre></td></tr></table></figure>
+<p>第一个想到的就是升级下webpack，这个比较简单，follow下官网安装教程就行，要注意的是webpack4多了一个mode，在development和production的配置文件上要加一个mode</p>
+<p>但实际的结果仍然不如意，感觉ts的编译仍然很慢，所以想是不是atl的问题，网上也查看了说ts-loder现在编译速度比atl快，但我现在更关注的是增量更新，所以看下了atl的文档，文档一开头就有几个ADVICE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ADVICE: Turn on useCache option.</div><div class="line"></div><div class="line">ADVICE: Typically you want your files section to include only entry points.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you use isolatedModules or forceIsolatedModules options.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you will use reportFiles to restrict checking scope.</div><div class="line"></div><div class="line">ADVICE: Use the loader together with hard-source-webpack-plugin</div></pre></td></tr></table></figure>
+<p>这个option是写在tsconfig.json里的，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;awesomeTypescriptLoaderOptions&quot;: &#123;</div><div class="line">        &quot;useCache&quot;: true,</div><div class="line">        &quot;forceIsolatedModules&quot;: true,</div><div class="line">        &quot;reportFiles&quot;: [</div><div class="line">            &quot;src/**/*.&#123;ts,tsx&#125;&quot;</div><div class="line">        ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>加了这个后，增量更新编译就明显快多了，</p>
+<p>根据webpack官方的优化文档，<a href="https://webpack.js.org/guides/build-performance/" target="_blank" rel="external">https://webpack.js.org/guides/build-performance/</a> 还有一些操作我也试了，比如cache-loader, dll, 但实际感觉效果不是太明显。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/05/14/redux/redux感悟/" itemprop="url">
                   redux感悟
                 </a>
@@ -541,14 +1028,12 @@
         
           
             <ol>
-<li><p>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了</p>
-</li>
-<li><p>循环只有for: 本来for就够了，一个for能遍历数组，map, string</p>
-</li>
-<li><p>if中可以写语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if err := file.Chmod(0664); err != nil &#123;</div><div class="line">    log.Print(err)</div><div class="line">    return err</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
+<li>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了</li>
+<li>defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷</li>
+<li>一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string</li>
+<li>变量短声明：类似于c++的auto，让这门静态语言有了类似动态语言的变量定义语法</li>
+<li>goroutine：一开始对于goroutine的channel玩法不是很理解，什么buffer的，unbuffered channel会感到很陌生，但是当使用多了之后发现并发编程在go里真的很简单</li>
+<li>匿名函数与闭包：对于函数式编程能做到一部分支持</li>
 </ol>
 
           
@@ -953,471 +1438,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/04/utility/nginx跨域/" itemprop="url">
-                  nginx跨域
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-04T16:20:08+08:00" content="2017-12-04">
-              2017-12-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>反代配置proxy_set_header: 默认情况下ngnix不会转发原始请求中的Host头部，后端如果需要这个头部，就需要在反代的nginx上加上下面这个</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxy_set_header Host       $host</div></pre></td></tr></table></figure>
-<p>另外反代的nginx一般还会加上下面这条语句，来传递客户端真实ip</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proxy_set_header   X-Real-IP        $remote_addr;</div><div class="line">proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</div></pre></td></tr></table></figure>
-</li>
-<li><p>nginx 跨域设置，设置在server 下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add_header    &apos;Access-Control-Allow-Origin&apos; &quot;$http_origin&quot;;</div><div class="line">add_header    &apos;Access-Control-Allow-Credentials&apos; true;</div><div class="line">add_header    &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos;;</div><div class="line">add_header    &apos;Access-Control-Allow-Headers&apos; &apos;Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,*&apos;;</div></pre></td></tr></table></figure>
-<p>另外我在实际过程中遇到的问题是，跨域的设置和Cache-Contro的设置会冲突，比如，如果你设置了上面的跨域，然后在location下面设置如下， 跨域的设置会被覆盖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_header Cache-Control &quot;private&quot;;</div><div class="line">add_header Cache-Control &quot;no-cache&quot;;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/01/docker/docker login失败/" itemprop="url">
-                  docker login失败
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-01T14:30:21+08:00" content="2017-12-01">
-              2017-12-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>vim /etc/docker/daemon.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> &quot;insecure-registries&quot; : [&quot;registry.ucloudstack.com&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo systemctl daemon-reload</div><div class="line">sudo systemctl restart docker</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意： 这是在linux上的配置，如果在mac上需要在图形化界面上insecure-registry里加上ip而不是域名</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/29/utility/rpm查询/" itemprop="url">
-                  rpm
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-29T16:23:12+08:00" content="2017-11-29">
-              2017-11-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">查询已安装软件的信息：</div><div class="line">-q  ：仅查询，后面接的软件名称是否有安装；</div><div class="line">-qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称；</div><div class="line">-qi ：列出该软件的详细信息 （information），包含开发商、版本与说明等；</div><div class="line">-ql ：列出该软件所有的文件与目录所在完整文件名 （list）；</div><div class="line">-qc ：列出该软件的所有配置文件 （找出在 /etc/ 下面的文件名而已）</div><div class="line">-qd ：列出该软件的所有说明文档 （找出与 man 有关的文件而已）</div><div class="line">-qR ：列出与该软件有关的相依软件所含的文件 （Required 的意思）</div><div class="line">-qf ：由后面接的文件名称，找出该文件属于哪一个已安装的软件；</div><div class="line">-q --scripts：列出是否含有安装后需要执行的脚本档，可用以 debug 喔！</div><div class="line">查询某个 RPM 文件内含有的信息：</div><div class="line">-qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在于找出</div><div class="line">        某个 RPM 文件内的信息，而非已安装的软件信息！注意！</div></pre></td></tr></table></figure>
-<ol>
-<li>查询主要分为两部分， 一个是查已安装到系统上面的的软件信息，这部份的信息都是由 /var/lib/rpm/ 所提供 ，使用</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q</div></pre></td></tr></table></figure>
-<p>另一个则是查某个 rpm 文件内容，使用rpm -qp， 至于选项还是follow上面的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/23/k8s/k8s deployments 和 statefulset 区别/" itemprop="url">
-                  deployments 和 statefulset 区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-23T19:30:37+08:00" content="2017-11-23">
-              2017-11-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>deployment 和 statefulset 有什么区别呢？</p>
-<p>一个很显著的区别是deployment的pod名每次重启之后会变，而stateful不会变，另外statefuset的启动是有顺序的，下面这个文章对这个有所解释</p>
-<p><a href="https://blog.thecodeteam.com/2017/08/16/technical-dive-statefulsets-deployments-kubernetes/" target="_blank" rel="external">https://blog.thecodeteam.com/2017/08/16/technical-dive-statefulsets-deployments-kubernetes/</a></p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1458,7 +1483,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">237</span>
+              <span class="site-state-item-count">241</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1466,7 +1491,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1475,7 +1500,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
