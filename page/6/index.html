@@ -243,132 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
-                  typescript的字面量类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
-              2017-08-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescipt/" itemprop="url" rel="index">
-                    <span itemprop="name">typescipt</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
-<p>这时候如果你把foo赋值成“World”就会报错，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
-<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
-<p>先定义type 的枚举类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>接着定义acton类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>最后创建联合类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
-<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/08/04/design/Material UI TextField的类型问题/" itemprop="url">
                   Material UI TextField的类型问题
                 </a>
@@ -1421,6 +1295,124 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/26/redux/记录一个redux问题/" itemprop="url">
+                  记录一个redux问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-26T16:43:13+08:00" content="2017-06-26">
+              2017-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redux/" itemprop="url" rel="index">
+                    <span itemprop="name">redux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在写一个component的时报了换一个某某某 is not a function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&#123;&#123; display: &apos;flex&apos;, flex: &apos;0 1 70%&apos; &#125;&#125;&gt;</div><div class="line">                &lt;RaisedButton label=&quot;北京&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onClick=&#123;(event: object) =&gt; &#123;</div><div class="line">                  console.log(&apos;bj&apos;);</div><div class="line">                  selectRegion(&apos;cn-bj2&apos;, &apos;cn-bj2-02&apos;);</div><div class="line">                &#125;&#125; backgroundColor=&#123; selectedRegion === &apos;cn-bj2&apos; ? &apos;grey&apos;: &apos;white&apos;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;上海&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-sh2&apos;, &apos;cn-sh2-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">                &lt;RaisedButton label=&quot;广州&quot; style=&#123;&#123; marginLeft: &apos;50px&apos; &#125;&#125; onTouchTap=&#123;(event: object) =&gt; &#123;</div><div class="line">                  selectRegion(&apos;cn-gd&apos;, &apos;cn-gd-02&apos;);</div><div class="line">                &#125;&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>我检查了下这个props是在render函数时定义的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123;  selectRegion, selectedRegion &#125; = this.props;</div></pre></td></tr></table></figure>
+<p>而且在container里也有bindActionCreators，一直百思不得其解，</p>
+<p>最后通过打印了下那个props发现原来是在<route>那里写的是componet而不是container，我觉得这个问题的很有意义，以后遇到这种问题，最简单的处理方式是直接打印下那个props</route></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1466,7 +1458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">238</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1483,7 +1475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

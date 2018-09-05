@@ -243,137 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2018/06/21/go/go基础/" itemprop="url">
-                  go基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-06-21T10:02:19+08:00" content="2018-06-21">
-              2018-06-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>go不像别的语言有多个workspace（每个workspace单独git管理），而是只设一个workspace，这个workspace下会有src，pkg，bin三个目录，src下面会存放项目各自的repo，pkg存放的是包被编译后的文件，为的是可以节省编译时间，bin放的是可执行文件，项目下编译出来的二进制文件都会放到bin下</p>
-</li>
-<li><p>几个重要的go tool命令及解释:</p>
-<p>go build: 编译包及里面的相关依赖，但不会去安装到bin或pkg下</p>
-<p>go install:  go build 加上安装到bin或pkg</p>
-<p>go get: 下载包及相关依赖，然后安装这些包</p>
-<p>这里有一个问题： 如果go get安装了某个包依赖a，然后这个包a又依赖了b，go get能下载到b的源码吗？</p>
-</li>
-<li><p>channel</p>
-<p>首先要明白发和收的写法，&lt;-c，c如果是channel，这个是收，c&lt;- 0， 这个是发送，再然后就是对于buffered和unbuffered channel的区别</p>
-<p>如果是buffered，发送在接收之前； 如果是unbuffered，接收在发送之前</p>
-</li>
-</ol>
-<p>   A send on a buffered channel happens before the corresponding receive from that channel completes.   </p>
-<p>   The <em>k</em>th receive on a channel with capacity <em>C</em> happens before the <em>k</em>+<em>C</em>th send from that channel completes.</p>
-<p>   A receive from an unbuffered channel happens before the send on that channel completes.</p>
-<p>   ​</p>
-<p>   ​</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2018/06/07/k8s/kubectl/" itemprop="url">
                   kubectl
                 </a>
@@ -1422,6 +1291,124 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/29/utility/rpm查询/" itemprop="url">
+                  rpm
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-29T16:23:12+08:00" content="2017-11-29">
+              2017-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">查询已安装软件的信息：</div><div class="line">-q  ：仅查询，后面接的软件名称是否有安装；</div><div class="line">-qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称；</div><div class="line">-qi ：列出该软件的详细信息 （information），包含开发商、版本与说明等；</div><div class="line">-ql ：列出该软件所有的文件与目录所在完整文件名 （list）；</div><div class="line">-qc ：列出该软件的所有配置文件 （找出在 /etc/ 下面的文件名而已）</div><div class="line">-qd ：列出该软件的所有说明文档 （找出与 man 有关的文件而已）</div><div class="line">-qR ：列出与该软件有关的相依软件所含的文件 （Required 的意思）</div><div class="line">-qf ：由后面接的文件名称，找出该文件属于哪一个已安装的软件；</div><div class="line">-q --scripts：列出是否含有安装后需要执行的脚本档，可用以 debug 喔！</div><div class="line">查询某个 RPM 文件内含有的信息：</div><div class="line">-qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在于找出</div><div class="line">        某个 RPM 文件内的信息，而非已安装的软件信息！注意！</div></pre></td></tr></table></figure>
+<ol>
+<li>查询主要分为两部分， 一个是查已安装到系统上面的的软件信息，这部份的信息都是由 /var/lib/rpm/ 所提供 ，使用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q</div></pre></td></tr></table></figure>
+<p>另一个则是查某个 rpm 文件内容，使用rpm -qp， 至于选项还是follow上面的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1467,7 +1454,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">238</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1484,7 +1471,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

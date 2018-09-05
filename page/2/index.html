@@ -243,124 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/11/29/utility/rpm查询/" itemprop="url">
-                  rpm
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-29T16:23:12+08:00" content="2017-11-29">
-              2017-11-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">查询已安装软件的信息：</div><div class="line">-q  ：仅查询，后面接的软件名称是否有安装；</div><div class="line">-qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称；</div><div class="line">-qi ：列出该软件的详细信息 （information），包含开发商、版本与说明等；</div><div class="line">-ql ：列出该软件所有的文件与目录所在完整文件名 （list）；</div><div class="line">-qc ：列出该软件的所有配置文件 （找出在 /etc/ 下面的文件名而已）</div><div class="line">-qd ：列出该软件的所有说明文档 （找出与 man 有关的文件而已）</div><div class="line">-qR ：列出与该软件有关的相依软件所含的文件 （Required 的意思）</div><div class="line">-qf ：由后面接的文件名称，找出该文件属于哪一个已安装的软件；</div><div class="line">-q --scripts：列出是否含有安装后需要执行的脚本档，可用以 debug 喔！</div><div class="line">查询某个 RPM 文件内含有的信息：</div><div class="line">-qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在于找出</div><div class="line">        某个 RPM 文件内的信息，而非已安装的软件信息！注意！</div></pre></td></tr></table></figure>
-<ol>
-<li>查询主要分为两部分， 一个是查已安装到系统上面的的软件信息，这部份的信息都是由 /var/lib/rpm/ 所提供 ，使用</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -q</div></pre></td></tr></table></figure>
-<p>另一个则是查某个 rpm 文件内容，使用rpm -qp， 至于选项还是follow上面的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/11/23/k8s/k8s deployments 和 statefulset 区别/" itemprop="url">
                   deployments 和 statefulset 区别
                 </a>
@@ -1528,6 +1410,125 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/03/utility/vim升级/" itemprop="url">
+                  升级vim8.0
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-03T12:09:20+08:00" content="2017-11-03">
+              2017-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>为了go的开发使用了vim-go这个插件，无奈这个插件需要高版本vim，因此升级安装了下vim</p>
+<h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><ol>
+<li>git clone <a href="https://github.com/vim/vim.git" target="_blank" rel="external">https://github.com/vim/vim.git</a></li>
+<li>./configure</li>
+<li>make </li>
+<li>make install</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1573,7 +1574,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">238</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1590,7 +1591,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">164</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
