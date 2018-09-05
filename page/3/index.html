@@ -243,263 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/11/07/utility/centos 7终端科学上网/" itemprop="url">
-                  centos 7终端科学上网
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-07T11:24:12+08:00" content="2017-11-07">
-              2017-11-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/科学上网/" itemprop="url" rel="index">
-                    <span itemprop="name">科学上网</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在开发机上安装go的一些二进制工具</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li><p>yum install -y python-pip</p>
-</li>
-<li><p>pip install shadowsock</p>
-</li>
-<li><p>编辑ss client的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;x.x.x.x&quot;,             #你的 ss 服务器 ip</div><div class="line">  &quot;server_port&quot;:0,                #你的 ss 服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;127.0.0.1&quot;,   #本地ip</div><div class="line">  &quot;local_port&quot;:0,                 #本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,          #连接 ss 密码</div><div class="line">  &quot;timeout&quot;:300,                  #等待超时</div><div class="line">  &quot;method&quot;:&quot;aes-256-cfb&quot;,         #加密方式</div><div class="line">  &quot;workers&quot;: 1                    #工作线程数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>vim /etc/systemd/system/shadowsocks.json, 写入如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks Server</div><div class="line">After=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart=/bin/ssserver -c /etc/shadowsocks.son</div><div class="line">Restart=on-abort</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable shadowsocks.service</p>
-<p>systemctl start shadowsocks.service</p>
-</li>
-<li><p>yum install -y privoxy</p>
-</li>
-<li><p>修改/etc/privoxy/config的配置，只需要修改下面这一项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forward-socks5t / 127.0.0.1:1080 .</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable privoxy</p>
-<p>systemctl start provoxy</p>
-</li>
-<li><p>终端设置代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:8118</div><div class="line">export https_proxy=https://127.0.0.1:8118</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/05/utility/xargs和管道操作符的区别/" itemprop="url">
-                  xargs和管道操作符的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-05T18:04:29+08:00" content="2017-11-05">
-              2017-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>管道： 将前面的标准输出作为后面的标准输入</p>
-<p>xargs： “将标准输入作为命令的参数“</p>
-<p>​</p>
-<p>因为很多命令不会去读标准输入的参数，（他们只读命令行里面的内容，比如sed）,因此需要通过xargs来将这些管道过来的标准输入转化为命令的参数</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/11/03/utility/vim升级/" itemprop="url">
                   升级vim8.0
                 </a>
@@ -1461,11 +1204,265 @@ error_page 500 502 503 504 /50x.html;
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/17/k8s/openresty跑在k8s集群遇到的问题/" itemprop="url">
+                  openresty跑在k8s集群遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-17T18:17:31+08:00" content="2017-10-17">
+              2017-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernets/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernets</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>今天遇到了一个很常见的问题，就是在openresty里配的后端服务比如redis之类的需要通过域名，然后这里我只是简单的写了一个短域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-svc</div></pre></td></tr></table></figure>
+<p>然后日志报错不能解析，这个经过搜索发现是openrestry需要指定nameserver，否则无法解析域名，于是乎我在nginx.conf的http模块下再加上如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resovler 10.0.0.1</div></pre></td></tr></table></figure>
+<p>但openresty的日志还是报无法解析，最后还是同事的一句话提醒了我，在lua配置里写的是短域名，kube-dns认这个短域名吗？</p>
+<p>我之前一直认为kube-dns是认的，比如通过busybox执行如下一个命令完全是可以查到ip的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec busybox -- nslookup redis-svc</div></pre></td></tr></table></figure>
+<p>但openresty为啥不行呢，我去查看下了下节点上的/etc/resolver.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameserver 10.0.0.1</div><div class="line">search default.svc.cluster.local svc.cluster.local cluster.local</div><div class="line">options ndots:5</div></pre></td></tr></table></figure>
+<p>这里有个serach之前一直不理解，以为这个回去远端dns搜索，实际上它的真正作用就是补全短域名</p>
+<p>所以前面的redis-svc就会被补全到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-svc.default.svc.cluster.local</div><div class="line">redis-svc.svc.cluster.local</div><div class="line">redis-svc.cluster.local</div></pre></td></tr></table></figure>
+<p>上面几个，然后再发给kube-dns，所以他们能被查到</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/12/utility/vim基本配置/" itemprop="url">
+                  vim基本配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-12T12:08:28+08:00" content="2017-10-12">
+              2017-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>VS code用的很爽，但无奈team需要在服务端开发，只好重新拾起vim</p>
+<ol>
+<li><p>通过 <a href="https://github.com/amix/vimrc" target="_blank" rel="external">https://github.com/amix/vimrc</a> 这个来做基本的vim</p>
+</li>
+<li><p>安装nerdtree tab， 这个插件主要是为了在打开多个tab时候能够使用同一个nerd tree</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.vim_runtime</div><div class="line">git clone https://github.com/jistr/vim-nerdtree-tabs.git sources_non_forked/vim-nerdtree-tabs</div></pre></td></tr></table></figure>
+</li>
+<li><p>配一下nerd tree和nerd tree tab的vimrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autocmd vimenter * NERDTree</div><div class="line">autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;&amp; exists(&quot;b:NERDTree&quot;) &amp;&amp; b:NERDTree.isTabTree()) | q | endif</div><div class="line">map &lt;F2&gt; :NERDTreeToggle&lt;CR&gt;</div><div class="line">let g:NERDTreeWinPos = &quot;left&quot;</div><div class="line">let g:nerdtree_tabs_open_on_console_startup=1</div><div class="line">let NERDTreeShowLineNumbers=1</div><div class="line">autocmd BufEnter nerd* set rnu</div></pre></td></tr></table></figure>
+</li>
+<li><p>快捷键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ctrl + w + h    光标 focus 左侧树形目录</div><div class="line">ctrl + w + l    光标 focus 右侧文件显示窗口</div><div class="line">ctrl + w + w    光标自动在左右侧窗口切换 #！！！</div><div class="line">ctrl + w + r    移动当前窗口的布局位置</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">o       在已有窗口中打开文件、目录或书签，并跳到该窗口</div><div class="line">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口</div><div class="line">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab</div><div class="line">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab</div><div class="line">i       split 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gi      split 一个新窗口打开选中文件，但不跳到该窗口</div><div class="line">s       vsplit 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口</div><div class="line">!       执行当前文件</div><div class="line">O       递归打开选中 结点下的所有目录</div><div class="line">x       合拢选中结点的父目录</div><div class="line">X       递归 合拢选中结点下的所有目录</div><div class="line">e       Edit the current dif</div><div class="line"></div><div class="line">双击    相当于 NERDTree-o</div><div class="line">中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e</div><div class="line"></div><div class="line">D       删除当前书签</div><div class="line"></div><div class="line">P       跳到根结点</div><div class="line">p       跳到父结点</div><div class="line">K       跳到当前目录下同级的第一个结点</div><div class="line">J       跳到当前目录下同级的最后一个结点</div><div class="line">k       跳到当前目录下同级的前一个结点</div><div class="line">j       跳到当前目录下同级的后一个结点</div><div class="line"></div><div class="line">C       将选中目录或选中文件的父目录设为根结点</div><div class="line">u       将当前根结点的父目录设为根目录，并变成合拢原根结点</div><div class="line">U       将当前根结点的父目录设为根目录，但保持展开原根结点</div><div class="line">r       递归刷新选中目录</div><div class="line">R       递归刷新根结点</div><div class="line">m       显示文件系统菜单 #！！！然后根据提示进行文件的操作如新建，重命名等</div><div class="line">cd      将 CWD 设为选中目录</div><div class="line"></div><div class="line">I       切换是否显示隐藏文件</div><div class="line">f       切换是否使用文件过滤器</div><div class="line">F       切换是否显示文件</div><div class="line">B       切换是否显示书签</div><div class="line"></div><div class="line">q       关闭 NerdTree 窗口</div><div class="line">?       切换是否显示 Quick Help</div><div class="line">:tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab</div><div class="line">:tabc   关闭当前的 tab</div><div class="line">:tabo   关闭所有其他的 tab</div><div class="line">:tabs   查看所有打开的 tab</div><div class="line">:tabp   前一个 tab</div><div class="line">:tabn   后一个 tab</div><div class="line"></div><div class="line">标准模式下：</div><div class="line">gT      前一个 tab</div><div class="line">gt      后一个 tab</div><div class="line"></div><div class="line">MacVim 还可以借助快捷键来完成 tab 的关闭、切换</div><div class="line">cmd+w   关闭当前的 tab</div><div class="line">cmd+&#123;   前一个 tab</div><div class="line">cmd+&#125;   后一个 tab</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1506,7 +1503,7 @@ error_page 500 502 503 504 /50x.html;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">241</span>
+              <span class="site-state-item-count">239</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1523,7 +1520,7 @@ error_page 500 502 503 504 /50x.html;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">165</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

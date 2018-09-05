@@ -243,277 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/27/docker/docker学习/" itemprop="url">
-                  docker学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T16:03:58+08:00" content="2017-03-27">
-              2017-03-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一-为什么docker？"><a href="#一-为什么docker？" class="headerlink" title="一. 为什么docker？"></a>一. 为什么docker？</h3><h4 id="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"><a href="#抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！" class="headerlink" title="抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！"></a>抛开微服务，抛开持续集成，docker对我吸引最大的一点就是可以保持本地开发环境与线上开发环境的一致性，前端遇到此类的问题相对较少些，因为完全可以本地编译成bundle然后上传，顶多只要保持nginx的环境一致即可，这相对简单。但是如果涉及到服务端开发，那依赖的环境就太多了，数据库，node版本等等，如果能保持本地和线上环境的一致，一次build，到处运行，这个对于开发和运维的吸引力实在太大了！！！</h4><p><a href="https://yeasy.gitbooks.io/docker_practice" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice</a></p>
-<p>这个电子书不错</p>
-<ol>
-<li><p>docker其实也是一个client和server的架构，docker daemon就是核心的后台进程，它就是在后台启动了一个API server，负责由docker client发送来的请求， 而client的版本很多，只要遵循docker api即可</p>
-</li>
-<li><p>docker容器的本质是宿主机上的进程，通过namespace实现资源隔离，通过cgroup实现资源限制，通过copy-on-write实现高效的文本操作</p>
-</li>
-</ol>
-<h3 id="二-docker-machine-和-docker-engine的区别"><a href="#二-docker-machine-和-docker-engine的区别" class="headerlink" title="二. docker machine 和 docker engine的区别"></a>二. docker machine 和 docker engine的区别</h3><ol>
-<li><p>docker engine是我们常说的docker，c-s架构，包括docker daemon和client</p>
-</li>
-<li><p>Docker Machine is a tool for provisioning and managing your Dockerized hosts</p>
-</li>
-</ol>
-<h3 id="三-Docker-hub加速"><a href="#三-Docker-hub加速" class="headerlink" title="三. Docker hub加速"></a>三. Docker hub加速</h3><ol>
-<li>如果用的是最新的docker for mac, 只需要在docker的preference里的daemon选项卡里增加个registry mirror，至于地址可以用阿里云或蜂巢的镜像加速功能   </li>
-</ol>
-<h3 id="四-registry和repository的区别"><a href="#四-registry和repository的区别" class="headerlink" title="四. registry和repository的区别"></a>四. registry和repository的区别</h3><ol>
-<li>registry是注册服务器，repository是仓库，一个服务器上可以有多个仓库，仓库可以理解为某个目录或某个项目，dl.dockerpool.com/ubuntu 对于这个地址来说，dl.dockerpool.com是注册服务器，ubuntu是仓库名</li>
-</ol>
-<h3 id="五-Docker的build"><a href="#五-Docker的build" class="headerlink" title="五. Docker的build"></a>五. Docker的build</h3><ol>
-<li>docker build [选项] &lt;上下文路径/URL/-&gt;</li>
-</ol>
-<p>当我们进行镜像构建的时候，并非所有定制都会通过 RUN 指令完成，经常会需要将一些本地文件复制进镜像，比如通过 COPY 指令、ADD 指令等。而 docker build 命令构建镜像，其实并非在本地构建，而是在服务端，也就是 Docker 引擎中构建的。那么在这种客户端/服务端的架构中，如何才能让服务端获得本地文件呢？</p>
-<p>这就引入了上下文的概念。当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。</p>
-<h3 id="六-Mac上的docker开发流程"><a href="#六-Mac上的docker开发流程" class="headerlink" title="六. Mac上的docker开发流程"></a>六. Mac上的docker开发流程</h3><h4 id="可以参考nodejs的部署过程"><a href="#可以参考nodejs的部署过程" class="headerlink" title="可以参考nodejs的部署过程"></a>可以参考nodejs的部署过程</h4><p><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/nodejs-docker-webapp/</a></p>
-<ol>
-<li>之前由于mac不支持docker，所以需要通过virtual box，用到的工具是docker toolbox, 新的macOS或者高版本的osx使用hyperkit作原生支持，因此只需要去官方下载docker for mac即可</li>
-<li>docker hub下载下来的镜像存放在哪里呢？</li>
-<li>​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/git/使用vscode作为git difftool/" itemprop="url">
-                  使用vscode作为git difftool
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-26T20:36:24+08:00" content="2017-03-26">
-              2017-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"><a href="#当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git-checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git-命令行自带的git-diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下" class="headerlink" title="当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下"></a>当学习大牛的代码时，git往往是一个非常重要的工具，原因在于git可以看到从最开始的版本到最新的版本，了解大牛是怎么一步步写代码的，所以最好的打开方式是git checkout到最初的一个版本，然后一个一个版本看，这个方法之前有讲过，但是这里有个问题，如何直观的看到不同版本的变化呢？github当然是可以，但github毕竟需要网络，在很多没有网络的情况下就无法使用了，另一个就是git 命令行自带的git diff工具，但命令行自带的也不便于观看，所以想到了是否可以用vscode呢？经过一番搜索，总结一下</h4><ol>
-<li><p>确保vscode可以在命令行下打开:  </p>
-<p>shift + cmd + P，然后输入shell comand, 找到install ‘code’ command in PATH</p>
-</li>
-</ol>
-<p>*2. 将vscode作为git默认的editor(这步可以不用，默认的editor还是用vim比较好，否则在git merge的时候会有些问题)</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor &quot;code --wait&quot;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>配置git difftool</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[diff]</div><div class="line">    tool = default-difftool</div><div class="line">[difftool &quot;default-difftool&quot;]</div><div class="line">    cmd = code --wait --diff $LOCAL $REMOTE</div></pre></td></tr></table></figure>
-</li>
-<li><p>比较</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool &lt;commit&gt; &lt;commit&gt;</div></pre></td></tr></table></figure>
-<p>如果只比较当前版本和之前一个版本，可以更简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git difftool HEAD HEAD~1</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/03/24/typescript/typescript + webpack/" itemprop="url">
                   typescript + webpack
                 </a>
@@ -1440,11 +1169,269 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/utility/more about shadowsocks/" itemprop="url">
+                  more about shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:55:59+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="关于fail2ban"><a href="#关于fail2ban" class="headerlink" title="关于fail2ban"></a>关于fail2ban</h4><p>看到日志里有很多如下的错误，确定是暴力破解，使用fail2ban来防止暴力破解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017-03-15 10:22:02 ERROR    can not parse header when handling connection from 219.82.134.65:55473</div><div class="line">2017-03-15 10:22:02 WARNING  unsupported addrtype 22, maybe wrong password or encryption method</div></pre></td></tr></table></figure>
+<p>具体的步骤如下：</p>
+<ol>
+<li><p>切换root： sudo su -</p>
+</li>
+<li><p>安装fail2ban  sudo apt-get install fail2ban</p>
+</li>
+<li><p>创建fail2ban相应的ss顾虑器，可以进到/etc/fail2ban/filter.d/，看到有很多创模板过滤器，vim shadowsocks.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[Definition]</div><div class="line"></div><div class="line">_daemon = shadowsocks</div><div class="line"></div><div class="line">failregex = ^\s+ERROR\s+can not parse header when handling connection from &lt;HOST&gt;:\d+$</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认的fail2ban配置，vim /etc/fail2ban/jail.conf ，将banaction改成iptables</p>
+</li>
+<li><p>添加jail.local配置， vim /etc/fail2ban/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[shadowsocks]</div><div class="line">enabled = true</div><div class="line">filter = shadowsocks</div><div class="line">port = 443</div><div class="line">logpath = /var/log/shadowsocks.log</div><div class="line">maxretry = 10 # 最多尝试几次就算失败</div><div class="line">bantime = 3600 # 封锁时间(秒)</div><div class="line">logencoding = utf-8 # log文件编码</div><div class="line">findtime = 86400 # 找寻时间</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务 service fail2ban start</p>
+</li>
+<li><p>查看是否生效： fail2ban-client status shadowsocks</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/react/create-react-app学习/" itemprop="url">
+                  create-react-app学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-15T10:25:02+08:00" content="2017-03-15">
+              2017-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在index.js主要到有如下一个import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./index.css&apos;;</div></pre></td></tr></table></figure>
+<p>这个import其实不是ES6的语法，而是webpack对于import的补充，用于将css文件impor到js文件中去</p>
+</li>
+<li><p>在webpack中通过import引入css，font，img的优点</p>
+<p>1）js和css打包在一起并被压缩可以减少网络请求</p>
+<p>2）如果某个文件确实在编译时候报错，而不是在用户请求的时候报404</p>
+<p>3）文件名会带hash值，因此不用担心浏览器会缓存旧版本</p>
+</li>
+<li><p>利用react-snapshot可以做页面静态化</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1485,7 +1472,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">241</span>
+              <span class="site-state-item-count">239</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1502,7 +1489,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">165</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

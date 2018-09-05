@@ -243,260 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/10/17/k8s/openresty跑在k8s集群遇到的问题/" itemprop="url">
-                  openresty跑在k8s集群遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-17T18:17:31+08:00" content="2017-10-17">
-              2017-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernets/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernets</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到了一个很常见的问题，就是在openresty里配的后端服务比如redis之类的需要通过域名，然后这里我只是简单的写了一个短域名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-svc</div></pre></td></tr></table></figure>
-<p>然后日志报错不能解析，这个经过搜索发现是openrestry需要指定nameserver，否则无法解析域名，于是乎我在nginx.conf的http模块下再加上如下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resovler 10.0.0.1</div></pre></td></tr></table></figure>
-<p>但openresty的日志还是报无法解析，最后还是同事的一句话提醒了我，在lua配置里写的是短域名，kube-dns认这个短域名吗？</p>
-<p>我之前一直认为kube-dns是认的，比如通过busybox执行如下一个命令完全是可以查到ip的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec busybox -- nslookup redis-svc</div></pre></td></tr></table></figure>
-<p>但openresty为啥不行呢，我去查看下了下节点上的/etc/resolver.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameserver 10.0.0.1</div><div class="line">search default.svc.cluster.local svc.cluster.local cluster.local</div><div class="line">options ndots:5</div></pre></td></tr></table></figure>
-<p>这里有个serach之前一直不理解，以为这个回去远端dns搜索，实际上它的真正作用就是补全短域名</p>
-<p>所以前面的redis-svc就会被补全到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-svc.default.svc.cluster.local</div><div class="line">redis-svc.svc.cluster.local</div><div class="line">redis-svc.cluster.local</div></pre></td></tr></table></figure>
-<p>上面几个，然后再发给kube-dns，所以他们能被查到</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/12/utility/vim基本配置/" itemprop="url">
-                  vim基本配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-12T12:08:28+08:00" content="2017-10-12">
-              2017-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>VS code用的很爽，但无奈team需要在服务端开发，只好重新拾起vim</p>
-<ol>
-<li><p>通过 <a href="https://github.com/amix/vimrc" target="_blank" rel="external">https://github.com/amix/vimrc</a> 这个来做基本的vim</p>
-</li>
-<li><p>安装nerdtree tab， 这个插件主要是为了在打开多个tab时候能够使用同一个nerd tree</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.vim_runtime</div><div class="line">git clone https://github.com/jistr/vim-nerdtree-tabs.git sources_non_forked/vim-nerdtree-tabs</div></pre></td></tr></table></figure>
-</li>
-<li><p>配一下nerd tree和nerd tree tab的vimrc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autocmd vimenter * NERDTree</div><div class="line">autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;&amp; exists(&quot;b:NERDTree&quot;) &amp;&amp; b:NERDTree.isTabTree()) | q | endif</div><div class="line">map &lt;F2&gt; :NERDTreeToggle&lt;CR&gt;</div><div class="line">let g:NERDTreeWinPos = &quot;left&quot;</div><div class="line">let g:nerdtree_tabs_open_on_console_startup=1</div><div class="line">let NERDTreeShowLineNumbers=1</div><div class="line">autocmd BufEnter nerd* set rnu</div></pre></td></tr></table></figure>
-</li>
-<li><p>快捷键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ctrl + w + h    光标 focus 左侧树形目录</div><div class="line">ctrl + w + l    光标 focus 右侧文件显示窗口</div><div class="line">ctrl + w + w    光标自动在左右侧窗口切换 #！！！</div><div class="line">ctrl + w + r    移动当前窗口的布局位置</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">o       在已有窗口中打开文件、目录或书签，并跳到该窗口</div><div class="line">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口</div><div class="line">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab</div><div class="line">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab</div><div class="line">i       split 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gi      split 一个新窗口打开选中文件，但不跳到该窗口</div><div class="line">s       vsplit 一个新窗口打开选中文件，并跳到该窗口</div><div class="line">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口</div><div class="line">!       执行当前文件</div><div class="line">O       递归打开选中 结点下的所有目录</div><div class="line">x       合拢选中结点的父目录</div><div class="line">X       递归 合拢选中结点下的所有目录</div><div class="line">e       Edit the current dif</div><div class="line"></div><div class="line">双击    相当于 NERDTree-o</div><div class="line">中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e</div><div class="line"></div><div class="line">D       删除当前书签</div><div class="line"></div><div class="line">P       跳到根结点</div><div class="line">p       跳到父结点</div><div class="line">K       跳到当前目录下同级的第一个结点</div><div class="line">J       跳到当前目录下同级的最后一个结点</div><div class="line">k       跳到当前目录下同级的前一个结点</div><div class="line">j       跳到当前目录下同级的后一个结点</div><div class="line"></div><div class="line">C       将选中目录或选中文件的父目录设为根结点</div><div class="line">u       将当前根结点的父目录设为根目录，并变成合拢原根结点</div><div class="line">U       将当前根结点的父目录设为根目录，但保持展开原根结点</div><div class="line">r       递归刷新选中目录</div><div class="line">R       递归刷新根结点</div><div class="line">m       显示文件系统菜单 #！！！然后根据提示进行文件的操作如新建，重命名等</div><div class="line">cd      将 CWD 设为选中目录</div><div class="line"></div><div class="line">I       切换是否显示隐藏文件</div><div class="line">f       切换是否使用文件过滤器</div><div class="line">F       切换是否显示文件</div><div class="line">B       切换是否显示书签</div><div class="line"></div><div class="line">q       关闭 NerdTree 窗口</div><div class="line">?       切换是否显示 Quick Help</div><div class="line">:tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab</div><div class="line">:tabc   关闭当前的 tab</div><div class="line">:tabo   关闭所有其他的 tab</div><div class="line">:tabs   查看所有打开的 tab</div><div class="line">:tabp   前一个 tab</div><div class="line">:tabn   后一个 tab</div><div class="line"></div><div class="line">标准模式下：</div><div class="line">gT      前一个 tab</div><div class="line">gt      后一个 tab</div><div class="line"></div><div class="line">MacVim 还可以借助快捷键来完成 tab 的关闭、切换</div><div class="line">cmd+w   关闭当前的 tab</div><div class="line">cmd+&#123;   前一个 tab</div><div class="line">cmd+&#125;   后一个 tab</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/10/10/node/npm 加速/" itemprop="url">
                   npm 加速
                 </a>
@@ -1483,11 +1229,352 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/19/go/go学习/" itemprop="url">
+                  go学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-19T11:32:28+08:00" content="2017-09-19">
+              2017-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码</p>
+</li>
+<li><p>go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件</p>
+</li>
+<li><p>GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，go的安装目录默认在/usr/local, 因此在~/.zshrc下面要设置下GOPATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/work/go</div></pre></td></tr></table></figure>
+<p>另外正如前面所说，所有编译好的目录都在go的workspace下，因此也可以把GOPATH下的bin加到PATH环境变量下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:$(go env GOPATH)/bin&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Go的package都是静态链接的，因此运行时是不需要库存在的</p>
+</li>
+<li><p>go的第一行必须是package name，可执行的命令必须用package main</p>
+</li>
+<li><p>用go get获取远程仓库的package</p>
+<hr>
+</li>
+</ol>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ol>
+<li><p>大写字母开头的成员才会被导出</p>
+</li>
+<li><p>类型是写在变量后面，函数可以返回任意数量的结果</p>
+</li>
+<li><p>返回值也能被命名，尽量不要用naked return（返回值的名字是写在函数定义行里）</p>
+</li>
+<li><p>在函数内部可以用 := 来声明变量，这里可以省去var关键字以及类型，当然这个只适用于函数内部</p>
+<ol>
+<li>go的基础类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">bool</div><div class="line"></div><div class="line">string</div><div class="line"></div><div class="line">int  int8  int16  int32  int64</div><div class="line">uint uint8 uint16 uint32 uint64 uintptr</div><div class="line"></div><div class="line">byte // alias for uint8</div><div class="line"></div><div class="line">rune // alias for int32</div><div class="line">     // represents a Unicode code point</div><div class="line"></div><div class="line">float32 float64</div><div class="line"></div><div class="line">complex64 complex128</div></pre></td></tr></table></figure>
+<p>这里的int， unit， uintptr的位数是根据目标机器是架构来的，如果是32位机器就是32， 64位机器则为64</p>
+</li>
+<li><p>变量在定义时如果没有初始化则会给一个0值， 具体是值</p>
+<p>如果是数值类型，默认是0， 如果是bool类型，默认是false，如果是字符串类型，默认为”“</p>
+</li>
+<li><p>强制转化的语法是T(v) ,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var i int = 42</div><div class="line">var f float64 = float64(i)</div><div class="line">var u uint = uint(f)</div></pre></td></tr></table></figure>
+<p>go里没有隐式转换</p>
+</li>
+<li><p>常量用const关键字，并且常量名首字母大写</p>
+</li>
+<li><p>只有for循环，for虚幻的初始化，判断条件不需要括号，执行体的花括号还是需要的</p>
+</li>
+<li><p>if也不需要括号  </p>
+</li>
+<li><p>go的switch只要命中case就中止，不会继续往下走，因此就不需要break了</p>
+</li>
+<li><p>没有条件的switch可以用来代替长if else</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line">	t := time.Now()</div><div class="line">	switch &#123;</div><div class="line">	case t.Hour() &lt; 12:</div><div class="line">		fmt.Println(&quot;Good morning!&quot;)</div><div class="line">	case t.Hour() &lt; 17:</div><div class="line">		fmt.Println(&quot;Good afternoon.&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;Good evening.&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>defer语句：A defer statement defers the execution of a function until the surrounding function returns.</p>
+</li>
+<li><p>数组： 数组的长度在编译时就是固定的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a [10]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice：is a dynamically-sized, flexible view into the elements of an array， slice像是对底层数组的引用，改变slice的值会改变底层数组的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	primes := [6]int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line"></div><div class="line">	var s []int = primes[1:4]</div><div class="line">	fmt.Println(s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[]bool&#123;true, true, false&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Slice length and capacity   这块不太懂</p>
+</li>
+<li><p>map,  使用make来生成map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>len() 和 cap():</p>
+<p>The length of a slice is the number of elements it contains.</p>
+<p>The capacity of a slice is the number of elements in the underlying array, <strong>counting from the first element in the slice</strong>.  </p>
+<ol>
+<li>cap的话只要slice不移动数组的头，那这个slice的cap是不会变的</li>
+<li>slice里再取slice，如果第二个slice的范围小，则是在前一个slice里取，如果第二个slice的返回大，则是相当于 re-slicing了，根据是底层的数组以及这个slice的capcity</li>
+</ol>
+<p>下面这个例子能说出来这个也就理解了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	s := []int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Slice the slice to give it zero length.</div><div class="line">	//s = s[:0]</div><div class="line">	//printSlice(s)</div><div class="line"></div><div class="line">	// Extend its length.</div><div class="line">	s = s[:4]</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Drop its first two values.</div><div class="line">	s = s[2:]</div><div class="line">	printSlice(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func printSlice(s []int) &#123;</div><div class="line">	fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>answer：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">len=6 cap=6 [2 3 5 7 11 13]</div><div class="line">len=4 cap=6 [2 3 5 7]</div><div class="line">len=2 cap=4 [5 7]</div></pre></td></tr></table></figure>
+</li>
+<li><p>map类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>method： 一个特殊的函数，带有一个receiver参数，这个receiver表示的是这个函数是用在哪个类型上，如果是指针类型的recevier，可以修改receiver的值</p>
+</li>
+<li><p>接口： 我觉得有点像JS里的this的绑定，就是说一个方法不是现实声明在某个对象下面，我可以先声明这个方法的接口，然后通过methods里面的receive的不同类型来做实现，谁想实现就谁去实现这个方法</p>
+</li>
+<li><p>类型断言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	var i interface&#123;&#125; = &quot;hello&quot;</div><div class="line"></div><div class="line">	s := i.(string)</div><div class="line">	fmt.Println(s)</div><div class="line"></div><div class="line">	s, ok := i.(string)</div><div class="line">	fmt.Println(s, ok)</div><div class="line"></div><div class="line">	f, ok := i.(float64)</div><div class="line">	fmt.Println(f, ok)</div><div class="line"></div><div class="line">	f = i.(float64) // panic</div><div class="line">	fmt.Println(f)</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/13/es6/关于generator的理解/" itemprop="url">
+                  关于generator的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T09:38:58+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/generaotr/" itemprop="url" rel="index">
+                    <span itemprop="name">generaotr</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>generator函数和普通函数有什么本质上区别呢？我们知道普通函数是一种“run-to-completion“的机制，即函数会一直运行到结束，中间不会有什么暂停之类的，看看下面这段代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&quot;Hello World&quot;);</div><div class="line">&#125;,1);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    // NOTE: don&apos;t ever do crazy long-running loops like this</div><div class="line">    for (var i=0; i&lt;=1E10; i++) &#123;</div><div class="line">        console.log(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">// 0..1E10</div><div class="line">// &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p>虽然我们设置了个定时器，但是由于foo的循环需要超过1ms的时间运行，定时器无法打断这个函数的执行，只能等到函数执行完了才可以。</p>
+</li>
+<li><p>语法： 在语法上，generator和普通函数区别不大，主要有两点，一个是在函数定义上，需要在函数名前面加个*，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    // ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一个就是yield表达式，当重启或者继续generator时，外部会传一个值进来，这个值就会作为yield表达式的计算值，当函数内部遇到yield表达式时，也会将yield后面的表达式的值传出去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    var x = 1 + (yield &quot;foo&quot;);</div><div class="line">    console.log(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如上面这段代码，当代码执行遇到yield “foo”时，函数会暂停并将“foo“传出去，过一会儿也可能是很久，外面重新启动了这个yield函数，会将某个值传进来，作为这个表达式的返回值</p>
+</li>
+<li><p>generator iterator: 调用generator只会生成一个iterator，这个iterator是我们在外面控制generator的方式，举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先我们要创建一个generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var it = foo();</div></pre></td></tr></table></figure>
+<p>接下来我们要开始迭代我们的iterator，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message = it.next();</div></pre></td></tr></table></figure>
+<p>在generator内部会执行到第一个yield表达式结束，并返回那个yield表达式的值，让我们看一下message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(message); // &#123; value:1, done:false &#125;</div></pre></td></tr></table></figure>
+<p>这里看到返回值不仅是value，还有一个表示状态的done，因为generator还没结束，这里为false， 让我们继续iterate，这里需要注意的是即使运行到了yield 5，done仍然是false，从技术上来说，generator这时候还没结束，只有再调用一次next才可以，而且如果我们要在这次next调用时传值，那这个值必须是5，才能保证结束    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log( it.next() ); // &#123; value:2, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:3, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:4, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:5, done:false &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>理解下generator的数据交换用下面这个例子就够了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function *foo(x) &#123;</div><div class="line">    var y = 2 * (yield (x + 1));</div><div class="line">    var z = yield (y / 3);</div><div class="line">    return (x + y + z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo( 5 );</div><div class="line"></div><div class="line">// note: not sending anything into `next()` here</div><div class="line">console.log( it.next() );       // &#123; value:6, done:false &#125;</div><div class="line">console.log( it.next( 12 ) );   // &#123; value:8, done:false &#125;</div><div class="line">console.log( it.next( 13 ) );   // &#123; value:42, done:true &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>generator还能被for … of 循环捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">    return 6;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var v of foo()) &#123;</div><div class="line">    console.log( v );</div><div class="line">&#125;</div><div class="line">// 1 2 3 4 5</div><div class="line"></div><div class="line">console.log( v ); // still `5`, not `6` :(</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1528,7 +1615,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">241</span>
+              <span class="site-state-item-count">239</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1545,7 +1632,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">165</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
