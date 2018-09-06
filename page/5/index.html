@@ -243,6 +243,138 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-05T22:35:59+08:00" content="2017-09-05">
+              2017-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>parseInt和类型转换是有区别的，parseInt只作用域字符串，但这个字符串里可以有非数字的字符，一旦遇到非数字字符就停止解析，返回之前解析的数值，而类型转换是不能容忍字符的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = &quot;42px&quot;;</div><div class="line"></div><div class="line">Number( a );	// 42</div><div class="line">parseInt( a );	// 42</div><div class="line"></div><div class="line">Number( b );	// NaN</div><div class="line">parseInt( b );	// 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>parseInt默认是当作10机制来解析，如果是0x开头则当作16进制来解析，0开头的不会当八进制解析，这有效的防止了分钟和小时那种前面带0的字符串被错误的解析成了8进制的数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parseInt( 0.000008 );		// 0   (&quot;0&quot; from &quot;0.000008&quot;)</div><div class="line">parseInt( 0.0000008 );		// 8   (&quot;8&quot; from &quot;8e-7&quot;)</div><div class="line">parseInt( false, 16 );		// 250 (&quot;fa&quot; from &quot;false&quot;)</div><div class="line">parseInt( parseInt, 16 );	// 15  (&quot;f&quot; from &quot;function..&quot;)</div><div class="line"></div><div class="line">parseInt( &quot;0x10&quot; );			// 16</div><div class="line">parseInt( &quot;103&quot;, 2 );		// 2</div></pre></td></tr></table></figure>
+<p>这里很多的结果可能跟你想的不一致，原因在于parseInt在收到一个非字符串的时候，都会先转化成string，所以只要记住一点，parseInt的参数一定要是个字符串</p>
+</li>
+<li><p>！可以用来将一个非boolean的值强制转化成boolean， 所以能看到下面这种代码，因为！还会将布尔值反转，第二个！就是把它转回来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = &quot;0&quot;;</div><div class="line">var b = [];</div><div class="line">var c = &#123;&#125;;</div><div class="line"></div><div class="line">var d = &quot;&quot;;</div><div class="line">var e = 0;</div><div class="line">var f = null;</div><div class="line">var g;</div><div class="line"></div><div class="line">!!a;	// true</div><div class="line">!!b;	// true</div><div class="line">!!c;	// true</div><div class="line"></div><div class="line">!!d;	// false</div><div class="line">!!e;	// false</div><div class="line">!!f;	// false</div><div class="line">!!g;	// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何判断+是数值相加还是字符串连接呢？ 很简单，只要有一个操作符是字符串（或者可以转变成字符串）， 就是字符串连接，否则就是数值相加</p>
+</li>
+<li><p>== 和 === 区别： ==允许做一个隐式的类型转换， === 不允许</p>
+</li>
+<li><p>字符串和数值的隐式比较，都是利用toNumber()方法将字符串先转成数值再比较</p>
+</li>
+<li><p>​和boolean值的==比较， 规则如下，会先将boolean值toNumber（）转化成数值，变成了之前讲的数字和字符串比较，规则也是先将字符串转化成数值类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = true;</div><div class="line">var y = &quot;42&quot;;</div><div class="line"></div><div class="line">x == y; // false</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/05/typescript/typescript寻找声明文件/" itemprop="url">
                   typescript寻找声明文件
                 </a>
@@ -1467,132 +1599,6 @@ d: [1,2,3]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/06/typescript/typescript的字面量类型/" itemprop="url">
-                  typescript的字面量类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-06T11:48:34+08:00" content="2017-08-06">
-              2017-08-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/typescipt/" itemprop="url" rel="index">
-                    <span itemprop="name">typescipt</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在写redux的acton的type时候会用到字符串常量，但是如果只把type定义为sting类型时，在reducer的switch case中是无法区别哪个action是哪个action，因为大家都是string，但typescript提供了字符串字面量类型：String Literal Types。 当定义个字符串时，可以定义它的类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let foo: &apos;Hello&apos;;</div></pre></td></tr></table></figure>
-<p>这时候如果你把foo赋值成“World”就会报错，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = &quot;World&quot;</div></pre></td></tr></table></figure>
-<p>利用这个类型可以很好的为redux的action来使用，每次定义一个action type的类型时，都可以定义为那个字符串字面量类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">export type INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line">export const INCREMENT_COUNTER : INCREMENT_COUNTER = &apos;App/INCREMENT_COUNTER&apos;;</div><div class="line"></div><div class="line">export type IncrementCounterAction = &#123;</div><div class="line">    type: INCREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type DecrementCounterAction = &#123;</div><div class="line">    type: DECREMENT_COUNTER,</div><div class="line">    by: number</div><div class="line">&#125;;</div><div class="line">export type LogoutUserAction = &#123;</div><div class="line">    type: LOGOUT_USER</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>不过这种做法已经过时了，在ts 2.4已经支持字符串枚举类型了，什么意思了，之前ts的枚举值都是number，现在枚举值可以是字符串，</p>
-<p>先定义type 的枚举类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export enum TypeKeys &#123;</div><div class="line">    INC = &quot;INC&quot;,</div><div class="line">    DEC = &quot;DEC&quot;,</div><div class="line">    OTHER_ACTION = &quot;__any_other_action_type__&quot;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>接着定义acton类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export interface IncrementAction &#123;</div><div class="line">    type: TypeKeys.INC;</div><div class="line">    by: number;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>最后创建联合类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export type ActionTypes = </div><div class="line">    | IncrementAction </div><div class="line">    | DecrementAction </div><div class="line">    | OtherAction;</div></pre></td></tr></table></figure>
-<p>这样在reducer里面能保证action不会出错，同时还能精准判断action下面有哪些属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function counterReducer(s: State, action: ActionsTypes) &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case Actions.TypeKeys.INC:</div><div class="line">      return &#123; counter: s.counter + action.by &#125;;</div><div class="line">    case Actions.TypeKeys.DEC:</div><div class="line">      return &#123; counter: s.counter - action.by &#125;;</div><div class="line">    default:</div><div class="line">      return s;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1638,7 +1644,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">238</span>
+              <span class="site-state-item-count">239</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1655,7 +1661,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">165</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

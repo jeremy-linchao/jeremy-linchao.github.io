@@ -243,6 +243,152 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/05/html&css/html&css/" itemprop="url">
+                  css
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-05T13:02:27+08:00" content="2017-02-05">
+              2017-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/html-css/" itemprop="url" rel="index">
+                    <span itemprop="name">html/css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>css也可以注释，使用/<em>    </em>/</p>
+</li>
+<li><p>color代表前景色，background-color代表背景色</p>
+</li>
+<li><p>css中对同一个选择器的多个声明，最后一个生效，这个特点可以用来作浏览器兼容，比如在color上，第一行写一个所有浏览器都兼容的color表示法，下面一行写一个较新的表示法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  color: rgb(22, 34, 88);</div><div class="line">  color: rgba(22, 34, 88, 0.4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个html元素可以加上多个css类，但最好限制在4个最多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 class=&quot;book domestic&quot;&gt;The Way of the Deep&lt;/h1&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>盒模型的width和height</p>
+<p> 1) 用像素表示： 表示盒子的精确大小</p>
+<p>2）ems: 相对于盒子里面文字的倍数</p>
+<p>3）百分数：相对于父盒子的比例</p>
+</li>
+<li><p>当margin:auto被用来做居中时，必须同时加上width这个属性用来标明该元素的宽度，否则这个div的宽度就被设置成它父元素的宽度了，也就没有居中的说法了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#banner-content &#123;</div><div class="line">  border: 1px solid rgb(255,0,0);</div><div class="line">  position: relative;</div><div class="line">  top: 20%;</div><div class="line">  width: 60%;</div><div class="line">  padding:30px 10px;</div><div class="line">  margin:auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>display属性有如下几个： inline,block,incline-block,none</p>
+</li>
+<li><p>默认盒模型有一个缺点，就是padding和border会增加width，因此无法计算每个元素的实际大小</p>
+</li>
+<li><p>盒模型使用box-sizing这个属性指定的，默认值为content-box，这个模型的width并不是实际渲染的大小，实际元素为加上boder的宽度以及pading，为了解决这个问题可以把box-sizing改为border-box，在这个模型下，width就是实际渲染出来的大小，padding和border会被相应地减掉</p>
+</li>
+<li><p>position用来指定元素的位置，有如下四个取值</p>
+<p>1）static： 默认值</p>
+<p>2）relative：这个将元素设定为相对，因此还需要指定top,left,bottom和right属性，表示相对于四周的像素值</p>
+<p>3）absolute: 这个元素表示该元素就被固定在那边，其他元素会将他视而不见</p>
+<p>4)   fixed: 会固定住这个元素，即使在有滚动条的情况下</p>
+</li>
+<li><p>当一个元素是float时，在同一个父元素下的其他元素会靠着它流动起来，同时float的元素必须指定宽度</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/23/utility/moment计算时间差/" itemprop="url">
                   moment计算时间差
                 </a>
@@ -1332,130 +1478,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/c++/c++输入输出/" itemprop="url">
-                  c++输入输出
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T13:43:32+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>c++不像c语言那样提供输入输出语句，而是使用标准库来提供IO机制，有两个运算符</p>
-<ol>
-<li><p>“&lt;&lt;” 输出运算符，左侧必须是一个osteam对象，右侧是要打印的对象，返回的结果是左侧的对象，在输出介绍时需要加上std::endl 来将缓冲区的内容刷新到设备中去</p>
-</li>
-<li><p>“&gt;&gt;” 输入运算符，左侧必须是一个isteam对象，右侧是一个变量存储对象，返回的结果是左侧的对象</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1501,7 +1523,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">238</span>
+              <span class="site-state-item-count">239</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1518,7 +1540,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">164</span>
+                <span class="site-state-item-count">165</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
