@@ -243,6 +243,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/14/javascript/javascript对象字典排序/" itemprop="url">
+                  Javascript中对象字典排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T16:13:30+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>All methods that iterate over property keys do so in the same order:</p>
+<ol>
+<li>First all Array indices, sorted numerically.</li>
+<li>Then all string keys (that are not indices), in the order in which they were created.</li>
+<li>Then all symbols, in the order in which they were created</li>
+</ol>
+<p>Object.keys(unordered).sort().forEach(function(key) {<br>  ordered[key] = unordered[key];<br>});</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/14/concept/API 设计/" itemprop="url">
                   API设计
                 </a>
@@ -1416,133 +1535,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/javascript/Javascript 数组类型/" itemprop="url">
-                  javascript数组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T11:07:49+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>js的数组和其他语言的数组类型相差还是很大，<strong>其一</strong>表现在js的数组并不要求一个数组内的数据类型都是一致，如下的数组定义是没有问题的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="string">"abc"</span>,<span class="number">5.6</span>,&#123;<span class="string">'name'</span>:<span class="string">'lin'</span>&#125;];</div><div class="line"><span class="built_in">console</span>.log(a)</div></pre></td></tr></table></figure>
-<p><strong>其二</strong>表现在数组的长度length这个属性不仅仅是只读的，也是可写的，比如上面的代码改为,这样就只会打印出两个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a.length = 2;</div><div class="line">console.log(a)</div></pre></td></tr></table></figure>
-<p>​    数组的栈方法：push(), pop() </p>
-<p>​        数组的队列方法：push(),unshift()       数组末进入，数组头出</p>
-<p>​                                       unshift(), pop()        数组头进入，数组末尾处</p>
-<p>​    数组排序方法：sort()  接收一个compare函数， 比较函数接收两个参数，如果第一个参数应该位于第二个参数之前则返回一个负数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function compare(value1, value2)&#123;</div><div class="line">  if (value1 &lt; value2)&#123;</div><div class="line">    return -1;</div><div class="line">  &#125; else if (value1 &gt; value2)&#123;</div><div class="line">    return 1;</div><div class="line">  &#125; else &#123;</div><div class="line">    return 0;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    数组concat方法：这个方法先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。在没有给concat()传递参数的情况下，它只是复制当前数组并返回副本</p>
-<p>​    数组slice() 方法：接收一个或两个参数，如果是一个参数，就返回从这个索引到数组末尾的整个一个新数组，如果是两个参数，就返回从第一个索引到第二参数-1这个索引的新数组</p>
-<p>​       数组splice()方法：1）删除：2个参数，第一项的位置    和要删除的项数    2）插入：3个参数， 起始位置，0（要删除的项数），要插入的项  3）替换</p>
-<p>​      数组 indexOf() 方法：接收两个参数，要查找的项和表示查找起点的索引(索引)</p>
-<p>​      数组迭代方法：every(),filter(),forEach(),map(),some()   每个传入的函数接收三个参数，数组项的值，该项在数组中的位置，数组对象本身</p>
-<p>​      数组reduce() 方法：每个传入的函数接收4个参数：前一个值，当前值，项的索引和数组对象</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1588,7 +1580,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">240</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1596,7 +1588,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1605,7 +1597,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

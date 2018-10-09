@@ -243,6 +243,128 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/14/css/css占据整个页面/" itemprop="url">
+                  css占据整个页面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-14T18:37:19+08:00" content="2017-06-14">
+              2017-06-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.nav &#123;</div><div class="line">  height: calc(100vh - 64px)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在左侧导航条的div设置这个css，可以保证顶部不变</p>
+<p>视窗(Viewport)是你的浏览器实际显示内容的区域——换句话说是你的不包括工具栏和按钮的网页浏览器。这些单位是<strong>vw,vh,vmin</strong>和<strong>vmax</strong>。</p>
+<p>比方说我们有一个<code>1000px</code>（宽）和<code>800px</code>（高）的视窗(Viewport)</p>
+<ul>
+<li><strong>vw</strong>——代表视窗(Viewport)的宽度为<code>1%</code>，在我们的例子里<code>50vw = 500px</code>。</li>
+<li><strong>vh</strong>——窗口高度的百分比 <code>50vh = 400px</code>。</li>
+<li><strong>vmin</strong>——vmin的值是当前<code>vw</code>和<code>vh</code>中较小的值。在我们的例子里因为是横向模式，所以<code>50vim = 400px</code>。</li>
+<li><strong>vmax</strong>——大尺寸的百分比。<code>50vmax = 500px</code>。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/14/utility/elasticsearch学习/" itemprop="url">
                   elasticsearch学习
                 </a>
@@ -1286,121 +1408,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/06/linux/linux path恢复/" itemprop="url">
-                  linux path恢复
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-06T10:39:11+08:00" content="2017-06-06">
-              2017-06-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在装maven的时候设置了如下的profile, 可以看到PATH前面少了个$, 结果就是几乎所有的bash命令都无法使用（echo，source仍然可以使用）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile.d/maven.sh</div><div class="line">export PATH=/usr/maven/apache-maven-3.5.0/bin:PATH</div></pre></td></tr></table></figure>
-<p>遇到这种问题该怎么解决呢： 首先需要找到是profile.d下的那个shell改错了，这个可以通过echo $PATH来找到，然后直接通过 /usr/bin/vim 相应文件来修改，最后退出重新登录下即可</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1446,7 +1453,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">240</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1454,7 +1461,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1463,7 +1470,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

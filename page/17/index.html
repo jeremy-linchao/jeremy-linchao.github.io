@@ -243,6 +243,126 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/10/javascript/前端发ajax请求的方法/" itemprop="url">
+                  前端发ajax请求的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-10T09:42:50+08:00" content="2017-02-10">
+              2017-02-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ajax/" itemprop="url" rel="index">
+                    <span itemprop="name">ajax</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为react本身只是个ui组件库，并不包含ajax请求的方式，所以有几个方法可以选择</p>
+<ol>
+<li>jquery： jquery因为大家都比较熟所以使用简单，但由于jquery比较大，如果单纯只用它这个功能不太合适</li>
+<li>superagent： 使用过几次，支持promise，可以工作在浏览器和node</li>
+<li>axio：没有使用过，promise_based，可以工作在浏览器和node</li>
+<li>request： 使用的最多的，但本身不支持promise</li>
+<li>fetch api: 这是html5的api，不是ecma的，node有node-fetch版本</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/09/javascript/javascript关于this的坑/" itemprop="url">
                   未命名
                 </a>
@@ -1347,128 +1467,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/06/utility/使用swagger遇到的问题/" itemprop="url">
-                  使用swagger遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-06T14:46:53+08:00" content="2017-02-06">
-              2017-02-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>遇到jquery报错 net::ERR_INSECURE_RESPONSE，这个问题是因为请求用的是https，而服务端只是起了http</p>
-</li>
-<li><p>XMLHttpRequest cannot load <a href="http://localhost/v1/products?latitude=30&amp;longitude=120" target="_blank" rel="external">http://localhost/v1/products?latitude=30&amp;longitude=120</a>. No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘<a href="http://localhost:8000" target="_blank" rel="external">http://localhost:8000</a>‘ is therefore not allowed access.</p>
-<p>我的配置是swagger是部署在nginx的localhost：8000， 而api服务端是通过node起在localhost的80端口，这里面要注意的是同源指的是协议类型，域名以及端口都得一样，有一个不一样即为跨域，所以解决方法是通过nginx代理api服务到node上，修改后的nginx配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">       listen       80;</div><div class="line">       server_name  localhost;</div><div class="line">       root /Users/Jeremy/Github/swagger-editor;</div><div class="line">       location = / &#123;</div><div class="line">           index /index.html;</div><div class="line">       &#125;</div><div class="line">       location /api &#123;</div><div class="line">           proxy_pass http://localhost:8080;</div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1514,7 +1512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">240</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1522,7 +1520,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1531,7 +1529,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -243,6 +243,147 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/13/es6/关于generator的理解/" itemprop="url">
+                  关于generator的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T09:38:58+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/generaotr/" itemprop="url" rel="index">
+                    <span itemprop="name">generaotr</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>generator函数和普通函数有什么本质上区别呢？我们知道普通函数是一种“run-to-completion“的机制，即函数会一直运行到结束，中间不会有什么暂停之类的，看看下面这段代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&quot;Hello World&quot;);</div><div class="line">&#125;,1);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">    // NOTE: don&apos;t ever do crazy long-running loops like this</div><div class="line">    for (var i=0; i&lt;=1E10; i++) &#123;</div><div class="line">        console.log(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">// 0..1E10</div><div class="line">// &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p>虽然我们设置了个定时器，但是由于foo的循环需要超过1ms的时间运行，定时器无法打断这个函数的执行，只能等到函数执行完了才可以。</p>
+</li>
+<li><p>语法： 在语法上，generator和普通函数区别不大，主要有两点，一个是在函数定义上，需要在函数名前面加个*，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    // ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一个就是yield表达式，当重启或者继续generator时，外部会传一个值进来，这个值就会作为yield表达式的计算值，当函数内部遇到yield表达式时，也会将yield后面的表达式的值传出去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    var x = 1 + (yield &quot;foo&quot;);</div><div class="line">    console.log(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如上面这段代码，当代码执行遇到yield “foo”时，函数会暂停并将“foo“传出去，过一会儿也可能是很久，外面重新启动了这个yield函数，会将某个值传进来，作为这个表达式的返回值</p>
+</li>
+<li><p>generator iterator: 调用generator只会生成一个iterator，这个iterator是我们在外面控制generator的方式，举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先我们要创建一个generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var it = foo();</div></pre></td></tr></table></figure>
+<p>接下来我们要开始迭代我们的iterator，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message = it.next();</div></pre></td></tr></table></figure>
+<p>在generator内部会执行到第一个yield表达式结束，并返回那个yield表达式的值，让我们看一下message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(message); // &#123; value:1, done:false &#125;</div></pre></td></tr></table></figure>
+<p>这里看到返回值不仅是value，还有一个表示状态的done，因为generator还没结束，这里为false， 让我们继续iterate，这里需要注意的是即使运行到了yield 5，done仍然是false，从技术上来说，generator这时候还没结束，只有再调用一次next才可以，而且如果我们要在这次next调用时传值，那这个值必须是5，才能保证结束    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log( it.next() ); // &#123; value:2, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:3, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:4, done:false &#125;</div><div class="line">console.log( it.next() ); // &#123; value:5, done:false &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>理解下generator的数据交换用下面这个例子就够了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function *foo(x) &#123;</div><div class="line">    var y = 2 * (yield (x + 1));</div><div class="line">    var z = yield (y / 3);</div><div class="line">    return (x + y + z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo( 5 );</div><div class="line"></div><div class="line">// note: not sending anything into `next()` here</div><div class="line">console.log( it.next() );       // &#123; value:6, done:false &#125;</div><div class="line">console.log( it.next( 12 ) );   // &#123; value:8, done:false &#125;</div><div class="line">console.log( it.next( 13 ) );   // &#123; value:42, done:true &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>generator还能被for … of 循环捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">    yield 1;</div><div class="line">    yield 2;</div><div class="line">    yield 3;</div><div class="line">    yield 4;</div><div class="line">    yield 5;</div><div class="line">    return 6;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var v of foo()) &#123;</div><div class="line">    console.log( v );</div><div class="line">&#125;</div><div class="line">// 1 2 3 4 5</div><div class="line"></div><div class="line">console.log( v ); // still `5`, not `6` :(</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/05/javascript/You don't know JS(2)/" itemprop="url">
                   未命名
                 </a>
@@ -1461,144 +1602,6 @@ d: [1,2,3]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/12/ops/mysql崩溃自动重启/" itemprop="url">
-                  mysql崩溃自动重启
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T08:40:11+08:00" content="2017-08-12">
-              2017-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ops/" itemprop="url" rel="index">
-                    <span itemprop="name">ops</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有个mysql服务总是会崩溃，一时也找不出原因，索性使用crontab来检测</p>
-<ol>
-<li><p>配置crontab运行脚本  vim listen.sh (注意下启动的命令不能用service mysqld start)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">pidof mysqld &gt;/dev/null</div><div class="line">if [ $? -eq 0 ]</div><div class="line">then</div><div class="line">echo &quot;It is running.&quot;</div><div class="line">else</div><div class="line">echo &quot;At `date` MySQL Server was stopped&quot;&gt;&gt; /home/mysql_log</div><div class="line">/etc/init.d/mysqld start</div><div class="line">fi</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改脚本的权限 chmod 777 ./listen.sh</p>
-</li>
-<li><p>安装crontab</p>
-<p>3.1 确认crontab是否安装：</p>
-<p>执行 crontab 命令如果报 command not found，就表明没有安装</p>
-<p>3.2  安装 crontab</p>
-<p>执行 yum install -y vixie-cron</p>
-<p>3.3 确认是否安装成功:</p>
-<p>执行 crontab -l</p>
-<p>3.4 看是否设置了开机自动启动</p>
-<p>chkconfig –list crond 或者chkconfig crond on</p>
-<p>3.5 启动crontab</p>
-<p>service crond start</p>
-<p>3.6 添加计划任务</p>
-<p>crontab -e</p>
-<p>crontab -l</p>
-<p>3.7 脚本sh设置777权限</p>
-</li>
-<li><p>配置crontab监控</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * sh /etc/mysqld/listen.sh</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1644,7 +1647,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">240</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1652,7 +1655,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1661,7 +1664,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

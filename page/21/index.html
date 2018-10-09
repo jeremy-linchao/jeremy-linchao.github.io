@@ -243,6 +243,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/20/node/Node 工程化/" itemprop="url">
+                  Node工程化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-20T17:35:25+08:00" content="2016-12-20">
+              2016-12-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>目录结构：模块应用遵循CommanJS，web应用通过框架或者自行按MV*组织</p>
+</li>
+<li><p>构建工具：make(需要bash编程)，Grunt(本身用nodejs写)</p>
+</li>
+<li><p>编码工具：JSLint和JSHint，一旦团队约定了编码规范的详细细则，则可以生成一份规则文件，扫描工具或者编辑器能够通过该规则文件对源码进行扫描</p>
+</li>
+<li><p>代码审查：1）功能点是否正确完成 2）编码风格是否符合规范 3）单元测试是否有同步添加</p>
+</li>
+<li><p>部署环境：代码 -&gt; stage(测试环境) -&gt; 预发布 -&gt; 生产，之所以有个预发布环境是因为测试环境只能满足功能的正确性，而预发布环境可以做数据相关的检查，它的数据较为接近线上真实的数据</p>
+</li>
+<li><p>部署操作：nohup node app.js &amp; ，停止和重启是通过相应的pid写进app.id文件下</p>
+</li>
+<li><p>日志记录：通常的API，尽量不要隐藏错误，不要通过try/catc捕获异常，事实上，日志通常是服务于业务的，尽量由最上层的调用者捕获记录，底层调用或中间层调用出现的异常只要正常传递给上层的调用方即可</p>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/20/thinking/对于异步编程的理解/" itemprop="url">
                   对异步编程的理解
                 </a>
@@ -1320,125 +1449,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/14/javascript/javascript对象字典排序/" itemprop="url">
-                  Javascript中对象字典排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-14T16:13:30+08:00" content="2016-12-14">
-              2016-12-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>All methods that iterate over property keys do so in the same order:</p>
-<ol>
-<li>First all Array indices, sorted numerically.</li>
-<li>Then all string keys (that are not indices), in the order in which they were created.</li>
-<li>Then all symbols, in the order in which they were created</li>
-</ol>
-<p>Object.keys(unordered).sort().forEach(function(key) {<br>  ordered[key] = unordered[key];<br>});</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1484,7 +1494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">239</span>
+              <span class="site-state-item-count">240</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1492,7 +1502,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1501,7 +1511,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">165</span>
+                <span class="site-state-item-count">166</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
