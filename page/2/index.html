@@ -243,6 +243,261 @@
             
               
                 
+                <a class="post-title-link" href="/2017/12/11/grpc/protocol buffer and grpc/" itemprop="url">
+                  protocol buffer and grpc
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-11T10:43:28+08:00" content="2017-12-11">
+              2017-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/grpc/" itemprop="url" rel="index">
+                    <span itemprop="name">grpc</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>what:  protocol buffer是什么?</p>
+<p>protocol buffer是一种序列化结构型数据机制，就像xml，json, 但protocol buffer不仅仅只是消息交换机制，它还是IDL，定义了接口</p>
+</li>
+<li><p>how:  protocol buffer怎么工作?</p>
+<p>1) 定义protocol文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">message Person &#123;</div><div class="line">  required string name = 1;</div><div class="line">  required int32 id = 2;</div><div class="line">  optional string email = 3;</div><div class="line"></div><div class="line">  enum PhoneType &#123;</div><div class="line">    MOBILE = 0;</div><div class="line">    HOME = 1;</div><div class="line">    WORK = 2;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  message PhoneNumber &#123;</div><div class="line">    required string number = 1;</div><div class="line">    optional PhoneType type = 2 [default = HOME];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  repeated PhoneNumber phone = 4;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2） 使用特定语言的protocol buffer编译器来编译.proto文件，这样会生成特定的类以及访问和特定语言文件，比如上面那个例子，如果用的是c++，就会生成一个.cc的proto文件，里面会很有class和get/set方法，你就可以使用下面的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person person;</div><div class="line">person.set_name(&quot;John Doe&quot;);</div><div class="line">person.set_id(1234);</div><div class="line">person.set_email(&quot;jdoe@example.com&quot;);</div><div class="line">fstream output(&quot;myfile&quot;, ios::out | ios::binary);</div><div class="line">person.SerializeToOstream(&amp;output);</div></pre></td></tr></table></figure>
+<p>3） why: 为什么用protocol而不是xml或json</p>
+<p>​    1) protocol 序列化的数据更小  2）解析更快 ，快20到100倍 3）可以生成数据访问类代码</p>
+<p>​    当然xml也有优势，比如xml是可读可编辑并且在某种程度上可以自我描述的</p>
+</li>
+<li><p>what: 什么是gRPC</p>
+<p>gRPC是一个rpc框架，client可以调server的方法就像本地调用一样，远端的server与client可以用完全不同的语言来实现。这里面涉及到几个问题： 1）怎么实现远程调用？因为你本地函数调用使用的是内存的数据，即怎么做序列化/反序列化，用什么数据格式？现有的数据格式是xml或json，而gRPC默认使用的是protocol buffer，优点前面也说了，报文更小，解析更快。 2） 第二个问题是既然涉及到了多语言，那么必然需要有涉及到的多语言的解析库和序列化库，这个库我更愿意理解为一种sdk，像json，xml许多语言都提供序列化库了，比如js中的JSON.stringify和JSON.parse，3）rpc需要让客户端知道有哪些方法可以调吧，就像浏览器和服务端通信用http/json一般是给出api文档，表示方法是什么，入参是什么，返回值是什么，在gRPC或者rpc框架中一般是用service来定义，这个是rpc的概念</p>
+</li>
+<li><p>gRPC类型：</p>
+<p>1）Unary RPC  2）Server streaming RPC  3) Client streaming RPCs  4)Bidirectional streaming RPCs</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/04/utility/nginx跨域/" itemprop="url">
+                  nginx跨域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-04T16:20:08+08:00" content="2017-12-04">
+              2017-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>反代配置proxy_set_header: 默认情况下ngnix不会转发原始请求中的Host头部，后端如果需要这个头部，就需要在反代的nginx上加上下面这个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxy_set_header Host       $host</div></pre></td></tr></table></figure>
+<p>另外反代的nginx一般还会加上下面这条语句，来传递客户端真实ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proxy_set_header   X-Real-IP        $remote_addr;</div><div class="line">proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx 跨域设置，设置在server 下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add_header    &apos;Access-Control-Allow-Origin&apos; &quot;$http_origin&quot;;</div><div class="line">add_header    &apos;Access-Control-Allow-Credentials&apos; true;</div><div class="line">add_header    &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos;;</div><div class="line">add_header    &apos;Access-Control-Allow-Headers&apos; &apos;Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,*&apos;;</div></pre></td></tr></table></figure>
+<p>另外我在实际过程中遇到的问题是，跨域的设置和Cache-Contro的设置会冲突，比如，如果你设置了上面的跨域，然后在location下面设置如下， 跨域的设置会被覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_header Cache-Control &quot;private&quot;;</div><div class="line">add_header Cache-Control &quot;no-cache&quot;;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/12/01/docker/docker login失败/" itemprop="url">
                   docker login失败
                 </a>
@@ -1254,267 +1509,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/08/utility/chrome failed to load response data/" itemprop="url">
-                  chrome failed to load response data
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-08T15:03:13+08:00" content="2017-11-08">
-              2017-11-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>chrome的xhr请求在response里出现failed to load response</p>
-<p>原因: 选中了preserve log，然后之前的那个页面跳转了，所以出现这个问题</p>
-<p>解决方案：在快要跳转的时候在浏览器里的刷新按钮把跳转终止掉</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/07/utility/centos 7终端科学上网/" itemprop="url">
-                  centos 7终端科学上网
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-07T11:24:12+08:00" content="2017-11-07">
-              2017-11-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/科学上网/" itemprop="url" rel="index">
-                    <span itemprop="name">科学上网</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在开发机上安装go的一些二进制工具</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li><p>yum install -y python-pip</p>
-</li>
-<li><p>pip install shadowsock</p>
-</li>
-<li><p>编辑ss client的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;x.x.x.x&quot;,             #你的 ss 服务器 ip</div><div class="line">  &quot;server_port&quot;:0,                #你的 ss 服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;127.0.0.1&quot;,   #本地ip</div><div class="line">  &quot;local_port&quot;:0,                 #本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,          #连接 ss 密码</div><div class="line">  &quot;timeout&quot;:300,                  #等待超时</div><div class="line">  &quot;method&quot;:&quot;aes-256-cfb&quot;,         #加密方式</div><div class="line">  &quot;workers&quot;: 1                    #工作线程数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>vim /etc/systemd/system/shadowsocks.json, 写入如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks Server</div><div class="line">After=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart=/bin/ssserver -c /etc/shadowsocks.son</div><div class="line">Restart=on-abort</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable shadowsocks.service</p>
-<p>systemctl start shadowsocks.service</p>
-</li>
-<li><p>yum install -y privoxy</p>
-</li>
-<li><p>修改/etc/privoxy/config的配置，只需要修改下面这一项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forward-socks5t / 127.0.0.1:1080 .</div></pre></td></tr></table></figure>
-</li>
-<li><p>systemctl enable privoxy</p>
-<p>systemctl start provoxy</p>
-</li>
-<li><p>终端设置代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:8118</div><div class="line">export https_proxy=https://127.0.0.1:8118</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1555,7 +1554,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">240</span>
+              <span class="site-state-item-count">242</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1572,7 +1571,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">168</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

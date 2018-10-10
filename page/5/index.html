@@ -243,6 +243,321 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/20/go/effective go/" itemprop="url">
+                  effective go
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-20T18:09:27+08:00" content="2017-09-20">
+              2017-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/19/go/go学习/" itemprop="url">
+                  go学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-19T11:32:28+08:00" content="2017-09-19">
+              2017-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go的代码组织： 所有代码都在一个workspace下面，一个workspace下面有很多个仓库，代表不同项目，不同项目下有自己的package，package是源代码</p>
+</li>
+<li><p>go的workspace下有三个跟目录， bin放编译好的二进制，pkg放依赖的包，src放不同项目的源文件</p>
+</li>
+<li><p>GOPATH是用来设置go的workspace的目录，这个不要跟go的安装目录混淆，并且这两个也不能在一个目录下，go的安装目录默认在/usr/local, 因此在~/.zshrc下面要设置下GOPATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/work/go</div></pre></td></tr></table></figure>
+<p>另外正如前面所说，所有编译好的目录都在go的workspace下，因此也可以把GOPATH下的bin加到PATH环境变量下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:$(go env GOPATH)/bin&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Go的package都是静态链接的，因此运行时是不需要库存在的</p>
+</li>
+<li><p>go的第一行必须是package name，可执行的命令必须用package main</p>
+</li>
+<li><p>用go get获取远程仓库的package</p>
+<hr>
+</li>
+</ol>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ol>
+<li><p>大写字母开头的成员才会被导出</p>
+</li>
+<li><p>类型是写在变量后面，函数可以返回任意数量的结果</p>
+</li>
+<li><p>返回值也能被命名，尽量不要用naked return（返回值的名字是写在函数定义行里）</p>
+</li>
+<li><p>在函数内部可以用 := 来声明变量，这里可以省去var关键字以及类型，当然这个只适用于函数内部</p>
+<ol>
+<li>go的基础类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">bool</div><div class="line"></div><div class="line">string</div><div class="line"></div><div class="line">int  int8  int16  int32  int64</div><div class="line">uint uint8 uint16 uint32 uint64 uintptr</div><div class="line"></div><div class="line">byte // alias for uint8</div><div class="line"></div><div class="line">rune // alias for int32</div><div class="line">     // represents a Unicode code point</div><div class="line"></div><div class="line">float32 float64</div><div class="line"></div><div class="line">complex64 complex128</div></pre></td></tr></table></figure>
+<p>这里的int， unit， uintptr的位数是根据目标机器是架构来的，如果是32位机器就是32， 64位机器则为64</p>
+</li>
+<li><p>变量在定义时如果没有初始化则会给一个0值， 具体是值</p>
+<p>如果是数值类型，默认是0， 如果是bool类型，默认是false，如果是字符串类型，默认为”“</p>
+</li>
+<li><p>强制转化的语法是T(v) ,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var i int = 42</div><div class="line">var f float64 = float64(i)</div><div class="line">var u uint = uint(f)</div></pre></td></tr></table></figure>
+<p>go里没有隐式转换</p>
+</li>
+<li><p>常量用const关键字，并且常量名首字母大写</p>
+</li>
+<li><p>只有for循环，for虚幻的初始化，判断条件不需要括号，执行体的花括号还是需要的</p>
+</li>
+<li><p>if也不需要括号  </p>
+</li>
+<li><p>go的switch只要命中case就中止，不会继续往下走，因此就不需要break了</p>
+</li>
+<li><p>没有条件的switch可以用来代替长if else</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line">	t := time.Now()</div><div class="line">	switch &#123;</div><div class="line">	case t.Hour() &lt; 12:</div><div class="line">		fmt.Println(&quot;Good morning!&quot;)</div><div class="line">	case t.Hour() &lt; 17:</div><div class="line">		fmt.Println(&quot;Good afternoon.&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;Good evening.&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>defer语句：A defer statement defers the execution of a function until the surrounding function returns.</p>
+</li>
+<li><p>数组： 数组的长度在编译时就是固定的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a [10]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice：is a dynamically-sized, flexible view into the elements of an array， slice像是对底层数组的引用，改变slice的值会改变底层数组的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	primes := [6]int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line"></div><div class="line">	var s []int = primes[1:4]</div><div class="line">	fmt.Println(s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[]bool&#123;true, true, false&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Slice length and capacity   这块不太懂</p>
+</li>
+<li><p>map,  使用make来生成map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>len() 和 cap():</p>
+<p>The length of a slice is the number of elements it contains.</p>
+<p>The capacity of a slice is the number of elements in the underlying array, <strong>counting from the first element in the slice</strong>.  </p>
+<ol>
+<li>cap的话只要slice不移动数组的头，那这个slice的cap是不会变的</li>
+<li>slice里再取slice，如果第二个slice的范围小，则是在前一个slice里取，如果第二个slice的返回大，则是相当于 re-slicing了，根据是底层的数组以及这个slice的capcity</li>
+</ol>
+<p>下面这个例子能说出来这个也就理解了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	s := []int&#123;2, 3, 5, 7, 11, 13&#125;</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Slice the slice to give it zero length.</div><div class="line">	//s = s[:0]</div><div class="line">	//printSlice(s)</div><div class="line"></div><div class="line">	// Extend its length.</div><div class="line">	s = s[:4]</div><div class="line">	printSlice(s)</div><div class="line"></div><div class="line">	// Drop its first two values.</div><div class="line">	s = s[2:]</div><div class="line">	printSlice(s)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func printSlice(s []int) &#123;</div><div class="line">	fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>answer：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">len=6 cap=6 [2 3 5 7 11 13]</div><div class="line">len=4 cap=6 [2 3 5 7]</div><div class="line">len=2 cap=4 [5 7]</div></pre></td></tr></table></figure>
+</li>
+<li><p>map类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">type Vertex struct &#123;</div><div class="line">	Lat, Long float64</div><div class="line">&#125;</div><div class="line"></div><div class="line">var m map[string]Vertex</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	m = make(map[string]Vertex)</div><div class="line">	m[&quot;Bell Labs&quot;] = Vertex&#123;</div><div class="line">		40.68433, -74.39967,</div><div class="line">	&#125;</div><div class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>method： 一个特殊的函数，带有一个receiver参数，这个receiver表示的是这个函数是用在哪个类型上，如果是指针类型的recevier，可以修改receiver的值</p>
+</li>
+<li><p>接口： 我觉得有点像JS里的this的绑定，就是说一个方法不是现实声明在某个对象下面，我可以先声明这个方法的接口，然后通过methods里面的receive的不同类型来做实现，谁想实现就谁去实现这个方法</p>
+</li>
+<li><p>类型断言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	var i interface&#123;&#125; = &quot;hello&quot;</div><div class="line"></div><div class="line">	s := i.(string)</div><div class="line">	fmt.Println(s)</div><div class="line"></div><div class="line">	s, ok := i.(string)</div><div class="line">	fmt.Println(s, ok)</div><div class="line"></div><div class="line">	f, ok := i.(float64)</div><div class="line">	fmt.Println(f, ok)</div><div class="line"></div><div class="line">	f = i.(float64) // panic</div><div class="line">	fmt.Println(f)</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/13/es6/关于generator的理解/" itemprop="url">
                   关于generator的理解
                 </a>
@@ -1369,244 +1684,11 @@ d: [1,2,3]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/12/javascript/javascript对象的扩展运算符/" itemprop="url">
-                  javascript对象的扩展运算符
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T12:57:53+08:00" content="2017-08-12">
-              2017-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>扩展运算符（<code>...</code>）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let z = &#123; a: 3, b: 4 &#125;;</div><div class="line">let n = &#123; ...z &#125;;</div><div class="line">n // &#123; a: 3, b: 4 &#125;</div></pre></td></tr></table></figure>
-<p>这等同于使用<code>Object.assign</code>方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let aClone = &#123; ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aClone = Object.assign(&#123;&#125;, a);</div></pre></td></tr></table></figure>
-<p>但是要注意的是…只是一个浅拷贝，上面的对象z有两个属性a和b，如果a和b都是个对象，那做一个剩余操作符，只是改了最外面一个对象名，其他值还是原来的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/12/javascript/javascript filter问题/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T12:23:33+08:00" content="2017-08-12">
-              2017-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用filter的时候踩了一个新手很常见的问题，但因为使用方式的隐蔽，一开始没看出来，具体的问题是这样的:</p>
-<p>我又一个对象是叫availableHosts,然后这个对象有两个属性，一个是byId，这个是一个对象，另一个属性叫allIds,是个字符串数组，我的需求是过滤下allIds这个数组，删除掉指定的字符串，然后我写下了如下一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">availableHosts.allIds.filter((hostId: string) =&gt; &#123;</div><div class="line">   if (hostId === someone) &#123;</div><div class="line">     return false;</div><div class="line">   &#125; else &#123;</div><div class="line">     return true;</div><div class="line">   &#125;   </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>然后console.log打印availableHosts，发现无论你怎么过滤，allId这个字符串数组都没有变，甚至你直接return false都没用，然后我突然想到filter这个是返回一个新数组，我这里没有对属性赋值，引用的还是老数组，所以当然没变了。这个问题之所以查了很久，原因在于之前用filter是在一个数组上用的，然后直接赋值，但这次是在一个对象的属性上，这就很容易忘记赋值这个操作，需要吸取教训。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1647,7 +1729,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">240</span>
+              <span class="site-state-item-count">242</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1664,7 +1746,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">168</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -243,6 +243,262 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/08/utility/chrome failed to load response data/" itemprop="url">
+                  chrome failed to load response data
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-08T15:03:13+08:00" content="2017-11-08">
+              2017-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>chrome的xhr请求在response里出现failed to load response</p>
+<p>原因: 选中了preserve log，然后之前的那个页面跳转了，所以出现这个问题</p>
+<p>解决方案：在快要跳转的时候在浏览器里的刷新按钮把跳转终止掉</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/07/utility/centos 7终端科学上网/" itemprop="url">
+                  centos 7终端科学上网
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-07T11:24:12+08:00" content="2017-11-07">
+              2017-11-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在开发机上安装go的一些二进制工具</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p>yum install -y python-pip</p>
+</li>
+<li><p>pip install shadowsock</p>
+</li>
+<li><p>编辑ss client的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;x.x.x.x&quot;,             #你的 ss 服务器 ip</div><div class="line">  &quot;server_port&quot;:0,                #你的 ss 服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;127.0.0.1&quot;,   #本地ip</div><div class="line">  &quot;local_port&quot;:0,                 #本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,          #连接 ss 密码</div><div class="line">  &quot;timeout&quot;:300,                  #等待超时</div><div class="line">  &quot;method&quot;:&quot;aes-256-cfb&quot;,         #加密方式</div><div class="line">  &quot;workers&quot;: 1                    #工作线程数</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>vim /etc/systemd/system/shadowsocks.json, 写入如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Shadowsocks Server</div><div class="line">After=network.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">ExecStart=/bin/ssserver -c /etc/shadowsocks.son</div><div class="line">Restart=on-abort</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
+</li>
+<li><p>systemctl enable shadowsocks.service</p>
+<p>systemctl start shadowsocks.service</p>
+</li>
+<li><p>yum install -y privoxy</p>
+</li>
+<li><p>修改/etc/privoxy/config的配置，只需要修改下面这一项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forward-socks5t / 127.0.0.1:1080 .</div></pre></td></tr></table></figure>
+</li>
+<li><p>systemctl enable privoxy</p>
+<p>systemctl start provoxy</p>
+</li>
+<li><p>终端设置代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:8118</div><div class="line">export https_proxy=https://127.0.0.1:8118</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/05/utility/xargs和管道操作符的区别/" itemprop="url">
                   xargs和管道操作符的区别
                 </a>
@@ -1224,238 +1480,11 @@ error_page 500 502 503 504 /50x.html;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/23/utility/openssl自签名证书categories: openssltags: openssl/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-23T16:28:06+08:00" content="2017-10-23">
-              2017-10-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: openssl自签名证书<br>categories: openssl<br>tags: openssl</p>
-<ol>
-<li>openssl genrsa -out server.key 1024</li>
-<li>openssl req -new -key server.key -out server.csr</li>
-<li>openssl x509 -req -in server.csr -out server.crt -signkey server.key -days 3650</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/17/k8s/openresty跑在k8s集群遇到的问题/" itemprop="url">
-                  openresty跑在k8s集群遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-17T18:17:31+08:00" content="2017-10-17">
-              2017-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernets/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernets</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到了一个很常见的问题，就是在openresty里配的后端服务比如redis之类的需要通过域名，然后这里我只是简单的写了一个短域名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-svc</div></pre></td></tr></table></figure>
-<p>然后日志报错不能解析，这个经过搜索发现是openrestry需要指定nameserver，否则无法解析域名，于是乎我在nginx.conf的http模块下再加上如下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resovler 10.0.0.1</div></pre></td></tr></table></figure>
-<p>但openresty的日志还是报无法解析，最后还是同事的一句话提醒了我，在lua配置里写的是短域名，kube-dns认这个短域名吗？</p>
-<p>我之前一直认为kube-dns是认的，比如通过busybox执行如下一个命令完全是可以查到ip的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec busybox -- nslookup redis-svc</div></pre></td></tr></table></figure>
-<p>但openresty为啥不行呢，我去查看下了下节点上的/etc/resolver.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nameserver 10.0.0.1</div><div class="line">search default.svc.cluster.local svc.cluster.local cluster.local</div><div class="line">options ndots:5</div></pre></td></tr></table></figure>
-<p>这里有个serach之前一直不理解，以为这个回去远端dns搜索，实际上它的真正作用就是补全短域名</p>
-<p>所以前面的redis-svc就会被补全到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-svc.default.svc.cluster.local</div><div class="line">redis-svc.svc.cluster.local</div><div class="line">redis-svc.cluster.local</div></pre></td></tr></table></figure>
-<p>上面几个，然后再发给kube-dns，所以他们能被查到</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1496,7 +1525,7 @@ error_page 500 502 503 504 /50x.html;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">240</span>
+              <span class="site-state-item-count">242</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1513,7 +1542,7 @@ error_page 500 502 503 504 /50x.html;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">166</span>
+                <span class="site-state-item-count">168</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
