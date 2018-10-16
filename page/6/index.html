@@ -243,6 +243,444 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/23/javascript/Ajax里用window.open被拦截问题/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-23T11:22:49+08:00" content="2017-08-23">
+              2017-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>浏览器安全机制中，页面弹窗，必须是在用户触发的，才算合法弹窗；由ajax或定时执行的弹窗均为非用户触发。会被浏览器或相关安全软件理解为广告被拦截掉；</p>
+<p>因此window.open需要写在ajax之前</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/22/typescript/typescript d.ts管理/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-22T10:06:54+08:00" content="2017-08-22">
+              2017-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>After installing any npm package as a dependency or dev dependency, immediately try to install the <code>.d.ts</code> file via <code>@types</code>.</li>
+<li>If the library has a <code>.d.ts</code> file on DefinitelyTyped, the install will succeed and you are done. If the install fails because the package doesn’t exist, continue to step 3.</li>
+<li>Make sure you project is <a href="https://github.com/Microsoft/TypeScript-Node-Starter#setting-up-typescript-to-look-for-dts-files-in-another-folder" target="_blank" rel="external">configured for supplying your own <code>d.ts</code> files</a></li>
+<li>Try to <a href="https://github.com/Microsoft/TypeScript-Node-Starter#using-dts-gen" target="_blank" rel="external">generate a <code>.d.ts</code> file with dts-gen</a>. If it succeeds, you are done. If not, continue to step 5.</li>
+<li>Create a file called <code>.d.ts</code> in your <code>types</code> folder.</li>
+<li>Add the following code:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">declare module &quot;&lt;some-library&gt;&quot;;</div></pre></td></tr></table></figure>
+<ol>
+<li>At this point everything should compile with no errors and you can either improve the types in the <code>.d.ts</code> file by following this <a href="http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html" target="_blank" rel="external">guide on authoring <code>.d.ts</code> files</a> or continue with no types.</li>
+<li>If you are still having issues, let me know by sending me an email or pinging me on twitter, I will help you.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/16/typescript/typescript recap/" itemprop="url">
+                  typescript recap
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T21:51:56+08:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"><a href="#Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点" class="headerlink" title="Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点"></a>Typescript用了也有一段时间了，是时候从头到尾仔仔细细过一遍文档了，决定还是看英文原版的，虽然可能会稍微累一点</h4><h4 id="1-基础类型"><a href="#1-基础类型" class="headerlink" title="1.基础类型:"></a>1.基础类型:</h4><ol>
+<li><p>增加了枚举类型： 个人觉得枚举是一个非常重要的数据类型，工作中经常用到，特别好的一点是从typescript2.4开始支持字符串枚举了，即枚举值是字符串，以前的版本枚举值只能是数值，在很多场景中都有应用，一个例子就是redux的action，之前是用常量来定义，但如果用枚举值可以更方便地管理； API的返回值很多可以用枚举值了</p>
+<p>另外需要注意的是对于枚举值是数值的枚举类型，是可以从值来返回枚举名字本身的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;Red = 1, Green, Blue&#125;</div><div class="line">let colorName: string = Color[2];</div><div class="line"></div><div class="line">alert(colorName);</div></pre></td></tr></table></figure>
+</li>
+<li><p>类型断言：当我们比编译器知道更多关于一个变量的类型的时候可以用类型断言，有点像其他语言里的强制类型转换，但它实际上不会对数据做任何操作，仅供编译器用，有两种写法，一种是&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (&lt;string&gt;someValue).length;</div></pre></td></tr></table></figure>
+<p>另一种是as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line"></div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-声明"><a href="#2-声明" class="headerlink" title="2.声明"></a>2.声明</h4><ol>
+<li><p>var是函数作用域， let是块级作用域，还是再看下这个经典的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    // capture the current state of &apos;i&apos;</div><div class="line">    // by invoking a function with its current value</div><div class="line">    (function(i) &#123;</div><div class="line">        setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里是用了变量捕获，即 each time a scope is run, it creates an “environment” of variables. That environment and its captured variables can exist even after everything within its scope has finished executing</p>
+<p>而在循环中声明的let就是类似的作用， 每次循环都会创建一个新的scope，然后会捕获那个i</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10 ; i++) &#123;</div><div class="line">    setTimeout(function() &#123; console.log(i); &#125;, 100 * i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h4><ol>
+<li><p>对象的readonly属性，即这个属性只在对象初始化时改变，之后就不能再被修改了，就像使用const一样尽可能使用readonly</p>
+</li>
+<li><p>ReadonlyArray<t>, 不可变数组</t></p>
+</li>
+<li><p>对象字面量在赋值给其他变量或函数参数时会被加强检查的，说的是如果对象字面量里有任何属性目标对象里没有时就会报错，这里的函数参数是用对象字面量，但color拼错了，在js这没有问题，但ts这里会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createSquare(config: SquareConfig): &#123; color: string; area: number &#125; &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySquare = createSquare(&#123; colour: &quot;red&quot;, width: 100 &#125;);</div></pre></td></tr></table></figure>
+<p>解决办法有几个，1个是强制转换，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let mySquare = createSquare(&#123; width: 100, opacity: 0.5 &#125; as SquareConfig);</div></pre></td></tr></table></figure>
+<p>或者可以在声明文件里加索引签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SquareConfig &#123;</div><div class="line">    color?: string;</div><div class="line">    width?: number;</div><div class="line">    [propName: string]: any;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者先赋值给一个变量，再传参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let squareOptions = &#123; colour: &quot;red&quot;, width: 100 &#125;;</div><div class="line">let mySquare = createSquare(squareOptions);</div></pre></td></tr></table></figure>
+</li>
+<li><p>可索引类型</p>
+<h4 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a>4. 函数</h4></li>
+<li><p>TS对函数做了增强，表现在TS中的函数每一个参数都是必须要传的，除非显示指定为可选参数或者默认参数，这和JS有很大不同，JS中所有参数参数都是可选的，如果你不传，表示你传的是undefined</p>
+</li>
+<li><p>默认参数是ES6就有的</p>
+</li>
+<li><p>剩余参数也是ES6有的，即多余的函数参数不在放到arguments里，而是用…一个剩余参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildName(firstName: string, ...restOfName: string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let employeeName = buildName(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数显示绑定this,  Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked</p>
+</li>
+<li><p>TS支持函数重载：对同一个函数作多个声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">let suits = [&quot;hearts&quot;, &quot;spades&quot;, &quot;clubs&quot;, &quot;diamonds&quot;];</div><div class="line"></div><div class="line">function pickCard(x: &#123;suit: string; card: number; &#125;[]): number;</div><div class="line">function pickCard(x: number): &#123;suit: string; card: number; &#125;;</div><div class="line">function pickCard(x): any &#123;</div><div class="line">    // Check to see if we&apos;re working with an object/array</div><div class="line">    // if so, they gave us the deck and we&apos;ll pick the card</div><div class="line">    if (typeof x == &quot;object&quot;) &#123;</div><div class="line">        let pickedCard = Math.floor(Math.random() * x.length);</div><div class="line">        return pickedCard;</div><div class="line">    &#125;</div><div class="line">    // Otherwise just let them pick the card</div><div class="line">    else if (typeof x == &quot;number&quot;) &#123;</div><div class="line">        let pickedSuit = Math.floor(x / 13);</div><div class="line">        return &#123; suit: suits[pickedSuit], card: x % 13 &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myDeck = [&#123; suit: &quot;diamonds&quot;, card: 2 &#125;, &#123; suit: &quot;spades&quot;, card: 10 &#125;, &#123; suit: &quot;hearts&quot;, card: 4 &#125;];</div><div class="line">let pickedCard1 = myDeck[pickCard(myDeck)];</div><div class="line">alert(&quot;card: &quot; + pickedCard1.card + &quot; of &quot; + pickedCard1.suit);</div><div class="line"></div><div class="line">let pickedCard2 = pickCard(15);</div><div class="line">alert(&quot;card: &quot; + pickedCard2.card + &quot; of &quot; + pickedCard2.suit);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h4><ol>
+<li>坦率说我现在也不知道怎么来定义什么是泛型，我的理解是泛型是一种通用的写法，可以是一个函数，可以是一个类型，不用把变量和属性的参数类型固定死而同时又能加上类型限制的方式，可以通过&lt;&gt;这种形式来捕获输入的变量类型，然后可以通过这个类型来限制其他的类型，比如输出的类型，输入的其他变量类型，最简单的是官方的echo函数的例子，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: number): number &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    如果这样写的话参数只能是数值类型，但我如果要一个字符串类型的echo函数呢？又或者数组呢？不可能每个都写一遍吧，一个方法是写成any</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity(arg: any): any &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    但any有个问题，输入和输出的关系丢失了，我输入是个number，输出也可以是个string，所以这时候泛型就可以派上用长了，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这样写的话T可以捕获输入的类型，同时限制了输出的类型，这是一个最简单的例子</p>
+<ol>
+<li><p>泛型限制</p>
+<p>如果我们想限制T的范围呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function loggingIdentity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Error: T doesn&apos;t have .length</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面我想调T的length，但是不是所有T都有length这个属性，因此可以对T做下限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">interface Lengthwise &#123;</div><div class="line">    length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</div><div class="line">    console.log(arg.length);  // Now we know it has a .length property, so no more error</div><div class="line">    return arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面这个例子也是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K) &#123;</div><div class="line">    return obj[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="6-类型推断"><a href="#6-类型推断" class="headerlink" title="6. 类型推断"></a>6. 类型推断</h4><ol>
+<li><p>类型推断发生在什么时候？变量初始化时，设置参数默认值时，决定函数返回值时，上下文类型，前三个比较好理解，这里要重点学习下上下类型推导，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.onmousedown = function(mouseEvent) &#123;</div><div class="line">    console.log(mouseEvent.buton);  //&lt;- Error</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里如果这个onmousedown之前定义过，那么mouseEvent的类型就能被推导出来</p>
+<h4 id="7-高级类型"><a href="#7-高级类型" class="headerlink" title="7. 高级类型"></a>7. 高级类型</h4></li>
+<li><p>交叉类型  &amp;：  多种类型的加和</p>
+</li>
+<li><p>联合类型 ！：  多种类型中的一种</p>
+</li>
+<li><p>自定义类型保护：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isFish(pet: Fish | Bird): pet is Fish &#123;</div><div class="line">    return (&lt;Fish&gt;pet).swim !== undefined;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>typeof 类型保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function padLeft(value: string, padding: string | number) &#123;</div><div class="line">    if (typeof padding === &quot;number&quot;) &#123;</div><div class="line">        return Array(padding + 1).join(&quot; &quot;) + value;</div><div class="line">    &#125;</div><div class="line">    if (typeof padding === &quot;string&quot;) &#123;</div><div class="line">        return padding + value;</div><div class="line">    &#125;</div><div class="line">    throw new Error(`Expected string or number, got &apos;$&#123;padding&#125;&apos;.`);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="8-模块"><a href="#8-模块" class="headerlink" title="8. 模块"></a>8. 模块</h4><p>模块在其自身的作用域里执行，而不是在全局作用域里，这意味着定义在一个模块里的变量，函数，类等等在模块外部是不可见的，除非你明确地使用export导出它们</p>
+<p>1、 具有副作用的导入模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &quot;./my-module.js&quot;;</div></pre></td></tr></table></figure>
+<p>在导入CSS文件里可以看到这种写法，这会导入整个模块，并且是全局的</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/12/javascript/javascript对象的扩展运算符/" itemprop="url">
                   javascript对象的扩展运算符
                 </a>
@@ -1071,370 +1509,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/20/redux/redux实践的问题/" itemprop="url">
-                  redux实践的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-20T16:58:35+08:00" content="2017-07-20">
-              2017-07-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redux/" itemprop="url" rel="index">
-                    <span itemprop="name">redux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>UI的状态，比如一个dialog是否open的状态是否也还要放到redux store里去？</p>
-<p>如果这个状态只有那么一个组件用，没必要放到store里去，如果某个数据是要跨全局使用的，那放到store里</p>
-<p>看一下redux作者的回答</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Use React for ephemeral state that doesn&apos;t matter to the app globally and doesn&apos;t mutate in complex ways. For example, a toggle in some UI element, a form input state. Use Redux for state that matters globally or is mutated in complex ways. For example, cached users, or a post draft.</div><div class="line"></div><div class="line">Sometimes you&apos;ll want to move from Redux state to React state (when storing something in Redux gets awkward) or the other way around (when more components need to have access to some state that used to be local).</div><div class="line"></div><div class="line">The rule of thumb is: do whatever is less awkward.</div></pre></td></tr></table></figure>
-</li>
-<li><p>一些ajax调用但不太会影响state的状态，比如实际遇到的一个恢复的api，返回值只有成功或失败，这个需要写action吗？</p>
-<p>redux的建议是把任何有副作用的函数都放到action creator里去，因为这样可以做到重用。但如果这个api调用只有可能在那个组件里使用呢？</p>
-<p>放在component的问题是，错误信息变成local的state了，store里看不到错误信息</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/18/javascript/javascript函数/" itemprop="url">
-                  javascript函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-18T08:02:42+08:00" content="2017-07-18">
-              2017-07-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>关于javascript最重要的一点我觉得需要记住的是： javascript函数是一个对象，函数名是指向这个对象的指针</li>
-<li>既然函数名是指针，那就能理解为什么javascript函数没有重载了(重载只不过是改变了指针的指向)</li>
-<li>函数声明（function开头) 与函数表达式的区别仅在于函数声明有个叫函数声明提升的过程，因此即使函数是写在最底部，解释器在执行的时候也是会将它提到前面来解析</li>
-<li>函数内部有两个特殊对象arguments和this， 其中arguments是一个类数组对象，包含着传入的所有参数，这个数组对象有一个叫callee的属性，指向函数本身。 this对象则是引用函数据以执行的环境对象。javascript的this和java是有很大区别的，在于说js的this只有在运行时才能确定，而java的this在开发时就能定下来</li>
-<li>函数对象还有一个caller的属性，指向调用当前函数，严格模式下访问caller和arguments.callee都会报错</li>
-<li>函数还有两个属性 length和prototype，前者表示函数希望接收的命名参数的数量，prototype专门再研究</li>
-<li>函数对象还有两个非继承而来的方法，apply()和call(), 这两个方法都是在特定的作用域中<strong>调用函数</strong>，实际上等于设置函数体内this的值， 他们都接收两个参数，区别在于接收函数的参数方式不同，call必须每一个都列出来，而apply则是可以通过数组或arguments参数传进去，call和applay的意义在于解耦了对象和方法，对象和方法不需要有耦合关系，这点也是js相对于java一个很重要的区别</li>
-<li>函数的bind方法，这个方法和apply和call容易混淆，他们都是改变了对象的this值，所不同的是bind方法是返回一个新函数，而不是立即调用，返回的这个新函数的this值被修改了</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/13/utility/vscode不好用排查记/" itemprop="url">
-                  vscode不好用排查记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-13T11:22:09+08:00" content="2017-07-13">
-              2017-07-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vscode/" itemprop="url" rel="index">
-                    <span itemprop="name">vscode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工具的好坏真的很影响效率，这几天一直被vscode搞得很烦，而现在又已经感觉离不开vscode了，特别是在写ts的情况下。简单说下这几天的一个问题，在写componet的props，写着写着就卡死，提示加载中，查看下active monitor发现code helper把cpu吃满了，搜了一圈看到说用下面命令排查</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ps -eo pcpu,user,pid,command | grep Code</div><div class="line">  0.0 root             19842 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper</div><div class="line">  0.0 Jeremy           58063 /Applications/Visual Studio Code.app/Contents/MacOS/Electron</div><div class="line">  0.0 Jeremy           58064 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=gpu-process --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=0,1,10,23,25,35,38,45,51,59,61,62,63,64,66,70,71,73,81,82,83,86,88,89 --gpu-vendor-id=0x8086 --gpu-device-id=0x0a2e --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --gpu-active-vendor-id=0x8086 --gpu-active-device-id=0x0a2e --service-request-channel-token=F64EF82C1B4AE380AE7BB33F7D6350D9</div><div class="line">  0.0 Jeremy           58066 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=E0605B7E030E5A8FA29ECC035BA659D5 --lang=zh-CN --node-integration=true --background-color=#1e1e1e --disable-blink-features=Auxclick --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=E0605B7E030E5A8FA29ECC035BA659D5 --renderer-client-id=4</div><div class="line">  0.0 Jeremy           58068 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=renderer --js-flags=--nolazy --no-sandbox --primordial-pipe-token=517025C0E30485EB8424196A08BA8C56 --lang=zh-CN --node-integration=true --hidden-page --enable-pinch --num-raster-threads=2 --enable-gpu-rasterization --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,34037;0,11,34037;0,12,34037;0,13,3553;0,14,3553;0,15,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,34037;1,11,34037;1,12,34037;1,13,3553;1,14,3553;1,15,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,34037;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,34037;2,13,3553;2,14,34037;2,15,34037;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,34037;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,34037;3,13,3553;3,14,34037;3,15,34037 --service-request-channel-token=517025C0E30485EB8424196A08BA8C56 --renderer-client-id=6</div><div class="line">  0.0 Jeremy           58296 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=terminal</div><div class="line">100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=extensionHost</div><div class="line">  0.0 Jeremy           58298 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=watcherService</div><div class="line">  0.0 Jeremy           58300 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Resources/crashpad_handler --database=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --metrics-dir=/var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/VSCode Crashes --url=https://rink.hockeyapp.net/api/2/apps/21a48a66799e47fea4f52c0ff81e803d/crashes/upload --handshake-fd=58</div><div class="line">  0.0 Jeremy           58533 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/node_modules/vscode-languageclient/lib/utils/electronForkStart /Users/Jeremy/.vscode/extensions/eg2.tslint-0.16.0/server/server.js --node-ipc</div><div class="line">  0.0 Jeremy           58534 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript/out/utils/electronForkStart /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/tsserver.js --useSingleInferredProject --enableTelemetry --cancellationPipeName /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tscancellation-b7c49ca6478648eabc66.sock* --logVerbosity verbose --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/tsserver.log</div><div class="line">  0.0 Jeremy           58536 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap --type=searchService</div><div class="line">  0.0 Jeremy           58553 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Users/Jeremy/work/vipconsole/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /Users/Jeremy/Library/Caches/typescript/2.4 --enableTelemetry --logFile /var/folders/7s/_32nb5696rq489__nb3rdqzr0000gn/T/vscode-tsserver-log-hJL9TZ/ti-58534.log</div><div class="line">  0.0 Jeremy           58567 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/node_modules/vscode-languageclient/lib/utils/electronForkStart /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/json/server/out/jsonServerMain.js --node-ipc</div><div class="line">  0.0 Jeremy           58853 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn Code</div></pre></td></tr></table></figure>
-<p>可以看到</p>
-<p>100.0 Jeremy           58297 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper /Applications/Visual Studio Code.app/Contents/Resources/app/out/bootstrap –type=extensionHost</p>
-<p>是这个extensionHost把code helper吃满的， </p>
-<p>extension表示是插件影响的，但至于是哪个插件还不知道，只能一个一个排查，最后发现时auto rename这个插件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1480,7 +1554,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1497,7 +1571,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

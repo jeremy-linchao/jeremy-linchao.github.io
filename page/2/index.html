@@ -243,6 +243,359 @@
             
               
                 
+                <a class="post-title-link" href="/2018/01/01/database/sql连接理解/" itemprop="url">
+                  关于sql连接的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-01T13:31:12+08:00" content="2018-01-01">
+              2018-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>内连接： 内连接就是关系代数里面的θ-连接，所谓θ连接就是先做笛卡尔乘积，然后在结果上做一个选择操作，条件就是θ指定的条件，比如某两列大小比较</li>
+<li>等值连接：等值连接就是特殊的内连接，特殊在θ条件变为两列相等，但等值连接最后的列数还是和笛卡尔乘积的列数一样</li>
+<li>自然连接：自然理解是再进一步特殊的等值连接，自然连接有个前提条件是连接的两张表必须要有相同的列名，然后再做一次等值连接，区别说自然连接会去除掉重复的列</li>
+<li>外连接：为什么要有外连接呢？因为在做等值连接的时候可能会丢失掉某些行的信息，比如第一个表的东西，比如顾客表和订单表的例子，要查询所有顾客的所有订单，自然连接是不够的，因为可能有些顾客没下过订单，因此外链接就出来了，它在连接的时候如果发现订单表没有顾客数据，就填充0。至于左外连接和右外连接还是全外连接，则取决于你是要哪边的数据保留完整</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/28/go/why I love go/" itemprop="url">
+                  why I love go
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-28T22:08:50+08:00" content="2017-12-28">
+              2017-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了</li>
+<li>defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷</li>
+<li>一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string</li>
+<li>变量短声明：类似于c++的auto，让这门静态语言有了类似动态语言的变量定义语法</li>
+<li>goroutine：一开始对于goroutine的channel玩法不是很理解，什么buffer的，unbuffered channel会感到很陌生，但是当使用多了之后发现并发编程在go里真的很简单</li>
+<li>匿名函数与闭包：对于函数式编程能做到一部分支持</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/12/grpc/protocol buffer安装/" itemprop="url">
+                  protocol buffer安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-12T14:53:29+08:00" content="2017-12-12">
+              2017-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/protocol-buffer/" itemprop="url" rel="index">
+                    <span itemprop="name">protocol buffer</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>protocol buffer安装分为两部分：一个是protocol编译器的安装，编译器主要是将proto文件编译成相应语言可用的代码，当然这个也需要相应语言插件支持，编译器是去到<a href="https://github.com/google/protobuf/releases" target="_blank" rel="external">https://github.com/google/protobuf/releases</a>  下载一个对应平台的zip包； 二是protocol buffer 运行时环境安装，运行时是什么呢，就是语言来调用protocol, 比如go要序列化，调用相应函数，而这个函数就是运行时环境来提供的，对于go来说就是protoc-gen-go这个软件，这个软件提供protocol的编译器插件以及运行时环境</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/12/11/grpc/protocol buffer and grpc/" itemprop="url">
                   protocol buffer and grpc
                 </a>
@@ -1116,399 +1469,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/14/utility/git的进一步理解/" itemprop="url">
-                  git的进一步理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-14T10:30:29+08:00" content="2017-11-14">
-              2017-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>git add： 这个命令目标文件的状态不同会用不同作用 1）已经跟踪的文件: 把目标文件加到暂存区 2）没有跟踪过的文件: 标记为需要跟踪并加到暂存区   3）合并时有冲突： 标记为已解决</p>
-</li>
-<li><p>.gitignore:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 忽略所有 .a 结尾的文件</div><div class="line">*.a</div><div class="line"># 但 lib.a 除外</div><div class="line">!lib.a</div><div class="line"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</div><div class="line">/TODO</div><div class="line"># 忽略 build/ 目录下的所有文件</div><div class="line">build/</div><div class="line"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</div><div class="line">doc/*.txt</div><div class="line"># ignore all .txt files in the doc/ directory</div><div class="line">doc/**/*.txt</div></pre></td></tr></table></figure>
-<p>比如写node_modules/只会忽略当前node_modules下的所有文件，但不会忽略子目录下的node_modules，所以如果对于有多个子项目，最好在每个子项目下分别写gitignore</p>
-</li>
-<li><p>git diff 比较的是什么？  是工作目录中当前文件和暂存区域快照之间的区别</p>
-</li>
-<li><p>git diff - - staged或git diff - - cached 比较的是什么？已经暂存起来的文件和上次提交时的快照之间的区别</p>
-</li>
-<li><p>git rm：  git rm 跟git add是同级别的命令，意味这个git rm之后也可以直接git commit，它的作用与 git add正好相反，它是从暂存区移除掉某个文件，不加入到版本管理</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/14/utility/zsh在大目录下操作很卡/" itemprop="url">
-                  zsh在大目录下操作很卡
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-14T10:18:31+08:00" content="2017-11-14">
-              2017-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>zsh在大目录下操作bash命令如ls会有一个很明显的延迟感，然而其他目录却没有这个问题，后来查到这原来是一个git目录，每次进入目录都会调用git status检查状态，解决方案是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 1</div></pre></td></tr></table></figure>
-<p>这样的话任何git信息都没有了，包括分支以及是否修改信息都没了，如果想要撤销，改成0就可以了，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-status 0</div></pre></td></tr></table></figure>
-<p>当然可以保留分支信息, 这样会更直观一点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --add oh-my-zsh.hide-dirty 1</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/13/utility/ssh连接不断开/" itemprop="url">
-                  ssh连接不断开
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-13T15:32:24+08:00" content="2017-11-13">
-              2017-11-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>在开发机上开发遇到一个很头疼的问题是ssh会经常遇到空闲超时断开，<a href="http://bluebiu.com/blog/linux-ssh-session-alive.html" target="_blank" rel="external">http://bluebiu.com/blog/linux-ssh-session-alive.html</a>   这个文章的作者深究了下原因，我这里只列一下解决方案，修改客户端的 ~/.ssh/config文件，加入如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host *</div><div class="line">    ServerAliveInterval 60</div><div class="line">    ServerAliveCountMax 3</div></pre></td></tr></table></figure>
-</li>
-<li><p>更好的方案： tmux</p>
-<p>1）如果用的是zsh，需要记得修改下/usr/local/etc/tmux.conf这个文件，改下默认的shell</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g default-shell /bin/zsh</div></pre></td></tr></table></figure>
-<p>2)   ssh一次再复用的真正含义是“<strong>*在本机上ssh到远程服务器，并且在远程服务器上安装好了tmux，这个时候执行tmux才是打开多个终端*</strong>”。简言之：</p>
-<p>　　　a. tmux必须在远程服务器端装好</p>
-<p>　　　b. 本地只需要ssh到远程服务器一次，ssh的复用是tmux在服务器端的后台完成的</p>
-<p>3)   这个博客不错<a href="http://www.cnblogs.com/xbf9xbf/p/4876969.html" target="_blank" rel="external">http://www.cnblogs.com/xbf9xbf/p/4876969.html</a></p>
-<p>4)   在远程服务器上tmux然后vim会发现颜色丢失，正确的做法是在.vimrc加入下面的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if exists(&apos;$TMUX&apos;)</div><div class="line">  set term=screen-256color</div><div class="line">endif</div></pre></td></tr></table></figure>
-<p>5） cmd+k清屏不好用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Preferences -&gt; Keys -&gt; + (add new global shortcut)</div><div class="line"></div><div class="line">Keyboard shortcut: ⌘+k</div><div class="line">Action: Send text</div><div class="line">value:</div><div class="line">clear\n</div></pre></td></tr></table></figure>
-<p>6) 使用: <a href="https://www.youtube.com/watch?v=BHhA_ZKjyxo" target="_blank" rel="external">https://www.youtube.com/watch?v=BHhA_ZKjyxo</a>   使用这个链接</p>
-<p>tmux ls (or tmux list-sessions)<br>tmux new -s session-name<br>Ctrl-b d Detach from session<br>tmux attach -t [session name]<br>tmux kill-session -t session-name</p>
-<p>Ctrl-b c Create new window<br>Ctrl-b d Detach current client<br>Ctrl-b l Move to previously selected window<br>Ctrl-b n Move to the next window<br>Ctrl-b p Move to the previous window<br>Ctrl-b &amp; Kill the current window<br>Ctrl-b , Rename the current window<br>Ctrl-b q Show pane numbers (used to switch between panes)<br>Ctrl-b o Switch to the next pane<br>Ctrl-b ? List all keybindings</p>
-<h5 id="moving-between-windows"><a href="#moving-between-windows" class="headerlink" title="moving between windows"></a>moving between windows</h5><p>Ctrl-b n (Move to the next window)<br>Ctrl-b p (Move to the previous window)<br>Ctrl-b l (Move to the previously selected window)<br>Ctrl-b w (List all windows / window numbers)<br>Ctrl-b window number (Move to the specified window number, the<br>default bindings are from 0 – 9)</p>
-<h6 id="Tiling-commands"><a href="#Tiling-commands" class="headerlink" title="Tiling commands"></a>Tiling commands</h6><p>Ctrl-b % (Split the window vertically)<br>CTRL-b “ (Split window horizontally)<br>Ctrl-b o (Goto next pane)<br>Ctrl-b q (Show pane numbers, when the numbers show up type the key to go to that pane)<br>Ctrl-b { (Move the current pane left)<br>Ctrl-b } (Move the current pane right)</p>
-<h5 id="Make-a-pane-its-own-window"><a href="#Make-a-pane-its-own-window" class="headerlink" title="Make a pane its own window"></a>Make a pane its own window</h5><p>Ctrl-b : “break-pane”</p>
-<h5 id="add-to-tmux-conf"><a href="#add-to-tmux-conf" class="headerlink" title="add to ~/.tmux.conf"></a>add to ~/.tmux.conf</h5><p>bind | split-window -h<br>bind - split-window -v</p>
-<p>6) 默认更改窗口的快捷键不好用，要使用命令： rename-window <window-name></window-name></p>
-<p>同时，默认窗口名会随着路径改变，在.tmux.conf里加入下面这一行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set-option -g allow-rename off</div></pre></td></tr></table></figure>
-<p>7) 滚轮与鼠标：这样就可以时候用鼠标来调整pane的大小，并且也可以滚动了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setw -g mode-mouse on</div><div class="line">set -g mouse-select-pane on</div><div class="line">set -g mouse-resize-pane on</div><div class="line">set -g mouse-select-window on</div></pre></td></tr></table></figure>
-<p>8) 复制：</p>
-<ol>
-<li><p>需要iterm2的选中即复制： 按住alt</p>
-</li>
-<li><p>如果在一个pane里复制多行会跨域pane，这时候得用vim的模式复制 </p>
-<p>ctrl + w  ESC   v,   y ,   ctrl + w   p</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1554,7 +1514,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1571,7 +1531,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

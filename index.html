@@ -243,6 +243,365 @@
             
               
                 
+                <a class="post-title-link" href="/2018/10/16/nginx/nginx维护页面/" itemprop="url">
+                  nginx维护页面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-16T10:57:26+08:00" content="2018-10-16">
+              2018-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/</p>
+<p>```<br> location / {<br>  if ($remote_addr ~* ^(111).(111).(111).(111)$) {<br>     proxy_pass  <a href="http://aaa" target="_blank" rel="external">http://aaa</a>;<br>     break;<br>  }<br>  root /usr/share/nginx/html;<br>  try_files $uri $uri/ /index.html;<br>}</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/12/concept/VNC/" itemprop="url">
+                  VNC
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-12T10:08:56+08:00" content="2018-10-12">
+              2018-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/concept/" itemprop="url" rel="index">
+                    <span itemprop="name">concept</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-VNC是什么？"><a href="#1-VNC是什么？" class="headerlink" title="1. VNC是什么？"></a>1. VNC是什么？</h1><p>VNC（Virtual Network Computing），为一种使用RFB协议的显示屏画面分享及远程操作软件。此软件借由网上，可发送键盘与鼠标的动作及即时的显示屏画面。</p>
+<p>这个定义很简洁也很精确，有几个关键词，一个是RFB协议，另外就是显示屏画面分享和远程操作。所以如果我想实现这么一个软件，我要怎么做呢？显然这个是C-S架构，在显示屏分享这个方向Server要做的就是不断做屏幕截图，然后发送到客户端，在远程操作的这个方向Client就是要把用户的鼠标、键盘操作编码发送到服务端，然后服务器负责解析执行。这里面的主要技术挑战就是如何编码，减少带宽。</p>
+<h1 id="2-VNC-流程图"><a href="#2-VNC-流程图" class="headerlink" title="2. VNC 流程图"></a>2. VNC 流程图</h1><ol>
+<li>用户从浏览器点击登陆</li>
+<li>前端发起一个API AllocateVMVNCSession的请求</li>
+<li>API层收到请求，调用access的 AllocateVMVNCSession</li>
+<li>access向数据库插入一条记录,返回一个session-id</li>
+<li>前端收到这个请求后就会带着session-id跳转到如下的这个新页面 <a href="https://console.dev.ucloudstack.com/vncproxy/vnc.html?token=vncssid-siI-uY1ig" target="_blank" rel="external">https://console.dev.ucloudstack.com/vncproxy/vnc.html?token=vncssid-siI-uY1ig</a>, 这个页面是个前端项目，使用开源项目 no vnc</li>
+<li>no vnc根据读到的token发起websocket请求如下 wss://console.dev.ucloudstack.com/websockify?token=vncssid-siI-uY1ig</li>
+<li>nginx接收到这个请求会匹配到location /websockify这个字段，进而转发到wsbackend, 这个wsbackend起的是cmpbe gateway/vncproxy这个项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">upstream wsbackend &#123;</div><div class="line">        server 10.6.6.3:30500 weight=1;</div><div class="line">        server 10.6.6.4:30500 weight=1;</div><div class="line">        server 10.6.6.5:30500 weight=1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">        listen 443 ssl http2;</div><div class="line">	      listen 80;</div><div class="line"></div><div class="line">        location /websockify &#123;</div><div class="line">            proxy_pass http://wsbackend;</div><div class="line">            proxy_http_version 1.1;</div><div class="line">            proxy_set_header Upgrade $http_upgrade;</div><div class="line">            proxy_set_header Connection &quot;Upgrade&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            if ($scheme != &quot;https&quot;) &#123;</div><div class="line">                return 301 https://$host$request_uri;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            proxy_pass  http://console-deploy;</div><div class="line">            proxy_redirect     off;</div><div class="line">            proxy_set_header   Host             $host;</div><div class="line">            proxy_set_header   X-Real-IP        $remote_addr;</div><div class="line">            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>vncproxy的session manager会根据收到的session-id来获取VNC host的ip，port及password, 这一步是通过GetVMVNCSession这个函数获取到的，它的步骤是先通过session-id换算出对应的vm-id，然后查vm表得到对应的ip等信息，然后转发到huanghe的vnc-tcp-proxy</p>
+</li>
+<li><p>huanghe的vnc-tcp-proxy读取传过来的ip，port然后再转发到后端的宿主机上的端口</p>
+</li>
+<li><p>宿主机根据端口转发到上面真正的虚拟机</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/12/alogrithm/hash table/" itemprop="url">
+                  hash table
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-12T09:54:27+08:00" content="2018-10-12">
+              2018-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/alogrithm/" itemprop="url" rel="index">
+                    <span itemprop="name">alogrithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>hash table是数据结构的一种，它和其他数据结构如数组，链表的不同之处在于如何确定数据存储的位置。像数组由于是一段连续的地址空间，因此数组寻址只需要要数组第一个元素的位置加上偏移量，链表就更简单，上一个节点存储了下一个节点数据的位置。散列表是怎么做的呢？它通过一个hash函数将输入的数据值映射成一个地址，这个地址可以是内存直接的一个地址,也可以是数组内的一个偏移量。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/10/10/alogrithm/快速排序/" itemprop="url">
                   快速排序
                 </a>
@@ -1066,359 +1425,6 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/01/01/database/sql连接理解/" itemprop="url">
-                  关于sql连接的理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-01-01T13:31:12+08:00" content="2018-01-01">
-              2018-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>内连接： 内连接就是关系代数里面的θ-连接，所谓θ连接就是先做笛卡尔乘积，然后在结果上做一个选择操作，条件就是θ指定的条件，比如某两列大小比较</li>
-<li>等值连接：等值连接就是特殊的内连接，特殊在θ条件变为两列相等，但等值连接最后的列数还是和笛卡尔乘积的列数一样</li>
-<li>自然连接：自然理解是再进一步特殊的等值连接，自然连接有个前提条件是连接的两张表必须要有相同的列名，然后再做一次等值连接，区别说自然连接会去除掉重复的列</li>
-<li>外连接：为什么要有外连接呢？因为在做等值连接的时候可能会丢失掉某些行的信息，比如第一个表的东西，比如顾客表和订单表的例子，要查询所有顾客的所有订单，自然连接是不够的，因为可能有些顾客没下过订单，因此外链接就出来了，它在连接的时候如果发现订单表没有顾客数据，就填充0。至于左外连接和右外连接还是全外连接，则取决于你是要哪边的数据保留完整</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/28/go/why I love go/" itemprop="url">
-                  why I love go
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-28T22:08:50+08:00" content="2017-12-28">
-              2017-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>gofmt:  终于不用一个guide来告诉你有什么风格了，不会像js那样讨论需不需要有;了, 不用再争论是两个还是四个空格这些问题了</li>
-<li>defer函数: 对于资源的关闭，回收处理使用起来太方便了，如果你写过sql的事务你应该能体会出错时到处rollback的郁闷</li>
-<li>一个for循环能做掉所有事，不用再有js的for in; for of，一个for就能遍历数组，map, string</li>
-<li>变量短声明：类似于c++的auto，让这门静态语言有了类似动态语言的变量定义语法</li>
-<li>goroutine：一开始对于goroutine的channel玩法不是很理解，什么buffer的，unbuffered channel会感到很陌生，但是当使用多了之后发现并发编程在go里真的很简单</li>
-<li>匿名函数与闭包：对于函数式编程能做到一部分支持</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/12/grpc/protocol buffer安装/" itemprop="url">
-                  protocol buffer安装
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-12T14:53:29+08:00" content="2017-12-12">
-              2017-12-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/protocol-buffer/" itemprop="url" rel="index">
-                    <span itemprop="name">protocol buffer</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>protocol buffer安装分为两部分：一个是protocol编译器的安装，编译器主要是将proto文件编译成相应语言可用的代码，当然这个也需要相应语言插件支持，编译器是去到<a href="https://github.com/google/protobuf/releases" target="_blank" rel="external">https://github.com/google/protobuf/releases</a>  下载一个对应平台的zip包； 二是protocol buffer 运行时环境安装，运行时是什么呢，就是语言来调用protocol, 比如go要序列化，调用相应函数，而这个函数就是运行时环境来提供的，对于go来说就是protoc-gen-go这个软件，这个软件提供protocol的编译器插件以及运行时环境</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1464,7 +1470,7 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1481,7 +1487,7 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

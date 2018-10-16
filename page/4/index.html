@@ -243,6 +243,369 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/27/k8s/kubenetes问题/" itemprop="url">
+                  kubenetes问题排查
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-27T10:35:43+08:00" content="2017-10-27">
+              2017-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubenetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubenetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>日志里报redis连不上，但写的是</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Failed To Connect Redis_Token, Host:redis-svc.default.svc.cluster.local, Port:6379, Error:host is unreachable,</div></pre></td></tr></table></figure>
+<p>这里报的不是不能解析，而是说主机unreachable，开始我以为是redis挂了，但检查了下redis没有问题，然后我又觉得是不是kube-dns的问题，kube-dns在官网是有trouble shooting的文档</p>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips" target="_blank" rel="external">https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#troubleshooting-tips</a></p>
+<p>这里一开始执行下面命令确实会解析不到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec -ti busybox -- nslookup kubernetes.default</div></pre></td></tr></table></figure>
+<p>但根据官网在busybox的yaml文件中加了下面两条是可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hostNetwork: true</div><div class="line">dnsPolicy: ClusterFirstWithHostNet</div></pre></td></tr></table></figure>
+<p>dns的服务没有问题</p>
+<p>再通过镜像nslokup下发现 这个null的问题，我的镜像是基于alpine, 于是再去看下官网，上面有knowing issue</p>
+<p><a href="https://github.com/kubernetes/kubernetes/issues/30215" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/issues/30215</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kubectl exec -it public-api-gateway-deploy-2955150880-w5nt8 -- nslookup redis-svc.default.svc.cluster.local</div><div class="line"></div><div class="line">nslookup: can&apos;t resolve &apos;(null)&apos;: Name does not resolve</div><div class="line"></div><div class="line">Name:      redis-svc.default.svc.cluster.local</div><div class="line">Address 1: 10.254.66.131 redis-svc.default.svc.cluster.local</div></pre></td></tr></table></figure>
+<p>这里又突然发现一个问题，node节点上的cbr0丢失了，与container不通</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/25/utility/linux常用命令/" itemprop="url">
+                  linux常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-25T16:57:23+08:00" content="2017-10-25">
+              2017-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>find： find是用来在目录下搜寻特定文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path...] [expression]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -name &quot;mysql.cnf&quot;	   找寻mysql.cnf</div><div class="line">find / -type d -size +2G  找寻超过2G的目录</div><div class="line">find / -type f -user root -exec chown weber &#123;&#125; \;  将当前目录下的所有权变更为weber:</div></pre></td></tr></table></figure>
+</li>
+<li><p>grep: print lines matching a pattern</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grep [OPTIONS] PATTERN [FILE...]</div><div class="line">grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -rl &quot;abc&quot; .    r:递归  l:只显示文件命名</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Ctl-U   删除光标到行首的所有字符,在某些设置下,删除全行</div><div class="line">Ctl-W   删除当前光标到前边的最近一个空格之间的字符</div><div class="line">Ctl-H   backspace,删除光标前边的字符</div><div class="line">Ctl-R   匹配最相近的一个文件，然后输出</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/24/docker/Docker 常用命令/" itemprop="url">
+                  Docker 常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-24T22:03:47+08:00" content="2017-10-24">
+              2017-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/23/utility/openssl自签名证书categories: openssltags: openssl/" itemprop="url">
                   未命名
                 </a>
@@ -1109,364 +1472,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/25/http/session和cookie的区别/" itemprop="url">
-                  session和cookie的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-25T11:24:56+08:00" content="2017-09-25">
-              2017-09-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>session和cookie有什么区别呢？首先他们都是解决web无状态的方案，用来标识每个用户，可以在每次ajax请求中附带上这个数据。这里面容易搞混的一点是session的机制也依赖cookie，他们的区别在于cookie存储的是跟服务端有关的信息，比如用户登陆，服务端返回用户id，cookie记一个用户id；但session返回的是一个服务端生成的key，跟应用数据没有一点关系，会更安全</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/22/utility/mac修改mysql密码/" itemprop="url">
-                  mac修改mysql密码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-22T18:30:20+08:00" content="2017-09-22">
-              2017-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>从控制面板停止mysql</p>
-</li>
-<li><p>sudo /usr/local/mysql/bin/mysqld_safe  –skip-grant-tables  这个命令会启动mysql，但是可以不需要密码来登陆root</p>
-</li>
-<li><p>新起一个terminal登陆mysql</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">use mysql;</div><div class="line">desc user;</div><div class="line">UPDATE user SET Password=PASSWORD(‘123456’) where User=’root’; //将root用户密码改成 123456</div></pre></td></tr></table></figure>
-<p>我这里装的是5.6， 密码的字段是Password，可以查看user表，有些可能是authentication_string</p>
-</li>
-<li><p>flush privileges;</p>
-</li>
-<li><p>在控制面板关闭并重新开启mac即可</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/21/go/vscode go环境配置/" itemprop="url">
-                  vscode go环境配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-21T16:46:20+08:00" content="2017-09-21">
-              2017-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>vscode的go环境配置其实只要看官网的说明就行，<a href="https://github.com/Microsoft/vscode-go，但这里有几点得注意下" target="_blank" rel="external">https://github.com/Microsoft/vscode-go，但这里有几点得注意下</a></p>
-<ol>
-<li>打开go的文件确实在右下角确实会出现missing tools 的提示，但如果你直接点击那个按钮会提示安装不上（众所周知的原因），所以需要你自行解决下</li>
-<li>关于buildOnSave： 这个作者有提到 Since <code>go build</code> ignores test files, we use <code>go test -i -c -o</code> instead on the current package. This will compile the whole package. 所以作者用build，因此即使是package main而没有二进制文件生成</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1512,7 +1517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1529,7 +1534,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

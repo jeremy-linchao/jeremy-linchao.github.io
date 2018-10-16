@@ -243,6 +243,408 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/22/alogrithm/排序并保留原数组索引/" itemprop="url">
+                  排序并保留原数组索引
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T14:40:32+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>排序算法不考虑，主要是需要保留原数组索引，这个需求应该还是会很常见</p>
+<p>看到别人的一个思路，构造一个结构体，这个结构体包含原来数组的每个数据以及相应的索引号，通过系统自带排序函数，需要制定下具体排序的函数（通过比较结构体的数据）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/17/react/react学习/" itemprop="url">
+                  react学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-17T09:14:29+08:00" content="2017-01-17">
+              2017-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>正如研究任何一种框架一样，研究react也要搞清楚作者开发他的动机，其实说白了就是前段组件化，这样的好处是可以复用很多代码，不仅仅是自己写的组件，别人的组件也可以，这是不是很酷呢？</p>
+<p>既然是组件，那组件势必要把view显示和逻辑封装在一起，这个就和很多之前的前端MVC开发方式有很多不同，是需要适应的，但我觉得组件这个东西并不新颖，在UI开发的历史上早就存在</p>
+<p>既然是组件，有几个概念很重要，compenent不用多说，那如何把数据传到component中呢，比如我有一个表格需要显示数据，怎么把数据传进来呢？组件是怎么来处理css的呢，毕竟组件需要提供很多不同显示样式？这些都是需要带着的问题去看react的</p>
+<ol>
+<li><p>prop和state的区别，他们是用来干嘛的?  这里有句话：State is similar to props, but it is private and fully controlled by the component.  显然他的意思是说state是组件自有的属性，完全私有。那么它用来做什么呢？举个例子，有个时钟的组件，时钟每秒钟都得更新下，如果用props是不可以的，因为props传进来是不能改变的，而state是可变的，同时对于时钟来说，时间这个属性本来就是完全它自己的，不需要外面传数据进来。</p>
+</li>
+<li><p>react的数据是单向绑定，state只能用setState函数来修改(除了构造函数)，state的更新可能是异步的</p>
+</li>
+<li><p>react的事件命名是驼峰的，事件处理器本身是一个JSX表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Toggle extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;isToggleOn: true&#125;;</div><div class="line"></div><div class="line">    // This binding is necessary to make `this` work in the callback</div><div class="line">    this.handleClick = this.handleClick.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    this.setState(prevState =&gt; (&#123;</div><div class="line">      isToggleOn: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/" target="_blank" rel="external">https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/</a></p>
+<p>js类里的成员函数默认是不绑定的，这篇文章解释的比较清楚</p>
+</blockquote>
+</li>
+<li><p>react-router如何与ant-design的组件结合?</p>
+<p>有一个问题一直想不通，就是像ant-design的menu组件不是都有超链接了嘛，router这个link又是用来干嘛呢？这里一定要搞清楚一个问题，在menu组件里的连接可以认为就是带了<a>标签的跳转，但是跳转到哪儿去是有react-router里的各条route来决定的，他们之间并不冲突</a></p>
+</li>
+<li><p>Components must return a single root element，所以return的element必须加一个包裹</p>
+</li>
+<li><p>All React components must act like pure functions with respect to their props</p>
+</li>
+<li><p>当把函数式组件改为class组件时，有两点需要注意，1）多加了个render函数，里面定义个return函数，这其实是个闭包 2）不需要写函数参数props，反而是在函数需要用到props的时候写this.props.date</p>
+</li>
+<li><p>While <code>this.props</code> is set up by React itself and <code>this.state</code> has a special meaning, you are free to add additional fields to the class manually if you need to store something that is not used for the visual output.</p>
+<p>If you don’t use something in <code>render()</code>, it shouldn’t be in the state.</p>
+</li>
+<li><p>关于setState的三个注意点： 1）所有修改state数据只能用this.setState方法，换句话说除了在构造函数能访通过this.state=的形式来设置state，其余地方都只能用函数，<strong>但是访问是没有问题的</strong> 2）states的更新可能是异步的，React may batch multiple setState() calls into a single update for performance. 要更新的话需要用setState的第二种用法，参数传一个回调函数 3）states的更新是合并在一起的，但不同的setState不会影响各自</p>
+</li>
+<li><p>事件处理一般是类的成员函数，但是需要在构造函数里绑定this或者成员函数写成=的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class LoggingButton extends React.Component &#123;</div><div class="line">  // This syntax ensures `this` is bound within handleClick.</div><div class="line">  // Warning: this is *experimental* syntax.</div><div class="line">  handleClick = () =&gt; &#123;</div><div class="line">    console.log(&apos;this is:&apos;, this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>渲染多个组件可以使用map()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li&gt;&#123;number&#125;&lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Keys should be given to the elements inside the array to give the elements a stable identity:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const numbers = [1, 2, 3, 4, 5];</div><div class="line">const listItems = numbers.map((number) =&gt;</div><div class="line">  &lt;li key=&#123;number.toString()&#125;&gt;</div><div class="line">    &#123;number&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>受控组件： 比如一个最基本的文本输入框，正常文本框的显示是html自身组件控制的，但是如果你加上了state状态，这个文本值的显示是完全受控的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class NameForm extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;value: &apos;&apos;&#125;;</div><div class="line"></div><div class="line">    this.handleChange = this.handleChange.bind(this);</div><div class="line">    this.handleSubmit = this.handleSubmit.bind(this);</div><div class="line">  &#125;</div><div class="line">  handleChange(event) &#123;</div><div class="line">    this.setState(&#123;value: event.target.value&#125;);</div><div class="line">  &#125;</div><div class="line">  handleSubmit(event) &#123;</div><div class="line">    alert(&apos;A name was submitted: &apos; + this.state.value);</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;label&gt;</div><div class="line">          Name:</div><div class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</div><div class="line">        &lt;/label&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>lifting state的例子还没有完全搞懂</p>
+</li>
+<li><p>composition是什么意思？这点没搞明白</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/12/utility/mac上的shadowsocks/" itemprop="url">
+                  mac上的shadowsocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T16:09:44+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>首先提一下，mac上的shadowsocks会比windows上的用起来简单一些，mac的不用配代理，原因在于mac下的chrome代理是跟着系统走的，firefox需要手动配置下代理类型，当然也可以跟系统走，但是国内的版本不行</p>
+</li>
+<li><p>全局模式和自动代理模式区别，开启全局模式下会把系统设置为socks代理，开启代理模式会把系统设置为pac代理，shadowsocks的pac代理服务器起在8090端口</p>
+</li>
+<li><p>pac和switchyproxy区别： pac是一个js文件，从shadowsocks起的8090端口的服务器获得，告诉浏览器该怎么找到代理服务器，而switchyproxy则是一个浏览器插件，运行在浏览器端</p>
+</li>
+<li><p>关于dns是否是远程解析的验证方式,开一个wireshark，设定过滤dns，结论</p>
+<ol>
+<li>chrome不管是pac还是socks5都是要remote dns 解析 </li>
+<li>safari也是远程解析</li>
+</ol>
+</li>
+<li>safari也是走的系统默认代理，理论上都能翻，但实际上facebook和twitter大多可以，google基本上不去，怀疑是浏览器问题，不过50.1.0版的firfox 真是垃圾，国际版也是，无论哪种模式都翻不出去</li>
+</ol>
+<p>   ​</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/12/alogrithm/皮萨诺周期/" itemprop="url">
                   皮萨诺周期
                 </a>
@@ -1065,363 +1467,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/29/es6/Generator(2)/" itemprop="url">
-                  Generator
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-29T11:19:12+08:00" content="2016-12-29">
-              2016-12-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>定义:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function* idMaker()&#123;</div><div class="line">  var index = 0;</div><div class="line">  while(index&lt;3)</div><div class="line">    yield index++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>调用：    var gen = idMaker();    调用一个<strong>生成器函数</strong>并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。</p>
-</li>
-<li><p>使用：该表达式定义了迭代器返回的值，或者，被 yield委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(gen.next().value); // 0</div><div class="line">console.log(gen.next().value); // 1</div><div class="line">console.log(gen.next().value); // 2</div><div class="line">console.log(gen.next().value); // undefined</div></pre></td></tr></table></figure>
-<p>next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值；done属性是一个布尔值，表示Generator函数是否执行完毕，即是否还有下一个阶段</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/es6/Promise/" itemprop="url">
-                  Promise
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T17:29:26+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Creating Promises with the constructor;</li>
-<li>Handling success with resolve;</li>
-<li>Handling errors with reject; and</li>
-<li>Setting up control flow with then and catch</li>
-</ol>
-<p><a href="https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics" target="_blank" rel="external">https://scotch.io/tutorials/understanding-javascript-promises-pt-i-background-basics</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/node/pm2学习/" itemprop="url">
-                  pm2学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T16:23:29+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>pm2启动 </li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1467,7 +1512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1484,7 +1529,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

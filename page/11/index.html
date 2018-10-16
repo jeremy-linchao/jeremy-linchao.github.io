@@ -243,6 +243,364 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/26/test/jest使用axios遇到的bug/" itemprop="url">
+                  jest使用axios遇到的bug
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T19:29:27+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jest/" itemprop="url" rel="index">
+                    <span itemprop="name">jest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到一个可能是bug的问题，jest和axios联调时会发生network的error</p>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">const axios = require(&apos;axios&apos;);</div><div class="line">const request = require(&apos;request&apos;);</div><div class="line">const rp = require(&apos;request-promise-native&apos;);</div><div class="line"></div><div class="line">test(&apos;it should return the right request-promise results&apos;, () =&gt; &#123;</div><div class="line">  return rp.get(&#123;</div><div class="line">    url: &apos;http://api.ucloudadmin.com/&apos;,</div><div class="line">    json: true</div><div class="line">  &#125;).then((res) =&gt; &#123;</div><div class="line">    expect(res.RetCode).toBe(170);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;it should return the right axios results&apos;, () =&gt; &#123;</div><div class="line">  return axios.get(&apos;http://api.ucloudadmin.com/&apos;).then(res =&gt; &#123;</div><div class="line">    expect(res.data.RetCode).toBe(170);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"> testaxios@1.0.0 test /Users/Jeremy/tmp/testaxios</div><div class="line">&gt; jest</div><div class="line"></div><div class="line"> FAIL  test/axios.test.js</div><div class="line">  ● it should return the right axios results</div><div class="line"></div><div class="line">    Network Error</div><div class="line"></div><div class="line">      at createError (node_modules/axios/lib/core/createError.js:15:15)</div><div class="line">      at XMLHttpRequest.handleError [as onerror] (node_modules/axios/lib/adapters/xhr.js:87:14)</div><div class="line">      at XMLHttpRequest.callback.(anonymous function) (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:289:32)</div><div class="line">      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:219:27)</div><div class="line">      at invokeInlineListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:166:7)</div><div class="line">      at EventTargetImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:122:7)</div><div class="line">      at EventTargetImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:87:17)</div><div class="line">      at XMLHttpRequest.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:61:35)</div><div class="line">      at dispatchError (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:994:9)</div><div class="line">      at validCORSHeaders (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:1009:7)</div><div class="line">      at receiveResponse (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:871:12)</div><div class="line">      at Request.client.on.res (node_modules/jsdom/lib/jsdom/living/xmlhttprequest.js:691:38)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Request.emit (events.js:188:7)</div><div class="line">      at Request.onRequestResponse (node_modules/request/request.js:1074:10)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at ClientRequest.emit (events.js:188:7)</div><div class="line">      at HTTPParser.parserOnIncomingClient (_http_client.js:474:21)</div><div class="line">      at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)</div><div class="line">      at Socket.socketOnData (_http_client.js:363:20)</div><div class="line">      at emitOne (events.js:96:13)</div><div class="line">      at Socket.emit (events.js:188:7)</div><div class="line">      at readableAddChunk (_stream_readable.js:176:18)</div><div class="line">      at Socket.Readable.push (_stream_readable.js:134:10)</div><div class="line">      at TCP.onread (net.js:548:20)</div><div class="line"></div><div class="line">  ✓ it should return the right request-promise results (46ms)</div><div class="line">  ✕ it should return the right axios results (62ms)</div><div class="line"></div><div class="line">Test Suites: 1 failed, 1 total</div><div class="line">Tests:       1 failed, 1 passed, 2 total</div><div class="line">Snapshots:   0 total</div><div class="line">Time:        1.949s</div><div class="line">Ran all test suites.</div><div class="line">npm ERR! Test failed.  See above for more details.</div></pre></td></tr></table></figure>
+<p>requst返回正确，但axios报了奇怪的错误，从报错来看应该是axios把这个请求当做了浏览器端的请求，可能是jest传了什么参数给axios导致axios认为是浏览器环境发起了xmlHttpRequest，</p>
+<p>环境版本如下</p>
+<p>node:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">v6.9.2</div></pre></td></tr></table></figure>
+<p>jest:</p>
+<p>19.0.2</p>
+<p>axios</p>
+<p>0.16.1</p>
+<hr>
+<p>update 5.11</p>
+<p>找到原因了，是因为jest有个配置变量为testEnvironment，默认是jsdom，所以不行，需要改为node</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/javascript/Array.prototype.push()/" itemprop="url">
+                  Array.prototype.push()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T11:33:40+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Array.prototype.push(): adds one or more elements to the end of an array and returns the new length of the array</p>
+<p>例子： 合并两个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var vegetables = [&apos;parsnip&apos;, &apos;potato&apos;];</div><div class="line">var moreVegs = [&apos;celery&apos;, &apos;beetroot&apos;];</div><div class="line"></div><div class="line">// Merge the second array into the first one</div><div class="line">// Equivalent to vegetables.push(&apos;celery&apos;, &apos;beetroot&apos;);</div><div class="line">Array.prototype.push.apply(vegetables, moreVegs);</div><div class="line"></div><div class="line">console.log(vegetables); // [&apos;parsnip&apos;, &apos;potato&apos;, &apos;celery&apos;, &apos;beetroot&apos;]</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/git/git推送分支设置upstream/" itemprop="url">
+                  git推送分支设置upstream
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T10:09:31+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本地和远程都没有master分支，本地切换到master，想推到远端，同时设置upstream</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/25/redux/redux 注意点/" itemprop="url">
                   redux 注意点
                 </a>
@@ -1054,376 +1412,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
-                  查看占用端口的进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T21:22:49+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilities/" itemprop="url" rel="index">
-                    <span itemprop="name">utilities</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="lsof-i-3000"><a href="#lsof-i-3000" class="headerlink" title="lsof -i:3000"></a>lsof -i:3000</h4><p>lsof -i TCP:port -n </p>
-<p>lsof -i UDP:port -n</p>
-<p>lsof -i :port -n</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/18/docker/dokcer遇到的问题/" itemprop="url">
-                  dokcer遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-18T11:48:44+08:00" content="2017-04-18">
-              2017-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>今天遇到一个docker奇怪的问题，npm start 端口正常起来访问没有问题，但打包到docker环境之后，却发现无法访问，docker本身的日志没有报错，并且docker也是运行的，重点是程序打的日志一点输出也没有。咨询了下同事，了解到这是一个docker很基础的问题： 如果docker没有前台进程，docker是会自动退出的，而我在npm start里面用了pm2，这个用法在没用docker时是ok的，但是如果用了docker，就不需要pm2了，附上一个tsconfig.json 和 package.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;dev&quot;: &quot;NODE_ENV=development &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;start&quot;: &quot;NODE_ENV=production &amp;&amp; tsc &amp;&amp; node ./dist/index.js&quot;,</div><div class="line">    &quot;test&quot;: &quot;NODE_ENV=development &amp;&amp; jest&quot;,</div><div class="line">    &quot;stop&quot;: &quot;npm run gulp stop&quot;,</div><div class="line">    &quot;gulp&quot;: &quot;gulp&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h4 id="update-4-21"><a href="#update-4-21" class="headerlink" title="update 4.21"></a>update 4.21</h4><ol>
-<li><p>Docker 不是虚拟机，docker就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。<code>CMD</code> 指令就是用于指定默认的容器主进程的启动命令的。</p>
-</li>
-<li><p>在运行时可以指定新的命令来替代镜像设置中的这个默认命令，比如，<code>ubuntu</code> 镜像默认的 <code>CMD</code> 是 <code>/bin/bash</code>，如果我们直接 <code>docker run -it ubuntu</code> 的话，会直接进入 <code>bash</code>。我们也可以在运行时指定运行别的命令，如 <code>docker run -it ubuntu cat /etc/os-release</code>。这就是用 <code>cat /etc/os-release</code> 命令替换了默认的 <code>/bin/bash</code> 命令了，输出了系统版本信息</p>
-</li>
-<li><p>容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念，一些初学者将 <code>CMD</code> 写为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD service nginx start</div></pre></td></tr></table></figure>
-<p>然后发现容器执行后就立即退出了。甚至在容器内去使用 <code>systemctl</code> 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。</p>
-<p>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</p>
-<p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
-<p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/15/AI/Machine Learning/" itemprop="url">
-                  Machine Learning
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-15T14:37:12+08:00" content="2017-04-15">
-              2017-04-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index">
-                    <span itemprop="name">AI</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Machine Learning can be basiclly classfied with two categories:  supervised learning and unsupervised learning</p>
-<p>1) supervised learning: right answer given, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
-<p>​    regression: predict continuous valued output</p>
-<p>​    classification: discrete valued output</p>
-<p>2) unspervised learning: with little or no idea what our results should look like</p>
-<p>​    clustering:</p>
-</li>
-<li><p>gradient decent algorithm: simutaneous   ​</p>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1469,7 +1457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">242</span>
+              <span class="site-state-item-count">245</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1486,7 +1474,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">168</span>
+                <span class="site-state-item-count">171</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
