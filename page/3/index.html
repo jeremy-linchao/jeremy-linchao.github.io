@@ -243,6 +243,308 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/21/utility/使用sysbench测试mysq性能/" itemprop="url">
+                  使用sysbench测试mysq性能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-21T18:06:55+08:00" content="2017-11-21">
+              2017-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
+<li>centos 6.5</li>
+<li>sysbench 0.5</li>
+<li>mysql 5.1</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>一. sysbench</p>
+<ol>
+<li><p>github 地址    <a href="https://github.com/akopytov/sysbench" target="_blank" rel="external">https://github.com/akopytov/sysbench</a></p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/akopytov/sysbench.git</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 0.5</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install make automake libtool pkgconfig libaio-devel vim-common mysql-devel</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>二.  mysql</p>
+<ol>
+<li><p>yum install mysql mysql-server -y</p>
+</li>
+<li><p>service mysqld start</p>
+</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试:"></a>测试:</h3><h3 id="https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6"><a href="#https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6" class="headerlink" title="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6"></a><a href="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6" target="_blank" rel="external">https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6</a></h3><ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">## Create Database </div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line">mysql 5.6 :  mysql -u root -pCClovecc22@@ -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">## Create User</div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql 5.6:   mysql -u root -pCClovecc22@@ -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;CClovecc22@@&apos;;&quot;</div><div class="line"></div><div class="line">## Grant Access </div><div class="line">mysql5.1 : mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql5.6:  mysql -u root -pCClovecc22@@ -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;CClovecc22@@&apos;;&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>prepare</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --mysql-host=192.168.151.244 prepare</div><div class="line"></div><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ prepare</div></pre></td></tr></table></figure>
+</li>
+<li><p>read-only oltp test</p>
+<p>在client对两台mysql进行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --	mysql-host=192.168.151.236 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --oltp-read-only=on --max-requests=0 --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
+</li>
+<li><p>mixed read and write oltp test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 1 4 8 16 32 64; do sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --num-threads=$each run; done</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>Centos7  mysql5.7</p>
+<ol>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></li>
+</ol>
+<p>FAQ：</p>
+<ol>
+<li><p>远程插入不了数据？</p>
+<p>1）检查是否可以用sysbench远程登陆, 如果不可以</p>
+<p>mysql -u root -pucloud.cn -e “GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;”</p>
+<p>2)  </p>
+</li>
+</ol>
+<p>修复用户</p>
+<p>以root登陆 mysql -uroot -p</p>
+<p>删除用户</p>
+<ol>
+<li><p>drop user ‘sysbench’@’%’;</p>
+</li>
+<li><p>flush privileges;</p>
+</li>
+</ol>
+<p>创建用户</p>
+<ol>
+<li>​ CREATE USER ‘sysbench’@’%’  IDENTIFIED BY ‘ucloud.cn’;</li>
+<li>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/20/utility/Centos安装mysql 5.6/" itemprop="url">
+                  Centos安装mysql 5.6（转载）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-20T14:01:42+08:00" content="2017-11-20">
+              2017-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-检查"><a href="#1-检查" class="headerlink" title="1. 检查"></a>1. 检查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum list installed | grep mysql</div><div class="line">[root@snails ~]# ps -ef|grep mysql</div><div class="line">[root@snails ~]# service mysqld stop </div><div class="line">[root@snails ~]# rpm -e mysql-libs --nodeps</div><div class="line">[root@snails ~]# yum -y remove mysql mysql-*</div></pre></td></tr></table></figure>
+<h3 id="2-设置安装源"><a href="#2-设置安装源" class="headerlink" title="2. 设置安装源"></a>2. 设置安装源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# wget http://repo.mysql.com/mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# rpm -ivh mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# ls -1 /etc/yum.repos.d/mysql-community*</div><div class="line">[root@snails ~]# yum repolist all | grep mysql</div><div class="line">[root@snails ~]# vi /etc/yum.repos.d/mysql-community.repo</div><div class="line">### 将[mysql56-community]的enabled设置为１,[mysql57-community]的enabled设置为0 ### </div><div class="line">[root@snails ~]# yum repolist enabled | grep mysql</div><div class="line">mysql-connectors-community MySQL Connectors Community                         21</div><div class="line">mysql-tools-community      MySQL Tools Community                              37</div><div class="line">mysql56-community          MySQL 5.6 Community Server                        265</div></pre></td></tr></table></figure>
+<h3 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3. 安装mysql"></a>3. 安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum -y install mysql-server mysql</div></pre></td></tr></table></figure>
+<h3 id="4-修改默认配置"><a href="#4-修改默认配置" class="headerlink" title="4. 修改默认配置"></a>4. 修改默认配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mkdir /data/mysql</div><div class="line">[root@snails ~]# vi /etc/my.cnf</div><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/tmp/mysql.sock</div><div class="line">symbolic-links=0</div><div class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[client] </div><div class="line">socket=/tmp/mysql.sock</div></pre></td></tr></table></figure>
+<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# service mysqld start</div></pre></td></tr></table></figure>
+<h3 id="6-修改root密码"><a href="#6-修改root密码" class="headerlink" title="6. 修改root密码"></a>6. 修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mysql -u root</div><div class="line">mysql&gt; use mysql;</div><div class="line">mysql&gt; update user set password=PASSWORD(&quot;GIVE-NEW-ROOT-PASSWORD&quot;) where User=&apos;root&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; quit</div></pre></td></tr></table></figure>
+<h3 id="7-配置文件"><a href="#7-配置文件" class="headerlink" title="7. 配置文件"></a>7. 配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">[client]  </div><div class="line"> port=3306 </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line">  　　</div><div class="line"> [mysql] </div><div class="line"> default-character-set=utf8 </div><div class="line">  　　</div><div class="line"> [mysqld] </div><div class="line"> user=mysql </div><div class="line"> character-set-server=utf8 </div><div class="line"> explicit_defaults_for_timestamp=true </div><div class="line"></div><div class="line"> #索引和数据缓冲区大小，一般设置物理内存的60%-70%   　　</div><div class="line"> innodb_buffer_pool_size = 1G </div><div class="line"> #缓冲池实例个数，推荐设置4个或8个 </div><div class="line"> innodb_buffer_pool_instances = 4 </div><div class="line"> #关键参数，0代表大约每秒写入到日志并同步到磁盘，数据库故障会丢失1秒左右事务数据。1为每执行一条SQL后写入到日志并同步到磁盘，I/                                                             O开销大，执行完SQL要等待日志读写，效率低。2代表只把日志写入到系统缓存区，再每秒同步到磁盘，效率很高，如果服务器故障，才会丢失事务数据。对数据安全性要求不是很高的推荐设置2，性能高，修改后效果明显。</div><div class="line"> innodb_flush_log_at_trx_commit = 2   </div><div class="line"> #默认是共享表空间，共享表空间idbdata文件不断增大，影响一定的I/O性能。推荐开启独立表空间模式，每个表的索引和数据都存在自己独立的表空间中，可以实现单表在不同数据库中移动。 </div><div class="line"> innodb_file_per_table = ON </div><div class="line"> #日志缓冲区大小，由于日志最长每秒钟刷新一次，所以一般不用超过16M </div><div class="line"> innodb_log_buffer_size = 8M    </div><div class="line"></div><div class="line"> datadir=/data/mysql </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line"></div><div class="line"> # 禁止MySQL对外部 连接进行DNS解析</div><div class="line"> skip-name-resolve    </div><div class="line"> # Disabling symbolic-links is recommended to prevent assorted security risks </div><div class="line"> symbolic-links=0 </div><div class="line"></div><div class="line"> # Recommended in standard MySQL setup </div><div class="line"> sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  </div><div class="line"></div><div class="line"> [mysqld_safe] </div><div class="line"> log-error=/var/log/mysqld.log </div><div class="line"> pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure>
+<p>作者：技术学习<br>链接：<a href="http://www.jianshu.com/p/5a2e4e0b6eda" target="_blank" rel="external">http://www.jianshu.com/p/5a2e4e0b6eda</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/14/utility/git的进一步理解/" itemprop="url">
                   git的进一步理解
                 </a>
@@ -1228,288 +1530,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/02/k8s/k8s化遇到的问题/" itemprop="url">
-                  docker化遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-02T17:54:16+08:00" content="2017-11-02">
-              2017-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>go build出来的东西md5sum之后总是一样的结果</p>
-<p>原因： 在代码里面的import实际上会通过GOPATH去import进来，所以要改GOPATH下面的src</p>
-</li>
-<li><p>npm node-common总是报这个错 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">npm WARN package.json api-gateway@0.0.1 No repository field.</div><div class="line">npm WARN package.json api-gateway@0.0.1 No license field.</div><div class="line"></div><div class="line">&gt; node-protobuf@1.1.5 install /data/app/node_modules/node-protobuf</div><div class="line">&gt; node-gyp rebuild</div><div class="line"></div><div class="line">gyp ERR! clean error</div><div class="line">gyp ERR! stack Error: ENOTEMPTY, rmdir &apos;build/Release/obj.target&apos;</div><div class="line">gyp ERR! System Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">gyp ERR! command &quot;node&quot; &quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&quot; &quot;rebuild&quot;</div><div class="line">gyp ERR! cwd /data/app/node_modules/node-protobuf</div><div class="line">gyp ERR! node -v v0.10.46</div><div class="line">gyp ERR! node-gyp -v v3.3.1</div><div class="line">gyp ERR! not ok</div><div class="line"></div><div class="line">npm ERR! Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">npm ERR! argv &quot;/usr/bin/node&quot; &quot;/usr/bin/npm&quot; &quot;--registry=http://npm.service.ucloud.cn&quot; &quot;install&quot;</div><div class="line">npm ERR! node v0.10.46</div><div class="line">npm ERR! npm  v2.15.1</div><div class="line">npm ERR! code ELIFECYCLE</div><div class="line">npm ERR! node-protobuf@1.1.5 install: `node-gyp rebuild`</div><div class="line">npm ERR! Exit status 1</div><div class="line">npm ERR!</div><div class="line">npm ERR! Failed at the node-protobuf@1.1.5 install script &apos;node-gyp rebuild&apos;.</div><div class="line">npm ERR! This is most likely a problem with the node-protobuf package,</div><div class="line">npm ERR! not with npm itself.</div><div class="line">npm ERR! Tell the author that this fails on your system:</div><div class="line">npm ERR!     node-gyp rebuild</div><div class="line">npm ERR! You can get information on how to open an issue for this project with:</div><div class="line">npm ERR!     npm bugs node-protobuf</div><div class="line">npm ERR! Or if that isn&apos;t available, you can get their info via:</div><div class="line">npm ERR!</div><div class="line">npm ERR!     npm owner ls node-protobuf</div><div class="line">npm ERR! There is likely additional logging output above.</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /data/app/npm-debug.log</div></pre></td></tr></table></figure>
-<p>原因： 检查下是不是把node_modules也copy到docker里面去了，那样的应用的包会是你拷贝进去的包</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/30/k8s/kubernetes集群搭建/" itemprop="url">
-                  kubernetes集群搭建
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-30T16:53:03+08:00" content="2017-10-30">
-              2017-10-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>follow的文档主要是这个</p>
-<p><a href="https://k8s-install.opsnull.com/" target="_blank" rel="external">https://k8s-install.opsnull.com/</a></p>
-<p>有几个问题要注意</p>
-<ol>
-<li><p>flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行</p>
-</li>
-<li><p>dashboard:  文档给的service部署yaml没有问题，但是nodePort没有指定，所以是段内一个随机的，如果要提供外网访问，一般起一个nginx反代，所以最好也指定nodePort,  dashboard-service.yaml如下</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  apiVersion: v1</div><div class="line">  kind: Service</div><div class="line">  metadata:</div><div class="line">    name: kubernetes-dashboard</div><div class="line">    namespace: kube-system</div><div class="line">    labels:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">      kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">      addonmanager.kubernetes.io/mode: Reconcile</div><div class="line">  spec:</div><div class="line">    type: NodePort</div><div class="line">    selector:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">    ports:</div><div class="line">- port: 80</div><div class="line">  targetPort: 9090</div><div class="line">  nodePort: 8900</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nginx的配置如下</div></pre></td></tr></table></figure>
-<p>http {<br>  log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘</p>
-<pre><code>&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
-&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
-</code></pre><p>  access_log  /var/log/nginx/access.log  main;</p>
-<p>  sendfile            on;<br>  tcp_nopush          on;<br>  tcp_nodelay         on;<br>  keepalive_timeout   65;<br>  types_hash_max_size 2048;</p>
-<p>  include             /etc/nginx/mime.types;<br>  default_type        application/octet-stream;</p>
-<h1 id="Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><a href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory" class="headerlink" title="Load modular configuration files from the /etc/nginx/conf.d directory."></a>Load modular configuration files from the /etc/nginx/conf.d directory.</h1><h1 id="See-http-nginx-org-en-docs-ngx-core-module-html-include"><a href="#See-http-nginx-org-en-docs-ngx-core-module-html-include" class="headerlink" title="See http://nginx.org/en/docs/ngx_core_module.html#include"></a>See <a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="external">http://nginx.org/en/docs/ngx_core_module.html#include</a></h1><h1 id="for-more-information"><a href="#for-more-information" class="headerlink" title="for more information."></a>for more information.</h1><p>  include /etc/nginx/conf.d/*.conf;</p>
-<p>  upstream dashboard {</p>
-<pre><code>server 10.146.0.2:8900 weight=1;
- server 10.146.0.3:8900 weight=1;
- server 10.146.0.4:8900 weight=1;
-</code></pre><p>  }</p>
-<p>  server {</p>
-<pre><code>listen       80 default_server;
-listen       [::]:80 default_server;
-server_name  YOUR_SERVER;
-
-# Load configuration files for the default server block.
-include /etc/nginx/default.d/*.conf;
-
-location / {
-    proxy_pass  http://dashboard;
-}
-
-error_page 404 /404.html;
-    location = /40x.html {
-}
-
-error_page 500 502 503 504 /50x.html;
-    location = /50x.html {
-}
-</code></pre><p>  }</p>
-</li>
-</ol>
-<p>另外在centos 7上，如果访问还能看到这个nginx有这个错误：Permission denied) while connecting to upstream, 原因是开了SELinux，需要关闭它</p>
-<h3 id="1-临时关闭（不用重启机器）："><a href="#1-临时关闭（不用重启机器）：" class="headerlink" title="1.临时关闭（不用重启机器）："></a>1.临时关闭（不用重启机器）：</h3><p>   setenforce 0                  ##设置SELinux 成为permissive模式</p>
-<p>   ##setenforce 1 设置SELinux 成为enforcing模式</p>
-<h3 id="2-修改配置文件需要重启机器："><a href="#2-修改配置文件需要重启机器：" class="headerlink" title="2.修改配置文件需要重启机器："></a>2.修改配置文件需要重启机器：</h3><p>   修改/etc/selinux/config 文件</p>
-<p>   将SELINUX=enforcing改为SELINUX=disabled</p>
-<p>   重启机器即可</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1555,7 +1575,7 @@ error_page 500 502 503 504 /50x.html;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1572,7 +1592,7 @@ error_page 500 502 503 504 /50x.html;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

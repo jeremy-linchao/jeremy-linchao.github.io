@@ -243,6 +243,249 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/13/es6/async:awati循环并发/" itemprop="url">
+                  async/awati循环并发
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T11:30:54+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/async-await/" itemprop="url" rel="index">
+                    <span itemprop="name">async/await</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天写了这么一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后babel编译时候一直报错‘await is a reserved word’ ,其他地方用async/await都没有问题，那么这里问题出在哪儿了呢？</p>
+<p>await只能用在async函数里，虽然我在最外面的函数里写了async，但是离这个await最近的是map函数里面的匿名函数，而这个函数却不是async的，</p>
+<p>那么如果我们在这个匿名函数前面加async呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">state = state.map(async function(ele) &#123;</div><div class="line">    let currentDiscount = await getDiscountFromAPI(ele[&apos;公司ID&apos;], ele[&apos;产品ID&apos;]);</div><div class="line">    return &#123;</div><div class="line">      ...ele,</div><div class="line">      currentDiscount </div><div class="line">    &#125;;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这样的结果就是map函数会立即返回，这样的话你就无法知道这么多promise什么时候结束，因此无法拿到最后的结果</p>
+<h4 id="解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值"><a href="#解决方案-先用map函数创建promises数组，然后通过Promise-all-方法或者for-of循环来取值" class="headerlink" title="解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值"></a>解决方案:  先用map函数创建promises数组，然后通过Promise.all()方法或者for of循环来取值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line"></div><div class="line">return Promise.all(docs.map(function (doc) &#123;</div><div class="line">  return db.post(doc);</div><div class="line">&#125;)).then(function (results) &#123;</div><div class="line">  console.log(results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</div><div class="line">let promises = docs.map((doc) =&gt; db.post(doc));</div><div class="line"></div><div class="line">let results = [];</div><div class="line">for (let promise of promises) &#123;</div><div class="line">  results.push(await promise);</div><div class="line">&#125;</div><div class="line">console.log(results);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/12/design/flex学习/" itemprop="url">
+                  flex学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-12T18:13:26+08:00" content="2017-06-12">
+              2017-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/flex/" itemprop="url" rel="index">
+                    <span itemprop="name">flex</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>flex默认的方向是row， 即flow-direction: row</li>
+<li>通过order来控制显示的顺序</li>
+<li>justify-content: 主轴方向的排列， 可选值有flex-start | flex-end | center | space-between | space-around;</li>
+<li>align-items: 副轴方向的排列</li>
+<li>flex-grow：This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up. If all items have <code>flex-grow</code>set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).  <strong>default 0</strong></li>
+<li>flex-shrink: This defines the ability for a flex item to shrink if necessary.  <strong>default 1</strong></li>
+<li>flex-basis: This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.  <strong>default auto</strong></li>
+<li>flex: This is the shorthand for <code>flex-grow,</code> <code>flex-shrink</code>and <code>flex-basis</code>combined. The second and third parameters (<code>flex-shrink</code> and <code>flex-basis</code>) are optional. <strong>Default is 0 1 auto</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/12/design/导航的简单实现/" itemprop="url">
                   导航的简单实现
                 </a>
@@ -1229,246 +1472,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/02/redis/redis数据类型/" itemprop="url">
-                  redis数据类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-02T16:01:58+08:00" content="2017-06-02">
-              2017-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ol>
-<li><p>字符串</p>
-</li>
-<li><p>Lists：collections of string elements sorted according to the order of insertion. They are basically <em>linked lists</em>.   列表，但元素是字符串，实际上是链表</p>
-</li>
-<li><p>Sets:  collections of unique, unsorted string elements,  无序的字符串集合</p>
-</li>
-<li><p>Sorted Sets: 有序集合</p>
-</li>
-<li><p>Hashes: 字典， 键和值都需要为字符串</p>
-</li>
-<li><p>bitarray: 位数组</p>
-</li>
-</ol>
-<h3 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h3><ol>
-<li>keys是二进制安全的，也就是说可以用二级制值比如一个jpeg文件作为key，甚至空的字符串仍然是有效的​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/01/redis/redis主从/" itemprop="url">
-                  redis主从
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-01T15:30:58+08:00" content="2017-06-01">
-              2017-06-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
-<li><p>redis使用异步复制机制，从2.8开始，slave会周期性确认收到的数据</p>
-</li>
-<li><p>一个master可以有多个slave</p>
-</li>
-<li><p>redis复制在master端是不blocking的</p>
-<ol>
-<li>redis复制在slave也是不blocking的，当slave做初次同步时，它可以用老版本的数据集，在同步完之后，会短暂blocking进入的连接（如果数据量大的话将会有几秒钟）</li>
-</ol>
-</li>
-<li><p>当使用主从时，强烈建议在master上开启数据持久化，如果无法做到的话，那要避免redis服务自动重启（比如使用pm2之类的进程管理器），原因如下：</p>
-<ol>
-<li>假设A是master， B和C是A的slave，如果A crash了并且A的数据持久化被关闭，这时候进程管理器会重启redis服务，但是数据集为空，这时候B和C将会同步到一个空数据集</li>
-</ol>
-</li>
-<li><p>复制过程： 全量同步，master会在后台起一个saving进程来生成RDB文件，同时会把从这个时候开始收到的新的写入命令缓冲起来，当后台保存进程完毕后，master就会将这个文件发送到slave，slave会将它存在磁盘上，然后倒入到内存，之后master会把所有缓存的命令发送给slave，从2.8开始有不落盘复制</p>
-</li>
-</ol>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1514,7 +1517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1531,7 +1534,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

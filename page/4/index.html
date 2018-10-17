@@ -243,6 +243,288 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/02/k8s/k8s化遇到的问题/" itemprop="url">
+                  docker化遇到的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-02T17:54:16+08:00" content="2017-11-02">
+              2017-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index">
+                    <span itemprop="name">k8s</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>go build出来的东西md5sum之后总是一样的结果</p>
+<p>原因： 在代码里面的import实际上会通过GOPATH去import进来，所以要改GOPATH下面的src</p>
+</li>
+<li><p>npm node-common总是报这个错 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">npm WARN package.json api-gateway@0.0.1 No repository field.</div><div class="line">npm WARN package.json api-gateway@0.0.1 No license field.</div><div class="line"></div><div class="line">&gt; node-protobuf@1.1.5 install /data/app/node_modules/node-protobuf</div><div class="line">&gt; node-gyp rebuild</div><div class="line"></div><div class="line">gyp ERR! clean error</div><div class="line">gyp ERR! stack Error: ENOTEMPTY, rmdir &apos;build/Release/obj.target&apos;</div><div class="line">gyp ERR! System Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">gyp ERR! command &quot;node&quot; &quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&quot; &quot;rebuild&quot;</div><div class="line">gyp ERR! cwd /data/app/node_modules/node-protobuf</div><div class="line">gyp ERR! node -v v0.10.46</div><div class="line">gyp ERR! node-gyp -v v3.3.1</div><div class="line">gyp ERR! not ok</div><div class="line"></div><div class="line">npm ERR! Linux 3.10.0-327.22.2.el7.x86_64</div><div class="line">npm ERR! argv &quot;/usr/bin/node&quot; &quot;/usr/bin/npm&quot; &quot;--registry=http://npm.service.ucloud.cn&quot; &quot;install&quot;</div><div class="line">npm ERR! node v0.10.46</div><div class="line">npm ERR! npm  v2.15.1</div><div class="line">npm ERR! code ELIFECYCLE</div><div class="line">npm ERR! node-protobuf@1.1.5 install: `node-gyp rebuild`</div><div class="line">npm ERR! Exit status 1</div><div class="line">npm ERR!</div><div class="line">npm ERR! Failed at the node-protobuf@1.1.5 install script &apos;node-gyp rebuild&apos;.</div><div class="line">npm ERR! This is most likely a problem with the node-protobuf package,</div><div class="line">npm ERR! not with npm itself.</div><div class="line">npm ERR! Tell the author that this fails on your system:</div><div class="line">npm ERR!     node-gyp rebuild</div><div class="line">npm ERR! You can get information on how to open an issue for this project with:</div><div class="line">npm ERR!     npm bugs node-protobuf</div><div class="line">npm ERR! Or if that isn&apos;t available, you can get their info via:</div><div class="line">npm ERR!</div><div class="line">npm ERR!     npm owner ls node-protobuf</div><div class="line">npm ERR! There is likely additional logging output above.</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /data/app/npm-debug.log</div></pre></td></tr></table></figure>
+<p>原因： 检查下是不是把node_modules也copy到docker里面去了，那样的应用的包会是你拷贝进去的包</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/30/k8s/kubernetes集群搭建/" itemprop="url">
+                  kubernetes集群搭建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-30T16:53:03+08:00" content="2017-10-30">
+              2017-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>follow的文档主要是这个</p>
+<p><a href="https://k8s-install.opsnull.com/" target="_blank" rel="external">https://k8s-install.opsnull.com/</a></p>
+<p>有几个问题要注意</p>
+<ol>
+<li><p>flannel在部署完之后是不能ping通网关的，因为这时候docker根本没有起来，按着文档的章节，docker在node那一节，因此这里ping不通是正常的，只要在docker安装完之后可以ping就行</p>
+</li>
+<li><p>dashboard:  文档给的service部署yaml没有问题，但是nodePort没有指定，所以是段内一个随机的，如果要提供外网访问，一般起一个nginx反代，所以最好也指定nodePort,  dashboard-service.yaml如下</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  apiVersion: v1</div><div class="line">  kind: Service</div><div class="line">  metadata:</div><div class="line">    name: kubernetes-dashboard</div><div class="line">    namespace: kube-system</div><div class="line">    labels:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">      kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">      addonmanager.kubernetes.io/mode: Reconcile</div><div class="line">  spec:</div><div class="line">    type: NodePort</div><div class="line">    selector:</div><div class="line">      k8s-app: kubernetes-dashboard</div><div class="line">    ports:</div><div class="line">- port: 80</div><div class="line">  targetPort: 9090</div><div class="line">  nodePort: 8900</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nginx的配置如下</div></pre></td></tr></table></figure>
+<p>http {<br>  log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘</p>
+<pre><code>&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+</code></pre><p>  access_log  /var/log/nginx/access.log  main;</p>
+<p>  sendfile            on;<br>  tcp_nopush          on;<br>  tcp_nodelay         on;<br>  keepalive_timeout   65;<br>  types_hash_max_size 2048;</p>
+<p>  include             /etc/nginx/mime.types;<br>  default_type        application/octet-stream;</p>
+<h1 id="Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory"><a href="#Load-modular-configuration-files-from-the-etc-nginx-conf-d-directory" class="headerlink" title="Load modular configuration files from the /etc/nginx/conf.d directory."></a>Load modular configuration files from the /etc/nginx/conf.d directory.</h1><h1 id="See-http-nginx-org-en-docs-ngx-core-module-html-include"><a href="#See-http-nginx-org-en-docs-ngx-core-module-html-include" class="headerlink" title="See http://nginx.org/en/docs/ngx_core_module.html#include"></a>See <a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="external">http://nginx.org/en/docs/ngx_core_module.html#include</a></h1><h1 id="for-more-information"><a href="#for-more-information" class="headerlink" title="for more information."></a>for more information.</h1><p>  include /etc/nginx/conf.d/*.conf;</p>
+<p>  upstream dashboard {</p>
+<pre><code>server 10.146.0.2:8900 weight=1;
+ server 10.146.0.3:8900 weight=1;
+ server 10.146.0.4:8900 weight=1;
+</code></pre><p>  }</p>
+<p>  server {</p>
+<pre><code>listen       80 default_server;
+listen       [::]:80 default_server;
+server_name  YOUR_SERVER;
+
+# Load configuration files for the default server block.
+include /etc/nginx/default.d/*.conf;
+
+location / {
+    proxy_pass  http://dashboard;
+}
+
+error_page 404 /404.html;
+    location = /40x.html {
+}
+
+error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+}
+</code></pre><p>  }</p>
+</li>
+</ol>
+<p>另外在centos 7上，如果访问还能看到这个nginx有这个错误：Permission denied) while connecting to upstream, 原因是开了SELinux，需要关闭它</p>
+<h3 id="1-临时关闭（不用重启机器）："><a href="#1-临时关闭（不用重启机器）：" class="headerlink" title="1.临时关闭（不用重启机器）："></a>1.临时关闭（不用重启机器）：</h3><p>   setenforce 0                  ##设置SELinux 成为permissive模式</p>
+<p>   ##setenforce 1 设置SELinux 成为enforcing模式</p>
+<h3 id="2-修改配置文件需要重启机器："><a href="#2-修改配置文件需要重启机器：" class="headerlink" title="2.修改配置文件需要重启机器："></a>2.修改配置文件需要重启机器：</h3><p>   修改/etc/selinux/config 文件</p>
+<p>   将SELINUX=enforcing改为SELINUX=disabled</p>
+<p>   重启机器即可</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/27/k8s/kubenetes问题/" itemprop="url">
                   kubenetes问题排查
                 </a>
@@ -1190,288 +1472,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/28/docker/kubernets理解/" itemprop="url">
-                  kubernets理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-28T16:25:13+08:00" content="2017-09-28">
-              2017-09-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernets/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernets</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>几个重要概念</p>
-<ol>
-<li>node： 跑容器的节点，可以理解为虚机或物理机</li>
-<li>pod: 一组容器，但这些容器会共享一些东西，比如他们共享存储，比如他们使用相同的镜像，pod我理解应该还是在一个node上</li>
-<li>service：pod虽然有独立ip，但还是不能对外提供访问，并且由于它只在一个节点上，不能做高可用，这时候需要service，service可以把pod组合起来，services用lables和selectors来区分</li>
-<li>​</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/26/http/the go programing language/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-26T11:59:53+08:00" content="2017-09-26">
-              2017-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Go语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响Go代码的正确解析，比如行末是标识符、整数、浮点数、虚数、字符或字符串文字、关键字<code>break</code>、<code>continue</code>、<code>fallthrough</code>或<code>return</code>中的一个、运算符和分隔符<code>++</code>、<code>--</code>、<code>)</code>、<code>]</code>或<code>}</code>中的一个，那就会将相应换行符转成分号</p>
-</li>
-<li><p>变量会在声明时直接初始化。如果变量没有显式初始化，则被隐式地赋予其类型的<em>零值</em>（zero value），数值类型是0，字符串类型是空字符串””</p>
-</li>
-<li><p>命名方式: <strong>驼峰式</strong> 命名，当名字有几个单词组成的时优先使用大小写分隔，而不是优先用下划线分隔。因此，在标准库有QuoteRuneToASCII和parseRequestLine这样的函数命名，但是一般不会用quote_rune_to_ASCII和parse_request_line这样的命名。而像ASCII和HTML这样的缩略词则避免使用大小写混合的写法，它们可能被称为htmlEscape、HTMLEscape或escapeHTML，但不会是<strong>escapeHtml</strong>。</p>
-</li>
-<li><p>包一级声明语句声明的名字可在整个包对应的每个源文件中访问，而不是仅仅在其声明语句所在的源文件中访问</p>
-</li>
-<li><p>简短变量声明左边的变量可能并不是全部都是刚刚声明的。<strong>如果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">in, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">out, err := os.Create(outfile)</div></pre></td></tr></table></figure>
-</li>
-<li><p>简短变量声明语句中必须至少要声明一个新的变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">f, err := os.Create(outfile) // compile error: no new variables</div></pre></td></tr></table></figure>
-</li>
-<li><p>变量的生命周期:  从每个包级的变量和每个当前运行函数的每一个局部变量开始，通过指针或引用的访问路径遍历，是否可以找到该变量。如果不存在这样的访问路径，那么说明该变量是不可达的，也就是说它是否存在并不会影响程序后续的计算结果，<strong>一个变量的有效周期只取决于是否可达，因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域</strong></p>
-</li>
-<li><p>new函数： 表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code></p>
-</li>
-<li><p>元组赋值： 元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。在赋值之前，赋值语句右边的所有表达式将会先进行求值，然后再统一更新左边对应变量的值</p>
-</li>
-<li><p>类型声明语句 type: 为什么要有着个东西？ 在任何程序中都会存在一些变量有着相同的内部结构，但是却表示完全不同的概念。例如，一个int类型的变量可以用来表示一个循环的迭代索引、或者一个时间戳、或者一个文件描述符、或者一个月份；一个float64类型的变量可以用来表示每秒移动几米的速度、或者是不同温度单位下的温度；一个字符串可以用来表示一个密码或者一个颜色的名称。<strong>一个类型声明语句创建了一个新的类型名称，和现有类型具有相同的底层结构。新命名的类型提供了一个方法，用来分隔不同概念的类型，这样即使它们底层类型相同也是不兼容的。</strong></p>
-</li>
-<li><p>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型（译注：如果T是指针类型，可能会需要用小括弧包装T，比如<code>(*int)(0)</code>）。只有当<strong>两个类型的底层基础类型相同时，才允许这种转型操作</strong>，或者是两者都是指向相同底层结构的指针类型，<strong>这些转换只改变类型而不会影响值本身</strong></p>
-</li>
-<li><p>短声明会覆盖包级别的变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var cwd string</div><div class="line"></div><div class="line">func init() &#123;</div><div class="line">    cwd, err := os.Getwd() // compile error: unused: cwd</div><div class="line">    if err != nil &#123;</div><div class="line">        log.Fatalf(&quot;os.Getwd failed: %v&quot;, err)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>数组初始化，可以直接通过{}来做，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">q := [3]int&#123;1, 2, 3&#125;</div></pre></td></tr></table></figure>
-<p>也可以通过索引来做</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">type Currency int</div><div class="line"></div><div class="line">const (</div><div class="line">    USD Currency = iota // 美元</div><div class="line">    EUR                 // 欧元</div><div class="line">    GBP                 // 英镑</div><div class="line">    RMB                 // 人民币</div><div class="line">)</div><div class="line"></div><div class="line">symbol := [...]string&#123;USD: &quot;$&quot;, EUR: &quot;€&quot;, GBP: &quot;￡&quot;, RMB: &quot;￥&quot;&#125;</div><div class="line"></div><div class="line">fmt.Println(RMB, symbol[RMB]) // &quot;3 ￥&quot;</div></pre></td></tr></table></figure>
-<p>数组字面值中，如果在数组的长度位置出现的是“…”省略号，则表示数组的长度是根据初始化值的个数来计算</p>
-<p>理解下面这个定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">r := [...]int&#123;99: -1&#125;</div></pre></td></tr></table></figure>
-<p>首先数组长度是根据初始化值来定义的，它把第100个元素初始化成了-1，前99个为0</p>
-</li>
-<li><p>go的数组是可以比较的，只要： 1.数组里的类型是一样的 2.数组的长度一样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a := [2]int&#123;1, 2&#125;</div><div class="line">b := [...]int&#123;1, 2&#125;</div><div class="line">c := [2]int&#123;1, 3&#125;</div><div class="line">fmt.Println(a == b, a == c, b == c) // &quot;true false false&quot;</div><div class="line">d := [3]int&#123;1, 2&#125;</div><div class="line">fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int</div></pre></td></tr></table></figure>
-</li>
-<li><p>数组在函数调用时作为参数，go是直接copy一份数组，而不像其他语言传的是引用，因此会相对低效点</p>
-</li>
-<li><p><strong>一个slice由三个部分构成：指针、长度和容量。指针指向第一个slice元素对应的底层数组元素的地址，要注意的是slice的第一个元素并不一定就是数组的第一个元素。长度对应slice中元素的数目；长度不能超过容量，容量一般是从slice的开始位置到底层数据的结尾位置。内置的len和cap函数分别返回slice的长度和容量</strong></p>
-</li>
-<li><p>字符串的切片操作和[]byte字节类型切片的切片操作是类似的。它们都写作x[m:n]，并且都是返回一个原始字节系列的子序列，底层都是共享之前的底层数组，因此切片操作对应常量时间复杂度<strong>。x[m:n]切片操作对于字符串则生成一个新字符串，如果x是[]byte的话则生成一个新的[]byte</strong></p>
-</li>
-<li><p>slice不能比较， 不能使用==操作符来判断两个slice是否含有全部相等元素</p>
-</li>
-<li><p>如果切片操作超出cap(s)的上限将导致一个panic异常，但是超出len(s)则是意味着扩展了slice，因为新slice的长度会变大：</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1517,7 +1517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1534,7 +1534,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

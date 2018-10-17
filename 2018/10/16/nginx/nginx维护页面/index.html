@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ ``` location / {  if ($remote_addr ~* ^(111).(111).(111).(11">
+<meta name="description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ 12345678 location / &amp;#123;  if ($remote_addr ~* ^(111)\.(111">
 <meta name="keywords" content="维护页面 nginx try_files">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx维护页面">
 <meta property="og:url" content="http://yoursite.com/2018/10/16/nginx/nginx维护页面/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ ``` location / {  if ($remote_addr ~* ^(111).(111).(111).(11">
-<meta property="og:updated_time" content="2018-10-16T03:10:30.303Z">
+<meta property="og:description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ 12345678 location / &amp;#123;  if ($remote_addr ~* ^(111)\.(111">
+<meta property="og:updated_time" content="2018-10-16T03:20:43.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx维护页面">
-<meta name="twitter:description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ ``` location / {  if ($remote_addr ~* ^(111).(111).(111).(11">
+<meta name="twitter:description" content="nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/ 12345678 location / &amp;#123;  if ($remote_addr ~* ^(111)\.(111">
 
 
 
@@ -302,8 +302,7 @@
 
       
         <p>nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/</p>
-<p>```<br> location / {<br>  if ($remote_addr ~* ^(111).(111).(111).(111)$) {<br>     proxy_pass  <a href="http://aaa" target="_blank" rel="external">http://aaa</a>;<br>     break;<br>  }<br>  root /usr/share/nginx/html;<br>  try_files $uri $uri/ /index.html;<br>}</p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> location / &#123;</div><div class="line">  if ($remote_addr ~* ^(111)\.(111)\.(111)\.(111)$) &#123;</div><div class="line">     proxy_pass  http://aaa;</div><div class="line">     break;</div><div class="line">  &#125;</div><div class="line">  root /usr/share/nginx/html;</div><div class="line">  try_files $uri $uri/ /index.html;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -340,6 +339,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/16/nginx/nginx root和alias区别/" rel="prev" title="nginx root和alias区别">
+                nginx root和alias区别 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -407,7 +410,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -424,7 +427,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

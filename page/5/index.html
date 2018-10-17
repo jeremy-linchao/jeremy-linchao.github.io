@@ -243,6 +243,288 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/28/docker/kubernets理解/" itemprop="url">
+                  kubernets理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-28T16:25:13+08:00" content="2017-09-28">
+              2017-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernets/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernets</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>几个重要概念</p>
+<ol>
+<li>node： 跑容器的节点，可以理解为虚机或物理机</li>
+<li>pod: 一组容器，但这些容器会共享一些东西，比如他们共享存储，比如他们使用相同的镜像，pod我理解应该还是在一个node上</li>
+<li>service：pod虽然有独立ip，但还是不能对外提供访问，并且由于它只在一个节点上，不能做高可用，这时候需要service，service可以把pod组合起来，services用lables和selectors来区分</li>
+<li>​</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/26/http/the go programing language/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-26T11:59:53+08:00" content="2017-09-26">
+              2017-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>Go语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响Go代码的正确解析，比如行末是标识符、整数、浮点数、虚数、字符或字符串文字、关键字<code>break</code>、<code>continue</code>、<code>fallthrough</code>或<code>return</code>中的一个、运算符和分隔符<code>++</code>、<code>--</code>、<code>)</code>、<code>]</code>或<code>}</code>中的一个，那就会将相应换行符转成分号</p>
+</li>
+<li><p>变量会在声明时直接初始化。如果变量没有显式初始化，则被隐式地赋予其类型的<em>零值</em>（zero value），数值类型是0，字符串类型是空字符串””</p>
+</li>
+<li><p>命名方式: <strong>驼峰式</strong> 命名，当名字有几个单词组成的时优先使用大小写分隔，而不是优先用下划线分隔。因此，在标准库有QuoteRuneToASCII和parseRequestLine这样的函数命名，但是一般不会用quote_rune_to_ASCII和parse_request_line这样的命名。而像ASCII和HTML这样的缩略词则避免使用大小写混合的写法，它们可能被称为htmlEscape、HTMLEscape或escapeHTML，但不会是<strong>escapeHtml</strong>。</p>
+</li>
+<li><p>包一级声明语句声明的名字可在整个包对应的每个源文件中访问，而不是仅仅在其声明语句所在的源文件中访问</p>
+</li>
+<li><p>简短变量声明左边的变量可能并不是全部都是刚刚声明的。<strong>如果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">in, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">out, err := os.Create(outfile)</div></pre></td></tr></table></figure>
+</li>
+<li><p>简短变量声明语句中必须至少要声明一个新的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f, err := os.Open(infile)</div><div class="line">// ...</div><div class="line">f, err := os.Create(outfile) // compile error: no new variables</div></pre></td></tr></table></figure>
+</li>
+<li><p>变量的生命周期:  从每个包级的变量和每个当前运行函数的每一个局部变量开始，通过指针或引用的访问路径遍历，是否可以找到该变量。如果不存在这样的访问路径，那么说明该变量是不可达的，也就是说它是否存在并不会影响程序后续的计算结果，<strong>一个变量的有效周期只取决于是否可达，因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域</strong></p>
+</li>
+<li><p>new函数： 表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code></p>
+</li>
+<li><p>元组赋值： 元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。在赋值之前，赋值语句右边的所有表达式将会先进行求值，然后再统一更新左边对应变量的值</p>
+</li>
+<li><p>类型声明语句 type: 为什么要有着个东西？ 在任何程序中都会存在一些变量有着相同的内部结构，但是却表示完全不同的概念。例如，一个int类型的变量可以用来表示一个循环的迭代索引、或者一个时间戳、或者一个文件描述符、或者一个月份；一个float64类型的变量可以用来表示每秒移动几米的速度、或者是不同温度单位下的温度；一个字符串可以用来表示一个密码或者一个颜色的名称。<strong>一个类型声明语句创建了一个新的类型名称，和现有类型具有相同的底层结构。新命名的类型提供了一个方法，用来分隔不同概念的类型，这样即使它们底层类型相同也是不兼容的。</strong></p>
+</li>
+<li><p>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型（译注：如果T是指针类型，可能会需要用小括弧包装T，比如<code>(*int)(0)</code>）。只有当<strong>两个类型的底层基础类型相同时，才允许这种转型操作</strong>，或者是两者都是指向相同底层结构的指针类型，<strong>这些转换只改变类型而不会影响值本身</strong></p>
+</li>
+<li><p>短声明会覆盖包级别的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var cwd string</div><div class="line"></div><div class="line">func init() &#123;</div><div class="line">    cwd, err := os.Getwd() // compile error: unused: cwd</div><div class="line">    if err != nil &#123;</div><div class="line">        log.Fatalf(&quot;os.Getwd failed: %v&quot;, err)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组初始化，可以直接通过{}来做，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">q := [3]int&#123;1, 2, 3&#125;</div></pre></td></tr></table></figure>
+<p>也可以通过索引来做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">type Currency int</div><div class="line"></div><div class="line">const (</div><div class="line">    USD Currency = iota // 美元</div><div class="line">    EUR                 // 欧元</div><div class="line">    GBP                 // 英镑</div><div class="line">    RMB                 // 人民币</div><div class="line">)</div><div class="line"></div><div class="line">symbol := [...]string&#123;USD: &quot;$&quot;, EUR: &quot;€&quot;, GBP: &quot;￡&quot;, RMB: &quot;￥&quot;&#125;</div><div class="line"></div><div class="line">fmt.Println(RMB, symbol[RMB]) // &quot;3 ￥&quot;</div></pre></td></tr></table></figure>
+<p>数组字面值中，如果在数组的长度位置出现的是“…”省略号，则表示数组的长度是根据初始化值的个数来计算</p>
+<p>理解下面这个定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">r := [...]int&#123;99: -1&#125;</div></pre></td></tr></table></figure>
+<p>首先数组长度是根据初始化值来定义的，它把第100个元素初始化成了-1，前99个为0</p>
+</li>
+<li><p>go的数组是可以比较的，只要： 1.数组里的类型是一样的 2.数组的长度一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a := [2]int&#123;1, 2&#125;</div><div class="line">b := [...]int&#123;1, 2&#125;</div><div class="line">c := [2]int&#123;1, 3&#125;</div><div class="line">fmt.Println(a == b, a == c, b == c) // &quot;true false false&quot;</div><div class="line">d := [3]int&#123;1, 2&#125;</div><div class="line">fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组在函数调用时作为参数，go是直接copy一份数组，而不像其他语言传的是引用，因此会相对低效点</p>
+</li>
+<li><p><strong>一个slice由三个部分构成：指针、长度和容量。指针指向第一个slice元素对应的底层数组元素的地址，要注意的是slice的第一个元素并不一定就是数组的第一个元素。长度对应slice中元素的数目；长度不能超过容量，容量一般是从slice的开始位置到底层数据的结尾位置。内置的len和cap函数分别返回slice的长度和容量</strong></p>
+</li>
+<li><p>字符串的切片操作和[]byte字节类型切片的切片操作是类似的。它们都写作x[m:n]，并且都是返回一个原始字节系列的子序列，底层都是共享之前的底层数组，因此切片操作对应常量时间复杂度<strong>。x[m:n]切片操作对于字符串则生成一个新字符串，如果x是[]byte的话则生成一个新的[]byte</strong></p>
+</li>
+<li><p>slice不能比较， 不能使用==操作符来判断两个slice是否含有全部相等元素</p>
+</li>
+<li><p>如果切片操作超出cap(s)的上限将导致一个panic异常，但是超出len(s)则是意味着扩展了slice，因为新slice的长度会变大：</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/25/http/session和cookie的区别/" itemprop="url">
                   session和cookie的区别
                 </a>
@@ -1281,329 +1563,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/31/javascript/你不知道的javascript/" itemprop="url">
-                  你不知道的javascript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-31T22:22:52+08:00" content="2017-08-31">
-              2017-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖这个bug了</p>
-</li>
-<li><p>javascript的变量是没有类型的，真正有类型的是值，具体来说，JS的变量可以在一个赋值语句中被赋值为number,可以在接下来一个赋值语句中赋值成string。 因此如果你在JS用typeof， 它的意思是在问这个变量的值是什么类型，而不是变量本身</p>
-</li>
-<li><p>undefined并不是undeclared</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined is a value that a declared variable can hold. &quot;Undeclared&quot; means a variable has never been declared</div></pre></td></tr></table></figure>
-<p>对一个未声明过的变量typeof， 返回的是undefined</p>
-</li>
-<li><p>JS的数据不要求里面的元素都是一个类型，因此声明成下面这个也不要感到奇怪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, &quot;2&quot;, [3] ];</div></pre></td></tr></table></figure>
-<p>JS的数组是可以用字符串来做索引的，原因在于数组其实也是个object， 但是用字符串索引的是不会被记到length里去的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[&quot;foobar&quot;] = 2;</div><div class="line"></div><div class="line">a.length;		// 1</div><div class="line">a[&quot;foobar&quot;];	// 2</div><div class="line">a.foobar;		// 2</div></pre></td></tr></table></figure>
-<p>一般来说也建议不要用数组的字符串索引</p>
-</li>
-<li><p>将array-like的元素，比如dom元素转化为真正的数组(这样就可以调用诸如indexOf, forEach等方法了) ，有两种实现方式，一种是用Array.prototype.slice.call(arguments)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var arr = Array.prototype.slice.call( arguments );</div><div class="line">	arr.push( &quot;bam&quot; );</div><div class="line">	console.log( arr );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( &quot;bar&quot;, &quot;baz&quot; ); // [&quot;bar&quot;,&quot;baz&quot;,&quot;bam&quot;]</div></pre></td></tr></table></figure>
-<p>另一种是ES6的Array.from</p>
-</li>
-<li><p>JS的string和字符数组一样吗？表面看上去他们有点一样，比如都有indexOf方法，都有concat方法，都有length属性，但实际上他们很不一样。一个最大的区别在于说string是不可以改变的，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = &quot;foo&quot;;</div><div class="line">var b = [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;];</div><div class="line">a[1] = &quot;O&quot;;</div><div class="line">b[1] = &quot;O&quot;;</div><div class="line">a; // &quot;foo&quot;</div><div class="line">b; // [&quot;f&quot;,&quot;O&quot;,&quot;o&quot;]</div></pre></td></tr></table></figure>
-<p>另外string本身也没有join，reverse方法，因此一个常见的面试提： 给你一个字符串，让你去反转，这个该如何操作呢？可以先把字符串转化成字符数组，然后调用相应方法，最后再join</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var c = a</div><div class="line">	// split `a` into an array of characters</div><div class="line">	.split( &quot;&quot; )</div><div class="line">	// reverse the array of characters</div><div class="line">	.reverse()</div><div class="line">	// join the array of characters back to a string</div><div class="line">	.join( &quot;&quot; );</div><div class="line"></div><div class="line">c; // &quot;oof&quot;</div></pre></td></tr></table></figure>
-<p>注： 书上说对于multibype characters无效，我测试中文是可以的</p>
-<p>This approach <strong>doesn’t work</strong> for <code>string</code>s with complex (unicode) characters in them (astral symbols, multibyte characters, etc.).</p>
-</li>
-<li><p>JS的number类型是直接可以调用Number的方法的，比如保留小数点位数的toFixed()方法   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">a.toFixed( 0 ); // &quot;43&quot;</div><div class="line">a.toFixed( 1 ); // &quot;42.6&quot;</div><div class="line">a.toFixed( 2 ); // &quot;42.59&quot;</div><div class="line">a.toFixed( 3 ); // &quot;42.590&quot;</div><div class="line">a.toFixed( 4 ); // &quot;42.5900&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3 是返回的false！！！</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS的整形最大值是2的53次方-1，这个数还是要记住的，因为在某些情况下会有用，比如定义数据库的ID时，不能用64位的整数，只能用string来存，使用Number.MAX_SAFE_INTEGER这个来定义，最小值是-9007199254740991，使用Number.MIN_SAFE_INTEGER这个来定义，</p>
-<p>浮点型的最大值是1.798e+308，使用Number.MAX_VALUE这个来定义，最小值是5e-324，使用Number.MIN_VALUE这个来定义</p>
-</li>
-<li><p>32为有符号整数： 为什么需要32位整数呢？ 有些操作只能用于32位整数，比如位操作。把一个number类型的数变为32位有符号数的方式是 | 0</p>
-</li>
-<li><p>void 操作符，确保某个表达式的返回值是undefined，他不会修改已有的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 42;</div><div class="line">console.log( void a, a ); // undefined 42</div></pre></td></tr></table></figure>
-</li>
-<li><p>NaN最好理解成 invalid number，而不是字面意义上的not a number，解释看下面一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof NaN // number</div></pre></td></tr></table></figure>
-<p>NaN与自身比较是返回false的, 这也是javascrpt里面唯一一个自己与自己比较不相等是返回true的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NaN !== NaN  // true</div><div class="line">null !== null // false</div><div class="line">undefined !== null // false</div></pre></td></tr></table></figure>
-<p>所以比较一个数是不是NaN要用ES6的Number.isNaN方法，这里不能用ES5的window.isNaN，因为对于其他非数组类型，window.isNaN也会返回true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN(b);  // false;</div><div class="line">window.isNaN(b);  // true</div></pre></td></tr></table></figure>
-<p>有两种实现Number.isNaN方法，都值得学习下，第一种是加了一个typeof判断，因为NaN其实也是个number</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">	Number.isNaN = function(n) &#123;</div><div class="line">		return (</div><div class="line">			typeof n === &quot;number&quot; &amp;&amp;</div><div class="line">			window.isNaN( n )</div><div class="line">		);</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第二种方法是巧妙地利用了NaN是唯一一个自身与自身比较不相等是返回true的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNan)&#123;</div><div class="line">  Number.isNaN = function(n) &#123;</div><div class="line">    return n !== n;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS有 +0 和 -0之分，主要是为了用在某些场合需要方向的情况下，但+0 和 -0不能简单的用===来比较，那样他们是相等的，ES6有个Object.is方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = -3 * 0;</div><div class="line"></div><div class="line">Object.is( a, NaN );	// true</div><div class="line">Object.is( b, -0 );		// true</div><div class="line"></div><div class="line">Object.is( b, 0 );		// false</div></pre></td></tr></table></figure>
-</li>
-<li><p>JS中有值传递与引用传递， 但这个是根据变量本身的类型来的，我们没有控制权利</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Simple values are always assigned/passed by value-copy: null, undefined, string, number, boolean, and ES6&apos;s symbol.</div><div class="line"></div><div class="line">Compound values -- objects (including arrays, and all boxed object wrappers -- see Chapter 3) and functions -- always create a copy of the reference on assignment or passing.</div></pre></td></tr></table></figure>
-<p>经典例子如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">	x.push( 4 );</div><div class="line">	x; // [1,2,3,4]</div><div class="line"></div><div class="line">	// later</div><div class="line">	x = [4,5,6];</div><div class="line">	x.push( 7 );</div><div class="line">	x; // [4,5,6,7]</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">foo( a );</div><div class="line"></div><div class="line">a; // [1,2,3,4]  not  [4,5,6,7]</div></pre></td></tr></table></figure>
-<p>这里面的第二次复制 x = [4, 5, 6] 只是将x指向了一个新的数组，不能让原来的a改变指向</p>
-</li>
-<li><p>natives，比如String(),  Number(), 这些有点像其他语言的构造函数，  为什么要这些natives，因为基本类型没有属性方法，比如一个string，没有.length属性，没有toUpperCase()方法， number没有.toFixed()方法， JS默认会自动会基本类型加上包装</p>
-<p>比如你顶一个string，是可以直接调用toUpperCase()方法</p>
-</li>
-<li><p>Date()和Error()是两个比较有用的natives，因为没有对应的基本类型，获取当前时间戳的两种方式</p>
-<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(new Date()).getTime()</div><div class="line">Date.now()</div><div class="line">​</div></pre></td></tr></table></figure></p>
-</li>
-<li><p>​  经常看到console.log打印对象会打出诸如”[object Object]”这样的东西，这是因为如果没有实现对象的toString()方法，默认打出的是[[class]]属性</p>
-</li>
-<li><p>JSON.stringify()会自动忽略掉 undefined, null 和 symbol，如果这些值是在数组中，会用null来代替，如果是在一个对象中，则这个属性会被排除掉</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line">           </div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
-</code></pre></li>
-<li><p>JSON.stringify是有两个可选参数的，一个叫replacer，可以是数组或是函数，用来指定对象中哪些需要保留在最终的json字符串中，哪些需要剔除，而第三个参数是为了美观用的，指明每一行的分隔符</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line">           </div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line">           </div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
-</code></pre><p>var a = {</p>
-<pre><code>b: 42,
-c: &quot;42&quot;,
-d: [1,2,3]
-</code></pre><p>};</p>
-<p>JSON.stringify( a, null, 3 );<br>// “{<br>//    “b”: 42,<br>//    “c”: “42”,<br>//    “d”: [<br>//       1,<br>//       2,<br>//       3<br>//    ]<br>// }”</p>
-<p>JSON.stringify( a, null, “—–” );<br>// “{<br>// —–”b”: 42,<br>// —–”c”: “42”,<br>// —–”d”: [<br>// ———-1,<br>// ———-2,<br>// ———-3<br>// —–]<br>// }”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20.  falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21.  显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
-<p>var a = 42;<br>var b = String( a );</p>
-<p>var c = “3.14”;<br>var d = Number( c );</p>
-<p>b; // “42”<br>d; // 3.14</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22.  单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
-<p>var d = new Date();</p>
-<p>+d; // 1408369986000</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23.  ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
-<p>~42;    // -(42+1) ==&gt; -43</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对于 -1 ， ~-1 是返回0，其余都是非0， 这个特性可以用在indexOf的返回值上</div></pre></td></tr></table></figure>
-<p>var a = “Hello World”;</p>
-<p>~a.indexOf( “lo” );            // -4   &lt;– truthy!</p>
-<p>if (~a.indexOf( “lo” )) {    // true<br> // found it!<br>}</p>
-<p>~a.indexOf( “ol” );            // 0    &lt;– falsy!<br>!~a.indexOf( “ol” );        // true</p>
-<p>if (!~a.indexOf( “ol” )) {    // true<br> // not found!<br>}<br>```</p>
-<p>~~有点像floor取整，但他们不一样！ </p>
-<p>~~的原理是先转换成一个Int32，然后取反，第二个~再取反，所以小数部分会被结掉，但这个有试用范围，首先只适用于32位的整数，其次只适用于正数</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/31/utility/使用rsync指定非默认ssh端口/" itemprop="url">
-                  使用rsync指定非默认ssh端口
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-31T14:29:50+08:00" content="2017-08-31">
-              2017-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>rsync -avz -e “ssh -p 11111”  src  dst</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1649,7 +1608,7 @@ d: [1,2,3]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1666,7 +1625,7 @@ d: [1,2,3]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

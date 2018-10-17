@@ -243,6 +243,244 @@
             
               
                 
+                <a class="post-title-link" href="/2018/05/28/react/title: webpack 编译加速/" itemprop="url">
+                  webpack 编译加速（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-28T20:58:19+08:00" content="2018-05-28">
+              2018-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前端项目的编译一直很慢，已经到了无法忍受的程度，感觉多编译一次就是浪费一点生命，所以下决心来解决这个问题。</p>
+<p>现有环境如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;webpack&quot;: &quot;3.0.0&quot;</div><div class="line">&quot;webpack-dev-server&quot;: &quot;2.5.0&quot;,</div><div class="line">&quot;awesome-typescript-loader&quot;: &quot;4.0.1&quot;,</div></pre></td></tr></table></figure>
+<p>第一个想到的就是升级下webpack，这个比较简单，follow下官网安装教程就行，要注意的是webpack4多了一个mode，在development和production的配置文件上要加一个mode</p>
+<p>但实际的结果仍然不如意，感觉ts的编译仍然很慢，所以想是不是atl的问题，网上也查看了说ts-loder现在编译速度比atl快，但我现在更关注的是增量更新，所以看下了atl的文档，文档一开头就有几个ADVICE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ADVICE: Turn on useCache option.</div><div class="line"></div><div class="line">ADVICE: Typically you want your files section to include only entry points.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you use isolatedModules or forceIsolatedModules options.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you will use reportFiles to restrict checking scope.</div><div class="line"></div><div class="line">ADVICE: Use the loader together with hard-source-webpack-plugin</div></pre></td></tr></table></figure>
+<p>这个option是写在tsconfig.json里的，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;awesomeTypescriptLoaderOptions&quot;: &#123;</div><div class="line">        &quot;useCache&quot;: true,</div><div class="line">        &quot;forceIsolatedModules&quot;: true,</div><div class="line">        &quot;reportFiles&quot;: [</div><div class="line">            &quot;src/**/*.&#123;ts,tsx&#125;&quot;</div><div class="line">        ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>加了这个后，增量更新编译就明显快多了，</p>
+<p>根据webpack官方的优化文档，<a href="https://webpack.js.org/guides/build-performance/" target="_blank" rel="external">https://webpack.js.org/guides/build-performance/</a> 还有一些操作我也试了，比如cache-loader, dll, 但实际感觉效果不是太明显。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/05/14/redux/redux感悟/" itemprop="url">
+                  redux感悟
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-14T22:19:14+08:00" content="2018-05-14">
+              2018-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好久没有写博客了，今天更新一篇，也来总结下最近使用react+redux+typescipt+redux-observable的体会</p>
+<p>先说说redux，对redux的container有了进一步的理解，一个是它的mapStateToProps，这里的数据来源于两部分，一部分是component对应的reducer（我喜欢以业务来分目录，一个业务包含一整套action，container，component，reducer），这里会有所有这个component产生和需要的数据，比如ui的数据，ajax获取的数据，这些数据是要存到redux，因此要map回来，另一部分的数据可能不是这个ui产生的，但却是ui需要的数据，可能是别的业务的一部分数据，需要共享过来，这里也是可以通过container  map回来，在用ts的时候，我会区分下类型定义如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 这个是reducer的state类型</div><div class="line">interface BusinessReducerState &#123;</div><div class="line">&#125;</div><div class="line">interface BusinessStateProps extends businessReducerState &#123;</div><div class="line">  // 这里可以map一些共享的数据</div><div class="line">&#125;</div><div class="line">interface BusinessDistpatchProps &#123;</div><div class="line">  // dispatch的方法</div><div class="line">&#125;</div><div class="line">// 这个是最后丢给component的props的类型</div><div class="line">const BusinessProps = BusinessStateProps &amp; BusinessDistpatchProps</div></pre></td></tr></table></figure>
+<p>container的另外一个理解就是container可以嵌container，这个本来应该是一个很正常的问题，但是这个问题很容易和另外一个问题搞混，那就是之前讲的component嵌component，componet嵌component有个问题是props是一级一级下传的，因此下面一层的component拿不到上一层component之外的数据，但container嵌套container则不是，因为container是从整个store拿的数据，因此下一层的container的数据跟上一层的组件是可以完全不一样的！因此redux怎么来做业务组件的重用？ 用的不是component而是container，一个很明显的例子是弹窗，我们的弹窗不是一个简单确认，里面是有很多业务数据的，而这个弹窗又是要做成重用的，可能要在不同地方去弹，这时候就应该把弹窗用container来做封装</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/01/01/database/sql连接理解/" itemprop="url">
                   关于sql连接的理解
                 </a>
@@ -1167,308 +1405,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/21/utility/使用sysbench测试mysq性能/" itemprop="url">
-                  使用sysbench测试mysq性能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-21T18:06:55+08:00" content="2017-11-21">
-              2017-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utility/" itemprop="url" rel="index">
-                    <span itemprop="name">utility</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
-<li>centos 6.5</li>
-<li>sysbench 0.5</li>
-<li>mysql 5.1</li>
-</ol>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>一. sysbench</p>
-<ol>
-<li><p>github 地址    <a href="https://github.com/akopytov/sysbench" target="_blank" rel="external">https://github.com/akopytov/sysbench</a></p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/akopytov/sysbench.git</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 0.5</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install make automake libtool pkgconfig libaio-devel vim-common mysql-devel</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>二.  mysql</p>
-<ol>
-<li><p>yum install mysql mysql-server -y</p>
-</li>
-<li><p>service mysqld start</p>
-</li>
-</ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试:"></a>测试:</h3><h3 id="https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6"><a href="#https-wiki-mikejung-biz-Sysbench-Install-Sysbench-0-4-12-via-RPM-on-CentOS-6-6" class="headerlink" title="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6"></a><a href="https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6" target="_blank" rel="external">https://wiki.mikejung.biz/Sysbench#Install_Sysbench_0.4.12_via_RPM_on_CentOS_6.6</a></h3><ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">## Create Database </div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line">mysql 5.6 :  mysql -u root -pCClovecc22@@ -e &quot;CREATE DATABASE sysbench;&quot;</div><div class="line"></div><div class="line">## Create User</div><div class="line">mysql 5.1 :  mysql -u root -pucloud.cn -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql 5.6:   mysql -u root -pCClovecc22@@ -e &quot;CREATE USER &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED BY &apos;CClovecc22@@&apos;;&quot;</div><div class="line"></div><div class="line">## Grant Access </div><div class="line">mysql5.1 : mysql -u root -pucloud.cn -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;ucloud.cn&apos;;&quot;</div><div class="line">mysql5.6:  mysql -u root -pCClovecc22@@ -e &quot;GRANT ALL PRIVILEGES ON *.* TO &apos;sysbench&apos;@&apos;%&apos; IDENTIFIED  BY &apos;CClovecc22@@&apos;;&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>prepare</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --mysql-host=192.168.151.244 prepare</div><div class="line"></div><div class="line">sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ prepare</div></pre></td></tr></table></figure>
-</li>
-<li><p>read-only oltp test</p>
-<p>在client对两台mysql进行测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --	mysql-host=192.168.151.236 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-host=192.168.151.243 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=CClovecc22@@ --max-time=240 --max-requests=0 --oltp-read-only --oltp-skip-trx  --oltp-nontrx-mode=select --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 2 4 8; do sysbench --test=oltp --db-driver=mysql --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --oltp-read-only=on --max-requests=0 --num-threads=$each run; sleep 10; done</div></pre></td></tr></table></figure>
-</li>
-<li><p>mixed read and write oltp test</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=root --mysql-password=ucloud.cn --max-time=60 --max-requests=0 run</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for each in 1 4 8 16 32 64; do sysbench --test=oltp --oltp-table-size=10000000 --mysql-db=sysbench --mysql-user=sysbench --mysql-password=ucloud.cn --max-time=240 --max-requests=0 --num-threads=$each run; done</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<p>Centos7  mysql5.7</p>
-<ol>
-<li><a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></li>
-</ol>
-<p>FAQ：</p>
-<ol>
-<li><p>远程插入不了数据？</p>
-<p>1）检查是否可以用sysbench远程登陆, 如果不可以</p>
-<p>mysql -u root -pucloud.cn -e “GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;”</p>
-<p>2)  </p>
-</li>
-</ol>
-<p>修复用户</p>
-<p>以root登陆 mysql -uroot -p</p>
-<p>删除用户</p>
-<ol>
-<li><p>drop user ‘sysbench’@’%’;</p>
-</li>
-<li><p>flush privileges;</p>
-</li>
-</ol>
-<p>创建用户</p>
-<ol>
-<li>​ CREATE USER ‘sysbench’@’%’  IDENTIFIED BY ‘ucloud.cn’;</li>
-<li>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘sysbench’@’%’ IDENTIFIED  BY ‘ucloud.cn’;</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/20/utility/Centos安装mysql 5.6/" itemprop="url">
-                  Centos安装mysql 5.6（转载）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-20T14:01:42+08:00" content="2017-11-20">
-              2017-11-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-检查"><a href="#1-检查" class="headerlink" title="1. 检查"></a>1. 检查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum list installed | grep mysql</div><div class="line">[root@snails ~]# ps -ef|grep mysql</div><div class="line">[root@snails ~]# service mysqld stop </div><div class="line">[root@snails ~]# rpm -e mysql-libs --nodeps</div><div class="line">[root@snails ~]# yum -y remove mysql mysql-*</div></pre></td></tr></table></figure>
-<h3 id="2-设置安装源"><a href="#2-设置安装源" class="headerlink" title="2. 设置安装源"></a>2. 设置安装源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# wget http://repo.mysql.com/mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# rpm -ivh mysql57-community-release-el6-8.noarch.rpm</div><div class="line">[root@snails ~]# ls -1 /etc/yum.repos.d/mysql-community*</div><div class="line">[root@snails ~]# yum repolist all | grep mysql</div><div class="line">[root@snails ~]# vi /etc/yum.repos.d/mysql-community.repo</div><div class="line">### 将[mysql56-community]的enabled设置为１,[mysql57-community]的enabled设置为0 ### </div><div class="line">[root@snails ~]# yum repolist enabled | grep mysql</div><div class="line">mysql-connectors-community MySQL Connectors Community                         21</div><div class="line">mysql-tools-community      MySQL Tools Community                              37</div><div class="line">mysql56-community          MySQL 5.6 Community Server                        265</div></pre></td></tr></table></figure>
-<h3 id="3-安装mysql"><a href="#3-安装mysql" class="headerlink" title="3. 安装mysql"></a>3. 安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# yum -y install mysql-server mysql</div></pre></td></tr></table></figure>
-<h3 id="4-修改默认配置"><a href="#4-修改默认配置" class="headerlink" title="4. 修改默认配置"></a>4. 修改默认配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mkdir /data/mysql</div><div class="line">[root@snails ~]# vi /etc/my.cnf</div><div class="line">[mysqld]</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/tmp/mysql.sock</div><div class="line">symbolic-links=0</div><div class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line"></div><div class="line">[client] </div><div class="line">socket=/tmp/mysql.sock</div></pre></td></tr></table></figure>
-<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# service mysqld start</div></pre></td></tr></table></figure>
-<h3 id="6-修改root密码"><a href="#6-修改root密码" class="headerlink" title="6. 修改root密码"></a>6. 修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@snails ~]# mysql -u root</div><div class="line">mysql&gt; use mysql;</div><div class="line">mysql&gt; update user set password=PASSWORD(&quot;GIVE-NEW-ROOT-PASSWORD&quot;) where User=&apos;root&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; quit</div></pre></td></tr></table></figure>
-<h3 id="7-配置文件"><a href="#7-配置文件" class="headerlink" title="7. 配置文件"></a>7. 配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">[client]  </div><div class="line"> port=3306 </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line">  　　</div><div class="line"> [mysql] </div><div class="line"> default-character-set=utf8 </div><div class="line">  　　</div><div class="line"> [mysqld] </div><div class="line"> user=mysql </div><div class="line"> character-set-server=utf8 </div><div class="line"> explicit_defaults_for_timestamp=true </div><div class="line"></div><div class="line"> #索引和数据缓冲区大小，一般设置物理内存的60%-70%   　　</div><div class="line"> innodb_buffer_pool_size = 1G </div><div class="line"> #缓冲池实例个数，推荐设置4个或8个 </div><div class="line"> innodb_buffer_pool_instances = 4 </div><div class="line"> #关键参数，0代表大约每秒写入到日志并同步到磁盘，数据库故障会丢失1秒左右事务数据。1为每执行一条SQL后写入到日志并同步到磁盘，I/                                                             O开销大，执行完SQL要等待日志读写，效率低。2代表只把日志写入到系统缓存区，再每秒同步到磁盘，效率很高，如果服务器故障，才会丢失事务数据。对数据安全性要求不是很高的推荐设置2，性能高，修改后效果明显。</div><div class="line"> innodb_flush_log_at_trx_commit = 2   </div><div class="line"> #默认是共享表空间，共享表空间idbdata文件不断增大，影响一定的I/O性能。推荐开启独立表空间模式，每个表的索引和数据都存在自己独立的表空间中，可以实现单表在不同数据库中移动。 </div><div class="line"> innodb_file_per_table = ON </div><div class="line"> #日志缓冲区大小，由于日志最长每秒钟刷新一次，所以一般不用超过16M </div><div class="line"> innodb_log_buffer_size = 8M    </div><div class="line"></div><div class="line"> datadir=/data/mysql </div><div class="line"> socket=/tmp/mysql.sock </div><div class="line"></div><div class="line"> # 禁止MySQL对外部 连接进行DNS解析</div><div class="line"> skip-name-resolve    </div><div class="line"> # Disabling symbolic-links is recommended to prevent assorted security risks </div><div class="line"> symbolic-links=0 </div><div class="line"></div><div class="line"> # Recommended in standard MySQL setup </div><div class="line"> sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  </div><div class="line"></div><div class="line"> [mysqld_safe] </div><div class="line"> log-error=/var/log/mysqld.log </div><div class="line"> pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure>
-<p>作者：技术学习<br>链接：<a href="http://www.jianshu.com/p/5a2e4e0b6eda" target="_blank" rel="external">http://www.jianshu.com/p/5a2e4e0b6eda</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1514,7 +1450,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1531,7 +1467,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

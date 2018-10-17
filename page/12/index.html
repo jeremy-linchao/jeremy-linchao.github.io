@@ -243,6 +243,245 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/21/git/git冲突解决/" itemprop="url">
+                  git冲突解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-21T14:39:33+08:00" content="2017-04-21">
+              2017-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>每次git合并时遇到冲突总会感觉非常崩溃，其实对于冲突一点都不需要过于担心，因为总是可以通过git merge - - abort来撤销合并恢复到之前的状态</p>
+</li>
+<li><p>当两个改动发生在同一个文件的同一些行上，我们就要看看发生冲突的文件的内容了。Git 会非常友好地把文件中那些有问题的区域在 “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD” 和 “&gt;&gt;&gt;&gt;&gt;&gt;&gt; [other/branch/name]” 之间标记出来。</p>
+<p>中间用=======来作分割，  第一个HEAD到======表示本地版本的改动， ======到最后那个分支名表示那个版本，理解了git的这个标记的意思非常重要。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/19/test/jest新手错误/" itemprop="url">
+                  jest新手错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-19T11:34:02+08:00" content="2017-04-19">
+              2017-04-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在it里面需要忘记return</p>
+</li>
+<li><p>不需要去catch错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1492574722511 ERROR Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>catch错误后发现日志里多了下面的内容，很jest本身结果没有报错，原因就在于it里面去catch错误了，导致抛出的错误没有传回jest本身，这个格式看来古怪，应该就是jest的格式</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/18/utility/查看占用端口的进程/" itemprop="url">
                   查看占用端口的进程
                 </a>
@@ -1201,272 +1440,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/es6/一个async:await问题/" itemprop="url">
-                  一个async/await问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-07T15:59:31+08:00" content="2017-04-07">
-              2017-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public async getUTechServicePrice(req: express.Request, res: express.Response) &#123;</div><div class="line">    let result = null;</div><div class="line">    try &#123;</div><div class="line">      logger.info(&apos;getUTechService is called&apos;);</div><div class="line">      result = await this.getUTechServicePricePromise(req, res);</div><div class="line">      result.then((val) = &gt; &#123;</div><div class="line">        console.log(val);</div><div class="line">      &#125;)</div><div class="line">    &#125; catch (err) &#123;</div><div class="line">      logger.error(err);</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>写了这一段代码，执行的时候一直报错说result.then 不是一个函数，百思不得其解，和同事讨论了下终于发现问题所在，await 后面要跟一个promise对象，但await是等待这个promise解析结束，因此它的值要不是解析出来，要不就是出错被catch，因此这里的result就是一个确定的值，不需要再用then方法了，说到底还是对async和await的理解不够深</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/03/database/数据库系统(mooc)/" itemprop="url">
-                  数据库系统(mooc)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-03T14:30:40+08:00" content="2017-04-03">
-              2017-04-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>关系与表的关系： 关系是关系模型里一个数学概念，而表是DBMS实现时用的一个称呼，两者在大多数情况下都是相同的，但关系里不能有重复的record，表里可以有</p>
-</li>
-<li><p>如何描述一个关系:   1) 先确定域，域的所有取值是能够确定下来的，同时有多少个域也是能确定下来的</p>
-<p>2）使用域作笛卡尔乘积，从中挑选一些有意义的record的集合作为一个关系</p>
-</li>
-<li><p>完整性约束：  1） 实体完整性：  主键不能为空       2）参照完整性：  外键的值的取值为null或者为参照表的主键中的取值   3） 自定义完整性：  用户自己定义的约束，比如字符串长度，数字长度</p>
-</li>
-<li><p>候选键（能唯一标识所有用户的属性组）   主键： 从候选键中选出一个属性组    外键： 在某一个关系下不是候选键，但在另一个关系下是主键，用来连接关系​</p>
-</li>
-<li><p>关系代数的基本动作： 并， 差， 乘积， 选择， 投影</p>
-</li>
-<li><p>并相容性：  两个关系的属性的数量以及每个属性的取值范围必须相同。  并，交， 差运算需满足并相容性</p>
-</li>
-<li><p>theta-join,  等值连接: 特殊的theta-join</p>
-</li>
-<li><p>Natual-join: 特殊的等值连接</p>
-</li>
-<li><p>外连接： 为什么需要外链接？内连接由于是需要属性相同并且值也相同，因此会丢失一部分信息。</p>
-<p>定义：连接时如果在另外一张表中找不到对应的元祖，则以空值作为代替连接</p>
-</li>
-<li><p>DDL:   CREATE, ALTER, DROP</p>
-<p>DML:  INSERT, DELETE, UPDATE, SELECT</p>
-<p>DCL:   GRANT, REVOKE</p>
-</li>
-<li><p>批量插入   INSERT INTO Table(col1, col2)   子查询</p>
-</li>
-<li><p>删除： DELETE  FROM   表名   [WHERE 表达式]</p>
-</li>
-<li><p>更新： UPDATE  表名  SET 列名 = 表达式|（子查询）[WHERE 条件表达式] </p>
-</li>
-<li><p>子查询： 出现在Where子句中的Select语句，  IN 与 NOT IN；  theta   some | all</p>
-</li>
-<li><p>E-R模型：  Enitity-Relation Model，四个要素：实体、属性、联系、关键字</p>
-</li>
-<li><p>一对多和多对多关系的区别: 一对多的联系可以通过外键来保存，对多对的联系只能单独再建一个联系表</p>
-</li>
-<li><p>一对多联系如何转换： 将单方参与实体的关键字作为多方参与实体对应关系的属性</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1512,7 +1485,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1529,7 +1502,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

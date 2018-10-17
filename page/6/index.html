@@ -243,6 +243,329 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/31/javascript/你不知道的javascript/" itemprop="url">
+                  你不知道的javascript
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T22:22:52+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>javascript标准总共只有7个类型，null, undefined, boolean, number, string, object, symbol, 至于常用的array和function其实都是object下的子类型。这7个类型用typeof并不能一一对应地打印出相应字符串，typeof null的结果是object，这是一个js的bug，但不太可能去修复这个bug，以为太多的网站依赖这个bug了</p>
+</li>
+<li><p>javascript的变量是没有类型的，真正有类型的是值，具体来说，JS的变量可以在一个赋值语句中被赋值为number,可以在接下来一个赋值语句中赋值成string。 因此如果你在JS用typeof， 它的意思是在问这个变量的值是什么类型，而不是变量本身</p>
+</li>
+<li><p>undefined并不是undeclared</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined is a value that a declared variable can hold. &quot;Undeclared&quot; means a variable has never been declared</div></pre></td></tr></table></figure>
+<p>对一个未声明过的变量typeof， 返回的是undefined</p>
+</li>
+<li><p>JS的数据不要求里面的元素都是一个类型，因此声明成下面这个也不要感到奇怪</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, &quot;2&quot;, [3] ];</div></pre></td></tr></table></figure>
+<p>JS的数组是可以用字符串来做索引的，原因在于数组其实也是个object， 但是用字符串索引的是不会被记到length里去的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[&quot;foobar&quot;] = 2;</div><div class="line"></div><div class="line">a.length;		// 1</div><div class="line">a[&quot;foobar&quot;];	// 2</div><div class="line">a.foobar;		// 2</div></pre></td></tr></table></figure>
+<p>一般来说也建议不要用数组的字符串索引</p>
+</li>
+<li><p>将array-like的元素，比如dom元素转化为真正的数组(这样就可以调用诸如indexOf, forEach等方法了) ，有两种实现方式，一种是用Array.prototype.slice.call(arguments)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var arr = Array.prototype.slice.call( arguments );</div><div class="line">	arr.push( &quot;bam&quot; );</div><div class="line">	console.log( arr );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( &quot;bar&quot;, &quot;baz&quot; ); // [&quot;bar&quot;,&quot;baz&quot;,&quot;bam&quot;]</div></pre></td></tr></table></figure>
+<p>另一种是ES6的Array.from</p>
+</li>
+<li><p>JS的string和字符数组一样吗？表面看上去他们有点一样，比如都有indexOf方法，都有concat方法，都有length属性，但实际上他们很不一样。一个最大的区别在于说string是不可以改变的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = &quot;foo&quot;;</div><div class="line">var b = [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;];</div><div class="line">a[1] = &quot;O&quot;;</div><div class="line">b[1] = &quot;O&quot;;</div><div class="line">a; // &quot;foo&quot;</div><div class="line">b; // [&quot;f&quot;,&quot;O&quot;,&quot;o&quot;]</div></pre></td></tr></table></figure>
+<p>另外string本身也没有join，reverse方法，因此一个常见的面试提： 给你一个字符串，让你去反转，这个该如何操作呢？可以先把字符串转化成字符数组，然后调用相应方法，最后再join</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var c = a</div><div class="line">	// split `a` into an array of characters</div><div class="line">	.split( &quot;&quot; )</div><div class="line">	// reverse the array of characters</div><div class="line">	.reverse()</div><div class="line">	// join the array of characters back to a string</div><div class="line">	.join( &quot;&quot; );</div><div class="line"></div><div class="line">c; // &quot;oof&quot;</div></pre></td></tr></table></figure>
+<p>注： 书上说对于multibype characters无效，我测试中文是可以的</p>
+<p>This approach <strong>doesn’t work</strong> for <code>string</code>s with complex (unicode) characters in them (astral symbols, multibyte characters, etc.).</p>
+</li>
+<li><p>JS的number类型是直接可以调用Number的方法的，比如保留小数点位数的toFixed()方法   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">a.toFixed( 0 ); // &quot;43&quot;</div><div class="line">a.toFixed( 1 ); // &quot;42.6&quot;</div><div class="line">a.toFixed( 2 ); // &quot;42.59&quot;</div><div class="line">a.toFixed( 3 ); // &quot;42.590&quot;</div><div class="line">a.toFixed( 4 ); // &quot;42.5900&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3 是返回的false！！！</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS的整形最大值是2的53次方-1，这个数还是要记住的，因为在某些情况下会有用，比如定义数据库的ID时，不能用64位的整数，只能用string来存，使用Number.MAX_SAFE_INTEGER这个来定义，最小值是-9007199254740991，使用Number.MIN_SAFE_INTEGER这个来定义，</p>
+<p>浮点型的最大值是1.798e+308，使用Number.MAX_VALUE这个来定义，最小值是5e-324，使用Number.MIN_VALUE这个来定义</p>
+</li>
+<li><p>32为有符号整数： 为什么需要32位整数呢？ 有些操作只能用于32位整数，比如位操作。把一个number类型的数变为32位有符号数的方式是 | 0</p>
+</li>
+<li><p>void 操作符，确保某个表达式的返回值是undefined，他不会修改已有的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 42;</div><div class="line">console.log( void a, a ); // undefined 42</div></pre></td></tr></table></figure>
+</li>
+<li><p>NaN最好理解成 invalid number，而不是字面意义上的not a number，解释看下面一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof NaN // number</div></pre></td></tr></table></figure>
+<p>NaN与自身比较是返回false的, 这也是javascrpt里面唯一一个自己与自己比较不相等是返回true的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NaN !== NaN  // true</div><div class="line">null !== null // false</div><div class="line">undefined !== null // false</div></pre></td></tr></table></figure>
+<p>所以比较一个数是不是NaN要用ES6的Number.isNaN方法，这里不能用ES5的window.isNaN，因为对于其他非数组类型，window.isNaN也会返回true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN(b);  // false;</div><div class="line">window.isNaN(b);  // true</div></pre></td></tr></table></figure>
+<p>有两种实现Number.isNaN方法，都值得学习下，第一种是加了一个typeof判断，因为NaN其实也是个number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">	Number.isNaN = function(n) &#123;</div><div class="line">		return (</div><div class="line">			typeof n === &quot;number&quot; &amp;&amp;</div><div class="line">			window.isNaN( n )</div><div class="line">		);</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种方法是巧妙地利用了NaN是唯一一个自身与自身比较不相等是返回true的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNan)&#123;</div><div class="line">  Number.isNaN = function(n) &#123;</div><div class="line">    return n !== n;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS有 +0 和 -0之分，主要是为了用在某些场合需要方向的情况下，但+0 和 -0不能简单的用===来比较，那样他们是相等的，ES6有个Object.is方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = -3 * 0;</div><div class="line"></div><div class="line">Object.is( a, NaN );	// true</div><div class="line">Object.is( b, -0 );		// true</div><div class="line"></div><div class="line">Object.is( b, 0 );		// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS中有值传递与引用传递， 但这个是根据变量本身的类型来的，我们没有控制权利</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Simple values are always assigned/passed by value-copy: null, undefined, string, number, boolean, and ES6&apos;s symbol.</div><div class="line"></div><div class="line">Compound values -- objects (including arrays, and all boxed object wrappers -- see Chapter 3) and functions -- always create a copy of the reference on assignment or passing.</div></pre></td></tr></table></figure>
+<p>经典例子如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo(x) &#123;</div><div class="line">	x.push( 4 );</div><div class="line">	x; // [1,2,3,4]</div><div class="line"></div><div class="line">	// later</div><div class="line">	x = [4,5,6];</div><div class="line">	x.push( 7 );</div><div class="line">	x; // [4,5,6,7]</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">foo( a );</div><div class="line"></div><div class="line">a; // [1,2,3,4]  not  [4,5,6,7]</div></pre></td></tr></table></figure>
+<p>这里面的第二次复制 x = [4, 5, 6] 只是将x指向了一个新的数组，不能让原来的a改变指向</p>
+</li>
+<li><p>natives，比如String(),  Number(), 这些有点像其他语言的构造函数，  为什么要这些natives，因为基本类型没有属性方法，比如一个string，没有.length属性，没有toUpperCase()方法， number没有.toFixed()方法， JS默认会自动会基本类型加上包装</p>
+<p>比如你顶一个string，是可以直接调用toUpperCase()方法</p>
+</li>
+<li><p>Date()和Error()是两个比较有用的natives，因为没有对应的基本类型，获取当前时间戳的两种方式</p>
+<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(new Date()).getTime()</div><div class="line">Date.now()</div><div class="line">​</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>​  经常看到console.log打印对象会打出诸如”[object Object]”这样的东西，这是因为如果没有实现对象的toString()方法，默认打出的是[[class]]属性</p>
+</li>
+<li><p>JSON.stringify()会自动忽略掉 undefined, null 和 symbol，如果这些值是在数组中，会用null来代替，如果是在一个对象中，则这个属性会被排除掉</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JSON.stringify( undefined );					// undefined</div><div class="line">JSON.stringify( function()&#123;&#125; );					// undefined</div><div class="line">           </div><div class="line">JSON.stringify( [1,undefined,function()&#123;&#125;,4] );	// &quot;[1,null,null,4]&quot;</div><div class="line">JSON.stringify( &#123; a:2, b:function()&#123;&#125; &#125; );		// &quot;&#123;&quot;a&quot;:2&#125;&quot;</div></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>JSON.stringify是有两个可选参数的，一个叫replacer，可以是数组或是函数，用来指定对象中哪些需要保留在最终的json字符串中，哪些需要剔除，而第三个参数是为了美观用的，指明每一行的分隔符</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">	b: 42,</div><div class="line">	c: &quot;42&quot;,</div><div class="line">	d: [1,2,3]</div><div class="line">&#125;;</div><div class="line">           </div><div class="line">JSON.stringify( a, [&quot;b&quot;,&quot;c&quot;] ); // &quot;&#123;&quot;b&quot;:42,&quot;c&quot;:&quot;42&quot;&#125;&quot;</div><div class="line">           </div><div class="line">JSON.stringify( a, function(k,v)&#123;</div><div class="line">	if (k !== &quot;c&quot;) return v;</div><div class="line">&#125; );</div><div class="line">// &quot;&#123;&quot;b&quot;:42,&quot;d&quot;:[1,2,3]&#125;&quot;</div></pre></td></tr></table></figure>
+</code></pre><p>var a = {</p>
+<pre><code>b: 42,
+c: &quot;42&quot;,
+d: [1,2,3]
+</code></pre><p>};</p>
+<p>JSON.stringify( a, null, 3 );<br>// “{<br>//    “b”: 42,<br>//    “c”: “42”,<br>//    “d”: [<br>//       1,<br>//       2,<br>//       3<br>//    ]<br>// }”</p>
+<p>JSON.stringify( a, null, “—–” );<br>// “{<br>// —–”b”: 42,<br>// —–”c”: “42”,<br>// —–”d”: [<br>// ———-1,<br>// ———-2,<br>// ———-3<br>// —–]<br>// }”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">20.  falsy值： undefined, null, false, +0, -0, NaN, &quot;&quot;, 除了这些之外的都是truthy值</div><div class="line"></div><div class="line">21.  显示在字符串与数字之间转换</div></pre></td></tr></table></figure>
+<p>var a = 42;<br>var b = String( a );</p>
+<p>var c = “3.14”;<br>var d = Number( c );</p>
+<p>b; // “42”<br>d; // 3.14</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">22.  单目操作符 + 可以用来做强制转化，比如把Date转换成时间戳</div></pre></td></tr></table></figure>
+<p>var d = new Date();</p>
+<p>+d; // 1408369986000</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">23.  ~  位取反， 会先强制转化成一个Int32的数，然后做位取反，数值上相当于 -(x+1)</div></pre></td></tr></table></figure>
+<p>~42;    // -(42+1) ==&gt; -43</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对于 -1 ， ~-1 是返回0，其余都是非0， 这个特性可以用在indexOf的返回值上</div></pre></td></tr></table></figure>
+<p>var a = “Hello World”;</p>
+<p>~a.indexOf( “lo” );            // -4   &lt;– truthy!</p>
+<p>if (~a.indexOf( “lo” )) {    // true<br> // found it!<br>}</p>
+<p>~a.indexOf( “ol” );            // 0    &lt;– falsy!<br>!~a.indexOf( “ol” );        // true</p>
+<p>if (!~a.indexOf( “ol” )) {    // true<br> // not found!<br>}<br>```</p>
+<p>~~有点像floor取整，但他们不一样！ </p>
+<p>~~的原理是先转换成一个Int32，然后取反，第二个~再取反，所以小数部分会被结掉，但这个有试用范围，首先只适用于32位的整数，其次只适用于正数</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/31/utility/使用rsync指定非默认ssh端口/" itemprop="url">
+                  使用rsync指定非默认ssh端口
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T14:29:50+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/utility/" itemprop="url" rel="index">
+                    <span itemprop="name">utility</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>rsync -avz -e “ssh -p 11111”  src  dst</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/23/javascript/Ajax里用window.open被拦截问题/" itemprop="url">
                   未命名
                 </a>
@@ -1270,245 +1593,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/31/react/material ui的select问题/" itemprop="url">
-                  material ui的select问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T14:38:49+08:00" content="2017-07-31">
-              2017-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/material-ui/" itemprop="url" rel="index">
-                    <span itemprop="name">material ui</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天遇到一个material ui的selecfield的选中问题， 具体现象为一开始选中了一个menu item，但是当重新获取所有的数据时，选中的那个menu item消失了。</p>
-<p>最后排查原因发现： selectedField的value选的是一个对象， 当重新获取新的数组的时候，之前的那个对象不在这个新数组之中了</p>
-<p>另外如果存了换一个数组之后，没必要再存一个选中的对象，只需要存一下那个索引即可，否则不仅重复存了，还容易引起更多的bug</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/21/react/react声明周期函数/" itemprop="url">
-                  react声明周期函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-21T08:40:49+08:00" content="2017-07-21">
-              2017-07-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>render():    render函数是组件的必需函数，并且需要为纯函数</li>
-<li>constructor(): 在构造器里需要先调用super(props)，否则构造器里的this.props将为空，如果不需要初始化state状态，也不需要bind， 那可以不用构造器</li>
-<li>如果componet里使用了state，而state又想是通过props来作初始化，这里可能就会有潜在的bug，因为如果只在constructor里做初始化，props变了之后并不能改变state，那样还需要自己去实现<a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps(nextProps)</code></a> 这个函数，不如lifting state up</li>
-<li>componentWillMount() 这个函数是在render函数之前执行，在这里同步地执行setState时不会导致重新渲染的，不要在这里还引入side-effects</li>
-<li>componentDidMount() 在这里发起ajax，并且在这个函数去setState()会发生重新渲染</li>
-<li>componentWillReceiveProps(nextProps)：当收到新的props就会调用这个函数，react本身也会调用这个函数，即使props没有变化，因此在这个函数里一定要写个if判断props是否变化了。在初始挂载的时候不会调用这个函数，调用setState()是不会触发这个函数的</li>
-<li>shouldComponentUpdate(nextProps, nextState)： 现在的话如果这个函数return false， componentWillMount， render和componetDidMount都不会被调用了</li>
-<li>componentWillUpdate(nextProps, nextState) ：这也是个在渲染之前做准备工作的函数，它和componentWillReceiveProps很想，但是在这个函数里不能调用setState， 初始挂载也不会调用这个函数</li>
-<li>componentDidUpdate(prevProps, prevState)：这里也是好地方做ajax，并且可以比较props和state，并且这个函数在初挂载时也不会被调用</li>
-<li>setState():由于setState()可能会被延迟执行，因此在setState()之后立马通过this.state去读取可能会有问题</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1554,7 +1638,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1571,7 +1655,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

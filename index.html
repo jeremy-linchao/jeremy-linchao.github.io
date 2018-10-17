@@ -243,6 +243,240 @@
             
               
                 
+                <a class="post-title-link" href="/2018/10/17/ops/ssh登录慢/" itemprop="url">
+                  ssh登录慢
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-17T10:49:37+08:00" content="2018-10-17">
+              2018-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ops/" itemprop="url" rel="index">
+                    <span itemprop="name">ops</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>sshd服务在登录的时候会通过ip来反解hostname,然后国内很多不提供反解，或者反解超时都会导致ssh登录慢。修改UseDNS no</p>
+</li>
+<li><p>sshd还有一个GSSAPI(Generic Security Service Application Programming Interface) 服务利用Kerberos作强网络加密，这个也可以禁用。修改GSSAPIAuthentication no</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/16/nginx/nginx root和alias区别/" itemprop="url">
+                  nginx root和alias区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-16T11:21:01+08:00" content="2018-10-16">
+              2018-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-区别"><a href="#1-区别" class="headerlink" title="1 区别"></a>1 区别</h2><p>root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。<br>root的处理结果是：root路径＋location路径<br>alias的处理结果是：使用alias路径替换location路径</p>
+<h2 id="2-root例子"><a href="#2-root例子" class="headerlink" title="2 root例子"></a>2 root例子</h2><p>location ^~ /t/ {<br>     root /www/root/html/;<br>}<br>如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/t/a.html的文件</p>
+<h2 id="3-alias例子"><a href="#3-alias例子" class="headerlink" title="3 alias例子"></a>3 alias例子</h2><p>location ^~ /t/ {<br> alias /www/root/html/new_t/;<br>}</p>
+<p>如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/new_t/a.html的文件。注意这里是new_t，因为alias会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/10/16/nginx/nginx维护页面/" itemprop="url">
                   nginx维护页面
                 </a>
@@ -307,8 +541,7 @@
         
           
             <p>nginx作维护页面需要注意两点，一个是IP的过滤，希望外部维护页面，内部可访问；另外一个是对于uri的匹配，需要匹配所有的uri，这要用到try_files, try_files顾名思义，就是根据顺序查找每个文件，如果找不到则用最后一个文件作为默认文件，最后一个文件记得要加/</p>
-<p>```<br> location / {<br>  if ($remote_addr ~* ^(111).(111).(111).(111)$) {<br>     proxy_pass  <a href="http://aaa" target="_blank" rel="external">http://aaa</a>;<br>     break;<br>  }<br>  root /usr/share/nginx/html;<br>  try_files $uri $uri/ /index.html;<br>}</p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> location / &#123;</div><div class="line">  if ($remote_addr ~* ^(111)\.(111)\.(111)\.(111)$) &#123;</div><div class="line">     proxy_pass  http://aaa;</div><div class="line">     break;</div><div class="line">  &#125;</div><div class="line">  root /usr/share/nginx/html;</div><div class="line">  try_files $uri $uri/ /index.html;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -1187,244 +1420,6 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/05/28/react/title: webpack 编译加速/" itemprop="url">
-                  webpack 编译加速（一）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-05-28T20:58:19+08:00" content="2018-05-28">
-              2018-05-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前端项目的编译一直很慢，已经到了无法忍受的程度，感觉多编译一次就是浪费一点生命，所以下决心来解决这个问题。</p>
-<p>现有环境如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;webpack&quot;: &quot;3.0.0&quot;</div><div class="line">&quot;webpack-dev-server&quot;: &quot;2.5.0&quot;,</div><div class="line">&quot;awesome-typescript-loader&quot;: &quot;4.0.1&quot;,</div></pre></td></tr></table></figure>
-<p>第一个想到的就是升级下webpack，这个比较简单，follow下官网安装教程就行，要注意的是webpack4多了一个mode，在development和production的配置文件上要加一个mode</p>
-<p>但实际的结果仍然不如意，感觉ts的编译仍然很慢，所以想是不是atl的问题，网上也查看了说ts-loder现在编译速度比atl快，但我现在更关注的是增量更新，所以看下了atl的文档，文档一开头就有几个ADVICE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ADVICE: Turn on useCache option.</div><div class="line"></div><div class="line">ADVICE: Typically you want your files section to include only entry points.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you use isolatedModules or forceIsolatedModules options.</div><div class="line"></div><div class="line">ADVICE: The loader works faster if you will use reportFiles to restrict checking scope.</div><div class="line"></div><div class="line">ADVICE: Use the loader together with hard-source-webpack-plugin</div></pre></td></tr></table></figure>
-<p>这个option是写在tsconfig.json里的，如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;awesomeTypescriptLoaderOptions&quot;: &#123;</div><div class="line">        &quot;useCache&quot;: true,</div><div class="line">        &quot;forceIsolatedModules&quot;: true,</div><div class="line">        &quot;reportFiles&quot;: [</div><div class="line">            &quot;src/**/*.&#123;ts,tsx&#125;&quot;</div><div class="line">        ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>加了这个后，增量更新编译就明显快多了，</p>
-<p>根据webpack官方的优化文档，<a href="https://webpack.js.org/guides/build-performance/" target="_blank" rel="external">https://webpack.js.org/guides/build-performance/</a> 还有一些操作我也试了，比如cache-loader, dll, 但实际感觉效果不是太明显。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/05/14/redux/redux感悟/" itemprop="url">
-                  redux感悟
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-05-14T22:19:14+08:00" content="2018-05-14">
-              2018-05-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/frontend/" itemprop="url" rel="index">
-                    <span itemprop="name">frontend</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>好久没有写博客了，今天更新一篇，也来总结下最近使用react+redux+typescipt+redux-observable的体会</p>
-<p>先说说redux，对redux的container有了进一步的理解，一个是它的mapStateToProps，这里的数据来源于两部分，一部分是component对应的reducer（我喜欢以业务来分目录，一个业务包含一整套action，container，component，reducer），这里会有所有这个component产生和需要的数据，比如ui的数据，ajax获取的数据，这些数据是要存到redux，因此要map回来，另一部分的数据可能不是这个ui产生的，但却是ui需要的数据，可能是别的业务的一部分数据，需要共享过来，这里也是可以通过container  map回来，在用ts的时候，我会区分下类型定义如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 这个是reducer的state类型</div><div class="line">interface BusinessReducerState &#123;</div><div class="line">&#125;</div><div class="line">interface BusinessStateProps extends businessReducerState &#123;</div><div class="line">  // 这里可以map一些共享的数据</div><div class="line">&#125;</div><div class="line">interface BusinessDistpatchProps &#123;</div><div class="line">  // dispatch的方法</div><div class="line">&#125;</div><div class="line">// 这个是最后丢给component的props的类型</div><div class="line">const BusinessProps = BusinessStateProps &amp; BusinessDistpatchProps</div></pre></td></tr></table></figure>
-<p>container的另外一个理解就是container可以嵌container，这个本来应该是一个很正常的问题，但是这个问题很容易和另外一个问题搞混，那就是之前讲的component嵌component，componet嵌component有个问题是props是一级一级下传的，因此下面一层的component拿不到上一层component之外的数据，但container嵌套container则不是，因为container是从整个store拿的数据，因此下一层的container的数据跟上一层的组件是可以完全不一样的！因此redux怎么来做业务组件的重用？ 用的不是component而是container，一个很明显的例子是弹窗，我们的弹窗不是一个简单确认，里面是有很多业务数据的，而这个弹窗又是要做成重用的，可能要在不同地方去弹，这时候就应该把弹窗用container来做封装</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1470,7 +1465,7 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1487,7 +1482,7 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -243,6 +243,262 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/26/es6/airbnb的javascript编程规范/" itemprop="url">
+                  airbnb的javascript编程规范
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T16:25:15+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>对于所有引用类型使用const，这样可以避免对类型变量重新赋值，注意const类型也是块级作用域的</p>
+</li>
+<li><p>创建对象尽量使用字面值常量语法</p>
+</li>
+<li><p>对象的属性和方法使用简写方法</p>
+</li>
+<li><p>定义对象属性值尽量不加引号，除非有-这种字符</p>
+</li>
+<li><p>使用扩展运算符来copy对象，如果忽略对象时使用剩余运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const original = &#123; a: 1, b: 2 &#125;;</div><div class="line">const copy = &#123; ...original, c: 3 &#125;; // copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</div><div class="line"></div><div class="line">const &#123; a, ...noA &#125; = copy; // noA =&gt; &#123; b: 2, c: 3 &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用push方法来向数组添加元素，使用扩展运算符来copy数组</p>
+</li>
+<li><p>使用对象解构来访问对象的多个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const firstName = user.firstName;</div><div class="line">  const lastName = user.lastName;</div><div class="line"></div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const &#123; firstName, lastName &#125; = user;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// best</div><div class="line">function getFullName(&#123; firstName, lastName &#125;) &#123;</div><div class="line">  return `$&#123;firstName&#125; $&#123;lastName&#125;`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>常量字符串使用单引号而不是双引号</p>
+</li>
+<li><p>如果要通过编程来构建字符串，使用模板字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return &apos;How are you, &apos; + name + &apos;?&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return [&apos;How are you, &apos;, name, &apos;?&apos;].join();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// bad</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123; name &#125;?`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function sayHi(name) &#123;</div><div class="line">  return `How are you, $&#123;name&#125;?`;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要判断函数参数</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/25/es6/关于promise的理解/" itemprop="url">
+                  关于promise的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-25T18:41:48+08:00" content="2017-02-25">
+              2017-02-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>promise的定义，这个是创建promise的语法，resolve和reject都是函数, 当被调用时, 分别”清理”和”拒绝”promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new Promise(function(resolve, reject)&#123;...&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>遇到更多的是使用promise，这就需要用到then方法了，then方法接收两个参数，分别为 Promise 在成功和失败情况下的回调函数，并且then方法本身返回的是promise对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.then(onFulfilled, onRejected)</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/23/react/对于react-router的理解/" itemprop="url">
                   对于react-router的理解
                 </a>
@@ -1233,254 +1489,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/utility/使用vim提高编码效率/" itemprop="url">
-                  使用vim提高编码效率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T13:06:25+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/utilties/" itemprop="url" rel="index">
-                    <span itemprop="name">utilties</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>选中行或列   shift+v,   ctrl+v</p>
-</li>
-<li><p>文首：gg,  文末：G， 行首：^， 行末: $，  下一个单词：w，  上一个单词： b</p>
-</li>
-<li><p>向下移动10行， 10j</p>
-</li>
-<li><p>屏幕滚动，ctrl+f：向下翻页，  ctrl +b: 向上翻页</p>
-</li>
-<li><p>H: 移动到屏幕首行， L：移动到屏幕尾行：M：移动到屏幕中间</p>
-</li>
-<li><p>zt：置顶当前行， zz：当前行移到屏幕中部， zb: 当前行移动到屏幕底部</p>
-</li>
-<li><p>移动到指定行号 ， esc进入命令模式, 输入  ：10   到第10行</p>
-</li>
-<li><p>查找单词，光标移动所需要单词，通过*或#跳转到下一个单词或前一个单词</p>
-</li>
-<li><p>替换 :%s/foo/bar/g</p>
-<p>Find each occurrence of ‘foo’ (in all lines), and replace it with ‘bar’.</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/api/API设计时遇到的问题/" itemprop="url">
-                  API设计时遇到的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-17T11:57:18+08:00" content="2017-02-17">
-              2017-02-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/api/" itemprop="url" rel="index">
-                    <span itemprop="name">api</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>如果从数据库返回的结果默认是null，那api返回的时候是应该返回null还是默认类型？</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1526,7 +1534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">245</span>
+              <span class="site-state-item-count">247</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1543,7 +1551,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-count">173</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
