@@ -243,6 +243,146 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/30/docker/nginx Docker/" itemprop="url">
+                  nginx Docker
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-30T10:17:30+08:00" content="2017-09-30">
+              2017-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>制作docker file如下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">FROM nginx</div><div class="line"></div><div class="line"># Create nginx data directory</div><div class="line">RUN mkdir -p /data/__ucloud_stack_console</div><div class="line">WORKDIR /data/__ucloud_stack_console</div><div class="line"></div><div class="line"># Copy nginx configuration </div><div class="line"># COPY ./nginx.conf /etc/nginx/nginx.conf</div><div class="line"></div><div class="line"># Copy console product</div><div class="line">COPY build newconsole</div><div class="line"></div><div class="line"># Copy starter build</div><div class="line">COPY starter/build starter/build</div><div class="line"></div><div class="line"># Copy locale</div><div class="line">COPY starter/locale_data locale_data</div><div class="line"></div><div class="line"># Copy conf</div><div class="line">COPY conf conf</div><div class="line"></div><div class="line"># 启动nginx</div><div class="line">EXPOSE 80</div><div class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</div></pre></td></tr></table></figure>
+<p>这里要注意的是copy文件和目录的语法，可以查看docker 官方的文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">SRC_PATH specifies a file</div><div class="line">	DEST_PATH does not exist</div><div class="line">		the file is saved to a file created at DEST_PATH</div><div class="line">	DEST_PATH does not exist and ends with /</div><div class="line">		Error condition: the destination directory must exist.</div><div class="line">	DEST_PATH exists and is a file</div><div class="line">		the destination is overwritten with the source file’s contents</div><div class="line">	DEST_PATH exists and is a directory</div><div class="line">		the file is copied into this directory using the basename from SRC_PATH</div><div class="line">SRC_PATH specifies a directory</div><div class="line">	DEST_PATH does not exist</div><div class="line">		DEST_PATH is created as a directory and the contents of the source directory are copied 		into this directory</div><div class="line">	DEST_PATH exists and is a file</div><div class="line">		Error condition: cannot copy a directory to a file</div><div class="line">	DEST_PATH exists and is a directory</div><div class="line">		SRC_PATH does not end with /. (that is: slash followed by dot) the source directory is 			copied into this directory</div><div class="line">	SRC_PATH does end with /. (that is: slash followed by dot)</div><div class="line">		the content of the source directory is copied into this directory</div></pre></td></tr></table></figure>
+<ol>
+<li>制作镜像</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t nginx_console .</div></pre></td></tr></table></figure>
+<ol>
+<li>运行容器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run --name nginx_console_container -v /tmp/nginx:/var/log/nginx -idt -p 80:80 nginx_console</div></pre></td></tr></table></figure>
+<ol>
+<li>进入容器看下nginx的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it nginx_console_container bash</div></pre></td></tr></table></figure>
+<ol>
+<li>nginx配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">user nginx;</div><div class="line">worker_processes auto;</div><div class="line">#error_log /var/log/nginx/error.log;</div><div class="line">#pid /run/nginx.pid;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections 1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line"></div><div class="line">    #access_log  /var/log/nginx/access.log  main;</div><div class="line">    gzip	 	on;</div><div class="line">    gzip_types	 	image/jpeg image/png application/octet-stream;</div><div class="line"></div><div class="line">    sendfile            on;</div><div class="line">    tcp_nopush          on;</div><div class="line">    tcp_nodelay         on;</div><div class="line">    keepalive_timeout   65;</div><div class="line">    types_hash_max_size 2048;</div><div class="line"></div><div class="line">    #include             /etc/nginx/mime.types;</div><div class="line">    default_type        application/octet-stream;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">		server_name                         console.ucloud.cn</div><div class="line">        keepalive_timeout                   75;</div><div class="line">        listen                              80;</div><div class="line"></div><div class="line">        add_header &apos;Access-Control-Allow-Origin&apos; &quot;$http_origin&quot;;</div><div class="line">        add_header &apos;Access-Control-Allow-Credentials&apos; true;</div><div class="line">        add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos;;</div><div class="line">        add_header &apos;Access-Control-Max-Age&apos;       3628800;</div><div class="line">        add_header &apos;Access-Control-Allow-Headers&apos; &apos;Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,*&apos;;</div><div class="line"></div><div class="line">        location ~*  ^/ufiles/(.+)$ &#123;</div><div class="line">            proxy_set_header Host $http_bucket.ufile.ucloud.cn;</div><div class="line">            #access_log                  /var/log/nginx/ucloud_stack_console_ufiles.log;</div><div class="line">            rewrite ^/ufiles/(.+)$  /$1  break;</div><div class="line">            proxy_pass  http://www.ufile.ucloud.cn;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location ~* ^/uvideoUploads/(.+)$ &#123;</div><div class="line">            #access_log                  /var/log/nginx/ucloud_stack_console_uvideo.log;</div><div class="line">            proxy_set_header            Host $http_bucket.ufile.ucloud.cn;</div><div class="line">            rewrite                     ^/uvideoUploads/(.+)$  /$1?uploads  break;</div><div class="line">            proxy_pass                  http://$http_bucket.ufile.ucloud.cn;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置启动器的root目录</div><div class="line">        root              /data/__ucloud_stack_console/starter;</div><div class="line"></div><div class="line">        #设置日志</div><div class="line">        #access_log        /var/log/nginx/ucloud_stack_starter.log;</div><div class="line">        #error_log        /var/log/nginx/ucloud_stack_console_error.log;</div><div class="line"></div><div class="line">        #匹配所有静态资源</div><div class="line">        location ~* \.(js|gif|png|map|jpg|css|jpegcss|swf|ico|txt|html|ttf|less|jar|tpl|tgz|woff|tff|json)$ &#123;</div><div class="line">            root         /data/__ucloud_stack_console/newconsole;</div><div class="line">            #access_log      /var/log/nginx/ucloud_stack_console.log;</div><div class="line">            proxy_redirect off;</div><div class="line">            proxy_set_header Host $host;</div><div class="line">            proxy_cache_valid 200 302 1h;</div><div class="line">            proxy_cache_valid 301 1d;</div><div class="line">            proxy_cache_valid any 1m;</div><div class="line">            expires 30d;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置启动器js文件目录</div><div class="line">        location ^~ /starter/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/starter/;</div><div class="line">            proxy_redirect off;</div><div class="line">            proxy_set_header Host $host;</div><div class="line">            proxy_cache_valid 200 302 1h;</div><div class="line">            proxy_cache_valid 301 1d;</div><div class="line">            proxy_cache_valid any 1m;</div><div class="line">            expires 30d;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置语言系统文件目录</div><div class="line">        location ^~ /locale_data/ &#123;</div><div class="line">            alias /data/__ucloud_stack_console/locale_data/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置语言文件目录</div><div class="line">        location ^~ /locale/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/locale/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置新样式文件目录</div><div class="line">        location ^~ /new-styles/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/new-styles/;</div><div class="line">        &#125;</div><div class="line">        #设置样式文件目录</div><div class="line">        location ^~ /styles/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/newconsole/styles/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #设置配置文件目录</div><div class="line">        location ^~ /conf/ &#123;</div><div class="line">            alias   /data/__ucloud_stack_console/conf/;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #匹配所有请求到启动器的index.html文件</div><div class="line">        location / &#123;</div><div class="line">        #禁用cache html`</div><div class="line">            add_header Cache-Control &quot;private&quot;;</div><div class="line">            add_header Cache-Control &quot;no-cache&quot; </div><div class="line">            add_header Pragma no-cache;</div><div class="line">            add_header Cache-Control &apos;no-store&apos;;</div><div class="line">            rewrite ^ /index.html break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>排错方法</p>
+<p>经常会遇到nginx容器起不来的情况，绝大多是因为nginx的配置问题，可以通过如下命令来查看容器日志</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker logs &lt;container_id&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/28/docker/kubernets理解/" itemprop="url">
                   kubernets理解
                 </a>
@@ -833,121 +973,6 @@
 <ol>
 <li>打开go的文件确实在右下角确实会出现missing tools 的提示，但如果你直接点击那个按钮会提示安装不上（众所周知的原因），所以需要你自行解决下</li>
 <li>关于buildOnSave： 这个作者有提到 Since <code>go build</code> ignores test files, we use <code>go test -i -c -o</code> instead on the current package. This will compile the whole package. 所以作者用build，因此即使是package main而没有二进制文件生成</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/20/go/effective go/" itemprop="url">
-                  effective go
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-20T18:09:27+08:00" content="2017-09-20">
-              2017-09-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号</li>
 </ol>
 
           
@@ -1625,7 +1650,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">173</span>
+                <span class="site-state-item-count">174</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

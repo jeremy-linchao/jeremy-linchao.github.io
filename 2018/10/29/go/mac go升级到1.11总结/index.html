@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="go," />
+  <meta name="keywords" content="go1.11," />
 
 
 
@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号">
-<meta name="keywords" content="go">
+<meta name="description" content="最近项目升级到了go1.11,主要就是为了使用go module，中间遇到的问题我总结下  go1.11的安装：官网和brew都可以，我这次用的是brew upgrede go就可以，但是因为之前的go是使用二进制的pkg安装的，所以但brew升级完成之后,go version显示的还是1.8.3, 通过echo $PATH发现有个 /usr/local/go/bin， 然而我是没有在我的~/.z">
+<meta name="keywords" content="go1.11">
 <meta property="og:type" content="article">
-<meta property="og:title" content="effective go">
-<meta property="og:url" content="http://yoursite.com/2017/09/20/go/effective go/index.html">
+<meta property="og:title" content="mac go升级到1.11总结">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/go/mac go升级到1.11总结/index.html">
 <meta property="og:site_name" content="学习学习再学习">
-<meta property="og:description" content="go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号">
-<meta property="og:updated_time" content="2017-09-20T10:09:27.000Z">
+<meta property="og:description" content="最近项目升级到了go1.11,主要就是为了使用go module，中间遇到的问题我总结下  go1.11的安装：官网和brew都可以，我这次用的是brew upgrede go就可以，但是因为之前的go是使用二进制的pkg安装的，所以但brew升级完成之后,go version显示的还是1.8.3, 通过echo $PATH发现有个 /usr/local/go/bin， 然而我是没有在我的~/.z">
+<meta property="og:updated_time" content="2018-10-29T03:31:52.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="effective go">
-<meta name="twitter:description" content="go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号">
+<meta name="twitter:title" content="mac go升级到1.11总结">
+<meta name="twitter:description" content="最近项目升级到了go1.11,主要就是为了使用go module，中间遇到的问题我总结下  go1.11的安装：官网和brew都可以，我这次用的是brew upgrede go就可以，但是因为之前的go是使用二进制的pkg安装的，所以但brew升级完成之后,go version显示的还是1.8.3, 通过echo $PATH发现有个 /usr/local/go/bin， 然而我是没有在我的~/.z">
 
 
 
@@ -112,7 +112,7 @@
   };
 </script>
 
-  <title> effective go | 学习学习再学习 </title>
+  <title> mac go升级到1.11总结 | 学习学习再学习 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
             
             
               
-                effective go
+                mac go升级到1.11总结
               
             
           </h1>
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-20T18:09:27+08:00" content="2017-09-20">
-              2017-09-20
+            <time itemprop="dateCreated" datetime="2018-10-29T11:02:02+08:00" content="2018-10-29">
+              2018-10-29
             </time>
           </span>
 
@@ -301,8 +301,56 @@
       
 
       
-        <ol>
-<li>go不需要分号结尾，倒并不是这个语言不要，而是这个语言编译器的lexer（具体不知道怎么翻译，就暂且叫做词法分析器，应该是编译器的一部分）会根据规则自动在语句结尾加上分号</li>
+        <p>最近项目升级到了go1.11,主要就是为了使用go module，中间遇到的问题我总结下</p>
+<ol>
+<li>go1.11的安装：官网和brew都可以，我这次用的是brew upgrede go就可以，但是因为之前的go是使用二进制的pkg安装的，所以但brew升级完成之后,go version显示的还是1.8.3, 通过echo $PATH发现有个 /usr/local/go/bin， 然而我是没有在我的~/.zshrc上加入这个环境变量的，因此可以推断是之前二进制安装的。那么它是通过哪个配置文件读入的呢？这里就需要学习下mac下的环境变量读入的顺序，</li>
+</ol>
+<h2 id="环境变量的位置"><a href="#环境变量的位置" class="headerlink" title="环境变量的位置"></a>环境变量的位置</h2><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>级别</th>
+<th>读写权限</th>
+<th>摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/paths</td>
+<td>1(系统级)</td>
+<td>root</td>
+<td>文件，每一行代表一个环境变量，不建议修改</td>
+</tr>
+<tr>
+<td>/etc/paths.d/xxx</td>
+<td>2(系统级)</td>
+<td>root</td>
+<td>文件夹， 可以在里面建任意不带后缀名的文件， 在文件中写入环境变量， 系统级环境变量建议放在该文件夹中</td>
+</tr>
+<tr>
+<td>~/.bash_profile</td>
+<td>3(用户级)</td>
+<td>用户</td>
+<td>文件，<code>~</code> 代表当前用户目录，该文件可能不存在，不存在创建一个即可</td>
+</tr>
+<tr>
+<td>临时变量</td>
+<td>4(用户级)</td>
+<td>用户</td>
+<td>临时变量，仅在当前终端有效，关闭终端后自动失效</td>
+</tr>
+</tbody>
+</table>
+<p>每个文件都查找下发现是在/etc/paths.d/下有个go文件，因此删除这个文件就可以</p>
+<ol>
+<li><p>当升级到11之后，相关的依赖包的代码不是在$GOPATH/src下，而是在$GOPATH/pkg/mod下,和node_modules差不多</p>
+</li>
+<li><p>go1.11因为还是一个试验版本，所以有个GO111MODULE环境变量，这个变量有三个值，off,on,auto， 如果是off拿golang会用之前的方式即首先检查项目目录下的vendor目录，然后再看GOPATH，如果是on就会用go module的特性，默认是个auto, auto的意思是：如果当前项目是在GOPATH下就不会使用go module特性，反之则用。因此最简单的方式就是把项目代码移到GO PATH外面</p>
+</li>
+<li><p>vscode的配置，当升级到go 1.11之后，go tool都得升级下，vscode会有提示，如果没有就cmd+shift+p切换到命令模板，然后install tool就可以, 最好开翻墙</p>
+</li>
+<li><p>vscode的自动提示需要一个新的版本，也是根据安装就可以</p>
+</li>
 </ol>
 
       
@@ -325,7 +373,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/go/" rel="tag">#go</a>
+            <a href="/tags/go1-11/" rel="tag">#go1.11</a>
           
         </div>
       
@@ -334,17 +382,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/19/go/go学习/" rel="next" title="go学习">
-                <i class="fa fa-chevron-left"></i> go学习
+              <a href="/2018/10/17/ops/ssh登录慢/" rel="next" title="ssh登录慢">
+                <i class="fa fa-chevron-left"></i> ssh登录慢
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/21/go/vscode go环境配置/" rel="prev" title="vscode go环境配置">
-                vscode go环境配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -429,7 +473,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">173</span>
+                <span class="site-state-item-count">174</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -458,7 +502,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量的位置"><span class="nav-number">1.</span> <span class="nav-text">环境变量的位置</span></a></li></ol></div>
             
           </div>
         </section>

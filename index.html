@@ -243,6 +243,169 @@
             
               
                 
+                <a class="post-title-link" href="/2018/10/29/go/mac go升级到1.11总结/" itemprop="url">
+                  mac go升级到1.11总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-29T11:02:02+08:00" content="2018-10-29">
+              2018-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近项目升级到了go1.11,主要就是为了使用go module，中间遇到的问题我总结下</p>
+<ol>
+<li>go1.11的安装：官网和brew都可以，我这次用的是brew upgrede go就可以，但是因为之前的go是使用二进制的pkg安装的，所以但brew升级完成之后,go version显示的还是1.8.3, 通过echo $PATH发现有个 /usr/local/go/bin， 然而我是没有在我的~/.zshrc上加入这个环境变量的，因此可以推断是之前二进制安装的。那么它是通过哪个配置文件读入的呢？这里就需要学习下mac下的环境变量读入的顺序，</li>
+</ol>
+<h2 id="环境变量的位置"><a href="#环境变量的位置" class="headerlink" title="环境变量的位置"></a>环境变量的位置</h2><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>级别</th>
+<th>读写权限</th>
+<th>摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/paths</td>
+<td>1(系统级)</td>
+<td>root</td>
+<td>文件，每一行代表一个环境变量，不建议修改</td>
+</tr>
+<tr>
+<td>/etc/paths.d/xxx</td>
+<td>2(系统级)</td>
+<td>root</td>
+<td>文件夹， 可以在里面建任意不带后缀名的文件， 在文件中写入环境变量， 系统级环境变量建议放在该文件夹中</td>
+</tr>
+<tr>
+<td>~/.bash_profile</td>
+<td>3(用户级)</td>
+<td>用户</td>
+<td>文件，<code>~</code> 代表当前用户目录，该文件可能不存在，不存在创建一个即可</td>
+</tr>
+<tr>
+<td>临时变量</td>
+<td>4(用户级)</td>
+<td>用户</td>
+<td>临时变量，仅在当前终端有效，关闭终端后自动失效</td>
+</tr>
+</tbody>
+</table>
+<p>每个文件都查找下发现是在/etc/paths.d/下有个go文件，因此删除这个文件就可以</p>
+<ol>
+<li><p>当升级到11之后，相关的依赖包的代码不是在$GOPATH/src下，而是在$GOPATH/pkg/mod下,和node_modules差不多</p>
+</li>
+<li><p>go1.11因为还是一个试验版本，所以有个GO111MODULE环境变量，这个变量有三个值，off,on,auto， 如果是off拿golang会用之前的方式即首先检查项目目录下的vendor目录，然后再看GOPATH，如果是on就会用go module的特性，默认是个auto, auto的意思是：如果当前项目是在GOPATH下就不会使用go module特性，反之则用。因此最简单的方式就是把项目代码移到GO PATH外面</p>
+</li>
+<li><p>vscode的配置，当升级到go 1.11之后，go tool都得升级下，vscode会有提示，如果没有就cmd+shift+p切换到命令模板，然后install tool就可以, 最好开翻墙</p>
+</li>
+<li><p>vscode的自动提示需要一个新的版本，也是根据安装就可以</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/10/17/ops/ssh登录慢/" itemprop="url">
                   ssh登录慢
                 </a>
@@ -1298,128 +1461,6 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/06/07/k8s/kubectl/" itemprop="url">
-                  kubectl
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-06-07T08:47:19+08:00" content="2018-06-07">
-              2018-06-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/k8s-source-code/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s source code</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>当你敲下了kubectl get pods 时，代码时怎么运行的？</li>
-</ol>
-<p>kubectl的入口是在cmd文件目录下的kubectl，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">import (</div><div class="line">	goflag &quot;flag&quot;</div><div class="line">	&quot;fmt&quot;</div><div class="line">	&quot;math/rand&quot;</div><div class="line">	&quot;os&quot;</div><div class="line">	&quot;time&quot;</div><div class="line"></div><div class="line">	&quot;github.com/spf13/pflag&quot;</div><div class="line"></div><div class="line">	utilflag &quot;k8s.io/apiserver/pkg/util/flag&quot;</div><div class="line">	&quot;k8s.io/kubernetes/pkg/kubectl/cmd&quot;</div><div class="line">	&quot;k8s.io/kubernetes/pkg/kubectl/util/logs&quot;</div><div class="line"></div><div class="line">	// Import to initialize client auth plugins.</div><div class="line">	_ &quot;k8s.io/client-go/plugin/pkg/client/auth&quot;</div><div class="line">)</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	rand.Seed(time.Now().UTC().UnixNano())</div><div class="line"></div><div class="line">	command := cmd.NewDefaultKubectlCommand()</div><div class="line"></div><div class="line">	// TODO: once we switch everything over to Cobra commands, we can go back to calling</div><div class="line">	// utilflag.InitFlags() (by removing its pflag.Parse() call). For now, we have to set the</div><div class="line">	// normalize func and add the go flag set by hand.</div><div class="line">	pflag.CommandLine.SetNormalizeFunc(utilflag.WordSepNormalizeFunc)</div><div class="line">	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)</div><div class="line">	// utilflag.InitFlags()</div><div class="line">	logs.InitLogs()</div><div class="line">	defer logs.FlushLogs()</div><div class="line"></div><div class="line">	if err := command.Execute(); err != nil &#123;</div><div class="line">		fmt.Fprintf(os.Stderr, &quot;%v\n&quot;, err)</div><div class="line">		os.Exit(1)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>k8s所有命令行都是用了Cobra这个框架，在开头就用了通过cmd.NewDefaultKubectlCommand初始化了command对象，真正的实现是在pkg下的cmd， 在这里有个NewKubectlCommand方法，进到这个方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">groups := templates.CommandGroups&#123;</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Basic Commands (Beginner):&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				create.NewCmdCreate(f, ioStreams),</div><div class="line">				NewCmdExposeService(f, ioStreams),</div><div class="line">				NewCmdRun(f, ioStreams),</div><div class="line">				set.NewCmdSet(f, ioStreams),</div><div class="line">				deprecatedAlias(&quot;run-container&quot;, NewCmdRun(f, ioStreams)),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Basic Commands (Intermediate):&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdExplain(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				get.NewCmdGet(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdEdit(f, ioStreams),</div><div class="line">				NewCmdDelete(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Deploy Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				rollout.NewCmdRollout(f, ioStreams),</div><div class="line">				NewCmdRollingUpdate(f, ioStreams),</div><div class="line">				NewCmdScale(f, ioStreams),</div><div class="line">				NewCmdAutoscale(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Cluster Management Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdCertificate(f, ioStreams),</div><div class="line">				NewCmdClusterInfo(f, ioStreams),</div><div class="line">				NewCmdTop(f, ioStreams),</div><div class="line">				NewCmdCordon(f, ioStreams),</div><div class="line">				NewCmdUncordon(f, ioStreams),</div><div class="line">				NewCmdDrain(f, ioStreams),</div><div class="line">				NewCmdTaint(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Troubleshooting and Debugging Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdDescribe(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdLogs(f, ioStreams),</div><div class="line">				NewCmdAttach(f, ioStreams),</div><div class="line">				NewCmdExec(f, ioStreams),</div><div class="line">				NewCmdPortForward(f, ioStreams),</div><div class="line">				NewCmdProxy(f, ioStreams),</div><div class="line">				NewCmdCp(f, ioStreams),</div><div class="line">				auth.NewCmdAuth(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Advanced Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdApply(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdPatch(f, ioStreams),</div><div class="line">				NewCmdReplace(f, ioStreams),</div><div class="line">				wait.NewCmdWait(f, ioStreams),</div><div class="line">				NewCmdConvert(f, ioStreams),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			Message: &quot;Settings Commands:&quot;,</div><div class="line">			Commands: []*cobra.Command&#123;</div><div class="line">				NewCmdLabel(f, ioStreams),</div><div class="line">				NewCmdAnnotate(&quot;kubectl&quot;, f, ioStreams),</div><div class="line">				NewCmdCompletion(ioStreams.Out, &quot;&quot;),</div><div class="line">			&#125;,</div><div class="line">		&#125;,</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>可以看到这里调用了一个get.NewCmdGet(“kubectl”, f, ioStreams), 继续进到这个函数，它进一步调用的是cmdutil.CheckErr(o.Run(f, cmd, args))，那就看下Run函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">r := f.NewBuilder().</div><div class="line">		Unstructured().</div><div class="line">		NamespaceParam(o.Namespace).DefaultNamespace().AllNamespaces(o.AllNamespaces).</div><div class="line">		FilenameParam(o.ExplicitNamespace, &amp;o.FilenameOptions).</div><div class="line">		LabelSelectorParam(o.LabelSelector).</div><div class="line">		FieldSelectorParam(o.FieldSelector).</div><div class="line">		ExportParam(o.Export).</div><div class="line">		RequestChunksOf(o.ChunkSize).</div><div class="line">		IncludeUninitialized(o.IncludeUninitialized).</div><div class="line">		ResourceTypeOrNameArgs(true, args...).</div><div class="line">		ContinueOnError().</div><div class="line">		Latest().</div><div class="line">		Flatten().</div><div class="line">		TransformRequests(func(req *rest.Request) &#123;</div><div class="line">			if o.ServerPrint &amp;&amp; o.IsHumanReadablePrinter &amp;&amp; !o.Sort &#123;</div><div class="line">				group := metav1beta1.GroupName</div><div class="line">				version := metav1beta1.SchemeGroupVersion.Version</div><div class="line"></div><div class="line">				tableParam := fmt.Sprintf(&quot;application/json;as=Table;v=%s;g=%s, application/json&quot;, version, group)</div><div class="line">				req.SetHeader(&quot;Accept&quot;, tableParam)</div><div class="line">			&#125;</div><div class="line">		&#125;).</div><div class="line">		Do()</div></pre></td></tr></table></figure>
-<p>这段代码我先简单理解是做了request的构造并发了api的请求，这里用了一个vistor的模式？  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1482,7 +1523,7 @@ return append(append(quickSort(less), pivot), quickSort(great)...)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">173</span>
+                <span class="site-state-item-count">174</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
