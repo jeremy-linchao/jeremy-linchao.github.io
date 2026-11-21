@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Instagram 授权 · Frame Studio</title>
+</head>
+<body>
+  <main>
+    <h1>Instagram 授权</h1>
+    <p id="status">请从 Frame Studio 的平台账号页发起授权。</p>
+    <a id="finish" hidden rel="noreferrer">返回 Frame Studio 完成连接</a>
+    <noscript>请复制地址栏的完整返回地址，在原工作台的「通过自有 HTTPS 回调完成授权」中提交。</noscript>
+  </main>
+  <script>
+    const reply = new URL(window.location.href);
+    if (reply.protocol === "https:" && reply.searchParams.has("state") &&
+        (reply.searchParams.has("code") || reply.searchParams.has("error"))) {
+      const local = new URL("http://127.0.0.1:18876/social/accounts");
+      local.hash = new URLSearchParams({meta_callback: reply.href}).toString();
+      const finish = document.getElementById("finish");
+      finish.href = local.href;
+      finish.hidden = false;
+      document.getElementById("status").textContent = "请回到发起授权的工作台，在页面中确认连接。";
+      history.replaceState(null, "", reply.pathname);
+    }
+  </script>
+</body>
+</html>
